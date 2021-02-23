@@ -5,6 +5,7 @@
 from setuptools import setup, find_packages
 from setuptools.command.develop import develop
 from setuptools.command.install import install
+from setuptools.command.sdist import sdist
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
@@ -43,6 +44,14 @@ class PostInstall(install):
         self.execute(_post_install, [], msg="Running post installation tasks")
 
 
+class PostSdist(sdist):
+    """Post-installation for production mode."""
+
+    def run(self):
+        sdist.run(self)
+        self.execute(_post_install, [], msg="Running post installation tasks")
+
+
 setup(
     author="Fabien Mathieu",
     author_email='fabien.mathieu@normalesup.org',
@@ -72,5 +81,5 @@ setup(
     url='https://github.com/balouf/sisu',
     version='0.1.0',
     zip_safe=False,
-    cmdclass={"develop": PostDevelop, "install": PostInstall},
+    cmdclass={"develop": PostDevelop, "install": PostInstall, "sdist": PostSdist},
 )
