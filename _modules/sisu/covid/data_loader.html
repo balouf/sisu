@@ -1,0 +1,408 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>sisu.covid.data_loader &mdash; Structured and Interactive Summarization 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Structured and Interactive Summarization
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">Structured and Interactive Summarization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Structured and Interactive Summarization</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sisu.covid.data_loader</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sisu.covid.data_loader</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">zlib</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">zipfile</span> <span class="kn">import</span> <span class="n">ZipFile</span>
+
+<span class="kn">import</span> <span class="nn">dill</span> <span class="k">as</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">gismo.filesource</span> <span class="kn">import</span> <span class="n">FileSource</span>
+
+<span class="kn">from</span> <span class="nn">sisu.preprocessing.covid19</span> <span class="kn">import</span> <span class="n">get_content</span>
+<span class="kn">from</span> <span class="nn">sisu.preprocessing.language</span> <span class="kn">import</span> <span class="n">guess_language</span>
+
+
+<div class="viewcode-block" id="load_dataset"><a class="viewcode-back" href="../../../reference/covid.html#sisu.covid.data_loader.load_dataset">[docs]</a><span class="k">def</span> <span class="nf">load_dataset</span><span class="p">(</span><span class="n">dataset_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">getters</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">max_documents</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">save</span><span class="o">=</span><span class="s1">&#39;dump.pkl&#39;</span><span class="p">,</span> <span class="n">erase</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load files of the COVID-19 dataset or any dataset containing only json files.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dataset_dir: :class:`~pathlib.Path` or :class:`str`</span>
+<span class="sd">        Directory of the uncompressed dataset.</span>
+<span class="sd">    getters: :class:`dict`, optional</span>
+<span class="sd">        Key getters.</span>
+<span class="sd">    max_documents: :class:`int`, optional</span>
+<span class="sd">        max_documents: How many documents must be loaded (default: load all documents).</span>
+<span class="sd">    save: :class:`str` or :class:`~pathlib.Path` or None</span>
+<span class="sd">        If not `None`, name of the save file to use.</span>
+<span class="sd">    erase: :class:`bool`, optional</span>
+<span class="sd">        If `True`, will rebuild the save even if it exists.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :class:`list` of :class:`dict`</span>
+<span class="sd">        A list of dict, where each dict represents a document (each dict corresponds to a json file of the dataset).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    We locate a place where json files of covid-related papers lie.</span>
+
+<span class="sd">    &gt;&gt;&gt; data_dir = Path(&quot;data/covid_sample&quot;)</span>
+
+<span class="sd">    We check that there is no save at this point.</span>
+
+<span class="sd">    &gt;&gt;&gt; save_location = data_dir / &quot;dump.pkl&quot;</span>
+<span class="sd">    &gt;&gt;&gt; save_location.exists()</span>
+<span class="sd">    False</span>
+
+<span class="sd">    We now load the available json and extract the titles</span>
+
+<span class="sd">    &gt;&gt;&gt; documents = load_dataset(data_dir)</span>
+<span class="sd">    &gt;&gt;&gt; [doc[&#39;metadata&#39;][&#39;title&#39;] for doc in documents]</span>
+<span class="sd">    [&#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;, &#39;Community frailty response service: the ED at your front door&#39;, &#39;COVID-19-Pneumonie&#39;]</span>
+
+<span class="sd">    Now the save file is there.</span>
+
+<span class="sd">    &gt;&gt;&gt; save_location.exists()</span>
+<span class="sd">    True</span>
+
+<span class="sd">    Reloading the dataset will now go through the pickle file.</span>
+
+<span class="sd">    &gt;&gt;&gt; documents = load_dataset(data_dir)</span>
+<span class="sd">    &gt;&gt;&gt; [doc[&#39;metadata&#39;][&#39;title&#39;] for doc in documents]</span>
+<span class="sd">    [&#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;, &#39;Community frailty response service: the ED at your front door&#39;, &#39;COVID-19-Pneumonie&#39;]</span>
+
+<span class="sd">    Let&#39;s remove the save.</span>
+
+<span class="sd">    &gt;&gt;&gt; save_location.unlink()</span>
+
+<span class="sd">    Now, we use getters to preprocess the documents and we limit the results to 2 documents. we also do not want a save to be made.</span>
+
+<span class="sd">    &gt;&gt;&gt; from sisu.preprocessing.covid19 import get_title, get_abstract</span>
+<span class="sd">    &gt;&gt;&gt; documents = load_dataset(data_dir, max_documents=2, getters={&#39;title&#39;: get_title, &#39;abstract&#39;: get_abstract}, save=None)</span>
+<span class="sd">    &gt;&gt;&gt; [doc for doc in documents] # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">    [{&#39;title&#39;: &#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;, &#39;abstract&#39;: &#39;&#39;},</span>
+<span class="sd">     {&#39;title&#39;: &#39;Community frailty response service: the ED at your front door&#39;,</span>
+<span class="sd">      &#39;abstract&#39;: &#39;We describe the expansion and adaptation of a frailty response team to assess older people in their usual place of residence. The team had commenced a weekend service to a limited area in February 2020. As a consequence of demand related to the COVID-19 pandemic, we expanded it and adapted the model of care to provide a 7-day service to our entire catchment area. Five hundred and ninety two patient reviews have been completed in the first 105 days of operation with 43 patients transferred to hospital for further investigation or management following assessment.&#39;}]</span>
+
+<span class="sd">    We can check that no save file was produced.</span>
+
+<span class="sd">    &gt;&gt;&gt; save_location.exists()</span>
+<span class="sd">    False</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dataset_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">dataset_dir</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">dataset_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">save</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">save_location</span> <span class="o">=</span> <span class="n">dataset_dir</span> <span class="o">/</span> <span class="n">save</span>
+        <span class="n">file_exist</span> <span class="o">=</span> <span class="n">save_location</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">file_exist</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">file_exist</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">erase</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_location</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">documents</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">dataset_dir</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*.json&quot;</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">document</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">getters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">document</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">get</span><span class="p">(</span><span class="n">document</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">get</span><span class="p">)</span> <span class="ow">in</span> <span class="n">getters</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+            <span class="n">documents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># PATCH</span>
+        <span class="k">if</span> <span class="n">max_documents</span> <span class="o">!=</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">==</span> <span class="n">max_documents</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="k">if</span> <span class="n">save</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_location</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">documents</span></div>
+
+
+<div class="viewcode-block" id="filesource_loader_covid"><a class="viewcode-back" href="../../../reference/covid.html#sisu.covid.data_loader.filesource_loader_covid">[docs]</a><span class="k">def</span> <span class="nf">filesource_loader_covid</span><span class="p">(</span><span class="n">d</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">lang</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;en&quot;</span><span class="p">,</span> <span class="n">zipname</span><span class="o">=</span><span class="s2">&quot;CORD-19-research-challenge.zip&quot;</span><span class="p">,</span>
+                            <span class="n">fsname</span><span class="o">=</span><span class="s2">&quot;covid_corpus&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FileSource</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create and return a Gismo :class:`~gismo.filesource.FileSource` from a covid zipfile.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    d: :class:`~pathlib.Path` or :class:`str`</span>
+<span class="sd">        Data directory</span>
+<span class="sd">    lang: :class:`str`, optional</span>
+<span class="sd">        Language to keep`</span>
+<span class="sd">    zipname: :class:`~pathlib.Path` or :class:`str`, optional</span>
+<span class="sd">        Name of the covid zip archive</span>
+<span class="sd">    fsname: :class:`str`</span>
+<span class="sd">        Prefix of the :class:`~gismo.filesource.FileSource`</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :class:`~gismo.filesource.FileSource`</span>
+<span class="sd">        List-like object that reads its content from file.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    We load the filesource, make a copy in memory and close it.</span>
+
+<span class="sd">    &gt;&gt;&gt; data_folder = Path(&quot;data&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; fsource = filesource_loader_covid(d=data_folder, zipname=&quot;covid_sample.zip&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; source = [a for a in fsource]</span>
+<span class="sd">    &gt;&gt;&gt; fsource.close()</span>
+
+<span class="sd">    How many articles?</span>
+
+<span class="sd">    &gt;&gt;&gt; len(source)</span>
+<span class="sd">    2</span>
+
+<span class="sd">    Title and url?</span>
+
+<span class="sd">    &gt;&gt;&gt; [{&#39;title&#39;: a[&#39;metadata&#39;][&#39;title&#39;], &#39;url&#39;: a[&#39;url&#39;]} for a in source] # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">    [{&#39;title&#39;: &#39;Community frailty response service: the ED at your front door&#39;,</span>
+<span class="sd">      &#39;url&#39;: &#39;file:///%sdata000680e3114af4aa10e8f208cd162a61195f4465.json&#39;},</span>
+<span class="sd">     {&#39;title&#39;: &#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;,</span>
+<span class="sd">      &#39;url&#39;: &#39;file:///%sdata0000028b5cc154f68b8a269f6578f21e31f62977.json&#39;}]</span>
+
+<span class="sd">    One article was in german. Can we retrieve it?</span>
+
+<span class="sd">    &gt;&gt;&gt; fsource = filesource_loader_covid(d=data_folder, zipname=&quot;covid_sample.zip&quot;, lang=&#39;de&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; source = [a for a in fsource]</span>
+<span class="sd">    &gt;&gt;&gt; fsource.close()</span>
+
+<span class="sd">    How many articles?</span>
+
+<span class="sd">    &gt;&gt;&gt; len(source)</span>
+<span class="sd">    1</span>
+
+<span class="sd">    Is it in German?</span>
+
+<span class="sd">    &gt;&gt;&gt; from sisu.preprocessing.covid19 import get_content</span>
+<span class="sd">    &gt;&gt;&gt; get_content(source[0]) # doctest: +ELLIPSIS</span>
+<span class="sd">    &#39;. der Entwicklung einer schweren Pneumonie im Vordergrund, die in der Regel prognostisch bestimmend ist. Sehr...&#39;</span>
+
+<span class="sd">    :class:`~gismo.filesource.FileSource` objects rely on a `.data` file and a `.index` file. They can be re-used, or removed if it is not planned.</span>
+
+<span class="sd">    &gt;&gt;&gt; Path(data_folder / &quot;covid_corpus.data&quot;).unlink()</span>
+<span class="sd">    &gt;&gt;&gt; Path(data_folder / &quot;covid_corpus.index&quot;).unlink()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">d</span> <span class="o">/</span> <span class="n">zipname</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">d</span> <span class="o">/</span> <span class="n">fsname</span>
+    <span class="k">with</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">source</span><span class="p">)</span> <span class="k">as</span> <span class="n">z</span><span class="p">:</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.data&quot;</span><span class="p">),</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">z</span><span class="o">.</span><span class="n">namelist</span><span class="p">():</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.json&#39;</span><span class="p">):</span>
+                    <span class="k">continue</span>
+                <span class="k">with</span> <span class="n">z</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                    <span class="n">dic</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                    <span class="n">dic</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;file:///</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="n">filename</span>
+                <span class="k">if</span> <span class="n">guess_language</span><span class="p">(</span><span class="n">get_content</span><span class="p">(</span><span class="n">dic</span><span class="p">))</span> <span class="o">==</span> <span class="n">lang</span><span class="p">:</span>
+                    <span class="n">data</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">zlib</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">)))</span>
+                    <span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">tell</span><span class="p">())</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.index&quot;</span><span class="p">),</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">g</span><span class="p">:</span>
+            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">index</span><span class="p">),</span> <span class="n">g</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">FileSource</span><span class="p">(</span><span class="n">target</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Fabien Mathieu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
