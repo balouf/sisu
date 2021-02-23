@@ -1,0 +1,666 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Preprocessing &mdash; Structured and Interactive Summarization 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributing" href="../contributing.html" />
+    <link rel="prev" title="Reference" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Structured and Interactive Summarization
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Structured and Interactive Summarization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Preprocessing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#covid-19">Covid 19</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#language">Language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tokenizer">Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sentences">sentences</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Structured and Interactive Summarization</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Reference</a> &raquo;</li>
+        
+      <li>Preprocessing</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/reference/preprocessing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="preprocessing">
+<h1>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="covid-19">
+<h2>Covid 19<a class="headerlink" href="#covid-19" title="Permalink to this headline">¶</a></h2>
+<p>Module for adapting to Covid 19 Kaggle challenge</p>
+<span class="target" id="module-sisu.preprocessing.covid19"></span><dl class="py function">
+<dt id="sisu.preprocessing.covid19.get_abstract">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.covid19.</span></code><code class="sig-name descname"><span class="pre">get_abstract</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/covid19.html#get_abstract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.covid19.get_abstract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the abstract of a document with the same structure as the json in the COVID-19 dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Abstract of the document.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_abstract</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span> 
+<span class="go">&#39;In the jungle, no-one hears you far cry. And vice-versa.</span>
+<span class="go">They say to make a long abstract, with the number 42 in it, so here I am.&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.preprocessing.covid19.get_all_titles">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.covid19.</span></code><code class="sig-name descname"><span class="pre">get_all_titles</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/covid19.html#get_all_titles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.covid19.get_all_titles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the main title and sections titles of a document with the same structure as the json in the COVID-19 dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Titles of the document.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_all_titles</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span>
+<span class="go">&#39;introduction conclusion Predator&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.preprocessing.covid19.get_content">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.covid19.</span></code><code class="sig-name descname"><span class="pre">get_content</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/covid19.html#get_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.covid19.get_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the content of a document with the same structure as the json in the COVID-19 dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Content of the document.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_content</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span>
+<span class="go">&quot;introduction. There is no-one in the trees. Is there? conclusion. Predators don&#39;t like to lose.&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.preprocessing.covid19.get_title">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.covid19.</span></code><code class="sig-name descname"><span class="pre">get_title</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/covid19.html#get_title"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.covid19.get_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the title of a document from a document with the same structure as the json in the COVID-19 dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The title of the document.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_title</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span>
+<span class="go">&#39;Predator&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.preprocessing.covid19.make_abstract_doc">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.covid19.</span></code><code class="sig-name descname"><span class="pre">make_abstract_doc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/covid19.html#make_abstract_doc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.covid19.make_abstract_doc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a simplified document from abstracts with the same structure as the json in the COVID-19 dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Simplified document.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">make_abstract_doc</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span> 
+<span class="go">{&#39;title&#39;: &#39;Predator&#39;, &#39;abstract&#39;: &#39;In the jungle, no-one hears you far cry. And vice-versa.</span>
+<span class="go">                                   They say to make a long abstract, with the number 42 in it, so here I am.&#39;}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.preprocessing.covid19.make_clean_doc">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.covid19.</span></code><code class="sig-name descname"><span class="pre">make_clean_doc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/covid19.html#make_clean_doc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.covid19.make_clean_doc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a simplified clean representation of documents to initialize “proper” vocabulary
+when documents have the same structure as the json in the COVID-19 dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Simplified cleaned document.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">make_clean_doc</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span> 
+<span class="go">{&#39;title&#39;: &#39;Predator&#39;,</span>
+<span class="go"> &#39;abstract&#39;: &#39;In the jungle no-one hears you far cry And vice-versa</span>
+<span class="go">              They say to make a long abstract with the number  in it so here I am&#39;,</span>
+<span class="go">  &#39;content&#39;: &quot;introduction There is no-one in the trees Is there? conclusion Predators don&#39;t like to lose&quot;}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.preprocessing.covid19.make_content_doc">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.covid19.</span></code><code class="sig-name descname"><span class="pre">make_content_doc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/covid19.html#make_content_doc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.covid19.make_content_doc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a simplified document representation from contents with the same structure as the json in the COVID-19 dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Simplified document.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">make_content_doc</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span> 
+<span class="go">{&#39;title&#39;: &#39;Predator&#39;,</span>
+<span class="go"> &#39;content&#39;: &quot;introduction. There is no-one in the trees. Is there? conclusion. Predators don&#39;t like to lose.&quot;}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt id="sisu.preprocessing.covid19.toy_covid_article">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.covid19.</span></code><code class="sig-name descname"><span class="pre">toy_covid_article</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'abstract':</span> <span class="pre">[{'text':</span> <span class="pre">'In</span> <span class="pre">the</span> <span class="pre">jungle,</span> <span class="pre">no-one</span> <span class="pre">hears</span> <span class="pre">you</span> <span class="pre">far</span> <span class="pre">cry.</span> <span class="pre">And</span> <span class="pre">vice-versa.'},</span> <span class="pre">{'text':</span> <span class="pre">'They</span> <span class="pre">say</span> <span class="pre">to</span> <span class="pre">make</span> <span class="pre">a</span> <span class="pre">long</span> <span class="pre">abstract,</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">42</span> <span class="pre">in</span> <span class="pre">it,</span> <span class="pre">so</span> <span class="pre">here</span> <span class="pre">I</span> <span class="pre">am.'}],</span> <span class="pre">'body_text':</span> <span class="pre">[{'section':</span> <span class="pre">'introduction',</span> <span class="pre">'text':</span> <span class="pre">'There</span> <span class="pre">is</span> <span class="pre">no-one</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">trees.</span> <span class="pre">Is</span> <span class="pre">there?'},</span> <span class="pre">{'section':</span> <span class="pre">'conclusion',</span> <span class="pre">'text':</span> <span class="pre">&quot;Predators</span> <span class="pre">don't</span> <span class="pre">like</span> <span class="pre">to</span> <span class="pre">lose.&quot;}],</span> <span class="pre">'metadata':</span> <span class="pre">{'title':</span> <span class="pre">'Predator'}}</span></em><a class="headerlink" href="#sisu.preprocessing.covid19.toy_covid_article" title="Permalink to this definition">¶</a></dt>
+<dd><p>A toy document with the same structure as the json in the COVID-19 dataset.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="language">
+<h2>Language<a class="headerlink" href="#language" title="Permalink to this headline">¶</a></h2>
+<p>Module for automatic language detection</p>
+<span class="target" id="module-sisu.preprocessing.language"></span><dl class="py data">
+<dt id="sisu.preprocessing.language.DE_STOP_WORDS">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.language.</span></code><code class="sig-name descname"><span class="pre">DE_STOP_WORDS</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['ab',</span> <span class="pre">'aber',</span> <span class="pre">'ach',</span> <span class="pre">'acht',</span> <span class="pre">'achte',</span> <span class="pre">'achten',</span> <span class="pre">'achter',</span> <span class="pre">'achtes',</span> <span class="pre">'ag',</span> <span class="pre">'alle',</span> <span class="pre">'allein',</span> <span class="pre">'allem',</span> <span class="pre">'allen',</span> <span class="pre">'aller',</span> <span class="pre">'allerdings',</span> <span class="pre">'alles',</span> <span class="pre">'allgemeinen',</span> <span class="pre">'als',</span> <span class="pre">'also',</span> <span class="pre">'am',</span> <span class="pre">'an',</span> <span class="pre">'andere',</span> <span class="pre">'anderen',</span> <span class="pre">'andern',</span> <span class="pre">'anders',</span> <span class="pre">'au',</span> <span class="pre">'auch',</span> <span class="pre">'auf',</span> <span class="pre">'aus',</span> <span class="pre">'ausser',</span> <span class="pre">'außer',</span> <span class="pre">'ausserdem',</span> <span class="pre">'außerdem',</span> <span class="pre">'bald',</span> <span class="pre">'bei',</span> <span class="pre">'beide',</span> <span class="pre">'beiden',</span> <span class="pre">'beim',</span> <span class="pre">'beispiel',</span> <span class="pre">'bekannt',</span> <span class="pre">'bereits',</span> <span class="pre">'besonders',</span> <span class="pre">'besser',</span> <span class="pre">'besten',</span> <span class="pre">'bin',</span> <span class="pre">'bis',</span> <span class="pre">'bisher',</span> <span class="pre">'bist',</span> <span class="pre">'da',</span> <span class="pre">'dabei',</span> <span class="pre">'dadurch',</span> <span class="pre">'dafür',</span> <span class="pre">'dagegen',</span> <span class="pre">'daher',</span> <span class="pre">'dahin',</span> <span class="pre">'dahinter',</span> <span class="pre">'damals',</span> <span class="pre">'damit',</span> <span class="pre">'danach',</span> <span class="pre">'daneben',</span> <span class="pre">'dank',</span> <span class="pre">'dann',</span> <span class="pre">'daran',</span> <span class="pre">'darauf',</span> <span class="pre">'daraus',</span> <span class="pre">'darf',</span> <span class="pre">'darfst',</span> <span class="pre">'darin',</span> <span class="pre">'darüber',</span> <span class="pre">'darum',</span> <span class="pre">'darunter',</span> <span class="pre">'das',</span> <span class="pre">'dasein',</span> <span class="pre">'daselbst',</span> <span class="pre">'dass',</span> <span class="pre">'daß',</span> <span class="pre">'dasselbe',</span> <span class="pre">'davon',</span> <span class="pre">'davor',</span> <span class="pre">'dazu',</span> <span class="pre">'dazwischen',</span> <span class="pre">'dein',</span> <span class="pre">'deine',</span> <span class="pre">'deinem',</span> <span class="pre">'deiner',</span> <span class="pre">'dem',</span> <span class="pre">'dementsprechend',</span> <span class="pre">'demgegenüber',</span> <span class="pre">'demgemäss',</span> <span class="pre">'demgemäß',</span> <span class="pre">'demselben',</span> <span class="pre">'demzufolge',</span> <span class="pre">'den',</span> <span class="pre">'denen',</span> <span class="pre">'denn',</span> <span class="pre">'denselben',</span> <span class="pre">'der',</span> <span class="pre">'deren',</span> <span class="pre">'derjenige',</span> <span class="pre">'derjenigen',</span> <span class="pre">'dermassen',</span> <span class="pre">'dermaßen',</span> <span class="pre">'derselbe',</span> <span class="pre">'derselben',</span> <span class="pre">'des',</span> <span class="pre">'deshalb',</span> <span class="pre">'desselben',</span> <span class="pre">'dessen',</span> <span class="pre">'deswegen',</span> <span class="pre">'d.h',</span> <span class="pre">'dich',</span> <span class="pre">'die',</span> <span class="pre">'diejenige',</span> <span class="pre">'diejenigen',</span> <span class="pre">'dies',</span> <span class="pre">'diese',</span> <span class="pre">'dieselbe',</span> <span class="pre">'dieselben',</span> <span class="pre">'diesem',</span> <span class="pre">'diesen',</span> <span class="pre">'dieser',</span> <span class="pre">'dieses',</span> <span class="pre">'dir',</span> <span class="pre">'doch',</span> <span class="pre">'dort',</span> <span class="pre">'drei',</span> <span class="pre">'drin',</span> <span class="pre">'dritte',</span> <span class="pre">'dritten',</span> <span class="pre">'dritter',</span> <span class="pre">'drittes',</span> <span class="pre">'du',</span> <span class="pre">'durch',</span> <span class="pre">'durchaus',</span> <span class="pre">'dürfen',</span> <span class="pre">'dürft',</span> <span class="pre">'durfte',</span> <span class="pre">'durften',</span> <span class="pre">'e',</span> <span class="pre">'eben',</span> <span class="pre">'ebenso',</span> <span class="pre">'ehrlich',</span> <span class="pre">'ei',</span> <span class="pre">'ei,',</span> <span class="pre">'eigen',</span> <span class="pre">'eigene',</span> <span class="pre">'eigenen',</span> <span class="pre">'eigener',</span> <span class="pre">'eigenes',</span> <span class="pre">'ein',</span> <span class="pre">'einander',</span> <span class="pre">'eine',</span> <span class="pre">'einem',</span> <span class="pre">'einen',</span> <span class="pre">'einer',</span> <span class="pre">'eines',</span> <span class="pre">'einige',</span> <span class="pre">'einigen',</span> <span class="pre">'einiger',</span> <span class="pre">'einiges',</span> <span class="pre">'einmal',</span> <span class="pre">'eins',</span> <span class="pre">'elf',</span> <span class="pre">'en',</span> <span class="pre">'ende',</span> <span class="pre">'endlich',</span> <span class="pre">'entweder',</span> <span class="pre">'er',</span> <span class="pre">'Ernst',</span> <span class="pre">'erst',</span> <span class="pre">'erste',</span> <span class="pre">'ersten',</span> <span class="pre">'erster',</span> <span class="pre">'erstes',</span> <span class="pre">'es',</span> <span class="pre">'etwa',</span> <span class="pre">'etwas',</span> <span class="pre">'euch',</span> <span class="pre">'f',</span> <span class="pre">'früher',</span> <span class="pre">'fünf',</span> <span class="pre">'fünfte',</span> <span class="pre">'fünften',</span> <span class="pre">'fünfter',</span> <span class="pre">'fünftes',</span> <span class="pre">'für',</span> <span class="pre">'g',</span> <span class="pre">'gab',</span> <span class="pre">'ganz',</span> <span class="pre">'ganze',</span> <span class="pre">'ganzen',</span> <span class="pre">'ganzer',</span> <span class="pre">'ganzes',</span> <span class="pre">'gar',</span> <span class="pre">'gedurft',</span> <span class="pre">'gegen',</span> <span class="pre">'gegenüber',</span> <span class="pre">'gehabt',</span> <span class="pre">'gehen',</span> <span class="pre">'geht',</span> <span class="pre">'gekannt',</span> <span class="pre">'gekonnt',</span> <span class="pre">'gemacht',</span> <span class="pre">'gemocht',</span> <span class="pre">'gemusst',</span> <span class="pre">'genug',</span> <span class="pre">'gerade',</span> <span class="pre">'gern',</span> <span class="pre">'gesagt',</span> <span class="pre">'geschweige',</span> <span class="pre">'gewesen',</span> <span class="pre">'gewollt',</span> <span class="pre">'geworden',</span> <span class="pre">'gibt',</span> <span class="pre">'ging',</span> <span class="pre">'gleich',</span> <span class="pre">'gott',</span> <span class="pre">'gross',</span> <span class="pre">'groß',</span> <span class="pre">'grosse',</span> <span class="pre">'große',</span> <span class="pre">'grossen',</span> <span class="pre">'großen',</span> <span class="pre">'grosser',</span> <span class="pre">'großer',</span> <span class="pre">'grosses',</span> <span class="pre">'großes',</span> <span class="pre">'gut',</span> <span class="pre">'gute',</span> <span class="pre">'guter',</span> <span class="pre">'gutes',</span> <span class="pre">'h',</span> <span class="pre">'habe',</span> <span class="pre">'haben',</span> <span class="pre">'habt',</span> <span class="pre">'hast',</span> <span class="pre">'hat',</span> <span class="pre">'hatte',</span> <span class="pre">'hätte',</span> <span class="pre">'hatten',</span> <span class="pre">'hätten',</span> <span class="pre">'heisst',</span> <span class="pre">'her',</span> <span class="pre">'heute',</span> <span class="pre">'hier',</span> <span class="pre">'hin',</span> <span class="pre">'hinter',</span> <span class="pre">'hoch',</span> <span class="pre">'ich',</span> <span class="pre">'ihm',</span> <span class="pre">'ihn',</span> <span class="pre">'ihnen',</span> <span class="pre">'ihr',</span> <span class="pre">'ihre',</span> <span class="pre">'ihrem',</span> <span class="pre">'ihren',</span> <span class="pre">'ihrer',</span> <span class="pre">'ihres',</span> <span class="pre">'im',</span> <span class="pre">'immer',</span> <span class="pre">'indem',</span> <span class="pre">'infolgedessen',</span> <span class="pre">'ins',</span> <span class="pre">'irgend',</span> <span class="pre">'ist',</span> <span class="pre">'ja',</span> <span class="pre">'jahr',</span> <span class="pre">'jahre',</span> <span class="pre">'jahren',</span> <span class="pre">'je',</span> <span class="pre">'jede',</span> <span class="pre">'jedem',</span> <span class="pre">'jeden',</span> <span class="pre">'jeder',</span> <span class="pre">'jedermann',</span> <span class="pre">'jedermanns',</span> <span class="pre">'jedoch',</span> <span class="pre">'jemand',</span> <span class="pre">'jemandem',</span> <span class="pre">'jemanden',</span> <span class="pre">'jene',</span> <span class="pre">'jenem',</span> <span class="pre">'jenen',</span> <span class="pre">'jener',</span> <span class="pre">'jenes',</span> <span class="pre">'jetzt',</span> <span class="pre">'k',</span> <span class="pre">'kam',</span> <span class="pre">'kann',</span> <span class="pre">'kannst',</span> <span class="pre">'kaum',</span> <span class="pre">'kein',</span> <span class="pre">'keine',</span> <span class="pre">'keinem',</span> <span class="pre">'keinen',</span> <span class="pre">'keiner',</span> <span class="pre">'kleine',</span> <span class="pre">'kleinen',</span> <span class="pre">'kleiner',</span> <span class="pre">'kleines',</span> <span class="pre">'kommen',</span> <span class="pre">'kommt',</span> <span class="pre">'können',</span> <span class="pre">'könnt',</span> <span class="pre">'konnte',</span> <span class="pre">'könnte',</span> <span class="pre">'konnten',</span> <span class="pre">'kurz',</span> <span class="pre">'l',</span> <span class="pre">'lang',</span> <span class="pre">'lange',</span> <span class="pre">'leicht',</span> <span class="pre">'leide',</span> <span class="pre">'lieber',</span> <span class="pre">'los',</span> <span class="pre">'m',</span> <span class="pre">'machen',</span> <span class="pre">'macht',</span> <span class="pre">'machte',</span> <span class="pre">'mag',</span> <span class="pre">'magst',</span> <span class="pre">'mahn',</span> <span class="pre">'man',</span> <span class="pre">'manche',</span> <span class="pre">'manchem',</span> <span class="pre">'manchen',</span> <span class="pre">'mancher',</span> <span class="pre">'manches',</span> <span class="pre">'mann',</span> <span class="pre">'mehr',</span> <span class="pre">'mein',</span> <span class="pre">'meine',</span> <span class="pre">'meinem',</span> <span class="pre">'meinen',</span> <span class="pre">'meiner',</span> <span class="pre">'meines',</span> <span class="pre">'mensch',</span> <span class="pre">'menschen',</span> <span class="pre">'mich',</span> <span class="pre">'mir',</span> <span class="pre">'mit',</span> <span class="pre">'mittel',</span> <span class="pre">'mochte',</span> <span class="pre">'möchte',</span> <span class="pre">'mochten',</span> <span class="pre">'mögen',</span> <span class="pre">'möglich',</span> <span class="pre">'mögt',</span> <span class="pre">'morgen',</span> <span class="pre">'muss',</span> <span class="pre">'muß',</span> <span class="pre">'müssen',</span> <span class="pre">'musst',</span> <span class="pre">'müsst',</span> <span class="pre">'musste',</span> <span class="pre">'mussten',</span> <span class="pre">'n',</span> <span class="pre">'na',</span> <span class="pre">'nach',</span> <span class="pre">'nachdem',</span> <span class="pre">'nahm',</span> <span class="pre">'natürlich',</span> <span class="pre">'neben',</span> <span class="pre">'nein',</span> <span class="pre">'neue',</span> <span class="pre">'neuen',</span> <span class="pre">'neun',</span> <span class="pre">'neunte',</span> <span class="pre">'neunten',</span> <span class="pre">'neunter',</span> <span class="pre">'neuntes',</span> <span class="pre">'nicht',</span> <span class="pre">'nichts',</span> <span class="pre">'nie',</span> <span class="pre">'niemand',</span> <span class="pre">'niemandem',</span> <span class="pre">'niemanden',</span> <span class="pre">'noch',</span> <span class="pre">'nun',</span> <span class="pre">'nur',</span> <span class="pre">'o',</span> <span class="pre">'ob',</span> <span class="pre">'oben',</span> <span class="pre">'oder',</span> <span class="pre">'offen',</span> <span class="pre">'oft',</span> <span class="pre">'ohne',</span> <span class="pre">'Ordnung',</span> <span class="pre">'p',</span> <span class="pre">'q',</span> <span class="pre">'r',</span> <span class="pre">'recht',</span> <span class="pre">'rechte',</span> <span class="pre">'rechten',</span> <span class="pre">'rechter',</span> <span class="pre">'rechtes',</span> <span class="pre">'richtig',</span> <span class="pre">'rund',</span> <span class="pre">'s',</span> <span class="pre">'sa',</span> <span class="pre">'sache',</span> <span class="pre">'sagt',</span> <span class="pre">'sagte',</span> <span class="pre">'sah',</span> <span class="pre">'satt',</span> <span class="pre">'schlecht',</span> <span class="pre">'Schluss',</span> <span class="pre">'schon',</span> <span class="pre">'sechs',</span> <span class="pre">'sechste',</span> <span class="pre">'sechsten',</span> <span class="pre">'sechster',</span> <span class="pre">'sechstes',</span> <span class="pre">'sehr',</span> <span class="pre">'sei',</span> <span class="pre">'seid',</span> <span class="pre">'seien',</span> <span class="pre">'sein',</span> <span class="pre">'seine',</span> <span class="pre">'seinem',</span> <span class="pre">'seinen',</span> <span class="pre">'seiner',</span> <span class="pre">'seines',</span> <span class="pre">'seit',</span> <span class="pre">'seitdem',</span> <span class="pre">'selbst',</span> <span class="pre">'sich',</span> <span class="pre">'sie',</span> <span class="pre">'sieben',</span> <span class="pre">'siebente',</span> <span class="pre">'siebenten',</span> <span class="pre">'siebenter',</span> <span class="pre">'siebentes',</span> <span class="pre">'sind',</span> <span class="pre">'solang',</span> <span class="pre">'solche',</span> <span class="pre">'solchem',</span> <span class="pre">'solchen',</span> <span class="pre">'solcher',</span> <span class="pre">'solches',</span> <span class="pre">'soll',</span> <span class="pre">'sollen',</span> <span class="pre">'sollte',</span> <span class="pre">'sollten',</span> <span class="pre">'sondern',</span> <span class="pre">'sonst',</span> <span class="pre">'sowie',</span> <span class="pre">'später',</span> <span class="pre">'statt',</span> <span class="pre">'tag',</span> <span class="pre">'tage',</span> <span class="pre">'tagen',</span> <span class="pre">'tat',</span> <span class="pre">'teil',</span> <span class="pre">'tel',</span> <span class="pre">'tritt',</span> <span class="pre">'trotzdem',</span> <span class="pre">'tun',</span> <span class="pre">'u',</span> <span class="pre">'über',</span> <span class="pre">'überhaupt',</span> <span class="pre">'übrigens',</span> <span class="pre">'uhr',</span> <span class="pre">'um',</span> <span class="pre">'und',</span> <span class="pre">'und?',</span> <span class="pre">'uns',</span> <span class="pre">'unser',</span> <span class="pre">'unsere',</span> <span class="pre">'unserer',</span> <span class="pre">'unter',</span> <span class="pre">'v',</span> <span class="pre">'vergangenen',</span> <span class="pre">'viel',</span> <span class="pre">'viele',</span> <span class="pre">'vielem',</span> <span class="pre">'vielen',</span> <span class="pre">'vielleicht',</span> <span class="pre">'vier',</span> <span class="pre">'vierte',</span> <span class="pre">'vierten',</span> <span class="pre">'vierter',</span> <span class="pre">'viertes',</span> <span class="pre">'vom',</span> <span class="pre">'von',</span> <span class="pre">'vor',</span> <span class="pre">'w',</span> <span class="pre">'wahr?',</span> <span class="pre">'während',</span> <span class="pre">'währenddem',</span> <span class="pre">'währenddessen',</span> <span class="pre">'wann',</span> <span class="pre">'war',</span> <span class="pre">'wäre',</span> <span class="pre">'waren',</span> <span class="pre">'wart',</span> <span class="pre">'warum',</span> <span class="pre">'was',</span> <span class="pre">'wegen',</span> <span class="pre">'weil',</span> <span class="pre">'weit',</span> <span class="pre">'weiter',</span> <span class="pre">'weitere',</span> <span class="pre">'weiteren',</span> <span class="pre">'weiteres',</span> <span class="pre">'welche',</span> <span class="pre">'welchem',</span> <span class="pre">'welchen',</span> <span class="pre">'welcher',</span> <span class="pre">'welches',</span> <span class="pre">'wem',</span> <span class="pre">'wen',</span> <span class="pre">'wenig',</span> <span class="pre">'wenige',</span> <span class="pre">'weniger',</span> <span class="pre">'weniges',</span> <span class="pre">'wenigstens',</span> <span class="pre">'wenn',</span> <span class="pre">'wer',</span> <span class="pre">'werde',</span> <span class="pre">'werden',</span> <span class="pre">'werdet',</span> <span class="pre">'wessen',</span> <span class="pre">'wie',</span> <span class="pre">'wieder',</span> <span class="pre">'will',</span> <span class="pre">'willst',</span> <span class="pre">'wir',</span> <span class="pre">'wird',</span> <span class="pre">'wirklich',</span> <span class="pre">'wirst',</span> <span class="pre">'wo',</span> <span class="pre">'wohl',</span> <span class="pre">'wollen',</span> <span class="pre">'wollt',</span> <span class="pre">'wollte',</span> <span class="pre">'wollten',</span> <span class="pre">'worden',</span> <span class="pre">'wurde',</span> <span class="pre">'würde',</span> <span class="pre">'wurden',</span> <span class="pre">'würden',</span> <span class="pre">'x',</span> <span class="pre">'y',</span> <span class="pre">'z',</span> <span class="pre">'z.b',</span> <span class="pre">'zehn',</span> <span class="pre">'zehnte',</span> <span class="pre">'zehnten',</span> <span class="pre">'zehnter',</span> <span class="pre">'zehntes',</span> <span class="pre">'zeit',</span> <span class="pre">'zu',</span> <span class="pre">'zuerst',</span> <span class="pre">'zugleich',</span> <span class="pre">'zum',</span> <span class="pre">'zunächst',</span> <span class="pre">'zur',</span> <span class="pre">'zurück',</span> <span class="pre">'zusammen',</span> <span class="pre">'zwanzig',</span> <span class="pre">'zwar',</span> <span class="pre">'zwei',</span> <span class="pre">'zweite',</span> <span class="pre">'zweiten',</span> <span class="pre">'zweiter',</span> <span class="pre">'zweites',</span> <span class="pre">'zwischen',</span> <span class="pre">'zwölf',</span> <span class="pre">'euer',</span> <span class="pre">'eure',</span> <span class="pre">'hattest',</span> <span class="pre">'hattet',</span> <span class="pre">'jedes',</span> <span class="pre">'mußt',</span> <span class="pre">'müßt',</span> <span class="pre">'sollst',</span> <span class="pre">'sollt',</span> <span class="pre">'soweit',</span> <span class="pre">'weshalb',</span> <span class="pre">'wieso',</span> <span class="pre">'woher',</span> <span class="pre">'wohin']</span></em><a class="headerlink" href="#sisu.preprocessing.language.DE_STOP_WORDS" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of common German words.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="sisu.preprocessing.language.EN_STOP_WORDS">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.language.</span></code><code class="sig-name descname"><span class="pre">EN_STOP_WORDS</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['a',</span> <span class="pre">'able',</span> <span class="pre">'about',</span> <span class="pre">'above',</span> <span class="pre">'abst',</span> <span class="pre">'accordance',</span> <span class="pre">'according',</span> <span class="pre">'accordingly',</span> <span class="pre">'across',</span> <span class="pre">'act',</span> <span class="pre">'actually',</span> <span class="pre">'added',</span> <span class="pre">'adj',</span> <span class="pre">'affected',</span> <span class="pre">'affecting',</span> <span class="pre">'affects',</span> <span class="pre">'after',</span> <span class="pre">'afterwards',</span> <span class="pre">'again',</span> <span class="pre">'against',</span> <span class="pre">'ah',</span> <span class="pre">'all',</span> <span class="pre">'almost',</span> <span class="pre">'alone',</span> <span class="pre">'along',</span> <span class="pre">'already',</span> <span class="pre">'also',</span> <span class="pre">'although',</span> <span class="pre">'always',</span> <span class="pre">'am',</span> <span class="pre">'among',</span> <span class="pre">'amongst',</span> <span class="pre">'an',</span> <span class="pre">'and',</span> <span class="pre">'announce',</span> <span class="pre">'another',</span> <span class="pre">'any',</span> <span class="pre">'anybody',</span> <span class="pre">'anyhow',</span> <span class="pre">'anymore',</span> <span class="pre">'anyone',</span> <span class="pre">'anything',</span> <span class="pre">'anyway',</span> <span class="pre">'anyways',</span> <span class="pre">'anywhere',</span> <span class="pre">'apparently',</span> <span class="pre">'approximately',</span> <span class="pre">'are',</span> <span class="pre">'aren',</span> <span class="pre">'arent',</span> <span class="pre">'arise',</span> <span class="pre">'around',</span> <span class="pre">'as',</span> <span class="pre">'aside',</span> <span class="pre">'ask',</span> <span class="pre">'asking',</span> <span class="pre">'at',</span> <span class="pre">'auth',</span> <span class="pre">'available',</span> <span class="pre">'away',</span> <span class="pre">'awfully',</span> <span class="pre">'back',</span> <span class="pre">'be',</span> <span class="pre">'became',</span> <span class="pre">'because',</span> <span class="pre">'become',</span> <span class="pre">'becomes',</span> <span class="pre">'becoming',</span> <span class="pre">'been',</span> <span class="pre">'before',</span> <span class="pre">'beforehand',</span> <span class="pre">'begin',</span> <span class="pre">'beginning',</span> <span class="pre">'beginnings',</span> <span class="pre">'begins',</span> <span class="pre">'behind',</span> <span class="pre">'being',</span> <span class="pre">'believe',</span> <span class="pre">'below',</span> <span class="pre">'beside',</span> <span class="pre">'besides',</span> <span class="pre">'between',</span> <span class="pre">'beyond',</span> <span class="pre">'biol',</span> <span class="pre">'both',</span> <span class="pre">'brief',</span> <span class="pre">'briefly',</span> <span class="pre">'but',</span> <span class="pre">'by',</span> <span class="pre">'ca',</span> <span class="pre">'came',</span> <span class="pre">'can',</span> <span class="pre">'cannot',</span> <span class="pre">&quot;can't&quot;,</span> <span class="pre">'cause',</span> <span class="pre">'causes',</span> <span class="pre">'certain',</span> <span class="pre">'certainly',</span> <span class="pre">'co',</span> <span class="pre">'com',</span> <span class="pre">'come',</span> <span class="pre">'comes',</span> <span class="pre">'contain',</span> <span class="pre">'containing',</span> <span class="pre">'contains',</span> <span class="pre">'could',</span> <span class="pre">'couldnt',</span> <span class="pre">'date',</span> <span class="pre">'did',</span> <span class="pre">&quot;didn't&quot;,</span> <span class="pre">'different',</span> <span class="pre">'do',</span> <span class="pre">'does',</span> <span class="pre">&quot;doesn't&quot;,</span> <span class="pre">'doing',</span> <span class="pre">'done',</span> <span class="pre">&quot;don't&quot;,</span> <span class="pre">'down',</span> <span class="pre">'downwards',</span> <span class="pre">'due',</span> <span class="pre">'during',</span> <span class="pre">'each',</span> <span class="pre">'ed',</span> <span class="pre">'edu',</span> <span class="pre">'effect',</span> <span class="pre">'eg',</span> <span class="pre">'eight',</span> <span class="pre">'eighty',</span> <span class="pre">'either',</span> <span class="pre">'else',</span> <span class="pre">'elsewhere',</span> <span class="pre">'end',</span> <span class="pre">'ending',</span> <span class="pre">'enough',</span> <span class="pre">'especially',</span> <span class="pre">'et',</span> <span class="pre">'et-al',</span> <span class="pre">'etc',</span> <span class="pre">'even',</span> <span class="pre">'ever',</span> <span class="pre">'every',</span> <span class="pre">'everybody',</span> <span class="pre">'everyone',</span> <span class="pre">'everything',</span> <span class="pre">'everywhere',</span> <span class="pre">'ex',</span> <span class="pre">'except',</span> <span class="pre">'far',</span> <span class="pre">'few',</span> <span class="pre">'ff',</span> <span class="pre">'fifth',</span> <span class="pre">'first',</span> <span class="pre">'five',</span> <span class="pre">'fix',</span> <span class="pre">'followed',</span> <span class="pre">'following',</span> <span class="pre">'follows',</span> <span class="pre">'for',</span> <span class="pre">'former',</span> <span class="pre">'formerly',</span> <span class="pre">'forth',</span> <span class="pre">'found',</span> <span class="pre">'four',</span> <span class="pre">'from',</span> <span class="pre">'further',</span> <span class="pre">'furthermore',</span> <span class="pre">'gave',</span> <span class="pre">'get',</span> <span class="pre">'gets',</span> <span class="pre">'getting',</span> <span class="pre">'give',</span> <span class="pre">'given',</span> <span class="pre">'gives',</span> <span class="pre">'giving',</span> <span class="pre">'go',</span> <span class="pre">'goes',</span> <span class="pre">'gone',</span> <span class="pre">'got',</span> <span class="pre">'gotten',</span> <span class="pre">'had',</span> <span class="pre">'happens',</span> <span class="pre">'hardly',</span> <span class="pre">'has',</span> <span class="pre">&quot;hasn't&quot;,</span> <span class="pre">'have',</span> <span class="pre">&quot;haven't&quot;,</span> <span class="pre">'having',</span> <span class="pre">'he',</span> <span class="pre">'hed',</span> <span class="pre">'hence',</span> <span class="pre">'her',</span> <span class="pre">'here',</span> <span class="pre">'hereafter',</span> <span class="pre">'hereby',</span> <span class="pre">'herein',</span> <span class="pre">'heres',</span> <span class="pre">'hereupon',</span> <span class="pre">'hers',</span> <span class="pre">'herself',</span> <span class="pre">'hes',</span> <span class="pre">'hi',</span> <span class="pre">'hid',</span> <span class="pre">'him',</span> <span class="pre">'himself',</span> <span class="pre">'his',</span> <span class="pre">'hither',</span> <span class="pre">'home',</span> <span class="pre">'how',</span> <span class="pre">'howbeit',</span> <span class="pre">'however',</span> <span class="pre">'hundred',</span> <span class="pre">'i',</span> <span class="pre">'id',</span> <span class="pre">'ie',</span> <span class="pre">'if',</span> <span class="pre">&quot;i'll&quot;,</span> <span class="pre">'im',</span> <span class="pre">'immediate',</span> <span class="pre">'immediately',</span> <span class="pre">'importance',</span> <span class="pre">'important',</span> <span class="pre">'in',</span> <span class="pre">'inc',</span> <span class="pre">'indeed',</span> <span class="pre">'index',</span> <span class="pre">'information',</span> <span class="pre">'instead',</span> <span class="pre">'into',</span> <span class="pre">'invention',</span> <span class="pre">'inward',</span> <span class="pre">'is',</span> <span class="pre">&quot;isn't&quot;,</span> <span class="pre">'it',</span> <span class="pre">'itd',</span> <span class="pre">&quot;it'll&quot;,</span> <span class="pre">'its',</span> <span class="pre">'itself',</span> <span class="pre">&quot;i've&quot;,</span> <span class="pre">'just',</span> <span class="pre">'keep',</span> <span class="pre">'keeps',</span> <span class="pre">'kept',</span> <span class="pre">'kg',</span> <span class="pre">'km',</span> <span class="pre">'know',</span> <span class="pre">'known',</span> <span class="pre">'knows',</span> <span class="pre">'largely',</span> <span class="pre">'last',</span> <span class="pre">'lately',</span> <span class="pre">'later',</span> <span class="pre">'latter',</span> <span class="pre">'latterly',</span> <span class="pre">'least',</span> <span class="pre">'less',</span> <span class="pre">'lest',</span> <span class="pre">'let',</span> <span class="pre">'lets',</span> <span class="pre">'like',</span> <span class="pre">'liked',</span> <span class="pre">'likely',</span> <span class="pre">'line',</span> <span class="pre">'little',</span> <span class="pre">&quot;'ll&quot;,</span> <span class="pre">'look',</span> <span class="pre">'looking',</span> <span class="pre">'looks',</span> <span class="pre">'ltd',</span> <span class="pre">'made',</span> <span class="pre">'mainly',</span> <span class="pre">'make',</span> <span class="pre">'makes',</span> <span class="pre">'many',</span> <span class="pre">'may',</span> <span class="pre">'maybe',</span> <span class="pre">'me',</span> <span class="pre">'mean',</span> <span class="pre">'means',</span> <span class="pre">'meantime',</span> <span class="pre">'meanwhile',</span> <span class="pre">'merely',</span> <span class="pre">'mg',</span> <span class="pre">'might',</span> <span class="pre">'million',</span> <span class="pre">'miss',</span> <span class="pre">'ml',</span> <span class="pre">'more',</span> <span class="pre">'moreover',</span> <span class="pre">'most',</span> <span class="pre">'mostly',</span> <span class="pre">'mr',</span> <span class="pre">'mrs',</span> <span class="pre">'much',</span> <span class="pre">'mug',</span> <span class="pre">'must',</span> <span class="pre">'my',</span> <span class="pre">'myself',</span> <span class="pre">'na',</span> <span class="pre">'name',</span> <span class="pre">'namely',</span> <span class="pre">'nay',</span> <span class="pre">'nd',</span> <span class="pre">'near',</span> <span class="pre">'nearly',</span> <span class="pre">'necessarily',</span> <span class="pre">'necessary',</span> <span class="pre">'need',</span> <span class="pre">'needs',</span> <span class="pre">'neither',</span> <span class="pre">'never',</span> <span class="pre">'nevertheless',</span> <span class="pre">'new',</span> <span class="pre">'next',</span> <span class="pre">'nine',</span> <span class="pre">'ninety',</span> <span class="pre">'no',</span> <span class="pre">'nobody',</span> <span class="pre">'non',</span> <span class="pre">'none',</span> <span class="pre">'nonetheless',</span> <span class="pre">'noone',</span> <span class="pre">'nor',</span> <span class="pre">'normally',</span> <span class="pre">'nos',</span> <span class="pre">'not',</span> <span class="pre">'noted',</span> <span class="pre">'nothing',</span> <span class="pre">'now',</span> <span class="pre">'nowhere',</span> <span class="pre">'obtain',</span> <span class="pre">'obtained',</span> <span class="pre">'obviously',</span> <span class="pre">'of',</span> <span class="pre">'off',</span> <span class="pre">'often',</span> <span class="pre">'oh',</span> <span class="pre">'ok',</span> <span class="pre">'okay',</span> <span class="pre">'old',</span> <span class="pre">'omitted',</span> <span class="pre">'on',</span> <span class="pre">'once',</span> <span class="pre">'one',</span> <span class="pre">'ones',</span> <span class="pre">'only',</span> <span class="pre">'onto',</span> <span class="pre">'or',</span> <span class="pre">'ord',</span> <span class="pre">'other',</span> <span class="pre">'others',</span> <span class="pre">'otherwise',</span> <span class="pre">'ought',</span> <span class="pre">'our',</span> <span class="pre">'ours',</span> <span class="pre">'ourselves',</span> <span class="pre">'out',</span> <span class="pre">'outside',</span> <span class="pre">'over',</span> <span class="pre">'overall',</span> <span class="pre">'owing',</span> <span class="pre">'own',</span> <span class="pre">'page',</span> <span class="pre">'pages',</span> <span class="pre">'part',</span> <span class="pre">'particular',</span> <span class="pre">'particularly',</span> <span class="pre">'past',</span> <span class="pre">'per',</span> <span class="pre">'perhaps',</span> <span class="pre">'placed',</span> <span class="pre">'please',</span> <span class="pre">'plus',</span> <span class="pre">'poorly',</span> <span class="pre">'possible',</span> <span class="pre">'possibly',</span> <span class="pre">'potentially',</span> <span class="pre">'pp',</span> <span class="pre">'predominantly',</span> <span class="pre">'present',</span> <span class="pre">'previously',</span> <span class="pre">'primarily',</span> <span class="pre">'probably',</span> <span class="pre">'promptly',</span> <span class="pre">'proud',</span> <span class="pre">'provides',</span> <span class="pre">'put',</span> <span class="pre">'que',</span> <span class="pre">'quickly',</span> <span class="pre">'quite',</span> <span class="pre">'qv',</span> <span class="pre">'ran',</span> <span class="pre">'rather',</span> <span class="pre">'rd',</span> <span class="pre">'re',</span> <span class="pre">'readily',</span> <span class="pre">'really',</span> <span class="pre">'recent',</span> <span class="pre">'recently',</span> <span class="pre">'ref',</span> <span class="pre">'refs',</span> <span class="pre">'regarding',</span> <span class="pre">'regardless',</span> <span class="pre">'regards',</span> <span class="pre">'related',</span> <span class="pre">'relatively',</span> <span class="pre">'research',</span> <span class="pre">'respectively',</span> <span class="pre">'resulted',</span> <span class="pre">'resulting',</span> <span class="pre">'results',</span> <span class="pre">'right',</span> <span class="pre">'run',</span> <span class="pre">'said',</span> <span class="pre">'same',</span> <span class="pre">'saw',</span> <span class="pre">'say',</span> <span class="pre">'saying',</span> <span class="pre">'says',</span> <span class="pre">'sec',</span> <span class="pre">'section',</span> <span class="pre">'see',</span> <span class="pre">'seeing',</span> <span class="pre">'seem',</span> <span class="pre">'seemed',</span> <span class="pre">'seeming',</span> <span class="pre">'seems',</span> <span class="pre">'seen',</span> <span class="pre">'self',</span> <span class="pre">'selves',</span> <span class="pre">'sent',</span> <span class="pre">'seven',</span> <span class="pre">'several',</span> <span class="pre">'shall',</span> <span class="pre">'she',</span> <span class="pre">'shed',</span> <span class="pre">&quot;she'll&quot;,</span> <span class="pre">'shes',</span> <span class="pre">'should',</span> <span class="pre">&quot;shouldn't&quot;,</span> <span class="pre">'show',</span> <span class="pre">'showed',</span> <span class="pre">'shown',</span> <span class="pre">'showns',</span> <span class="pre">'shows',</span> <span class="pre">'significant',</span> <span class="pre">'significantly',</span> <span class="pre">'similar',</span> <span class="pre">'similarly',</span> <span class="pre">'since',</span> <span class="pre">'six',</span> <span class="pre">'slightly',</span> <span class="pre">'so',</span> <span class="pre">'some',</span> <span class="pre">'somebody',</span> <span class="pre">'somehow',</span> <span class="pre">'someone',</span> <span class="pre">'somethan',</span> <span class="pre">'something',</span> <span class="pre">'sometime',</span> <span class="pre">'sometimes',</span> <span class="pre">'somewhat',</span> <span class="pre">'somewhere',</span> <span class="pre">'soon',</span> <span class="pre">'sorry',</span> <span class="pre">'specifically',</span> <span class="pre">'specified',</span> <span class="pre">'specify',</span> <span class="pre">'specifying',</span> <span class="pre">'still',</span> <span class="pre">'stop',</span> <span class="pre">'strongly',</span> <span class="pre">'sub',</span> <span class="pre">'substantially',</span> <span class="pre">'successfully',</span> <span class="pre">'such',</span> <span class="pre">'sufficiently',</span> <span class="pre">'suggest',</span> <span class="pre">'sup',</span> <span class="pre">'sure',</span> <span class="pre">'take',</span> <span class="pre">'taken',</span> <span class="pre">'taking',</span> <span class="pre">'tell',</span> <span class="pre">'tends',</span> <span class="pre">'th',</span> <span class="pre">'than',</span> <span class="pre">'thank',</span> <span class="pre">'thanks',</span> <span class="pre">'thanx',</span> <span class="pre">'that',</span> <span class="pre">&quot;that'll&quot;,</span> <span class="pre">'thats',</span> <span class="pre">&quot;that've&quot;,</span> <span class="pre">'the',</span> <span class="pre">'their',</span> <span class="pre">'theirs',</span> <span class="pre">'them',</span> <span class="pre">'themselves',</span> <span class="pre">'then',</span> <span class="pre">'thence',</span> <span class="pre">'there',</span> <span class="pre">'thereafter',</span> <span class="pre">'thereby',</span> <span class="pre">'thered',</span> <span class="pre">'therefore',</span> <span class="pre">'therein',</span> <span class="pre">&quot;there'll&quot;,</span> <span class="pre">'thereof',</span> <span class="pre">'therere',</span> <span class="pre">'theres',</span> <span class="pre">'thereto',</span> <span class="pre">'thereupon',</span> <span class="pre">&quot;there've&quot;,</span> <span class="pre">'these',</span> <span class="pre">'they',</span> <span class="pre">'theyd',</span> <span class="pre">&quot;they'll&quot;,</span> <span class="pre">'theyre',</span> <span class="pre">&quot;they've&quot;,</span> <span class="pre">'think',</span> <span class="pre">'this',</span> <span class="pre">'those',</span> <span class="pre">'thou',</span> <span class="pre">'though',</span> <span class="pre">'thoughh',</span> <span class="pre">'thousand',</span> <span class="pre">'throug',</span> <span class="pre">'through',</span> <span class="pre">'throughout',</span> <span class="pre">'thru',</span> <span class="pre">'thus',</span> <span class="pre">'til',</span> <span class="pre">'tip',</span> <span class="pre">'to',</span> <span class="pre">'together',</span> <span class="pre">'too',</span> <span class="pre">'took',</span> <span class="pre">'toward',</span> <span class="pre">'towards',</span> <span class="pre">'tried',</span> <span class="pre">'tries',</span> <span class="pre">'truly',</span> <span class="pre">'try',</span> <span class="pre">'trying',</span> <span class="pre">'ts',</span> <span class="pre">'twice',</span> <span class="pre">'two',</span> <span class="pre">'under',</span> <span class="pre">'unfortunately',</span> <span class="pre">'unless',</span> <span class="pre">'unlike',</span> <span class="pre">'unlikely',</span> <span class="pre">'until',</span> <span class="pre">'un',</span> <span class="pre">'unto',</span> <span class="pre">'up',</span> <span class="pre">'upon',</span> <span class="pre">'ups',</span> <span class="pre">'us',</span> <span class="pre">'use',</span> <span class="pre">'used',</span> <span class="pre">'useful',</span> <span class="pre">'usefully',</span> <span class="pre">'usefulness',</span> <span class="pre">'uses',</span> <span class="pre">'using',</span> <span class="pre">'usually',</span> <span class="pre">'value',</span> <span class="pre">'various',</span> <span class="pre">&quot;'ve&quot;,</span> <span class="pre">'very',</span> <span class="pre">'via',</span> <span class="pre">'viz',</span> <span class="pre">'vol',</span> <span class="pre">'vols',</span> <span class="pre">'vs',</span> <span class="pre">'want',</span> <span class="pre">'wants',</span> <span class="pre">'was',</span> <span class="pre">'wasnt',</span> <span class="pre">'way',</span> <span class="pre">'we',</span> <span class="pre">'wed',</span> <span class="pre">'welcome',</span> <span class="pre">&quot;we'll&quot;,</span> <span class="pre">'went',</span> <span class="pre">'were',</span> <span class="pre">'werent',</span> <span class="pre">&quot;we've&quot;,</span> <span class="pre">'what',</span> <span class="pre">'whatever',</span> <span class="pre">&quot;what'll&quot;,</span> <span class="pre">'whats',</span> <span class="pre">'when',</span> <span class="pre">'whence',</span> <span class="pre">'whenever',</span> <span class="pre">'where',</span> <span class="pre">'whereafter',</span> <span class="pre">'whereas',</span> <span class="pre">'whereby',</span> <span class="pre">'wherein',</span> <span class="pre">'wheres',</span> <span class="pre">'whereupon',</span> <span class="pre">'wherever',</span> <span class="pre">'whether',</span> <span class="pre">'which',</span> <span class="pre">'while',</span> <span class="pre">'whim',</span> <span class="pre">'whither',</span> <span class="pre">'who',</span> <span class="pre">'whod',</span> <span class="pre">'whoever',</span> <span class="pre">'whole',</span> <span class="pre">&quot;who'll&quot;,</span> <span class="pre">'whom',</span> <span class="pre">'whomever',</span> <span class="pre">'whos',</span> <span class="pre">'whose',</span> <span class="pre">'why',</span> <span class="pre">'widely',</span> <span class="pre">'willing',</span> <span class="pre">'wish',</span> <span class="pre">'with',</span> <span class="pre">'within',</span> <span class="pre">'without',</span> <span class="pre">'wont',</span> <span class="pre">'words',</span> <span class="pre">'world',</span> <span class="pre">'would',</span> <span class="pre">'wouldnt',</span> <span class="pre">'www',</span> <span class="pre">'yes',</span> <span class="pre">'yet',</span> <span class="pre">'you',</span> <span class="pre">'youd',</span> <span class="pre">&quot;you'll&quot;,</span> <span class="pre">'your',</span> <span class="pre">'youre',</span> <span class="pre">'yours',</span> <span class="pre">'yourself',</span> <span class="pre">'yourselves',</span> <span class="pre">&quot;you've&quot;,</span> <span class="pre">'zero',</span> <span class="pre">'al',</span> <span class="pre">'herse',</span> <span class="pre">'himse',</span> <span class="pre">'itse',</span> <span class="pre">'myse',</span> <span class="pre">'didn',</span> <span class="pre">'doesn',</span> <span class="pre">'don',</span> <span class="pre">'hasn',</span> <span class="pre">'haven',</span> <span class="pre">'isn',</span> <span class="pre">'ll',</span> <span class="pre">'shouldn',</span> <span class="pre">'ve']</span></em><a class="headerlink" href="#sisu.preprocessing.language.EN_STOP_WORDS" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of common English words.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="sisu.preprocessing.language.ES_STOP_WORDS">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.language.</span></code><code class="sig-name descname"><span class="pre">ES_STOP_WORDS</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['algún',</span> <span class="pre">'alguna',</span> <span class="pre">'algunas',</span> <span class="pre">'alguno',</span> <span class="pre">'algunos',</span> <span class="pre">'ambos',</span> <span class="pre">'ampleamos',</span> <span class="pre">'ante',</span> <span class="pre">'antes',</span> <span class="pre">'aquel',</span> <span class="pre">'aquellas',</span> <span class="pre">'aquellos',</span> <span class="pre">'aqui',</span> <span class="pre">'arriba',</span> <span class="pre">'atras',</span> <span class="pre">'bajo',</span> <span class="pre">'bastante',</span> <span class="pre">'bien',</span> <span class="pre">'cada',</span> <span class="pre">'cierta',</span> <span class="pre">'ciertas',</span> <span class="pre">'cierto',</span> <span class="pre">'ciertos',</span> <span class="pre">'como',</span> <span class="pre">'con',</span> <span class="pre">'conseguimos',</span> <span class="pre">'conseguir',</span> <span class="pre">'consigo',</span> <span class="pre">'consigue',</span> <span class="pre">'consiguen',</span> <span class="pre">'consigues',</span> <span class="pre">'cual',</span> <span class="pre">'cuando',</span> <span class="pre">'dentro',</span> <span class="pre">'desde',</span> <span class="pre">'donde',</span> <span class="pre">'dos',</span> <span class="pre">'el',</span> <span class="pre">'ellas',</span> <span class="pre">'ellos',</span> <span class="pre">'empleais',</span> <span class="pre">'emplean',</span> <span class="pre">'emplear',</span> <span class="pre">'empleas',</span> <span class="pre">'empleo',</span> <span class="pre">'en',</span> <span class="pre">'encima',</span> <span class="pre">'entonces',</span> <span class="pre">'entre',</span> <span class="pre">'era',</span> <span class="pre">'eramos',</span> <span class="pre">'eran',</span> <span class="pre">'eras',</span> <span class="pre">'eres',</span> <span class="pre">'es',</span> <span class="pre">'esta',</span> <span class="pre">'estaba',</span> <span class="pre">'estado',</span> <span class="pre">'estais',</span> <span class="pre">'estamos',</span> <span class="pre">'estan',</span> <span class="pre">'estoy',</span> <span class="pre">'fin',</span> <span class="pre">'fue',</span> <span class="pre">'fueron',</span> <span class="pre">'fui',</span> <span class="pre">'fuimos',</span> <span class="pre">'gueno',</span> <span class="pre">'ha',</span> <span class="pre">'hace',</span> <span class="pre">'haceis',</span> <span class="pre">'hacemos',</span> <span class="pre">'hacen',</span> <span class="pre">'hacer',</span> <span class="pre">'haces',</span> <span class="pre">'hago',</span> <span class="pre">'incluso',</span> <span class="pre">'intenta',</span> <span class="pre">'intentais',</span> <span class="pre">'intentamos',</span> <span class="pre">'intentan',</span> <span class="pre">'intentar',</span> <span class="pre">'intentas',</span> <span class="pre">'intento',</span> <span class="pre">'ir',</span> <span class="pre">'la',</span> <span class="pre">'largo',</span> <span class="pre">'las',</span> <span class="pre">'lo',</span> <span class="pre">'los',</span> <span class="pre">'mientras',</span> <span class="pre">'mio',</span> <span class="pre">'modo',</span> <span class="pre">'muchos',</span> <span class="pre">'muy',</span> <span class="pre">'nos',</span> <span class="pre">'nosotros',</span> <span class="pre">'otro',</span> <span class="pre">'para',</span> <span class="pre">'pero',</span> <span class="pre">'podeis',</span> <span class="pre">'podemos',</span> <span class="pre">'poder',</span> <span class="pre">'podria',</span> <span class="pre">'podriais',</span> <span class="pre">'podriamos',</span> <span class="pre">'podrian',</span> <span class="pre">'podrias',</span> <span class="pre">'por',</span> <span class="pre">'por</span> <span class="pre">qué',</span> <span class="pre">'porque',</span> <span class="pre">'primero',</span> <span class="pre">'puede',</span> <span class="pre">'pueden',</span> <span class="pre">'puedo',</span> <span class="pre">'quien',</span> <span class="pre">'sabe',</span> <span class="pre">'sabeis',</span> <span class="pre">'sabemos',</span> <span class="pre">'saben',</span> <span class="pre">'saber',</span> <span class="pre">'sabes',</span> <span class="pre">'ser',</span> <span class="pre">'si',</span> <span class="pre">'siendo',</span> <span class="pre">'sin',</span> <span class="pre">'sobre',</span> <span class="pre">'sois',</span> <span class="pre">'solamente',</span> <span class="pre">'solo',</span> <span class="pre">'somos',</span> <span class="pre">'soy',</span> <span class="pre">'su',</span> <span class="pre">'sus',</span> <span class="pre">'también',</span> <span class="pre">'teneis',</span> <span class="pre">'tenemos',</span> <span class="pre">'tener',</span> <span class="pre">'tengo',</span> <span class="pre">'tiempo',</span> <span class="pre">'tiene',</span> <span class="pre">'tienen',</span> <span class="pre">'todo',</span> <span class="pre">'trabaja',</span> <span class="pre">'trabajais',</span> <span class="pre">'trabajamos',</span> <span class="pre">'trabajan',</span> <span class="pre">'trabajar',</span> <span class="pre">'trabajas',</span> <span class="pre">'trabajo',</span> <span class="pre">'tras',</span> <span class="pre">'tuyo',</span> <span class="pre">'ultimo',</span> <span class="pre">'un',</span> <span class="pre">'una',</span> <span class="pre">'unas',</span> <span class="pre">'uno',</span> <span class="pre">'unos',</span> <span class="pre">'usa',</span> <span class="pre">'usais',</span> <span class="pre">'usamos',</span> <span class="pre">'usan',</span> <span class="pre">'usar',</span> <span class="pre">'usas',</span> <span class="pre">'uso',</span> <span class="pre">'va',</span> <span class="pre">'vais',</span> <span class="pre">'valor',</span> <span class="pre">'vamos',</span> <span class="pre">'van',</span> <span class="pre">'vaya',</span> <span class="pre">'verdad',</span> <span class="pre">'verdadera',</span> <span class="pre">'verdadero',</span> <span class="pre">'vosotras',</span> <span class="pre">'vosotros',</span> <span class="pre">'voy',</span> <span class="pre">'yo',</span> <span class="pre">'él',</span> <span class="pre">'ésta',</span> <span class="pre">'éstas',</span> <span class="pre">'éste',</span> <span class="pre">'éstos',</span> <span class="pre">'última',</span> <span class="pre">'últimas',</span> <span class="pre">'último',</span> <span class="pre">'últimos',</span> <span class="pre">'a',</span> <span class="pre">'añadió',</span> <span class="pre">'aún',</span> <span class="pre">'actualmente',</span> <span class="pre">'adelante',</span> <span class="pre">'además',</span> <span class="pre">'afirmó',</span> <span class="pre">'agregó',</span> <span class="pre">'ahí',</span> <span class="pre">'ahora',</span> <span class="pre">'al',</span> <span class="pre">'algo',</span> <span class="pre">'alrededor',</span> <span class="pre">'anterior',</span> <span class="pre">'apenas',</span> <span class="pre">'aproximadamente',</span> <span class="pre">'aquí',</span> <span class="pre">'así',</span> <span class="pre">'aseguró',</span> <span class="pre">'aunque',</span> <span class="pre">'ayer',</span> <span class="pre">'buen',</span> <span class="pre">'buena',</span> <span class="pre">'buenas',</span> <span class="pre">'bueno',</span> <span class="pre">'buenos',</span> <span class="pre">'cómo',</span> <span class="pre">'casi',</span> <span class="pre">'cerca',</span> <span class="pre">'cinco',</span> <span class="pre">'comentó',</span> <span class="pre">'conocer',</span> <span class="pre">'consideró',</span> <span class="pre">'considera',</span> <span class="pre">'contra',</span> <span class="pre">'cosas',</span> <span class="pre">'creo',</span> <span class="pre">'cuales',</span> <span class="pre">'cualquier',</span> <span class="pre">'cuanto',</span> <span class="pre">'cuatro',</span> <span class="pre">'cuenta',</span> <span class="pre">'da',</span> <span class="pre">'dado',</span> <span class="pre">'dan',</span> <span class="pre">'dar',</span> <span class="pre">'de',</span> <span class="pre">'debe',</span> <span class="pre">'deben',</span> <span class="pre">'debido',</span> <span class="pre">'decir',</span> <span class="pre">'dejó',</span> <span class="pre">'del',</span> <span class="pre">'demás',</span> <span class="pre">'después',</span> <span class="pre">'dice',</span> <span class="pre">'dicen',</span> <span class="pre">'dicho',</span> <span class="pre">'dieron',</span> <span class="pre">'diferente',</span> <span class="pre">'diferentes',</span> <span class="pre">'dijeron',</span> <span class="pre">'dijo',</span> <span class="pre">'dio',</span> <span class="pre">'durante',</span> <span class="pre">'e',</span> <span class="pre">'ejemplo',</span> <span class="pre">'ella',</span> <span class="pre">'ello',</span> <span class="pre">'embargo',</span> <span class="pre">'encuentra',</span> <span class="pre">'esa',</span> <span class="pre">'esas',</span> <span class="pre">'ese',</span> <span class="pre">'eso',</span> <span class="pre">'esos',</span> <span class="pre">'está',</span> <span class="pre">'están',</span> <span class="pre">'estaban',</span> <span class="pre">'estar',</span> <span class="pre">'estará',</span> <span class="pre">'estas',</span> <span class="pre">'este',</span> <span class="pre">'esto',</span> <span class="pre">'estos',</span> <span class="pre">'estuvo',</span> <span class="pre">'ex',</span> <span class="pre">'existe',</span> <span class="pre">'existen',</span> <span class="pre">'explicó',</span> <span class="pre">'expresó',</span> <span class="pre">'fuera',</span> <span class="pre">'gran',</span> <span class="pre">'grandes',</span> <span class="pre">'había',</span> <span class="pre">'habían',</span> <span class="pre">'haber',</span> <span class="pre">'habrá',</span> <span class="pre">'hacerlo',</span> <span class="pre">'hacia',</span> <span class="pre">'haciendo',</span> <span class="pre">'han',</span> <span class="pre">'hasta',</span> <span class="pre">'hay',</span> <span class="pre">'haya',</span> <span class="pre">'he',</span> <span class="pre">'hecho',</span> <span class="pre">'hemos',</span> <span class="pre">'hicieron',</span> <span class="pre">'hizo',</span> <span class="pre">'hoy',</span> <span class="pre">'hubo',</span> <span class="pre">'igual',</span> <span class="pre">'indicó',</span> <span class="pre">'informó',</span> <span class="pre">'junto',</span> <span class="pre">'lado',</span> <span class="pre">'le',</span> <span class="pre">'les',</span> <span class="pre">'llegó',</span> <span class="pre">'lleva',</span> <span class="pre">'llevar',</span> <span class="pre">'luego',</span> <span class="pre">'lugar',</span> <span class="pre">'más',</span> <span class="pre">'manera',</span> <span class="pre">'manifestó',</span> <span class="pre">'mayor',</span> <span class="pre">'me',</span> <span class="pre">'mediante',</span> <span class="pre">'mejor',</span> <span class="pre">'mencionó',</span> <span class="pre">'menos',</span> <span class="pre">'mi',</span> <span class="pre">'misma',</span> <span class="pre">'mismas',</span> <span class="pre">'mismo',</span> <span class="pre">'mismos',</span> <span class="pre">'momento',</span> <span class="pre">'mucha',</span> <span class="pre">'muchas',</span> <span class="pre">'mucho',</span> <span class="pre">'nada',</span> <span class="pre">'nadie',</span> <span class="pre">'ni',</span> <span class="pre">'ningún',</span> <span class="pre">'ninguna',</span> <span class="pre">'ningunas',</span> <span class="pre">'ninguno',</span> <span class="pre">'ningunos',</span> <span class="pre">'no',</span> <span class="pre">'nosotras',</span> <span class="pre">'nuestra',</span> <span class="pre">'nuestras',</span> <span class="pre">'nuestro',</span> <span class="pre">'nuestros',</span> <span class="pre">'nueva',</span> <span class="pre">'nuevas',</span> <span class="pre">'nuevo',</span> <span class="pre">'nuevos',</span> <span class="pre">'nunca',</span> <span class="pre">'o',</span> <span class="pre">'ocho',</span> <span class="pre">'otra',</span> <span class="pre">'otras',</span> <span class="pre">'otros',</span> <span class="pre">'parece',</span> <span class="pre">'parte',</span> <span class="pre">'partir',</span> <span class="pre">'pasada',</span> <span class="pre">'pasado',</span> <span class="pre">'pesar',</span> <span class="pre">'poca',</span> <span class="pre">'pocas',</span> <span class="pre">'poco',</span> <span class="pre">'pocos',</span> <span class="pre">'podrá',</span> <span class="pre">'podrán',</span> <span class="pre">'podría',</span> <span class="pre">'podrían',</span> <span class="pre">'poner',</span> <span class="pre">'posible',</span> <span class="pre">'próximo',</span> <span class="pre">'próximos',</span> <span class="pre">'primer',</span> <span class="pre">'primera',</span> <span class="pre">'primeros',</span> <span class="pre">'principalmente',</span> <span class="pre">'propia',</span> <span class="pre">'propias',</span> <span class="pre">'propio',</span> <span class="pre">'propios',</span> <span class="pre">'pudo',</span> <span class="pre">'pueda',</span> <span class="pre">'pues',</span> <span class="pre">'qué',</span> <span class="pre">'que',</span> <span class="pre">'quedó',</span> <span class="pre">'queremos',</span> <span class="pre">'quién',</span> <span class="pre">'quienes',</span> <span class="pre">'quiere',</span> <span class="pre">'realizó',</span> <span class="pre">'realizado',</span> <span class="pre">'realizar',</span> <span class="pre">'respecto',</span> <span class="pre">'sí',</span> <span class="pre">'sólo',</span> <span class="pre">'se',</span> <span class="pre">'señaló',</span> <span class="pre">'sea',</span> <span class="pre">'sean',</span> <span class="pre">'según',</span> <span class="pre">'segunda',</span> <span class="pre">'segundo',</span> <span class="pre">'seis',</span> <span class="pre">'será',</span> <span class="pre">'serán',</span> <span class="pre">'sería',</span> <span class="pre">'sido',</span> <span class="pre">'siempre',</span> <span class="pre">'siete',</span> <span class="pre">'sigue',</span> <span class="pre">'siguiente',</span> <span class="pre">'sino',</span> <span class="pre">'sola',</span> <span class="pre">'solas',</span> <span class="pre">'solos',</span> <span class="pre">'son',</span> <span class="pre">'tal',</span> <span class="pre">'tampoco',</span> <span class="pre">'tan',</span> <span class="pre">'tanto',</span> <span class="pre">'tenía',</span> <span class="pre">'tendrá',</span> <span class="pre">'tendrán',</span> <span class="pre">'tenga',</span> <span class="pre">'tenido',</span> <span class="pre">'tercera',</span> <span class="pre">'toda',</span> <span class="pre">'todas',</span> <span class="pre">'todavía',</span> <span class="pre">'todos',</span> <span class="pre">'total',</span> <span class="pre">'trata',</span> <span class="pre">'través',</span> <span class="pre">'tres',</span> <span class="pre">'tuvo',</span> <span class="pre">'usted',</span> <span class="pre">'varias',</span> <span class="pre">'varios',</span> <span class="pre">'veces',</span> <span class="pre">'ver',</span> <span class="pre">'vez',</span> <span class="pre">'y',</span> <span class="pre">'ya']</span></em><a class="headerlink" href="#sisu.preprocessing.language.ES_STOP_WORDS" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of common Spanish words.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="sisu.preprocessing.language.FR_STOP_WORDS">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.language.</span></code><code class="sig-name descname"><span class="pre">FR_STOP_WORDS</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['a',</span> <span class="pre">'à',</span> <span class="pre">'â',</span> <span class="pre">'abord',</span> <span class="pre">'afin',</span> <span class="pre">'ah',</span> <span class="pre">'ai',</span> <span class="pre">'aie',</span> <span class="pre">'ainsi',</span> <span class="pre">'allaient',</span> <span class="pre">'allo',</span> <span class="pre">'allô',</span> <span class="pre">'allons',</span> <span class="pre">'après',</span> <span class="pre">'assez',</span> <span class="pre">'attendu',</span> <span class="pre">'au',</span> <span class="pre">'aucun',</span> <span class="pre">'aucune',</span> <span class="pre">'aujourd',</span> <span class="pre">'aujourdhui',</span> <span class="pre">'auquel',</span> <span class="pre">'aura',</span> <span class="pre">'auront',</span> <span class="pre">'aussi',</span> <span class="pre">'autre',</span> <span class="pre">'autres',</span> <span class="pre">'aux',</span> <span class="pre">'auxquelles',</span> <span class="pre">'auxquels',</span> <span class="pre">'avaient',</span> <span class="pre">'avais',</span> <span class="pre">'avait',</span> <span class="pre">'avant',</span> <span class="pre">'avec',</span> <span class="pre">'avoir',</span> <span class="pre">'ayant',</span> <span class="pre">'bah',</span> <span class="pre">'beaucoup',</span> <span class="pre">'bien',</span> <span class="pre">'bigre',</span> <span class="pre">'boum',</span> <span class="pre">'bravo',</span> <span class="pre">'brrr',</span> <span class="pre">'ça',</span> <span class="pre">'car',</span> <span class="pre">'ce',</span> <span class="pre">'ceci',</span> <span class="pre">'cela',</span> <span class="pre">'celle',</span> <span class="pre">'celle-ci',</span> <span class="pre">'celle-là',</span> <span class="pre">'celles',</span> <span class="pre">'celles-ci',</span> <span class="pre">'celles-là',</span> <span class="pre">'celui',</span> <span class="pre">'celui-ci',</span> <span class="pre">'celui-là',</span> <span class="pre">'cent',</span> <span class="pre">'cependant',</span> <span class="pre">'certain',</span> <span class="pre">'certaine',</span> <span class="pre">'certaines',</span> <span class="pre">'certains',</span> <span class="pre">'certes',</span> <span class="pre">'ces',</span> <span class="pre">'cet',</span> <span class="pre">'cette',</span> <span class="pre">'ceux',</span> <span class="pre">'ceux-ci',</span> <span class="pre">'ceux-là',</span> <span class="pre">'chacun',</span> <span class="pre">'chaque',</span> <span class="pre">'cher',</span> <span class="pre">'chère',</span> <span class="pre">'chères',</span> <span class="pre">'chers',</span> <span class="pre">'chez',</span> <span class="pre">'chiche',</span> <span class="pre">'chut',</span> <span class="pre">'ci',</span> <span class="pre">'cinq',</span> <span class="pre">'cinquantaine',</span> <span class="pre">'cinquante',</span> <span class="pre">'cinquantième',</span> <span class="pre">'cinquième',</span> <span class="pre">'clac',</span> <span class="pre">'clic',</span> <span class="pre">'combien',</span> <span class="pre">'comme',</span> <span class="pre">'comment',</span> <span class="pre">'compris',</span> <span class="pre">'concernant',</span> <span class="pre">'contre',</span> <span class="pre">'couic',</span> <span class="pre">'crac',</span> <span class="pre">'d',</span> <span class="pre">'da',</span> <span class="pre">'dans',</span> <span class="pre">'de',</span> <span class="pre">'debout',</span> <span class="pre">'dedans',</span> <span class="pre">'dehors',</span> <span class="pre">'delà',</span> <span class="pre">'depuis',</span> <span class="pre">'derrière',</span> <span class="pre">'des',</span> <span class="pre">'dès',</span> <span class="pre">'désormais',</span> <span class="pre">'desquelles',</span> <span class="pre">'desquels',</span> <span class="pre">'dessous',</span> <span class="pre">'dessus',</span> <span class="pre">'deux',</span> <span class="pre">'deuxième',</span> <span class="pre">'deuxièmement',</span> <span class="pre">'devant',</span> <span class="pre">'devers',</span> <span class="pre">'devra',</span> <span class="pre">'différent',</span> <span class="pre">'différente',</span> <span class="pre">'différentes',</span> <span class="pre">'différents',</span> <span class="pre">'dire',</span> <span class="pre">'divers',</span> <span class="pre">'diverse',</span> <span class="pre">'diverses',</span> <span class="pre">'dix',</span> <span class="pre">'dix-huit',</span> <span class="pre">'dixième',</span> <span class="pre">'dix-neuf',</span> <span class="pre">'dix-sept',</span> <span class="pre">'doit',</span> <span class="pre">'doivent',</span> <span class="pre">'donc',</span> <span class="pre">'dont',</span> <span class="pre">'douze',</span> <span class="pre">'douzième',</span> <span class="pre">'dring',</span> <span class="pre">'du',</span> <span class="pre">'duquel',</span> <span class="pre">'durant',</span> <span class="pre">'e',</span> <span class="pre">'effet',</span> <span class="pre">'eh',</span> <span class="pre">'elle',</span> <span class="pre">'elle-même',</span> <span class="pre">'elles',</span> <span class="pre">'elles-mêmes',</span> <span class="pre">'en',</span> <span class="pre">'encore',</span> <span class="pre">'entre',</span> <span class="pre">'envers',</span> <span class="pre">'environ',</span> <span class="pre">'es',</span> <span class="pre">'ès',</span> <span class="pre">'est',</span> <span class="pre">'et',</span> <span class="pre">'etant',</span> <span class="pre">'étaient',</span> <span class="pre">'étais',</span> <span class="pre">'était',</span> <span class="pre">'étant',</span> <span class="pre">'etc',</span> <span class="pre">'été',</span> <span class="pre">'etre',</span> <span class="pre">'être',</span> <span class="pre">'eu',</span> <span class="pre">'euh',</span> <span class="pre">'eux',</span> <span class="pre">'eux-mêmes',</span> <span class="pre">'excepté',</span> <span class="pre">'f',</span> <span class="pre">'façon',</span> <span class="pre">'fais',</span> <span class="pre">'faisaient',</span> <span class="pre">'faisant',</span> <span class="pre">'fait',</span> <span class="pre">'feront',</span> <span class="pre">'fi',</span> <span class="pre">'flac',</span> <span class="pre">'floc',</span> <span class="pre">'font',</span> <span class="pre">'g',</span> <span class="pre">'gens',</span> <span class="pre">'h',</span> <span class="pre">'ha',</span> <span class="pre">'hé',</span> <span class="pre">'hein',</span> <span class="pre">'hélas',</span> <span class="pre">'hem',</span> <span class="pre">'hep',</span> <span class="pre">'hi',</span> <span class="pre">'ho',</span> <span class="pre">'holà',</span> <span class="pre">'hop',</span> <span class="pre">'hormis',</span> <span class="pre">'hors',</span> <span class="pre">'hou',</span> <span class="pre">'houp',</span> <span class="pre">'hue',</span> <span class="pre">'hui',</span> <span class="pre">'huit',</span> <span class="pre">'huitième',</span> <span class="pre">'hum',</span> <span class="pre">'hurrah',</span> <span class="pre">'i',</span> <span class="pre">'il',</span> <span class="pre">'ils',</span> <span class="pre">'importe',</span> <span class="pre">'j',</span> <span class="pre">'je',</span> <span class="pre">'jusqu',</span> <span class="pre">'jusque',</span> <span class="pre">'k',</span> <span class="pre">'l',</span> <span class="pre">'la',</span> <span class="pre">'là',</span> <span class="pre">'laquelle',</span> <span class="pre">'las',</span> <span class="pre">'le',</span> <span class="pre">'lequel',</span> <span class="pre">'les',</span> <span class="pre">'lès',</span> <span class="pre">'lesquelles',</span> <span class="pre">'lesquels',</span> <span class="pre">'leur',</span> <span class="pre">'leurs',</span> <span class="pre">'longtemps',</span> <span class="pre">'lorsque',</span> <span class="pre">'lui',</span> <span class="pre">'lui-même',</span> <span class="pre">'m',</span> <span class="pre">'ma',</span> <span class="pre">'maint',</span> <span class="pre">'mais',</span> <span class="pre">'malgré',</span> <span class="pre">'me',</span> <span class="pre">'même',</span> <span class="pre">'mêmes',</span> <span class="pre">'merci',</span> <span class="pre">'mes',</span> <span class="pre">'mien',</span> <span class="pre">'mienne',</span> <span class="pre">'miennes',</span> <span class="pre">'miens',</span> <span class="pre">'mille',</span> <span class="pre">'mince',</span> <span class="pre">'moi',</span> <span class="pre">'moi-même',</span> <span class="pre">'moins',</span> <span class="pre">'mon',</span> <span class="pre">'moyennant',</span> <span class="pre">'n',</span> <span class="pre">'na',</span> <span class="pre">'ne',</span> <span class="pre">'néanmoins',</span> <span class="pre">'neuf',</span> <span class="pre">'neuvième',</span> <span class="pre">'ni',</span> <span class="pre">'nombreuses',</span> <span class="pre">'nombreux',</span> <span class="pre">'non',</span> <span class="pre">'nos',</span> <span class="pre">'notre',</span> <span class="pre">'nôtre',</span> <span class="pre">'nôtres',</span> <span class="pre">'nous',</span> <span class="pre">'nous-mêmes',</span> <span class="pre">'nul',</span> <span class="pre">'o',</span> <span class="pre">'o|',</span> <span class="pre">'ô',</span> <span class="pre">'oh',</span> <span class="pre">'ohé',</span> <span class="pre">'olé',</span> <span class="pre">'ollé',</span> <span class="pre">'on',</span> <span class="pre">'ont',</span> <span class="pre">'onze',</span> <span class="pre">'onzième',</span> <span class="pre">'ore',</span> <span class="pre">'ou',</span> <span class="pre">'où',</span> <span class="pre">'ouf',</span> <span class="pre">'ouias',</span> <span class="pre">'oust',</span> <span class="pre">'ouste',</span> <span class="pre">'outre',</span> <span class="pre">'p',</span> <span class="pre">'paf',</span> <span class="pre">'pan',</span> <span class="pre">'par',</span> <span class="pre">'parmi',</span> <span class="pre">'partant',</span> <span class="pre">'particulier',</span> <span class="pre">'particulière',</span> <span class="pre">'particulièrement',</span> <span class="pre">'pas',</span> <span class="pre">'passé',</span> <span class="pre">'pendant',</span> <span class="pre">'personne',</span> <span class="pre">'peu',</span> <span class="pre">'peut',</span> <span class="pre">'peuvent',</span> <span class="pre">'peux',</span> <span class="pre">'pff',</span> <span class="pre">'pfft',</span> <span class="pre">'pfut',</span> <span class="pre">'pif',</span> <span class="pre">'plein',</span> <span class="pre">'plouf',</span> <span class="pre">'plus',</span> <span class="pre">'plusieurs',</span> <span class="pre">'plutôt',</span> <span class="pre">'pouah',</span> <span class="pre">'pour',</span> <span class="pre">'pourquoi',</span> <span class="pre">'premier',</span> <span class="pre">'première',</span> <span class="pre">'premièrement',</span> <span class="pre">'près',</span> <span class="pre">'proche',</span> <span class="pre">'psitt',</span> <span class="pre">'puisque',</span> <span class="pre">'q',</span> <span class="pre">'qu',</span> <span class="pre">'quand',</span> <span class="pre">'quant',</span> <span class="pre">'quanta',</span> <span class="pre">'quant-à-soi',</span> <span class="pre">'quarante',</span> <span class="pre">'quatorze',</span> <span class="pre">'quatre',</span> <span class="pre">'quatre-vingt',</span> <span class="pre">'quatrième',</span> <span class="pre">'quatrièmement',</span> <span class="pre">'que',</span> <span class="pre">'quel',</span> <span class="pre">'quelconque',</span> <span class="pre">'quelle',</span> <span class="pre">'quelles',</span> <span class="pre">'quelque',</span> <span class="pre">'quelques',</span> <span class="pre">'quelquun',</span> <span class="pre">'quels',</span> <span class="pre">'qui',</span> <span class="pre">'quiconque',</span> <span class="pre">'quinze',</span> <span class="pre">'quoi',</span> <span class="pre">'quoique',</span> <span class="pre">'r',</span> <span class="pre">'revoici',</span> <span class="pre">'revoilà',</span> <span class="pre">'rien',</span> <span class="pre">'s',</span> <span class="pre">'sa',</span> <span class="pre">'sacrebleu',</span> <span class="pre">'sans',</span> <span class="pre">'sapristi',</span> <span class="pre">'sauf',</span> <span class="pre">'se',</span> <span class="pre">'seize',</span> <span class="pre">'selon',</span> <span class="pre">'sept',</span> <span class="pre">'septième',</span> <span class="pre">'sera',</span> <span class="pre">'seront',</span> <span class="pre">'ses',</span> <span class="pre">'si',</span> <span class="pre">'sien',</span> <span class="pre">'sienne',</span> <span class="pre">'siennes',</span> <span class="pre">'siens',</span> <span class="pre">'sinon',</span> <span class="pre">'six',</span> <span class="pre">'sixième',</span> <span class="pre">'soi',</span> <span class="pre">'soi-même',</span> <span class="pre">'soit',</span> <span class="pre">'soixante',</span> <span class="pre">'son',</span> <span class="pre">'sont',</span> <span class="pre">'sous',</span> <span class="pre">'stop',</span> <span class="pre">'suis',</span> <span class="pre">'suivant',</span> <span class="pre">'sur',</span> <span class="pre">'surtout',</span> <span class="pre">'t',</span> <span class="pre">'ta',</span> <span class="pre">'tac',</span> <span class="pre">'tant',</span> <span class="pre">'te',</span> <span class="pre">'té',</span> <span class="pre">'tel',</span> <span class="pre">'telle',</span> <span class="pre">'tellement',</span> <span class="pre">'telles',</span> <span class="pre">'tels',</span> <span class="pre">'tenant',</span> <span class="pre">'tes',</span> <span class="pre">'tic',</span> <span class="pre">'tien',</span> <span class="pre">'tienne',</span> <span class="pre">'tiennes',</span> <span class="pre">'tiens',</span> <span class="pre">'toc',</span> <span class="pre">'toi',</span> <span class="pre">'toi-même',</span> <span class="pre">'ton',</span> <span class="pre">'touchant',</span> <span class="pre">'toujours',</span> <span class="pre">'tous',</span> <span class="pre">'tout',</span> <span class="pre">'toute',</span> <span class="pre">'toutes',</span> <span class="pre">'treize',</span> <span class="pre">'trente',</span> <span class="pre">'très',</span> <span class="pre">'trois',</span> <span class="pre">'troisième',</span> <span class="pre">'troisièmement',</span> <span class="pre">'trop',</span> <span class="pre">'tsoin',</span> <span class="pre">'tsouin',</span> <span class="pre">'tu',</span> <span class="pre">'u',</span> <span class="pre">'un',</span> <span class="pre">'une',</span> <span class="pre">'unes',</span> <span class="pre">'uns',</span> <span class="pre">'v',</span> <span class="pre">'va',</span> <span class="pre">'vais',</span> <span class="pre">'vas',</span> <span class="pre">'vé',</span> <span class="pre">'vers',</span> <span class="pre">'via',</span> <span class="pre">'vif',</span> <span class="pre">'vifs',</span> <span class="pre">'vingt',</span> <span class="pre">'vivat',</span> <span class="pre">'vive',</span> <span class="pre">'vives',</span> <span class="pre">'vlan',</span> <span class="pre">'voici',</span> <span class="pre">'voilà',</span> <span class="pre">'vont',</span> <span class="pre">'vos',</span> <span class="pre">'votre',</span> <span class="pre">'vôtre',</span> <span class="pre">'vôtres',</span> <span class="pre">'vous',</span> <span class="pre">'vous-mêmes',</span> <span class="pre">'vu',</span> <span class="pre">'w',</span> <span class="pre">'x',</span> <span class="pre">'y',</span> <span class="pre">'z',</span> <span class="pre">'zut',</span> <span class="pre">'alors',</span> <span class="pre">'aucuns',</span> <span class="pre">'bon',</span> <span class="pre">'devrait',</span> <span class="pre">'dos',</span> <span class="pre">'droite',</span> <span class="pre">'début',</span> <span class="pre">'essai',</span> <span class="pre">'faites',</span> <span class="pre">'fois',</span> <span class="pre">'force',</span> <span class="pre">'haut',</span> <span class="pre">'ici',</span> <span class="pre">'juste',</span> <span class="pre">'maintenant',</span> <span class="pre">'mine',</span> <span class="pre">'mot',</span> <span class="pre">'nommés',</span> <span class="pre">'nouveaux',</span> <span class="pre">'parce',</span> <span class="pre">'parole',</span> <span class="pre">'personnes',</span> <span class="pre">'pièce',</span> <span class="pre">'plupart',</span> <span class="pre">'seulement',</span> <span class="pre">'soyez',</span> <span class="pre">'sujet',</span> <span class="pre">'tandis',</span> <span class="pre">'valeur',</span> <span class="pre">'voie',</span> <span class="pre">'voient',</span> <span class="pre">'état',</span> <span class="pre">'étions']</span></em><a class="headerlink" href="#sisu.preprocessing.language.FR_STOP_WORDS" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of common French words.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="sisu.preprocessing.language.LANG_EXAMPLES">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.language.</span></code><code class="sig-name descname"><span class="pre">LANG_EXAMPLES</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'de':</span> <span class="pre">'Der</span> <span class="pre">Erlkönig</span> <span class="pre">tut</span> <span class="pre">mir</span> <span class="pre">leid.',</span> <span class="pre">'en':</span> <span class="pre">'My</span> <span class="pre">taylor</span> <span class="pre">is</span> <span class="pre">rich.',</span> <span class="pre">'es':</span> <span class="pre">'Hasta</span> <span class="pre">la</span> <span class="pre">vista</span> <span class="pre">aqui.',</span> <span class="pre">'fr':</span> <span class="pre">'La</span> <span class="pre">vie</span> <span class="pre">est</span> <span class="pre">belle.'}</span></em><a class="headerlink" href="#sisu.preprocessing.language.LANG_EXAMPLES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Small sentences written in different languages.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.preprocessing.language.guess_language">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.language.</span></code><code class="sig-name descname"><span class="pre">guess_language</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_lang_stop_words</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/language.html#guess_language"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.language.guess_language" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recognises the language of the text by looking at common words.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Text to analyze.</p></li>
+<li><p><strong>map_lang_stop_words</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>, optional) – Common words for different languages.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Two-letters code for the language.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">LANG_EXAMPLES</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Guessed language: </span><span class="si">{</span><span class="n">guess_language</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="go">My taylor is rich. (en)</span>
+<span class="go">Guessed language: en</span>
+<span class="go">La vie est belle. (fr)</span>
+<span class="go">Guessed language: fr</span>
+<span class="go">Hasta la vista aqui. (es)</span>
+<span class="go">Guessed language: es</span>
+<span class="go">Der Erlkönig tut mir leid. (de)</span>
+<span class="go">Guessed language: de</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.preprocessing.language.guess_language_ext">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.language.</span></code><code class="sig-name descname"><span class="pre">guess_language_ext</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_lang_stop_words</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/preprocessing/language.html#guess_language_ext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.language.guess_language_ext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the number of stopwords of each language in the sentence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Text to analyze.</p></li>
+<li><p><strong>map_lang_stop_words</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>, optional) – Common words for different languages.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Number of words from each considered language.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">LANG_EXAMPLES</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">guess_language_ext</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span>
+<span class="go">en: My taylor is rich.</span>
+<span class="go">{&#39;en&#39;: 2, &#39;fr&#39;: 0, &#39;es&#39;: 0, &#39;de&#39;: 0}</span>
+<span class="go">fr: La vie est belle.</span>
+<span class="go">{&#39;en&#39;: 0, &#39;fr&#39;: 2, &#39;es&#39;: 1, &#39;de&#39;: 0}</span>
+<span class="go">es: Hasta la vista aqui.</span>
+<span class="go">{&#39;en&#39;: 0, &#39;fr&#39;: 1, &#39;es&#39;: 3, &#39;de&#39;: 0}</span>
+<span class="go">de: Der Erlkönig tut mir leid.</span>
+<span class="go">{&#39;en&#39;: 0, &#39;fr&#39;: 0, &#39;es&#39;: 0, &#39;de&#39;: 2}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="tokenizer">
+<h2>Tokenizer<a class="headerlink" href="#tokenizer" title="Permalink to this headline">¶</a></h2>
+<p>Module for decomposing text into base units</p>
+<span class="target" id="module-sisu.preprocessing.tokenizer"></span><dl class="py data">
+<dt id="sisu.preprocessing.tokenizer.NO_END_SENTENCE">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.tokenizer.</span></code><code class="sig-name descname"><span class="pre">NO_END_SENTENCE</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'(fig.',</span> <span class="pre">'al.',</span> <span class="pre">'e.g.',</span> <span class="pre">'eg.',</span> <span class="pre">'fig.',</span> <span class="pre">'i.e.',</span> <span class="pre">'ie.',</span> <span class="pre">'resp.'}</span></em><a class="headerlink" href="#sisu.preprocessing.tokenizer.NO_END_SENTENCE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Words ending with a dot that do not indicate the end of a sentence.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.preprocessing.tokenizer.make_sentences">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.tokenizer.</span></code><code class="sig-name descname"><span class="pre">make_sentences</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_end_words</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/preprocessing/tokenizer.html#make_sentences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.tokenizer.make_sentences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract sentences from a text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> corresponding to a full text.</p></li>
+<li><p><strong>no_end_words</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a>, optional) – A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a> of words that could wrongfully trigger end of sentence.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> corresponding to the text’s sentences.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">make_sentences</span><span class="p">(</span><span class="s2">&quot;One sentence, i.e. words with no dot, as Toto and al. say. Or no (cf fig. 2)?&quot;</span><span class="p">)</span>
+<span class="go">[&#39;One sentence, i.e. words with no dot, as Toto and al. say.&#39;, &#39;Or no (cf fig. 2)?&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.preprocessing.tokenizer.make_sentences_wiki">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.tokenizer.</span></code><code class="sig-name descname"><span class="pre">make_sentences_wiki</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_end_words</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/tokenizer.html#make_sentences_wiki"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.tokenizer.make_sentences_wiki" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract sentences from a text, with wiki code handling.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> corresponding to a full text.</p></li>
+<li><p><strong>no_end_words</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a>, optional) – A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a> of words that could wrongfully trigger end of sentence.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> corresponding to the text’s sentences.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">make_sentences_wiki</span><span class="p">(</span><span class="s2">&quot;and hyraxes.== Name and taxonomy ==&quot;</span><span class="p">)</span>
+<span class="go">[&#39;and hyraxes &#39;, &#39; Name and taxonomy ==&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.preprocessing.tokenizer.num_words">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.tokenizer.</span></code><code class="sig-name descname"><span class="pre">num_words</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentence</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/tokenizer.html#num_words"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.tokenizer.num_words" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the length of a sentence in number of words</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sentence</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Text to count.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Number of words in sentence.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">num_words</span><span class="p">(</span><span class="s2">&quot;My Taylor is rich!&quot;</span><span class="p">)</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.preprocessing.tokenizer.words">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.tokenizer.</span></code><code class="sig-name descname"><span class="pre">words</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/preprocessing/tokenizer.html#words"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.tokenizer.words" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes the vocabulary (words) constituting a text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> corresponding to a text.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> corresponding to the vocabulary (list of lower cases words).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">words</span><span class="p">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
+<span class="go">[&#39;hello&#39;, &#39;world&#39;]</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">words</span><span class="p">(</span><span class="s2">&quot;1+one = TWO&quot;</span><span class="p">)</span>
+<span class="go">[&#39;one&#39;, &#39;two&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="sentences">
+<h2>sentences<a class="headerlink" href="#sentences" title="Permalink to this headline">¶</a></h2>
+<p>Module for extracting sentences</p>
+<span class="target" id="module-sisu.preprocessing.sentences"></span><dl class="py function">
+<dt id="sisu.preprocessing.sentences.make_abstract_sentences">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.sentences.</span></code><code class="sig-name descname"><span class="pre">make_abstract_sentences</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/sentences.html#make_abstract_sentences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.sentences.make_abstract_sentences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cuts a document’s abstract into sentences when the document is a dict with the key abstract.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Simplified document.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Document’s abstract’s sentences.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">make_abstract_sentences</span><span class="p">(</span><span class="n">toy_article</span><span class="p">)</span> 
+<span class="go">[&#39;In the jungle, no-one hears you far cry.&#39;, &#39;And vice-versa.&#39;,</span>
+<span class="go"> &#39;They say to make a long abstract, with the number 42 in it, so here I am.&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.preprocessing.sentences.make_content_sentences">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.sentences.</span></code><code class="sig-name descname"><span class="pre">make_content_sentences</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/sentences.html#make_content_sentences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.sentences.make_content_sentences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cuts a document’s content into sentences when the document is a dict with the key content.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Simplified document.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Document’s content’s sentences.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">make_content_sentences</span><span class="p">(</span><span class="n">toy_article</span><span class="p">)</span>
+<span class="go">[&#39;There is no-one in the trees.&#39;, &#39;Is there?&#39;, &quot;Predators don&#39;t like to lose.&quot;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt id="sisu.preprocessing.sentences.toy_article">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.sentences.</span></code><code class="sig-name descname"><span class="pre">toy_article</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'abstract':</span> <span class="pre">'In</span> <span class="pre">the</span> <span class="pre">jungle,</span> <span class="pre">no-one</span> <span class="pre">hears</span> <span class="pre">you</span> <span class="pre">far</span> <span class="pre">cry.</span> <span class="pre">And</span> <span class="pre">vice-versa.</span> <span class="pre">They</span> <span class="pre">say</span> <span class="pre">to</span> <span class="pre">make</span> <span class="pre">a</span> <span class="pre">long</span> <span class="pre">abstract,</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">42</span> <span class="pre">in</span> <span class="pre">it,</span> <span class="pre">so</span> <span class="pre">here</span> <span class="pre">I</span> <span class="pre">am.',</span> <span class="pre">'content':</span> <span class="pre">&quot;There</span> <span class="pre">is</span> <span class="pre">no-one</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">trees.</span> <span class="pre">Is</span> <span class="pre">there?</span> <span class="pre">Predators</span> <span class="pre">don't</span> <span class="pre">like</span> <span class="pre">to</span> <span class="pre">lose.&quot;,</span> <span class="pre">'title':</span> <span class="pre">'Predator'}</span></em><a class="headerlink" href="#sisu.preprocessing.sentences.toy_article" title="Permalink to this definition">¶</a></dt>
+<dd><p>Article with a simple structure.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Fabien Mathieu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
