@@ -72,7 +72,7 @@ def load_dataset(dataset_dir: str, getters: dict = None, max_documents: int = No
 
     >>> from sisu.preprocessing.covid19 import get_title, get_abstract
     >>> documents = load_dataset(data_dir, max_documents=2, getters={'title': get_title, 'abstract': get_abstract}, save=None)
-    >>> sorted([doc for doc in documents], key=lambda d: d['title']) # doctest: +NORMALIZE_WHITESPACE
+    >>> sorted([doc for doc in documents], key=lambda d: len(d['abstract'])) # doctest: +NORMALIZE_WHITESPACE
     [{'title': '"Multi-faceted" COVID-19: Russian experience', 'abstract': ''},
      {'title': 'Community frailty response service: the ED at your front door',
       'abstract': 'We describe the expansion and adaptation of a frailty response team to assess older people in their usual place of residence. The team had commenced a weekend service to a limited area in February 2020. As a consequence of demand related to the COVID-19 pandemic, we expanded it and adapted the model of care to provide a 7-day service to our entire catchment area. Five hundred and ninety two patient reviews have been completed in the first 105 days of operation with 43 patients transferred to hospital for further investigation or management following assessment.'}]
