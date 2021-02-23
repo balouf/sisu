@@ -21,12 +21,9 @@ test_requirements = ['pytest>=3', ]
 
 def _post_install():
     """Post installation nltk corpus downloads if nltk available."""
-    try:
-        import nltk
-        nltk.download("punkt")
-        nltk.download("stopwords")
-    except:
-        pass
+    import nltk
+    nltk.download("punkt")
+    nltk.download("stopwords")
 
 
 class PostDevelop(develop):
