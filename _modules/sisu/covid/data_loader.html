@@ -314,7 +314,7 @@
 
 <span class="sd">    Title and url?</span>
 
-<span class="sd">    &gt;&gt;&gt; sorted([{&#39;title&#39;: a[&#39;metadata&#39;][&#39;title&#39;], &#39;url&#39;: a[&#39;url&#39;]} for a in source], key=lambda d: d[&#39;title&#39;]) # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">    &gt;&gt;&gt; sorted([{&#39;title&#39;: a[&#39;metadata&#39;][&#39;title&#39;], &#39;url&#39;: a[&#39;url&#39;]} for a in source], key=lambda d: len(d[&#39;title&#39;])) # doctest: +NORMALIZE_WHITESPACE</span>
 <span class="sd">    [{&#39;title&#39;: &#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;,</span>
 <span class="sd">      &#39;url&#39;: &#39;file:///%sdata0000028b5cc154f68b8a269f6578f21e31f62977.json&#39;},</span>
 <span class="sd">     {&#39;title&#39;: &#39;Community frailty response service: the ED at your front door&#39;,</span>
