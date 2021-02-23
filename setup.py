@@ -43,7 +43,7 @@ class PostInstall(install):
 
 
 setup(
-    author="Fabien Mathieu",
+    author="Mélanie Cambus, Marc-Olivier Buob, Fabien Mathieu",
     author_email='fabien.mathieu@normalesup.org',
     python_requires='>=3.6',
     classifiers=[

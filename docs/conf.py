@@ -58,8 +58,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Structured and Interactive Summarization'
-copyright = "2021, Fabien Mathieu"
-author = "Fabien Mathieu"
+copyright = "2021, Mélanie Cambus, Marc-Olivier Buob, Fabien Mathieu"
+author = "Mélanie Cambus, Marc-Olivier Buob, Fabien Mathieu"
 
 # The version info for the project you're documenting, acts as replacement
 # for |version| and |release|, also used in various other places throughout
