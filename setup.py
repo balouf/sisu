@@ -3,6 +3,8 @@
 """The setup script."""
 
 from setuptools import setup, find_packages
+from setuptools.command.develop import develop
+from setuptools.command.install import install
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
@@ -12,9 +14,34 @@ with open('HISTORY.rst') as history_file:
 
 requirements = ['nltk']
 
-setup_requirements = ['pytest-runner',]
+setup_requirements = ['pytest-runner', ]
 
-test_requirements = ['pytest>=3',]
+test_requirements = ['pytest>=3', ]
+
+
+def _post_install():
+    """Post installation nltk corpus downloads."""
+    import nltk
+
+    nltk.download("punkt")
+    nltk.download("stopwords")
+
+
+class PostDevelop(develop):
+    """Post-installation for development mode."""
+
+    def run(self):
+        develop.run(self)
+        self.execute(_post_install, [], msg="Running post installation tasks")
+
+
+class PostInstall(install):
+    """Post-installation for production mode."""
+
+    def run(self):
+        install.run(self)
+        self.execute(_post_install, [], msg="Running post installation tasks")
+
 
 setup(
     author="Fabien Mathieu",
@@ -45,4 +72,5 @@ setup(
     url='https://github.com/balouf/sisu',
     version='0.1.0',
     zip_safe=False,
+    cmdclass={"develop": PostDevelop, "install": PostInstall},
 )
