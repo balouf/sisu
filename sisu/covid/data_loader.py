@@ -151,7 +151,7 @@ def filesource_loader_covid(d: Path, lang: str = "en", zipname="CORD-19-research
 
     Title and url?
 
-    >>> sorted([{'title': a['metadata']['title'], 'url': a['url']} for a in source], key=lambda d: d['title']) # doctest: +NORMALIZE_WHITESPACE
+    >>> sorted([{'title': a['metadata']['title'], 'url': a['url']} for a in source], key=lambda d: len(d['title'])) # doctest: +NORMALIZE_WHITESPACE
     [{'title': '"Multi-faceted" COVID-19: Russian experience',
       'url': 'file:///%sdata0000028b5cc154f68b8a269f6578f21e31f62977.json'},
      {'title': 'Community frailty response service: the ED at your front door',
