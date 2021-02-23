@@ -4,4 +4,6 @@ Reference
 
 .. toctree::
 
+   covid
+
    preprocessing

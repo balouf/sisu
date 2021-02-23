@@ -40,7 +40,8 @@ intersphinx_mapping = {'python':('https://docs.python.org/3', None),
                        'sklearn':('https://scikit-learn.org/stable', None),
                        'numpy': ('https://docs.scipy.org/doc/numpy/', None),
                        'scipy': ('https://docs.scipy.org/doc/scipy/reference/', None),
-                       'matplotlib': ('http://matplotlib.sourceforge.net/', None)}
+                       'matplotlib': ('http://matplotlib.sourceforge.net/', None),
+                       'gismo': ('https://gismo.readthedocs.io/en/latest/', None)}
 
 
 # Add any paths that contain templates here, relative to this directory.

@@ -1,0 +1,4281 @@
+{
+    "paper_id": "0009745a11d206af9e405e00677c51b01251dba7",
+    "metadata": {
+        "title": "COVID-19-Pneumonie",
+        "authors": [
+            {
+                "first": "M",
+                "middle": [],
+                "last": "Pfeifer",
+                "suffix": "",
+                "affiliation": {
+                    "laboratory": "",
+                    "institution": "Klinik II f\u00fcr Innere Medizin",
+                    "location": {
+                        "settlement": "Pneumologie"
+                    }
+                },
+                "email": ""
+            },
+            {
+                "first": "\u00b7",
+                "middle": [
+                    "O W"
+                ],
+                "last": "Hamer",
+                "suffix": "",
+                "affiliation": {},
+                "email": ""
+            }
+        ]
+    },
+    "abstract": [],
+    "body_text": [
+        {
+            "text": "der Entwicklung einer schweren Pneumonie im Vordergrund, die in der Regel prognostisch bestimmend ist. Sehr fr\u00fch nach den ersten Beschreibungen wurde offensichtlich, dass sich der Verlauf von COVID-19 in vielerlei Hinsicht von den bekannten respiratorischen Virusinfektionen unterscheidet. Dabei muss die teilweise dramatische Entwicklung einer schweren respiratorischen Insuffizienz pathophysiologisch wie auch hinsichtlich der daraus abzuleitenden therapeutischen M\u00f6glichkeiten neu bewertet werden. Im Folgenden wird auf die aktuell bekannten Besonderheiten der pulmonalen Manifestation der Erkrankung aus pathophysiologischer, klinischer und radiologischer Sicht eingegangen.",
+            "cite_spans": [],
+            "ref_spans": [],
+            "section": ""
+        },
+        {
+            "text": "Die \u00dcbertragung von SARS-CoV-2 erfolgt \u00fcberwiegend durch eine Tr\u00f6pfcheninfektion (\"droplet transmission\") und ist prinzipiell auch \u00fcber Aerosole durch Tr\u00f6pfchenkerne (\"airborne transmission\") \u00fcbertragbar [1, 2] . Inwieweit Schmierinfektionen ausgehend von kontaminierten Oberfl\u00e4chen eine zus\u00e4tzliche Rolle spielen, ist ungekl\u00e4rt.",
+            "cite_spans": [
+                {
+                    "start": 204,
+                    "end": 207,
+                    "text": "[1,",
+                    "ref_id": "BIBREF0"
+                },
+                {
+                    "start": 208,
+                    "end": 210,
+                    "text": "2]",
+                    "ref_id": "BIBREF1"
+                }
+            ],
+            "ref_spans": [],
+            "section": "Pathophysiologie"
+        },
+        {
+            "text": "Prim\u00e4r sind die oberen Atemwege im Bereich des Nasopharynx betroffen mit einer weiteren Multiplikation der Virusinfektion im Bereich der unteren Atemwege und indergastrointestinalenMukosa [3, 4] . Bei der \u00fcberwiegenden Zahl der Patienten stabilisiert sich die Erkrankung in diesem Stadium. Allerdings ist unklar, wie hoch der Anteil der Patienten tats\u00e4chlich ist, die eine Pneumonie entwickeln. Nach einer Berechnung aus Frankreich m\u00fcssen etwa 2-3 % alle infizierten Pati-entenwegeneinesschwerenVerlaufesmit Pneumonie station\u00e4r behandelt werden [5] . Aktuell, im Herbst 2020, steigt die Zahl der Infizierten nach einem deutlichen R\u00fcckgang in den Sommermonaten wieder signifikant an. Auffallend ist jedoch, dass mehr j\u00fcngere Menschen mit meist einem milderen Verlauf betroffen sind, sodass im Vergleich zum Beginn der Pandemie im Fr\u00fchjahr die Zahl der station\u00e4r behandlungsbed\u00fcrftigen Patienten noch relativ niedrig ist. Da die Beh\u00f6rden auch einen Anstieg von Infektionen in der \u00e4lteren Bev\u00f6lkerung (https:// www.rki.de) melden, muss in den n\u00e4chsten Wochen wieder mit einer Zunahme der station\u00e4ren F\u00e4lle von COVID-19-Erkrankungen gerechnet werden.",
+            "cite_spans": [
+                {
+                    "start": 188,
+                    "end": 191,
+                    "text": "[3,",
+                    "ref_id": "BIBREF2"
+                },
+                {
+                    "start": 192,
+                    "end": 194,
+                    "text": "4]",
+                    "ref_id": "BIBREF3"
+                },
+                {
+                    "start": 545,
+                    "end": 548,
+                    "text": "[5]",
+                    "ref_id": "BIBREF4"
+                }
+            ],
+            "ref_spans": [],
+            "section": "Pathophysiologie"
+        },
+        {
+            "text": "Patienten neben den allgemeinen Krankheitszeichen, wie Fieber, M\u00fcdigkeit oder Gliederschmerzen, \u00fcber Atemnot und entwickeln dann die Zeichen eines \"respiratorischen Stresses\". Schon zu Beginn der Pandemie wurde als wesentlicher Risikofaktor f\u00fcr einen schweren Verlauf eine systemische Entz\u00fcndungsreaktion mit Anstieg von proinflammatorischen Mediatoren, wie Interleukin (IL-)6, IL-2, IL-7, Tumornekrosefaktor(TNF)\u03b1, Interferon-\u03b3, \"inducible protein(IP)-10\", \"monocyte chemoattractant protein (MCP)-1\", \"macrophage inflammatory protein (MIP) 1 \u03b1\", \"granulocytecolony stimulating factor\" (G-CSF), C-reaktives Protein (CRP), Prokalzitonin und Ferritin, beschrieben [8] [9] [10] [11] . Von prognostischer Relevanz ist dabei eine erh\u00f6hte bzw. ansteigende Konzentration von IL-1 und -6 sowie Ferritin [9, 10] . In retrospektiven Untersuchungen wurden bei verstorbenen COVID-19-Patienten signifikant h\u00f6here Werte von IL-6, Ferritin und CRP beschrieben [10] . Weitere prognostische Marker sind D-Dimere und Troponin [9, 10] .",
+            "cite_spans": [
+                {
+                    "start": 662,
+                    "end": 665,
+                    "text": "[8]",
+                    "ref_id": "BIBREF8"
+                },
+                {
+                    "start": 666,
+                    "end": 669,
+                    "text": "[9]",
+                    "ref_id": "BIBREF9"
+                },
+                {
+                    "start": 670,
+                    "end": 674,
+                    "text": "[10]",
+                    "ref_id": "BIBREF10"
+                },
+                {
+                    "start": 675,
+                    "end": 679,
+                    "text": "[11]",
+                    "ref_id": "BIBREF11"
+                },
+                {
+                    "start": 795,
+                    "end": 798,
+                    "text": "[9,",
+                    "ref_id": "BIBREF9"
+                },
+                {
+                    "start": 799,
+                    "end": 802,
+                    "text": "10]",
+                    "ref_id": "BIBREF10"
+                },
+                {
+                    "start": 945,
+                    "end": 949,
+                    "text": "[10]",
+                    "ref_id": "BIBREF10"
+                },
+                {
+                    "start": 1008,
+                    "end": 1011,
+                    "text": "[9,",
+                    "ref_id": "BIBREF9"
+                },
+                {
+                    "start": 1012,
+                    "end": 1015,
+                    "text": "10]",
+                    "ref_id": "BIBREF10"
+                }
+            ],
+            "ref_spans": [],
+            "section": "Pathophysiologie"
+        },
+        {
+            "text": "\u00bb Viele COVID-19-Patienten empfinden trotz signifikanter Hypox\u00e4mie keine oder nur geringe Atemnot Dieser Anstieg der Zytokine wurde auch als \"Zytokinsturm\" bezeichnet, wobei dieser Begriff nicht eindeutig definiert ist. Er impliziert jedoch eine den Gesamtorganismus sch\u00e4digende, unkontrollierte, systemische Entz\u00fcndungsreaktion. Allerdings ist der Zytokinanstieg bei COVID-19-Pneumonie deutlich geringer als beim klassischen \"acute respiratory distress syndrome\" (ARDS), bei dem um ein Vielfaches h\u00f6here Zytokinkonzentrationen gemessen wurden [12] . Damit unterscheidet sich COVID-19 in der Anfangsphase entscheidend von dem Verlauf eines hyperinflammatorischen ARDS. Neben der Infektion des Alveolarepithels besitzt dabei die vaskul\u00e4re Entz\u00fcndung mit thromboembolischen Ereignissen, die im Zusammenhang mit COVID-19 beschrieben wurde [13, 14] , eine h\u00f6here Relevanz als bei Patienten mit ARDS und Influenzainfektionen. In einer vergleichenden, postmortalen Untersuchungwurdeeineschwerevaskul\u00e4re Sch\u00e4digung der pulmonalen Gef\u00e4\u00dfe unter Einschluss von Mikrothrombosen beschrieben, die deutlich \u00fcber das bei einer schweren ARDS-Erkrankung im Rahmen einer Influenzainfektionen bekannte Ausma\u00df hinausgeht [15] .",
+            "cite_spans": [
+                {
+                    "start": 544,
+                    "end": 548,
+                    "text": "[12]",
+                    "ref_id": "BIBREF12"
+                },
+                {
+                    "start": 836,
+                    "end": 840,
+                    "text": "[13,",
+                    "ref_id": "BIBREF13"
+                },
+                {
+                    "start": 841,
+                    "end": 844,
+                    "text": "14]",
+                    "ref_id": "BIBREF14"
+                },
+                {
+                    "start": 1201,
+                    "end": 1205,
+                    "text": "[15]",
+                    "ref_id": "BIBREF15"
+                }
+            ],
+            "ref_spans": [],
+            "section": "Pathophysiologie"
+        },
+        {
+            "text": "Auffallend ist dabei, dass viele Patienten keine oder nur geringe Atemnot empfinden, obwohl bereits eine signifikante Hypox\u00e4mie vorliegt und formal die Definition eines ARDS nach den Berlin-Kriterien schon erf\u00fcllt ist [16] . Die Befunde sprechen daf\u00fcr, dass die schwere COVID-19-Pneumonie anfangs wesentliche Unterschiede zu den bekannten Ver\u00e4nderungen eines ARDS aufweist, wie es z. B. im Rahmen eines septischen Schocks oder einer bakteriellen Pneumonie zu beobachten ist. Im Gegensatz zum einem klassischen ARDS, z. B. bei schwerer bakterieller Pneumonie, bleibt die Compliance der Lunge bei COVID-19 lange erhalten, sodass keine erh\u00f6hte Atemarbeit vom Patienten geleistet werden muss, um die respiratorische Insuffizienz zu kompensieren.",
+            "cite_spans": [
+                {
+                    "start": 218,
+                    "end": 222,
+                    "text": "[16]",
+                    "ref_id": null
+                }
+            ],
+            "ref_spans": [],
+            "section": "Pathophysiologie"
+        },
+        {
+            "text": "Die zunehmende Hypox\u00e4mie ist multifaktoriell und dabei am ehesten durch eine signifikante Ventilations-Perfusions-Verteilungsst\u00f6rung zu erkl\u00e4ren. Dabei scheinen die vaskul\u00e4ren Sch\u00e4den mit einem zu postulierenden Verlust der hypoxischen Vasokonstriktion (Euler-Liljestrand-Reflex) bei maximal dilatierten Gef\u00e4\u00dfen [17] [18] [19] und m\u00f6glicher St\u00f6rung der Mikrozirkulation durch In-situ-Thrombosen [13, 15] eine erhebliche Rolle zu spielen. Am ehesten ist dies Folge des Endothelschadens sowie einer aktiven Relaxation der glatten Gef\u00e4\u00dfmuskulatur durch vasoaktive und inflammatorische Mediatoren. Die physiologische Antwort auf die Hypox\u00e4mie ist eine mehr oder weniger ausgepr\u00e4gte Hyperventilation mit erh\u00f6hter Atemfrequenz und erniedrigtem arteriellem Kohlendioxidpartialdruck (pCO2). Trotzdem empfindet der Patient keinen \"Atemstress\". Eine andauernde Hyperventilation wiederum belastet mechanisch \u00fcber Scherkraftbildung und hohe intrapleurale Druckamplituden die Lunge und kann zu einer weiteren Sch\u00e4digung der Lunge f\u00fchren -ein Ph\u00e4nomen, das als \"patient self-inflicted lung injury\" (P-SILI) bezeichnet wird [20] [21] [22] [23] [24] .",
+            "cite_spans": [
+                {
+                    "start": 312,
+                    "end": 316,
+                    "text": "[17]",
+                    "ref_id": "BIBREF18"
+                },
+                {
+                    "start": 317,
+                    "end": 321,
+                    "text": "[18]",
+                    "ref_id": "BIBREF19"
+                },
+                {
+                    "start": 322,
+                    "end": 326,
+                    "text": "[19]",
+                    "ref_id": "BIBREF20"
+                },
+                {
+                    "start": 395,
+                    "end": 399,
+                    "text": "[13,",
+                    "ref_id": "BIBREF13"
+                },
+                {
+                    "start": 400,
+                    "end": 403,
+                    "text": "15]",
+                    "ref_id": "BIBREF15"
+                },
+                {
+                    "start": 1109,
+                    "end": 1113,
+                    "text": "[20]",
+                    "ref_id": "BIBREF21"
+                },
+                {
+                    "start": 1114,
+                    "end": 1118,
+                    "text": "[21]",
+                    "ref_id": "BIBREF22"
+                },
+                {
+                    "start": 1119,
+                    "end": 1123,
+                    "text": "[22]",
+                    "ref_id": "BIBREF23"
+                },
+                {
+                    "start": 1124,
+                    "end": 1128,
+                    "text": "[23]",
+                    "ref_id": "BIBREF24"
+                },
+                {
+                    "start": 1129,
+                    "end": 1133,
+                    "text": "[24]",
+                    "ref_id": "BIBREF25"
+                }
+            ],
+            "ref_spans": [],
+            "section": "\u00bb Die Situation kann sich innerhalb weniger Stunden destabilisieren"
+        },
+        {
+            "text": "\u00bb Die regelm\u00e4\u00dfige Messung der Atemfrequenz als Surrogatparameter der Atemarbeit ist wichtig Innerhalb weniger Stunden kann sich die Situation destabilisieren, wenn der Lungenschaden weiter fortschreitet und der Organismus nicht mehr in der Lage ist, die schwere Hypox\u00e4mie auszugleichen. Als wesentlicher Surrogatparameter der zunehmenden Atemarbeit in dieser Phase ist die regelm\u00e4\u00dfige Messung der Atemfrequenz wichtig, die bei Anstieg ein fr\u00fcher Hinweis f\u00fcr eine m\u00f6gliche Dekompensation der respiratorischen Situation sein kann. Die spezifischere, aber deutlich aufwendigere Bestimmung der Atemarbeit und der intrathorakalen Druckver\u00e4nderungen \u00fcber eine \u00d6sophagusdruckmessung [25, 26] ist in der klinischen Routine nur schwer zu etablieren, zumal sie lediglich in wenigen Zentren zur Verf\u00fcgung steht. In dieser Phase kann bis zu einem gewissen Grad mit der Zufuhr von Sauerstoff eine ventilatorische Entlastung erreicht werden. Aufgrund eines anzunehmenden Shunts ist die Effizienz der Sauerstoffgabe jedoch eingeschr\u00e4nkt. Aus pathophysiologischer Sicht kann in dieser Phase zur Verhinderung eines m\u00f6glichen selbstinduzierten Lungenschadens eine mechanische Unterst\u00fctzung mittels nichtinvasiver Beatmung oder \"continuous positive airway pressure\" (CPAP) \u00fcber ein Maskensystem oder einen Helm hilfreich sein.",
+            "cite_spans": [
+                {
+                    "start": 676,
+                    "end": 680,
+                    "text": "[25,",
+                    "ref_id": "BIBREF26"
+                },
+                {
+                    "start": 681,
+                    "end": 684,
+                    "text": "26]",
+                    "ref_id": "BIBREF27"
+                }
+            ],
+            "ref_spans": [],
+            "section": "\u00bb Die Situation kann sich innerhalb weniger Stunden destabilisieren"
+        },
+        {
+            "text": "Die Erkrankung verl\u00e4uft dynamisch und entsprechend der Entwicklung der Infektion kommt es entweder zu einer Stabilisierung in dieser Phase oder zu einer Zunahme der Lungensch\u00e4digung mit einer Verst\u00e4rkung der Hypox\u00e4mie und zu einer zunehmenden entz\u00fcndlichen Infiltration von immer mehr Lungenarealen, sodass die Erkrankung dann einem schweren pneumogenen ARDS entspricht. Es finden sich dann auch die pathologischen Zeichen eines diffusen Alveolarschadens [27] mit den entsprechenden pathophysiologischen Ver\u00e4nderungen eines hohen Lungengewichts, geringer Compliance und eines ausgepr\u00e4gten Rechts-Links-Shunts [25, 26] . Das Bild entspricht einer Lungensch\u00e4digung, die auch bei Patienten gesehen wurde, die an SARS [28] bzw. MERS [29] verstorben sind.",
+            "cite_spans": [
+                {
+                    "start": 455,
+                    "end": 459,
+                    "text": "[27]",
+                    "ref_id": "BIBREF28"
+                },
+                {
+                    "start": 609,
+                    "end": 613,
+                    "text": "[25,",
+                    "ref_id": "BIBREF26"
+                },
+                {
+                    "start": 614,
+                    "end": 617,
+                    "text": "26]",
+                    "ref_id": "BIBREF27"
+                },
+                {
+                    "start": 714,
+                    "end": 718,
+                    "text": "[28]",
+                    "ref_id": "BIBREF29"
+                },
+                {
+                    "start": 729,
+                    "end": 733,
+                    "text": "[29]",
+                    "ref_id": "BIBREF30"
+                }
+            ],
+            "ref_spans": [],
+            "section": "\u00bb Die Situation kann sich innerhalb weniger Stunden destabilisieren"
+        },
+        {
+            "text": "Organsch\u00e4den sind f\u00fcr die Prognose wesentlich F\u00fcr die Prognose wesentlich sind m\u00f6gliche weitere Organsch\u00e4den wie ein Nierenversagen oder eine kardiale Erkrankung. Die ersten Daten aus China zeigten fr\u00fchzeitig zu Beginn der Pandemie einen hohen Anteil von kardial erkrankten Patienten von 20-30 % der hospitalisierten Patienten -Zahlen, die sich auch in den europ\u00e4ischen Patientenkollektiven best\u00e4tigten [11, 30] . Als Ausdruck der kardialen Sch\u00e4digung m\u00fcssen die in Studien regelm\u00e4\u00dfig beschriebenen erh\u00f6hten Werte f\u00fcr Troponin gesehen werden, die mit einer eingeschr\u00e4nkten Prognose assoziiert sind [9, 31] . Die Analyse von verstorbenen Patienten in der Wuhan-Kohorte fand in 34 % eine kardiale Sch\u00e4digung bzw. eine kardiale Insuffizienz in 40 % entweder als alleinige Ursache oder in Kombination mit einer respiratorischen Insuffizienz [2, 9, 32, 33] . Das assoziierte Letalit\u00e4tsrisiko einer akuten kardialen Sch\u00e4digung war dabei h\u00f6her als das von Alter, Diabetes, chronischer obstruktiver Lungenerkrankung (COPD) und von vorbestehenden kardialen Erkrankungen.",
+            "cite_spans": [
+                {
+                    "start": 403,
+                    "end": 407,
+                    "text": "[11,",
+                    "ref_id": "BIBREF11"
+                },
+                {
+                    "start": 408,
+                    "end": 411,
+                    "text": "30]",
+                    "ref_id": "BIBREF31"
+                },
+                {
+                    "start": 598,
+                    "end": 601,
+                    "text": "[9,",
+                    "ref_id": "BIBREF9"
+                },
+                {
+                    "start": 602,
+                    "end": 605,
+                    "text": "31]",
+                    "ref_id": "BIBREF32"
+                },
+                {
+                    "start": 837,
+                    "end": 840,
+                    "text": "[2,",
+                    "ref_id": "BIBREF1"
+                },
+                {
+                    "start": 841,
+                    "end": 843,
+                    "text": "9,",
+                    "ref_id": "BIBREF9"
+                },
+                {
+                    "start": 844,
+                    "end": 847,
+                    "text": "32,",
+                    "ref_id": "BIBREF33"
+                },
+                {
+                    "start": 848,
+                    "end": 851,
+                    "text": "33]",
+                    "ref_id": "BIBREF34"
+                }
+            ],
+            "ref_spans": [],
+            "section": "\u00bb M\u00f6gliche weitere"
+        },
+        {
+            "text": "Zudem muss von einer erh\u00f6hten Koagulopathie ausgegangen werden, was auch von den regelm\u00e4\u00dfig gefundenen erh\u00f6hten D-Dimeren reflektiert wird. Die Erkrankung ist mit einem erh\u00f6hten Risiko f\u00fcr thrombotische Ereignisse und St\u00f6rungen des Gerinnungssystems",
+            "cite_spans": [],
+            "ref_spans": [],
+            "section": "\u00bb M\u00f6gliche weitere"
+        },
+        {
+            "text": "Gastroenterologe https://doi.org/10.1007/s11377-020-00488-x \u00a9 Springer Medizin Verlag GmbH, ein Teil von Springer Nature 2020",
+            "cite_spans": [],
+            "ref_spans": [],
+            "section": "Zusammenfassung \u00b7 Abstract"
+        },
+        {
+            "text": "Zusammenfassung Die Prognose der pandemisch auftretenden Coronavirus Disease 2019 (COVID-19) wird wesentlich durch das Ausma\u00df der Infektion der unteren Atemwege mit dem \"severe acute respiratory syndrome coronavirus 2\" (SARS-CoV-2) bestimmt. Auch wenn die Mehrzahl der Patienten einen milden Verlauf zeigt, ist die Entwicklung einer Pneumonie mit dem Risiko einer schweren respiratorischen Insuffizienz verbunden. Neben der Virusdiagnostik an Material aus den oberen und/oder unteren Atemwegen hat sich die radiologische Diagnostik mittels hochaufl\u00f6sender Computertomographie (HRCT) als wichtige Methode f\u00fcr die Erkennung und das Verlaufsmonitoring der Erkrankung etabliert. In dem \u00dcbersichtsartikel wird neben der Darstellung der klinischen Zeichen und der komplexen und besonderen Pathophysiologie dieser Pneumonie detailliert auf die typischen radiologischen Muster eingegangen, deren Erkennen f\u00fcr die Beurteilung der Erkrankung und der m\u00f6glichen therapeutischen Ans\u00e4tze von Bedeutung ist. Bisher ist die Therapie im Wesentlichen symptombezogen und wird vor allem durch die intensivmedizinische Stabilisierung der respiratorischen Insuffizienz bestimmt. Aktuell zeigen sich dabei erste Ans\u00e4tze einer gezielten medikament\u00f6se Therapie mit antiviralen und antiinflammatorischen Substanzen.",
+            "cite_spans": [],
+            "ref_spans": [],
+            "section": "COVID-19-Pneumonie"
+        },
+        {
+            "text": "Coronavirus \u00b7 Respiratorische Insuffizienz \u00b7 Diagnostische Bildgebung \u00b7 Reverse-Transkriptase-Polymerasekettenreaktion \u00b7 Intensivmedizin",
+            "cite_spans": [],
+            "ref_spans": [],
+            "section": "Schl\u00fcsselw\u00f6rter"
+        },
+        {
+            "text": "The prognosis of patients with the coronavirus disease 2019 (COVID-19) is determined by the severity of lower respiratory infection caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2). The majority of patients demonstrate mild symptoms only. However, development of pneumonia is associated with the risk of severe respiratory insufficiency. Reverse transcriptase polymerase chain reaction (RT-PCR) of specimens from the upper and/or lower respiratory tract is the gold standard for the diagnosis of COVID-19. Radiology and especially highresolution computed tomography (HRCT) are important for diagnosis and follow-up.",
+            "cite_spans": [],
+            "ref_spans": [],
+            "section": "COVID-19 pneumonia Abstract"
+        },
+        {
+            "text": "This narrative review provides an overview of clinical signs and the complex and unique pathophysiology of COVID-19 pneumonia. Radiological features are addressed. Therapy is mainly supportive with the most important task being management of respiratory insufficiency. Recently, promising data were presented regarding effectiveness of antiviral and anti-inflammatory drugs.",
+            "cite_spans": [],
+            "ref_spans": [],
+            "section": "COVID-19 pneumonia Abstract"
+        },
+        {
+            "text": "Coronavirus \u00b7 Respiratory insufficiency \u00b7 Diagnostic imaging \u00b7 Reverse transcriptase polymerase chain reaction \u00b7 Intensive care assoziiert [13, 34, 35] . Allerdings ist unklar, ob es sich um thromboembolische Ereignisse oder Ins-situ-Thrombosen handelt.",
+            "cite_spans": [
+                {
+                    "start": 139,
+                    "end": 143,
+                    "text": "[13,",
+                    "ref_id": "BIBREF13"
+                },
+                {
+                    "start": 144,
+                    "end": 147,
+                    "text": "34,",
+                    "ref_id": "BIBREF35"
+                },
+                {
+                    "start": 148,
+                    "end": 151,
+                    "text": "35]",
+                    "ref_id": "BIBREF36"
+                }
+            ],
+            "ref_spans": [],
+            "section": "Keywords"
+        },
+        {
+            "text": "\u00bb COVID-19 ist mit einem erh\u00f6hten Risiko f\u00fcr thrombotische und thromboembolische Ereignisse assoziiert Aus pathophysiologischer Sicht stellt die COVID-19-Pneumonie somit eine komplexe akute Erkrankung der Lunge mit einer schweren Sch\u00e4digung des alveolaren Epithels und des pulmonalvaskul\u00e4ren Endothels dar mit der Folge einer schweren respiratorischen Insuffizienz f\u00fcr einen Teil der Patienten. Auch wenn bei respiratorischer Insuffizienz nach der Berlin-Definition funktionell und radiologisch ein ARDS vorliegt, unterscheidet sich die Erkrankung in der fr\u00fchen Phase von einem \"klassischen\" ARDS, was erhebliche Auswirkungen auf die Therapie von COVID-19-Patienten insbesondere hinsichtlich der Indikationsstellung zur invasiven Beatmung hat. Im weiteren Verlauf liegt jedoch mit zunehmender Sch\u00e4digung des Lungenparenchym ein \"klassisches\" ARDS mit weitestgehenden gleichen klinischen und pathophysiologischen Charakteristika vor [36] .",
+            "cite_spans": [
+                {
+                    "start": 932,
+                    "end": 936,
+                    "text": "[36]",
+                    "ref_id": "BIBREF37"
+                }
+            ],
+            "ref_spans": [],
+            "section": "Keywords"
+        },
+        {
+            "text": "Die Diagnose einer COVID-19-Pneumonie beruht auf der klinischen Pr\u00e4sentation, dem Nachweis von SARS-CoV-2 mithilfe der Polymerasekettenreaktion (PCR) im Rachen oder Nasenabstrich und den radiologischen Befunden. Zu ber\u00fccksichtigen ist dabei, dass die Sensitivit\u00e4t des Tests eingeschr\u00e4nkt ist und somit bei einem nicht kleinen Teil der Patienten der Test falsch-negativ sein kann [37] . Daher ist es bei weiterhin bestehendem klinischem Verdacht erforderlich, einen zweiten Test zu veranlassen. Bei Patienten, die schon mehrere Tage Symptome zeigen, kann unter Umst\u00e4nden das Virus im Rachen nicht mehr nachgewiesen werden, w\u00e4hrend in den unteren Atemwegen noch eine Viruslast vorliegt, sodass es sinnvoll ist, Sekret aus Trachea oder Bronchien zu gewinnen. Wenn der Test trotz des klinischen Verdachts einer SARS-CoV-2-Infektion negativ bleibt, ist es umso wichtiger, die anderen Befunde, insbesondere die radiologischen Ver\u00e4nderungen zu ber\u00fccksichtigen.",
+            "cite_spans": [
+                {
+                    "start": 379,
+                    "end": 383,
+                    "text": "[37]",
+                    "ref_id": "BIBREF38"
+                }
+            ],
+            "ref_spans": [],
+            "section": "Diagnose"
+        },
+        {
+            "text": "Laborchemisch finden sich bei etwa 80 % eine Lymphopenie sowie bei einem Teil der Patienten eine Leukopenie.",
+            "cite_spans": [],
+            "ref_spans": [],
+            "section": "Diagnose"
+        },
+        {
+            "text": "Meist ist das CRP erh\u00f6ht w\u00e4hrend der Prokalzitoninwert meist normal bleibt. Steigt der Prokalzitoninwert jedoch im Verlauf deutlich, kann dies Ausdruck einer bakteriellen Superinfektion sein [38] . Etwa 40 % der Patienten, die station\u00e4r behandelt werden, zeigen zudem erh\u00f6hte Laktatdehydrogenase(LDH)-Werte, eine Thrombozytopenie oder erh\u00f6hte D-Dimer-Werte. Erh\u00f6hte D-Dimer-Werte wiederum weisen neben einer persistierende Lymphopenie und hohen LDH-Werten auf eine kritische Prognose hin [39] .",
+            "cite_spans": [
+                {
+                    "start": 191,
+                    "end": 195,
+                    "text": "[38]",
+                    "ref_id": "BIBREF39"
+                },
+                {
+                    "start": 488,
+                    "end": 492,
+                    "text": "[39]",
+                    "ref_id": "BIBREF40"
+                }
+            ],
+            "ref_spans": [],
+            "section": "Diagnose"
+        },
+        {
+            "text": "Die Sensitivit\u00e4t der Thorax\u00fcbersichtsaufnahme f\u00fcr die COVID-19-Pneumonie ist limitiert, sie kann jedoch f\u00fcr Verlaufskontrollen eingesetzt werden [40] . Als bildgebende Modalit\u00e4t der ersten Wahl empfehlen die thoraxradiologischen Gesellschaften national und international die Computertomographie (CT; [41] [42] [43] ",
+            "cite_spans": [
+                {
+                    "start": 145,
+                    "end": 149,
+                    "text": "[40]",
+                    "ref_id": "BIBREF41"
+                },
+                {
+                    "start": 300,
+                    "end": 304,
+                    "text": "[41]",
+                    "ref_id": "BIBREF42"
+                },
+                {
+                    "start": 305,
+                    "end": 309,
+                    "text": "[42]",
+                    "ref_id": "BIBREF43"
+                },
+                {
+                    "start": 310,
+                    "end": 314,
+                    "text": "[43]",
+                    "ref_id": "BIBREF45"
+                }
+            ],
+            "ref_spans": [],
+            "section": "Bildgebung"
+        },
+        {
+            "text": "Das Ausma\u00df der supportiven Therapie richtet sich nach der Schwere der Erkrankung. Bei Zeichen der respiratorischen Insuffizienz mit zunehmender Atemnot ist der erste Schritt die Applikation von Sauerstoff \u00fcber eine Nasenbrille. In etwa 5-6 % der Patienten entwickelt sich jedoch eine schwere Hypox\u00e4mie mit der Notwendigkeit der Verlegung auf die Intensivstation. Dies wird empfohlen, wenn eine Hypox\u00e4mie mit einer S\u00e4ttigung <90 % unter 2-4 l O2/min und Atemnot, eine Atemfrequenz >25-30/min, ein systolischer Blutdruck \u2264100 mm Hg und ein erh\u00f6htes Laktat vorliegen [53] . Die Graduierung der Schwere der respiratorischen Insuffizienz wird nach den Berlin-Kriterien f\u00fcr das ARDS [16] in Abh\u00e4ngigkeit des Quotienten aus arteriellem Sauerstoffpartialdruck (paO2) und inspiratorischer Sauerstofffraktion (FIO2) in leicht, moderat oder schwer vorgenommen.",
+            "cite_spans": [
+                {
+                    "start": 564,
+                    "end": 568,
+                    "text": "[53]",
+                    "ref_id": "BIBREF55"
+                },
+                {
+                    "start": 677,
+                    "end": 681,
+                    "text": "[16]",
+                    "ref_id": null
+                }
+            ],
+            "ref_spans": [],
+            "section": "Supportive und intensivmedizinische Therapie"
+        },
+        {
+            "text": "Die Behandlung der Patienten auf der Intensivstation folgt allgemeinen Vorga-ben [54] . Dazu geh\u00f6rt, wenn noch nicht geschehen, die Abnahme von mindestens 2 Blutkulturproben. Bei Patienten mit Verdacht auf eine Super-oder Begleitinfektion sollte eine kalkulierte antibiotische Therapie fr\u00fchzeitig begonnen werden. Aktuell liegen keine Hinweise vor, dass ein h\u00f6heres Risiko f\u00fcr Superinfektionen besteht, sodass eine prophylaktische Antibiotikagabe nicht empfohlen wird. Die Fl\u00fcssigkeitssubstitution sollte eher konservativ zur\u00fcckhaltend durchgef\u00fchrt werden und richtet sich nach der h\u00e4modynamischen Situation.",
+            "cite_spans": [
+                {
+                    "start": 81,
+                    "end": 85,
+                    "text": "[54]",
+                    "ref_id": "BIBREF56"
+                }
+            ],
+            "ref_spans": [],
+            "section": "Supportive und intensivmedizinische Therapie"
+        },
+        {
+            "text": "Beatmung bei COVID-19 richtet sich auch nach den klinischen Befunden Grunds\u00e4tzlich gelten dabei auch bei der schweren COVID-19-Pneumonie die Therapieempfehlungen, die f\u00fcr die schwere hypoxische respiratorische Insuffizienz in der S2k-Leitlinie [54] formuliert sind, mit Ausnahme der Intubationsempfehlung. Wird bei ARDS-Patienten mit moderater und schwerer Gasaustauschst\u00f6rung eine fr\u00fche Intubation empfohlen, richtet sich die Indikation zur invasiven Beatmung bei Patienten mit COVID-19-Pneumonie nicht allein nach der Schwere der Gasaustauschst\u00f6rung, sondern vor allem auch nach den klinischen Befunden, insbesondere nach der Erfassung der Atemfrequenz und des beobachteten \"Atemstresses\". F\u00fcr die Bewertung der Schwere der hypoxischen respiratorischen Insuffizienz schafft dabei die gleichzeitige Ber\u00fccksichtigung des Sauerstoffgehalts eine h\u00f6here Transparenz. Bisher gibt es keine sichere Evidenz, wann eine Intubation bei schwerer COVID-19-Pneumonie erfolgen soll [36] , auch angesichts der aktuellen Diskussion um eine m\u00f6gliche Selbstsch\u00e4digung (\"self-inflicted lung injury\") durch erh\u00f6hte Atemanstrengungen unter Spontanatmung. Es wird ein abgestuftes Vorgehen (. Abb. 3) mit der Nutzung von CPAP, der nichtinvasiven Beatmung und der High-flow-Sauerstofftherapie empfohlen [55] . Bei diesen Methoden muss jedoch auf den Eigenschutz des medizinischen Personals durch die Anwendung der Schutzausr\u00fcstung geachtet werden. Bei Tragen entsprechender Schutzkleidung fanden sich bisher keine Hinweise f\u00fcr ein erh\u00f6htes Risiko einer Infektion der Behandler. M\u00fcssen die Patienten intubiert und invasiv beatmet werden, gelten aufgrund fehlender randomisierter Studien zur Beatmungstherapie bei COVID-19 die gleichen Empfehlungen wie bei der Behandlung des ARDS [44, 45] . Allerdings sollte dabei ber\u00fccksichtigt werden, dass die COVID-19-Pneumonie, wie bereits ausgef\u00fchrt, in der Fr\u00fchphase einige Besonderheiten und Unterschiede zum klassischen ARDS zeigt. Die Lungencompliance ist in der Regel weniger stark eingeschr\u00e4nkt, sodass die Hypox\u00e4mie anf\u00e4nglich weniger durch ein fehlendes Recruitment, sondern durch ein ausgepr\u00e4gtes Ventilations-Perfusion-Mismatch, aggraviert durch eine zus\u00e4tzliche vaskul\u00e4re Komponente mit einer St\u00f6rung der Mikrozirkulation, verursacht wird [15, 25, 26] .",
+            "cite_spans": [
+                {
+                    "start": 244,
+                    "end": 248,
+                    "text": "[54]",
+                    "ref_id": "BIBREF56"
+                },
+                {
+                    "start": 969,
+                    "end": 973,
+                    "text": "[36]",
+                    "ref_id": "BIBREF37"
+                },
+                {
+                    "start": 1280,
+                    "end": 1284,
+                    "text": "[55]",
+                    "ref_id": "BIBREF57"
+                },
+                {
+                    "start": 1756,
+                    "end": 1760,
+                    "text": "[44,",
+                    "ref_id": "BIBREF46"
+                },
+                {
+                    "start": 1761,
+                    "end": 1764,
+                    "text": "45]",
+                    "ref_id": "BIBREF47"
+                },
+                {
+                    "start": 2266,
+                    "end": 2270,
+                    "text": "[15,",
+                    "ref_id": "BIBREF15"
+                },
+                {
+                    "start": 2271,
+                    "end": 2274,
+                    "text": "25,",
+                    "ref_id": "BIBREF26"
+                },
+                {
+                    "start": 2275,
+                    "end": 2278,
+                    "text": "26]",
+                    "ref_id": "BIBREF27"
+                }
+            ],
+            "ref_spans": [],
+            "section": "\u00bb Die Indikation zur invasiven"
+        },
+        {
+            "text": "F\u00fcr die medikament\u00f6se Therapie sei auch auf die Therapieempfehlungen der Fachgesellschaften verwiesen, die st\u00e4ndig nach den aktuellen Erkenntnissen angepasst werden und auf der Homepage der Arbeitsgemeinschaft der wissenschaftlichen Fachgesellschaften (AWMF; https://www.awmf.org) sowie beim Robert Koch-Institut (https://www. rki.de) abgerufen werden k\u00f6nnen.",
+            "cite_spans": [],
+            "ref_spans": [],
+            "section": "Medikament\u00f6se Therapie"
+        },
+        {
+            "text": "Thromboembolische Ereignisse sind schon fr\u00fch nach den ersten bekannten F\u00e4llen von COVID-19 beschrieben worden und sind eine der h\u00e4ufigsten Komplikationen. Vorwiegend ist das ven\u00f6se System betroffen, jedoch sind auch Thrombosen in arteriellen Gef\u00e4\u00dfen beschrieben [13, 56] Die Antik\u00f6rpertherapien sowie die Therapie mit Rekonvaleszentenplasma, zu der mehr als 20 randomisierte Studien mit unterschiedlichen pr\u00e4liminaren Ergebnissen durchgef\u00fchrt werden [73] [74] [75] , m\u00fcssen noch als experimentell angesehen werden und werden au\u00dferhalb von Studien nicht empfohlen [53] . ",
+            "cite_spans": [
+                {
+                    "start": 262,
+                    "end": 266,
+                    "text": "[13,",
+                    "ref_id": "BIBREF13"
+                },
+                {
+                    "start": 267,
+                    "end": 270,
+                    "text": "56]",
+                    "ref_id": "BIBREF58"
+                },
+                {
+                    "start": 450,
+                    "end": 454,
+                    "text": "[73]",
+                    "ref_id": "BIBREF76"
+                },
+                {
+                    "start": 455,
+                    "end": 459,
+                    "text": "[74]",
+                    "ref_id": "BIBREF77"
+                },
+                {
+                    "start": 460,
+                    "end": 464,
+                    "text": "[75]",
+                    "ref_id": "BIBREF78"
+                },
+                {
+                    "start": 563,
+                    "end": 567,
+                    "text": "[53]",
+                    "ref_id": "BIBREF55"
+                }
+            ],
+            "ref_spans": [],
+            "section": "Thromboseprophylaxe/ Antikoagulation"
+        }
+    ],
+    "bib_entries": {
+        "BIBREF0": {
+            "ref_id": "b0",
+            "title": "Correlation of chest CT and RT-PCR testing in coronavirus disease 2019 (COVID-19) in China: a report of 1014 cases",
+            "authors": [
+                {
+                    "first": "T",
+                    "middle": [],
+                    "last": "Ai",
+                    "suffix": ""
+                },
+                {
+                    "first": "Z",
+                    "middle": [],
+                    "last": "Yang",
+                    "suffix": ""
+                },
+                {
+                    "first": "H",
+                    "middle": [],
+                    "last": "Hou",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [],
+                    "last": "Zhan",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [],
+                    "last": "Chen",
+                    "suffix": ""
+                },
+                {
+                    "first": "W",
+                    "middle": [],
+                    "last": "Lv",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1148/radiol.2020200642"
+                ]
+            }
+        },
+        "BIBREF1": {
+            "ref_id": "b1",
+            "title": "A novel Coronavirus from patients with pneumonia in China",
+            "authors": [
+                {
+                    "first": "N",
+                    "middle": [],
+                    "last": "Zhu",
+                    "suffix": ""
+                },
+                {
+                    "first": "D",
+                    "middle": [],
+                    "last": "Zhang",
+                    "suffix": ""
+                },
+                {
+                    "first": "W",
+                    "middle": [],
+                    "last": "Wang",
+                    "suffix": ""
+                },
+                {
+                    "first": "X",
+                    "middle": [],
+                    "last": "Li",
+                    "suffix": ""
+                },
+                {
+                    "first": "B",
+                    "middle": [],
+                    "last": "Yang",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Song",
+                    "suffix": ""
+                }
+            ],
+            "year": 2019,
+            "venue": "N Engl J Med",
+            "volume": "382",
+            "issn": "8",
+            "pages": "727--733",
+            "other_ids": {}
+        },
+        "BIBREF2": {
+            "ref_id": "b2",
+            "title": "Gastrointestinal manifestations of SARS-coV-2 infectionandvirusloadinfecalsamplesfrom the Hong Kong cohort and systematic review and meta-analysis",
+            "authors": [
+                {
+                    "first": "K",
+                    "middle": [
+                        "S"
+                    ],
+                    "last": "Cheung",
+                    "suffix": ""
+                },
+                {
+                    "first": "I",
+                    "middle": [
+                        "F"
+                    ],
+                    "last": "Hung",
+                    "suffix": ""
+                },
+                {
+                    "first": "P",
+                    "middle": [
+                        "P"
+                    ],
+                    "last": "Chan",
+                    "suffix": ""
+                },
+                {
+                    "first": "K",
+                    "middle": [
+                        "C"
+                    ],
+                    "last": "Lung",
+                    "suffix": ""
+                },
+                {
+                    "first": "E",
+                    "middle": [],
+                    "last": "Tso",
+                    "suffix": ""
+                },
+                {
+                    "first": "R",
+                    "middle": [],
+                    "last": "Liu",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Gastroenterology",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1053/j.gastro.2020.03.065"
+                ]
+            }
+        },
+        "BIBREF3": {
+            "ref_id": "b3",
+            "title": "2020) Passengers' destinations from China: low risk of novel Coronavirus (2019-ncoV) transmission into africa and South America",
+            "authors": [
+                {
+                    "first": "N",
+                    "middle": [],
+                    "last": "Haider",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [],
+                    "last": "Yavlinsky",
+                    "suffix": ""
+                },
+                {
+                    "first": "D",
+                    "middle": [],
+                    "last": "Simons",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [
+                        "Y"
+                    ],
+                    "last": "Osman",
+                    "suffix": ""
+                },
+                {
+                    "first": "F",
+                    "middle": [],
+                    "last": "Ntoumi",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [],
+                    "last": "Zumla",
+                    "suffix": ""
+                }
+            ],
+            "year": null,
+            "venue": "Epidemiol Infect",
+            "volume": "148",
+            "issn": "",
+            "pages": "",
+            "other_ids": {}
+        },
+        "BIBREF4": {
+            "ref_id": "b4",
+            "title": "Estimating the burden of SARS-CoV-2 in France",
+            "authors": [
+                {
+                    "first": "H",
+                    "middle": [],
+                    "last": "Salje",
+                    "suffix": ""
+                },
+                {
+                    "first": "T",
+                    "middle": [
+                        "C"
+                    ],
+                    "last": "Kiem",
+                    "suffix": ""
+                },
+                {
+                    "first": "N",
+                    "middle": [],
+                    "last": "Lefrancq",
+                    "suffix": ""
+                },
+                {
+                    "first": "N",
+                    "middle": [],
+                    "last": "Courtejoie",
+                    "suffix": ""
+                },
+                {
+                    "first": "P",
+                    "middle": [],
+                    "last": "Bosetti",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Paireau",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Science",
+            "volume": "369",
+            "issn": "6500",
+            "pages": "208--211",
+            "other_ids": {}
+        },
+        "BIBREF5": {
+            "ref_id": "b5",
+            "title": "Pathogenic human coronavirus infections: causes and consequencesofcytokinestormandimmunopathology",
+            "authors": [
+                {
+                    "first": "R",
+                    "middle": [],
+                    "last": "Channappanavar",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Perlman",
+                    "suffix": ""
+                }
+            ],
+            "year": 2017,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {}
+        },
+        "BIBREF7": {
+            "ref_id": "b7",
+            "title": "Clinical progression and viral load in a community outbreak of coronavirusassociated SARS pneumonia: a prospective study",
+            "authors": [
+                {
+                    "first": "J",
+                    "middle": [
+                        "S"
+                    ],
+                    "last": "Peiris",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [
+                        "M"
+                    ],
+                    "last": "Chu",
+                    "suffix": ""
+                },
+                {
+                    "first": "V",
+                    "middle": [
+                        "C"
+                    ],
+                    "last": "Cheng",
+                    "suffix": ""
+                },
+                {
+                    "first": "K",
+                    "middle": [
+                        "S"
+                    ],
+                    "last": "Chan",
+                    "suffix": ""
+                },
+                {
+                    "first": "I",
+                    "middle": [
+                        "F"
+                    ],
+                    "last": "Hung",
+                    "suffix": ""
+                },
+                {
+                    "first": "L",
+                    "middle": [
+                        "L"
+                    ],
+                    "last": "Poon",
+                    "suffix": ""
+                }
+            ],
+            "year": 2003,
+            "venue": "Lancet",
+            "volume": "361",
+            "issn": "9371",
+            "pages": "1767--1772",
+            "other_ids": {}
+        },
+        "BIBREF8": {
+            "ref_id": "b8",
+            "title": "Clinical characteristics of 138 hospitalized patients with 2019 novel Coronavirus-infected pneumonia in Wuhan",
+            "authors": [
+                {
+                    "first": "D",
+                    "middle": [],
+                    "last": "Wang",
+                    "suffix": ""
+                },
+                {
+                    "first": "B",
+                    "middle": [],
+                    "last": "Hu",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [],
+                    "last": "Hu",
+                    "suffix": ""
+                },
+                {
+                    "first": "F",
+                    "middle": [],
+                    "last": "Zhu",
+                    "suffix": ""
+                },
+                {
+                    "first": "X",
+                    "middle": [],
+                    "last": "Liu",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Zhang",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1001/jama.2020.1585"
+                ]
+            }
+        },
+        "BIBREF9": {
+            "ref_id": "b9",
+            "title": "Clinical predictors of mortality due to COVID-19 based on an analysis of data of 150 patients from Wuhan",
+            "authors": [
+                {
+                    "first": "Q",
+                    "middle": [],
+                    "last": "Ruan",
+                    "suffix": ""
+                },
+                {
+                    "first": "K",
+                    "middle": [],
+                    "last": "Yang",
+                    "suffix": ""
+                },
+                {
+                    "first": "W",
+                    "middle": [],
+                    "last": "Wang",
+                    "suffix": ""
+                },
+                {
+                    "first": "L",
+                    "middle": [],
+                    "last": "Jiang",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Song",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1007/s00134-020-05991-x"
+                ]
+            }
+        },
+        "BIBREF10": {
+            "ref_id": "b10",
+            "title": "Clinical course and risk factors for mortality of adult inpatients with COVID-19 in Wuhan, China: a retrospective cohort study",
+            "authors": [
+                {
+                    "first": "F",
+                    "middle": [],
+                    "last": "Zhou",
+                    "suffix": ""
+                },
+                {
+                    "first": "T",
+                    "middle": [],
+                    "last": "Yu",
+                    "suffix": ""
+                },
+                {
+                    "first": "R",
+                    "middle": [],
+                    "last": "Du",
+                    "suffix": ""
+                },
+                {
+                    "first": "G",
+                    "middle": [],
+                    "last": "Fan",
+                    "suffix": ""
+                },
+                {
+                    "first": "Y",
+                    "middle": [],
+                    "last": "Liu",
+                    "suffix": ""
+                },
+                {
+                    "first": "Z",
+                    "middle": [],
+                    "last": "Liu",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Lancet",
+            "volume": "395",
+            "issn": "",
+            "pages": "1054--1062",
+            "other_ids": {}
+        },
+        "BIBREF11": {
+            "ref_id": "b11",
+            "title": "Clinical features of patients infected with 2019 novel coronavirus in",
+            "authors": [
+                {
+                    "first": "C",
+                    "middle": [],
+                    "last": "Huang",
+                    "suffix": ""
+                },
+                {
+                    "first": "Y",
+                    "middle": [],
+                    "last": "Wang",
+                    "suffix": ""
+                },
+                {
+                    "first": "X",
+                    "middle": [],
+                    "last": "Li",
+                    "suffix": ""
+                },
+                {
+                    "first": "L",
+                    "middle": [],
+                    "last": "Ren",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Zhao",
+                    "suffix": ""
+                },
+                {
+                    "first": "Y",
+                    "middle": [],
+                    "last": "Hu",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "395",
+            "issn": "",
+            "pages": "497--506",
+            "other_ids": {}
+        },
+        "BIBREF12": {
+            "ref_id": "b12",
+            "title": "Is a \"cytokine storm\" relevant to COVID-19?",
+            "authors": [
+                {
+                    "first": "P",
+                    "middle": [],
+                    "last": "Sinha",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [
+                        "A"
+                    ],
+                    "last": "Matthay",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [
+                        "S"
+                    ],
+                    "last": "Calfee",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "JAMA Intern Med",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1001/jamainternmed.2020.3313"
+                ]
+            }
+        },
+        "BIBREF13": {
+            "ref_id": "b13",
+            "title": "Autopsy findings and venous thromboembolism inpatientswithCOVID-19",
+            "authors": [
+                {
+                    "first": "D",
+                    "middle": [],
+                    "last": "Wichmann",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [
+                        "P"
+                    ],
+                    "last": "Sperhake",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Lutgehetmann",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Steurer",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [],
+                    "last": "Edler",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [],
+                    "last": "Heinemann",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.7326/m20-2003"
+                ]
+            }
+        },
+        "BIBREF14": {
+            "ref_id": "b14",
+            "title": "Pulmonary angiopathy in severe COVID-19: physiologic, imaging, and hematologic observations",
+            "authors": [
+                {
+                    "first": "B",
+                    "middle": [
+                        "V"
+                    ],
+                    "last": "Patel",
+                    "suffix": ""
+                },
+                {
+                    "first": "D",
+                    "middle": [
+                        "J"
+                    ],
+                    "last": "Arachchillage",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [
+                        "A"
+                    ],
+                    "last": "Ridge",
+                    "suffix": ""
+                },
+                {
+                    "first": "P",
+                    "middle": [],
+                    "last": "Bianchi",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [
+                        "F"
+                    ],
+                    "last": "Doyle",
+                    "suffix": ""
+                },
+                {
+                    "first": "B",
+                    "middle": [],
+                    "last": "Garfield",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Am J Respir Crit Care Med",
+            "volume": "202",
+            "issn": "5",
+            "pages": "690--699",
+            "other_ids": {}
+        },
+        "BIBREF15": {
+            "ref_id": "b15",
+            "title": "Pulmonary vascular endothelialitis, thrombosis, and angiogenesis in Covid-19",
+            "authors": [
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Ackermann",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [
+                        "E"
+                    ],
+                    "last": "Verleden",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Kuehnel",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [],
+                    "last": "Haverich",
+                    "suffix": ""
+                },
+                {
+                    "first": "T",
+                    "middle": [],
+                    "last": "Welte",
+                    "suffix": ""
+                },
+                {
+                    "first": "F",
+                    "middle": [],
+                    "last": "Laenger",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "N Engl J Med",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1056/nejmoa2015432"
+                ]
+            }
+        },
+        "BIBREF17": {
+            "ref_id": "b17",
+            "title": "Acute respiratory distress syndrome: the Berlin definition",
+            "authors": [],
+            "year": null,
+            "venue": "JAMA",
+            "volume": "307",
+            "issn": "23",
+            "pages": "2526--2533",
+            "other_ids": {}
+        },
+        "BIBREF18": {
+            "ref_id": "b18",
+            "title": "Early clinical and CT manifestations of Coronavirus disease 2019 (COVID-19) pneumonia",
+            "authors": [
+                {
+                    "first": "R",
+                    "middle": [],
+                    "last": "Han",
+                    "suffix": ""
+                },
+                {
+                    "first": "L",
+                    "middle": [],
+                    "last": "Huang",
+                    "suffix": ""
+                },
+                {
+                    "first": "H",
+                    "middle": [],
+                    "last": "Jiang",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Dong",
+                    "suffix": ""
+                },
+                {
+                    "first": "H",
+                    "middle": [],
+                    "last": "Peng",
+                    "suffix": ""
+                },
+                {
+                    "first": "D",
+                    "middle": [],
+                    "last": "Zhang",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "AJR Am J Roentgenol",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.2214/AJR.20.22961"
+                ]
+            }
+        },
+        "BIBREF19": {
+            "ref_id": "b19",
+            "title": "Relation between chest CT findings and clinical conditions of Coronavirus disease (COVID-19) pneumonia: a multicenter study",
+            "authors": [
+                {
+                    "first": "W",
+                    "middle": [],
+                    "last": "Zhao",
+                    "suffix": ""
+                },
+                {
+                    "first": "Z",
+                    "middle": [],
+                    "last": "Zhong",
+                    "suffix": ""
+                },
+                {
+                    "first": "X",
+                    "middle": [],
+                    "last": "Xie",
+                    "suffix": ""
+                },
+                {
+                    "first": "Q",
+                    "middle": [],
+                    "last": "Yu",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Liu",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "AJR Am J Roentgenol",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.2214/AJR.20.22976"
+                ]
+            }
+        },
+        "BIBREF20": {
+            "ref_id": "b20",
+            "title": "Potential interventions for novel Coronavirus in China: a systematic review",
+            "authors": [
+                {
+                    "first": "L",
+                    "middle": [],
+                    "last": "Zhang",
+                    "suffix": ""
+                },
+                {
+                    "first": "Y",
+                    "middle": [],
+                    "last": "Liu",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1002/jmv.25707"
+                ]
+            }
+        },
+        "BIBREF21": {
+            "ref_id": "b21",
+            "title": "Mechanical ventilation to minimize progression of lung injury in acute respiratory failure",
+            "authors": [
+                {
+                    "first": "L",
+                    "middle": [],
+                    "last": "Brochard",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [],
+                    "last": "Slutsky",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [],
+                    "last": "Pesenti",
+                    "suffix": ""
+                }
+            ],
+            "year": 2017,
+            "venue": "Am J Respir Crit Care Med",
+            "volume": "195",
+            "issn": "4",
+            "pages": "438--442",
+            "other_ids": {}
+        },
+        "BIBREF22": {
+            "ref_id": "b22",
+            "title": "Positive pressure respiration and its application to the treatment of acute pulmonary edema",
+            "authors": [
+                {
+                    "first": "A",
+                    "middle": [],
+                    "last": "Barach",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Martin",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Eckman",
+                    "suffix": ""
+                }
+            ],
+            "year": 1938,
+            "venue": "Ann Intern Med",
+            "volume": "12",
+            "issn": "",
+            "pages": "754--759",
+            "other_ids": {}
+        },
+        "BIBREF23": {
+            "ref_id": "b23",
+            "title": "Studies on positive pressure respiration; general aspects and types of pressure breathing; effects on respiration and circulation at sea level",
+            "authors": [
+                {
+                    "first": "A",
+                    "middle": [
+                        "L"
+                    ],
+                    "last": "Barach",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Eckman",
+                    "suffix": ""
+                }
+            ],
+            "year": 1946,
+            "venue": "J Aviat Med",
+            "volume": "17",
+            "issn": "",
+            "pages": "290--232",
+            "other_ids": {}
+        },
+        "BIBREF24": {
+            "ref_id": "b24",
+            "title": "Acute respiratory failure following pharmacologically induced hyperventilation: an experimental animal study",
+            "authors": [
+                {
+                    "first": "D",
+                    "middle": [],
+                    "last": "Mascheroni",
+                    "suffix": ""
+                },
+                {
+                    "first": "T",
+                    "middle": [],
+                    "last": "Kolobow",
+                    "suffix": ""
+                },
+                {
+                    "first": "R",
+                    "middle": [],
+                    "last": "Fumagalli",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [
+                        "P"
+                    ],
+                    "last": "Moretti",
+                    "suffix": ""
+                },
+                {
+                    "first": "V",
+                    "middle": [],
+                    "last": "Chen",
+                    "suffix": ""
+                },
+                {
+                    "first": "D",
+                    "middle": [],
+                    "last": "Buckhold",
+                    "suffix": ""
+                }
+            ],
+            "year": 1988,
+            "venue": "Intensive Care Med",
+            "volume": "15",
+            "issn": "1",
+            "pages": "8--14",
+            "other_ids": {}
+        },
+        "BIBREF25": {
+            "ref_id": "b25",
+            "title": "Patient self-inflicted lung injury and positive end-expiratory pressure for safe spontaneous breathing",
+            "authors": [
+                {
+                    "first": "T",
+                    "middle": [],
+                    "last": "Yoshida",
+                    "suffix": ""
+                },
+                {
+                    "first": "D",
+                    "middle": [
+                        "L"
+                    ],
+                    "last": "Grieco",
+                    "suffix": ""
+                },
+                {
+                    "first": "L",
+                    "middle": [],
+                    "last": "Brochard",
+                    "suffix": ""
+                },
+                {
+                    "first": "Y",
+                    "middle": [],
+                    "last": "Fujino",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Curr Opin Crit Care",
+            "volume": "26",
+            "issn": "1",
+            "pages": "59--65",
+            "other_ids": {}
+        },
+        "BIBREF26": {
+            "ref_id": "b26",
+            "title": "COVID-19 pneumonia: different respiratory treatment for different phenotypes?",
+            "authors": [
+                {
+                    "first": "L",
+                    "middle": [],
+                    "last": "Gattinoni",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Intensive Care Med",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1007/s00134-020-06033-2"
+                ]
+            }
+        },
+        "BIBREF27": {
+            "ref_id": "b27",
+            "title": "Covid-19 does not lead to a \"typical\" acute respiratory distress syndrome",
+            "authors": [
+                {
+                    "first": "L",
+                    "middle": [],
+                    "last": "Gattinoni",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Coppola",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Cressoni",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Busana",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Rossi",
+                    "suffix": ""
+                },
+                {
+                    "first": "D",
+                    "middle": [],
+                    "last": "Chiumello",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1164/rccm.202003-0817LE"
+                ]
+            }
+        },
+        "BIBREF28": {
+            "ref_id": "b28",
+            "title": "Pathological findings of COVID-19 associated with acuterespiratory distress syndrome",
+            "authors": [
+                {
+                    "first": "Z",
+                    "middle": [],
+                    "last": "Xu",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Lancet Respir Med",
+            "volume": "",
+            "issn": "20",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1016/S2213-2600(20)30076-X"
+                ]
+            }
+        },
+        "BIBREF29": {
+            "ref_id": "b29",
+            "title": "The clinical pathology of severe acute respiratory syndrome (SARS): a report from China",
+            "authors": [
+                {
+                    "first": "Y",
+                    "middle": [],
+                    "last": "Ding",
+                    "suffix": ""
+                },
+                {
+                    "first": "H",
+                    "middle": [],
+                    "last": "Wang",
+                    "suffix": ""
+                },
+                {
+                    "first": "H",
+                    "middle": [],
+                    "last": "Shen",
+                    "suffix": ""
+                },
+                {
+                    "first": "Z",
+                    "middle": [],
+                    "last": "Li",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Geng",
+                    "suffix": ""
+                },
+                {
+                    "first": "H",
+                    "middle": [],
+                    "last": "Han",
+                    "suffix": ""
+                }
+            ],
+            "year": 2003,
+            "venue": "J Pathol",
+            "volume": "200",
+            "issn": "3",
+            "pages": "282--289",
+            "other_ids": {}
+        },
+        "BIBREF30": {
+            "ref_id": "b30",
+            "title": "Clinicopathologic, immunohistochemical, and ultrastructural findings of a fatal case of middle east respiratory syndrome Coronavirus infection in the united Arab emirates",
+            "authors": [
+                {
+                    "first": "D",
+                    "middle": [
+                        "L"
+                    ],
+                    "last": "Ng",
+                    "suffix": ""
+                },
+                {
+                    "first": "Al",
+                    "middle": [],
+                    "last": "Hosani",
+                    "suffix": ""
+                },
+                {
+                    "first": "F",
+                    "middle": [],
+                    "last": "Keating",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [
+                        "K"
+                    ],
+                    "last": "Gerber",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [
+                        "I"
+                    ],
+                    "last": "Jones",
+                    "suffix": ""
+                },
+                {
+                    "first": "T",
+                    "middle": [
+                        "L"
+                    ],
+                    "last": "Metcalfe",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [
+                        "G"
+                    ],
+                    "last": "",
+                    "suffix": ""
+                }
+            ],
+            "year": 2014,
+            "venue": "Am J Pathol",
+            "volume": "186",
+            "issn": "3",
+            "pages": "652--658",
+            "other_ids": {}
+        },
+        "BIBREF31": {
+            "ref_id": "b31",
+            "title": "Critical care utilization for the COVID-19 outbreak in Lombardy, Italy: early experience and forecast during an emergency response",
+            "authors": [
+                {
+                    "first": "G",
+                    "middle": [],
+                    "last": "Grasselli",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [],
+                    "last": "Pesenti",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Cecconi",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "JAMA",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1001/jama.2020.4031"
+                ]
+            }
+        },
+        "BIBREF32": {
+            "ref_id": "b32",
+            "title": "Temporal changes of CT findings in 90 patients with COVID-19 pneumonia: a longitudinal study",
+            "authors": [
+                {
+                    "first": "Y",
+                    "middle": [],
+                    "last": "Wang",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [],
+                    "last": "Dong",
+                    "suffix": ""
+                },
+                {
+                    "first": "Y",
+                    "middle": [],
+                    "last": "Hu",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [],
+                    "last": "Li",
+                    "suffix": ""
+                },
+                {
+                    "first": "Q",
+                    "middle": [],
+                    "last": "Ren",
+                    "suffix": ""
+                },
+                {
+                    "first": "X",
+                    "middle": [],
+                    "last": "Zhang",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1148/radiol.2020200843"
+                ]
+            }
+        },
+        "BIBREF33": {
+            "ref_id": "b33",
+            "title": "JungSMetal(2020)Incubation period and other epidemiological characteristics of 2019 novel Coronavirus infections with right truncation: a statistical analysis of publicly available case data",
+            "authors": [
+                {
+                    "first": "N",
+                    "middle": [
+                        "M"
+                    ],
+                    "last": "Linton",
+                    "suffix": ""
+                },
+                {
+                    "first": "T",
+                    "middle": [],
+                    "last": "Kobayashi",
+                    "suffix": ""
+                },
+                {
+                    "first": "Y",
+                    "middle": [],
+                    "last": "Yang",
+                    "suffix": ""
+                },
+                {
+                    "first": "K",
+                    "middle": [],
+                    "last": "Hayashi",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [
+                        "R"
+                    ],
+                    "last": "Akhmetzhanov",
+                    "suffix": ""
+                }
+            ],
+            "year": null,
+            "venue": "J Clin Med",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.3390/jcm9020538"
+                ]
+            }
+        },
+        "BIBREF34": {
+            "ref_id": "b34",
+            "title": "Cardiovascular Implications of Fatal Outcomes of Patients With Coronavirus Disease 2019 (COVID-19)",
+            "authors": [
+                {
+                    "first": "T",
+                    "middle": [],
+                    "last": "Guo",
+                    "suffix": ""
+                },
+                {
+                    "first": "Y",
+                    "middle": [],
+                    "last": "Fan",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Chen",
+                    "suffix": ""
+                },
+                {
+                    "first": "X",
+                    "middle": [],
+                    "last": "Wu",
+                    "suffix": ""
+                },
+                {
+                    "first": "L",
+                    "middle": [],
+                    "last": "Zhang",
+                    "suffix": ""
+                },
+                {
+                    "first": "T",
+                    "middle": [],
+                    "last": "He",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "JAMA Cardiol",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1001/jamacardio.2020.1017"
+                ]
+            }
+        },
+        "BIBREF35": {
+            "ref_id": "b35",
+            "title": "Prevalenceof venous thromboembolism in patients with severe novel coronavirus pneumonia",
+            "authors": [
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Cui",
+                    "suffix": ""
+                },
+                {
+                    "first": "",
+                    "middle": [],
+                    "last": "Chens",
+                    "suffix": ""
+                },
+                {
+                    "first": "X",
+                    "middle": [],
+                    "last": "Li",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Liu",
+                    "suffix": ""
+                },
+                {
+                    "first": "Wangf",
+                    "middle": [],
+                    "last": "",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "J Thromb Haemost",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1111/jth.14830"
+                ]
+            }
+        },
+        "BIBREF36": {
+            "ref_id": "b36",
+            "title": "Pulmonary and cardiac pathology in African American patients with COVID-19: an autopsy series from New Orleans",
+            "authors": [
+                {
+                    "first": "S",
+                    "middle": [
+                        "E"
+                    ],
+                    "last": "Fox",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [],
+                    "last": "Akmatbekov",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [
+                        "L"
+                    ],
+                    "last": "Harbert",
+                    "suffix": ""
+                },
+                {
+                    "first": "G",
+                    "middle": [],
+                    "last": "Li",
+                    "suffix": ""
+                },
+                {
+                    "first": "Quincy",
+                    "middle": [],
+                    "last": "Brown",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "",
+                    "suffix": ""
+                },
+                {
+                    "first": "Vander",
+                    "middle": [],
+                    "last": "Heide",
+                    "suffix": ""
+                },
+                {
+                    "first": "R",
+                    "middle": [
+                        "S"
+                    ],
+                    "last": "",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Lancet Respir Med",
+            "volume": "",
+            "issn": "",
+            "pages": "30243--30248",
+            "other_ids": {
+                "DOI": [
+                    "10.1016/S2213-2600(20)30243-5"
+                ]
+            }
+        },
+        "BIBREF37": {
+            "ref_id": "b37",
+            "title": "COVID-19-associated acute respiratory distress syndrome: is a different approach to management warranted?",
+            "authors": [
+                {
+                    "first": "E",
+                    "middle": [],
+                    "last": "Fan",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [
+                        "R"
+                    ],
+                    "last": "Beitler",
+                    "suffix": ""
+                },
+                {
+                    "first": "L",
+                    "middle": [],
+                    "last": "Brochard",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [
+                        "S"
+                    ],
+                    "last": "Calfee",
+                    "suffix": ""
+                },
+                {
+                    "first": "N",
+                    "middle": [
+                        "D"
+                    ],
+                    "last": "Ferguson",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [
+                        "S"
+                    ],
+                    "last": "Slutsky",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Lancet Respir Med",
+            "volume": "",
+            "issn": "",
+            "pages": "30304--30304",
+            "other_ids": {
+                "DOI": [
+                    "10.1016/s2213-2600(20)30304-0"
+                ]
+            }
+        },
+        "BIBREF38": {
+            "ref_id": "b38",
+            "title": "Rapid point-of-care testing for SARS-CoV-2 in a community screening setting shows low sensitivity",
+            "authors": [
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Dohla",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [],
+                    "last": "Boesecke",
+                    "suffix": ""
+                },
+                {
+                    "first": "B",
+                    "middle": [],
+                    "last": "Schulte",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [],
+                    "last": "Diegmann",
+                    "suffix": ""
+                },
+                {
+                    "first": "E",
+                    "middle": [],
+                    "last": "Sib",
+                    "suffix": ""
+                },
+                {
+                    "first": "E",
+                    "middle": [],
+                    "last": "Richter",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Public Health",
+            "volume": "182",
+            "issn": "",
+            "pages": "170--172",
+            "other_ids": {}
+        },
+        "BIBREF39": {
+            "ref_id": "b39",
+            "title": "Clinical characteristics of coronavirus disease 2019 in China",
+            "authors": [
+                {
+                    "first": "W",
+                    "middle": [
+                        "J"
+                    ],
+                    "last": "Guan",
+                    "suffix": ""
+                },
+                {
+                    "first": "Z",
+                    "middle": [
+                        "Y"
+                    ],
+                    "last": "Ni",
+                    "suffix": ""
+                },
+                {
+                    "first": "Y",
+                    "middle": [],
+                    "last": "Hu",
+                    "suffix": ""
+                },
+                {
+                    "first": "W",
+                    "middle": [
+                        "H"
+                    ],
+                    "last": "Liang",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [
+                        "Q"
+                    ],
+                    "last": "Ou",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [
+                        "X"
+                    ],
+                    "last": "He",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "N Engl J Med",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1101/2020.02.06.20020974"
+                ]
+            }
+        },
+        "BIBREF40": {
+            "ref_id": "b40",
+            "title": "Epidemiology, clinical course, and outcomes of critically ill adults with COVID-19 in New York City: a prospective cohort study",
+            "authors": [
+                {
+                    "first": "M",
+                    "middle": [
+                        "J"
+                    ],
+                    "last": "Cummings",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [
+                        "R"
+                    ],
+                    "last": "Baldwin",
+                    "suffix": ""
+                },
+                {
+                    "first": "D",
+                    "middle": [],
+                    "last": "Abrams",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [
+                        "D"
+                    ],
+                    "last": "Jacobson",
+                    "suffix": ""
+                },
+                {
+                    "first": "B",
+                    "middle": [
+                        "J"
+                    ],
+                    "last": "Meyer",
+                    "suffix": ""
+                },
+                {
+                    "first": "E",
+                    "middle": [
+                        "M"
+                    ],
+                    "last": "Balough",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Lancet",
+            "volume": "395",
+            "issn": "",
+            "pages": "1763--1770",
+            "other_ids": {}
+        },
+        "BIBREF41": {
+            "ref_id": "b41",
+            "title": "Frequency and distribution of chest radiographic findings in COVID-19 positive patients",
+            "authors": [
+                {
+                    "first": "Hyf",
+                    "middle": [],
+                    "last": "Wong",
+                    "suffix": ""
+                },
+                {
+                    "first": "Hys",
+                    "middle": [],
+                    "last": "Lam",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [
+                        "H"
+                    ],
+                    "last": "Fong",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [
+                        "T"
+                    ],
+                    "last": "Leung",
+                    "suffix": ""
+                },
+                {
+                    "first": "T",
+                    "middle": [
+                        "W"
+                    ],
+                    "last": "Chin",
+                    "suffix": ""
+                },
+                {
+                    "first": "Csy",
+                    "middle": [],
+                    "last": "Lo",
+                    "suffix": ""
+                }
+            ],
+            "year": 2019,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1148/radiol.2020201160"
+                ]
+            }
+        },
+        "BIBREF42": {
+            "ref_id": "b42",
+            "title": "Recommendations of the Thoracic Imaging Section of the German Radiological Society for clinicalapplicationofchestimagingandstructured CT reporting in the COVID-19 pandemic",
+            "authors": [
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Vogel-Claussen",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Ley-Zaporozhan",
+                    "suffix": ""
+                },
+                {
+                    "first": "P",
+                    "middle": [],
+                    "last": "Agarwal",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Biederer",
+                    "suffix": ""
+                },
+                {
+                    "first": "H",
+                    "middle": [
+                        "U"
+                    ],
+                    "last": "Kauczor",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Ley",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Rofo",
+            "volume": "192",
+            "issn": "7",
+            "pages": "633--640",
+            "other_ids": {}
+        },
+        "BIBREF43": {
+            "ref_id": "b43",
+            "title": "COVID-19 patients and the radiology department-advice from the European Society of Radiology (ESR) and the European Society of Thoracic Imaging",
+            "authors": [
+                {
+                    "first": "M",
+                    "middle": [
+                        "P"
+                    ],
+                    "last": "Revel",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [
+                        "P"
+                    ],
+                    "last": "Parkar",
+                    "suffix": ""
+                },
+                {
+                    "first": "H",
+                    "middle": [],
+                    "last": "Prosch",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Silva",
+                    "suffix": ""
+                },
+                {
+                    "first": "N",
+                    "middle": [],
+                    "last": "Sverzellati",
+                    "suffix": ""
+                },
+                {
+                    "first": "F",
+                    "middle": [],
+                    "last": "Gleeson",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {}
+        },
+        "BIBREF45": {
+            "ref_id": "b45",
+            "title": "Radiological society of north America expert consensus statement on reporting chest CT findings related to COVID-19. Endorsed by the society of thoracic radiology, the American college of radiology, and RSNA-secondary publication",
+            "authors": [
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Simpson",
+                    "suffix": ""
+                },
+                {
+                    "first": "F",
+                    "middle": [
+                        "U"
+                    ],
+                    "last": "Kay",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Abbara",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Bhalla",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [
+                        "H"
+                    ],
+                    "last": "Chung",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Chung",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "J Thorac Imaging",
+            "volume": "35",
+            "issn": "4",
+            "pages": "219--227",
+            "other_ids": {}
+        },
+        "BIBREF46": {
+            "ref_id": "b46",
+            "title": "Diagnostic performance of CT and reverse transcriptasepolymerase chain reaction for Coronavirus disease 2019: a meta-analysis",
+            "authors": [
+                {
+                    "first": "H",
+                    "middle": [],
+                    "last": "Kim",
+                    "suffix": ""
+                },
+                {
+                    "first": "H",
+                    "middle": [],
+                    "last": "Hong",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [
+                        "H"
+                    ],
+                    "last": "Yoon",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1148/radiol.2020201343"
+                ]
+            }
+        },
+        "BIBREF47": {
+            "ref_id": "b47",
+            "title": "Radiology of COVID-19 pneumonia-pictorial essay and structured reporting",
+            "authors": [
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Schaible",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Meiler",
+                    "suffix": ""
+                },
+                {
+                    "first": "F",
+                    "middle": [],
+                    "last": "Poschenrieder",
+                    "suffix": ""
+                },
+                {
+                    "first": "G",
+                    "middle": [],
+                    "last": "Scharf",
+                    "suffix": ""
+                },
+                {
+                    "first": "D",
+                    "middle": [],
+                    "last": "Maintz",
+                    "suffix": ""
+                },
+                {
+                    "first": "B",
+                    "middle": [],
+                    "last": "Pregler",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Rofo",
+            "volume": "192",
+            "issn": "6",
+            "pages": "513--517",
+            "other_ids": {}
+        },
+        "BIBREF48": {
+            "ref_id": "b48",
+            "title": "Campe-seC, SimondonAetal(2020)Firstcasesofcoronavi-rusdisease2019(COVID-19)inFrance:surveillance, investigations and control measures",
+            "authors": [
+                {
+                    "first": "B",
+                    "middle": [
+                        "S"
+                    ],
+                    "last": "Stoecklin",
+                    "suffix": ""
+                },
+                {
+                    "first": "P",
+                    "middle": [],
+                    "last": "Rolland",
+                    "suffix": ""
+                },
+                {
+                    "first": "Y",
+                    "middle": [],
+                    "last": "Silue",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [],
+                    "last": "Mailles",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Euro Surveill",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {}
+        },
+        "BIBREF49": {
+            "ref_id": "b49",
+            "title": "CT features of Coronavirus disease 2019 (COVID-19) pneumonia in 62 patients in Wuhan, China",
+            "authors": [
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Zhou",
+                    "suffix": ""
+                },
+                {
+                    "first": "Y",
+                    "middle": [],
+                    "last": "Wang",
+                    "suffix": ""
+                },
+                {
+                    "first": "T",
+                    "middle": [],
+                    "last": "Zhu",
+                    "suffix": ""
+                },
+                {
+                    "first": "L",
+                    "middle": [],
+                    "last": "Xia",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "AJR Am J Roentgenol",
+            "volume": "214",
+            "issn": "6",
+            "pages": "1287--1294",
+            "other_ids": {}
+        },
+        "BIBREF50": {
+            "ref_id": "b50",
+            "title": "Essentials for radiologists on COVID-19: an update-radiology scientific expert panel",
+            "authors": [
+                {
+                    "first": "J",
+                    "middle": [
+                        "P"
+                    ],
+                    "last": "Kanne",
+                    "suffix": ""
+                },
+                {
+                    "first": "B",
+                    "middle": [
+                        "P"
+                    ],
+                    "last": "Little",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [
+                        "H"
+                    ],
+                    "last": "Chung",
+                    "suffix": ""
+                },
+                {
+                    "first": "B",
+                    "middle": [
+                        "M"
+                    ],
+                    "last": "Elicker",
+                    "suffix": ""
+                },
+                {
+                    "first": "L",
+                    "middle": [
+                        "H"
+                    ],
+                    "last": "Ketai",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1148/radiol.2020200527"
+                ]
+            }
+        },
+        "BIBREF51": {
+            "ref_id": "b51",
+            "title": "ClarkeELetal(2020)Theprevalence of symptoms in 24,410 adults infected by the novel coronavirus (SARS-CoV-2; COVID-19): A systematic review and meta-analysis of 148 studies from 9 countries",
+            "authors": [
+                {
+                    "first": "M",
+                    "middle": [
+                        "C"
+                    ],
+                    "last": "Grant",
+                    "suffix": ""
+                },
+                {
+                    "first": "L",
+                    "middle": [],
+                    "last": "Geoghegan",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Arbyn",
+                    "suffix": ""
+                },
+                {
+                    "first": "Z",
+                    "middle": [],
+                    "last": "Mohammed",
+                    "suffix": ""
+                },
+                {
+                    "first": "Mcguinnessl",
+                    "middle": [],
+                    "last": "",
+                    "suffix": ""
+                }
+            ],
+            "year": null,
+            "venue": "PLoS",
+            "volume": "15",
+            "issn": "6",
+            "pages": "",
+            "other_ids": {}
+        },
+        "BIBREF52": {
+            "ref_id": "b52",
+            "title": "Loss of smell and taste in 2013 European patients with mild to moderate COVID-19",
+            "authors": [
+                {
+                    "first": "J",
+                    "middle": [
+                        "R"
+                    ],
+                    "last": "Lechien",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [
+                        "M"
+                    ],
+                    "last": "Chiesa-Estomba",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Hans",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [
+                        "R"
+                    ],
+                    "last": "Barillari",
+                    "suffix": ""
+                },
+                {
+                    "first": "L",
+                    "middle": [],
+                    "last": "Jouffe",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Saussez",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Ann Intern Med",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.7326/M20-2428"
+                ]
+            }
+        },
+        "BIBREF53": {
+            "ref_id": "b53",
+            "title": "ICNARC (2020) ICNARC report on COVID-19",
+            "authors": [],
+            "year": null,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {}
+        },
+        "BIBREF54": {
+            "ref_id": "b54",
+            "title": "Case characteristics, resource use, and outcomes of 10021 patients with COVID-19 admitted to 920 German hospitals: an observational study",
+            "authors": [
+                {
+                    "first": "Mostertc",
+                    "middle": [],
+                    "last": "Karagiannidisc",
+                    "suffix": ""
+                },
+                {
+                    "first": "",
+                    "middle": [],
+                    "last": "Hentschkerc",
+                    "suffix": ""
+                },
+                {
+                    "first": "",
+                    "middle": [],
+                    "last": "Voshaart",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Malzahn",
+                    "suffix": ""
+                },
+                {
+                    "first": "G",
+                    "middle": [],
+                    "last": "Schillinger",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Lancet Respir Med",
+            "volume": "8",
+            "issn": "9",
+            "pages": "853--862",
+            "other_ids": {}
+        },
+        "BIBREF55": {
+            "ref_id": "b55",
+            "title": "Empfehlungen zur intensivmedizinischen Therapie von Patienten mit COVID-19 (S1-Leitlinie)",
+            "authors": [
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Kluge",
+                    "suffix": ""
+                },
+                {
+                    "first": "U",
+                    "middle": [],
+                    "last": "Janssens",
+                    "suffix": ""
+                },
+                {
+                    "first": "T",
+                    "middle": [],
+                    "last": "Welte",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Weber-Carstens",
+                    "suffix": ""
+                },
+                {
+                    "first": "G",
+                    "middle": [],
+                    "last": "Sch\u00e4lte",
+                    "suffix": ""
+                },
+                {
+                    "first": "B",
+                    "middle": [],
+                    "last": "Salzberger",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {}
+        },
+        "BIBREF56": {
+            "ref_id": "b56",
+            "title": "Mechanical ventilation and Extracorporeal membrane oxygena tion in acute respiratory insufficiency",
+            "authors": [
+                {
+                    "first": "F",
+                    "middle": [],
+                    "last": "Fichtner",
+                    "suffix": ""
+                },
+                {
+                    "first": "O",
+                    "middle": [],
+                    "last": "Moerer",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Laudi",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Weber-Carstens",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Nothacker",
+                    "suffix": ""
+                },
+                {
+                    "first": "U",
+                    "middle": [],
+                    "last": "Kaisers",
+                    "suffix": ""
+                }
+            ],
+            "year": 2018,
+            "venue": "Dtsch Arztebl Int",
+            "volume": "115",
+            "issn": "50",
+            "pages": "840--847",
+            "other_ids": {}
+        },
+        "BIBREF57": {
+            "ref_id": "b57",
+            "title": "Position paper for the state of the art application of respiratory support in patients with COVID-19-German respiratory society",
+            "authors": [
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Pfeifer",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Ewig",
+                    "suffix": ""
+                },
+                {
+                    "first": "T",
+                    "middle": [],
+                    "last": "Voshaar",
+                    "suffix": ""
+                },
+                {
+                    "first": "W",
+                    "middle": [],
+                    "last": "Randerath",
+                    "suffix": ""
+                },
+                {
+                    "first": "T",
+                    "middle": [],
+                    "last": "Bauer",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Geiseler",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1159/000509104"
+                ]
+            }
+        },
+        "BIBREF58": {
+            "ref_id": "b58",
+            "title": "Coagulopathy in COVID-19 and its implication for safe and efficacious thromboprophylaxis",
+            "authors": [
+                {
+                    "first": "F",
+                    "middle": [],
+                    "last": "Langer",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Kluge",
+                    "suffix": ""
+                },
+                {
+                    "first": "R",
+                    "middle": [],
+                    "last": "Klamroth",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Oldenburg",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1055/a-1178-3551"
+                ]
+            }
+        },
+        "BIBREF59": {
+            "ref_id": "b59",
+            "title": "Lopinavin-ritonavir in patients admitted to hospital with COVID-19 (RECOVERY): arandomised, controlled, open-label, platform trial",
+            "authors": [
+                {
+                    "first": "P",
+                    "middle": [
+                        "W"
+                    ],
+                    "last": "Horby",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Mafham",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [
+                        "L"
+                    ],
+                    "last": "Bell",
+                    "suffix": ""
+                },
+                {
+                    "first": "L",
+                    "middle": [],
+                    "last": "Linsell",
+                    "suffix": ""
+                },
+                {
+                    "first": "N",
+                    "middle": [],
+                    "last": "Staplin",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Emberson",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "32013--32017",
+            "other_ids": {
+                "DOI": [
+                    "10.1016/S0140-6736(20)32013-4"
+                ]
+            }
+        },
+        "BIBREF60": {
+            "ref_id": "b60",
+            "title": "Time course of lung changes on chest CT during recovery from 2019 novel Coronavirus (COVID-19) pneumonia",
+            "authors": [
+                {
+                    "first": "F",
+                    "middle": [],
+                    "last": "Pan",
+                    "suffix": ""
+                },
+                {
+                    "first": "T",
+                    "middle": [],
+                    "last": "Ye",
+                    "suffix": ""
+                },
+                {
+                    "first": "P",
+                    "middle": [],
+                    "last": "Sun",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Gui",
+                    "suffix": ""
+                },
+                {
+                    "first": "B",
+                    "middle": [],
+                    "last": "Liang",
+                    "suffix": ""
+                },
+                {
+                    "first": "L",
+                    "middle": [],
+                    "last": "Li",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Radiology",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1148/radiol.2020200370"
+                ]
+            }
+        },
+        "BIBREF61": {
+            "ref_id": "b61",
+            "title": "Remdesivirforthe treatment of Covid-19-final report",
+            "authors": [
+                {
+                    "first": "J",
+                    "middle": [
+                        "H"
+                    ],
+                    "last": "Beigel",
+                    "suffix": ""
+                },
+                {
+                    "first": "K",
+                    "middle": [
+                        "M"
+                    ],
+                    "last": "Tomashek",
+                    "suffix": ""
+                },
+                {
+                    "first": "L",
+                    "middle": [
+                        "E"
+                    ],
+                    "last": "Dodd",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [
+                        "K"
+                    ],
+                    "last": "Mehta",
+                    "suffix": ""
+                },
+                {
+                    "first": "",
+                    "middle": [],
+                    "last": "Zingmanbs",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "N Engl J Med",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1056/NEJMoa2007764"
+                ]
+            }
+        },
+        "BIBREF62": {
+            "ref_id": "b62",
+            "title": "Remdesivir in adults with severe COVID-19: a randomised, double-blind, placebo-controlled, multicentre trial",
+            "authors": [
+                {
+                    "first": "Y",
+                    "middle": [],
+                    "last": "Wang",
+                    "suffix": ""
+                },
+                {
+                    "first": "D",
+                    "middle": [],
+                    "last": "Zhang",
+                    "suffix": ""
+                },
+                {
+                    "first": "G",
+                    "middle": [],
+                    "last": "Du",
+                    "suffix": ""
+                },
+                {
+                    "first": "R",
+                    "middle": [],
+                    "last": "Du",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Zhao",
+                    "suffix": ""
+                },
+                {
+                    "first": "Jin",
+                    "middle": [
+                        "Y"
+                    ],
+                    "last": "",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Lancet",
+            "volume": "395",
+            "issn": "",
+            "pages": "1569--1578",
+            "other_ids": {}
+        },
+        "BIBREF63": {
+            "ref_id": "b63",
+            "title": "Recovery of COVID-19 acute respiratory distress syndrome with tocilizumab: successful outcome in two critically ill patients",
+            "authors": [
+                {
+                    "first": "J",
+                    "middle": [
+                        "D"
+                    ],
+                    "last": "Cala-Garcia",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [
+                        "D"
+                    ],
+                    "last": "Sierra-Breton",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [
+                        "E"
+                    ],
+                    "last": "Cavelier-Baiz",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [
+                        "A"
+                    ],
+                    "last": "Faccini-Martinez",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [
+                        "E"
+                    ],
+                    "last": "Perez-Diaz",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.2217/imt-2020-0154"
+                ]
+            }
+        },
+        "BIBREF64": {
+            "ref_id": "b64",
+            "title": "A recovered case of COVID-19 Myocarditis and ARDS treated with Corticosteroids, Tocilizumab, and experimental AT-001",
+            "authors": [
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Coyle",
+                    "suffix": ""
+                },
+                {
+                    "first": "E",
+                    "middle": [],
+                    "last": "Igbinomwanhia",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [],
+                    "last": "Sanchez-Nadales",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Danciu",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [],
+                    "last": "Chu",
+                    "suffix": ""
+                },
+                {
+                    "first": "N",
+                    "middle": [],
+                    "last": "Shah",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "J Am Coll Cardiol",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1016/j.jaccas.2020.04.025"
+                ]
+            }
+        },
+        "BIBREF65": {
+            "ref_id": "b65",
+            "title": "Tocilizumab for the treatment of severe COVID-19 pneumonia with hyperinflammatory syndrome and acute respiratory failure: A single center study of 100 patients in Brescia",
+            "authors": [
+                {
+                    "first": "P",
+                    "middle": [],
+                    "last": "Toniati",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Piva",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Cattalini",
+                    "suffix": ""
+                },
+                {
+                    "first": "E",
+                    "middle": [],
+                    "last": "Garrafa",
+                    "suffix": ""
+                },
+                {
+                    "first": "F",
+                    "middle": [],
+                    "last": "Regola",
+                    "suffix": ""
+                },
+                {
+                    "first": "F",
+                    "middle": [],
+                    "last": "Castelli",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Italy. Autoimmun Rev",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1016/j.autrev.2020.102568"
+                ]
+            }
+        },
+        "BIBREF66": {
+            "ref_id": "b66",
+            "title": "Interleukin-1 blockade with high-dose anakinra in patients with COVID-19, acute respiratory distress syndrome, and hyperinflammation: a retrospective cohort study",
+            "authors": [
+                {
+                    "first": "G",
+                    "middle": [],
+                    "last": "Cavalli",
+                    "suffix": ""
+                },
+                {
+                    "first": "De",
+                    "middle": [],
+                    "last": "Luca",
+                    "suffix": ""
+                },
+                {
+                    "first": "G",
+                    "middle": [],
+                    "last": "Campochiaro",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [],
+                    "last": "Della-Torre",
+                    "suffix": ""
+                },
+                {
+                    "first": "E",
+                    "middle": [],
+                    "last": "Ripa",
+                    "suffix": ""
+                },
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Canetti",
+                    "suffix": ""
+                },
+                {
+                    "first": "D",
+                    "middle": [],
+                    "last": "",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Lancet Rheumatol",
+            "volume": "2",
+            "issn": "6",
+            "pages": "325--331",
+            "other_ids": {}
+        },
+        "BIBREF67": {
+            "ref_id": "b67",
+            "title": "Why tocilizumab could be an effective treatment for severe COVID-19?",
+            "authors": [
+                {
+                    "first": "B",
+                    "middle": [],
+                    "last": "Fu",
+                    "suffix": ""
+                },
+                {
+                    "first": "X",
+                    "middle": [],
+                    "last": "Xu",
+                    "suffix": ""
+                },
+                {
+                    "first": "H",
+                    "middle": [],
+                    "last": "Wei",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "J Transl Med",
+            "volume": "18",
+            "issn": "1",
+            "pages": "",
+            "other_ids": {}
+        },
+        "BIBREF68": {
+            "ref_id": "b68",
+            "title": "Proposal for the use of anakinra in acute respiratory distress secondary to COVID-19",
+            "authors": [
+                {
+                    "first": "A",
+                    "middle": [],
+                    "last": "Munoz-Jimenez",
+                    "suffix": ""
+                },
+                {
+                    "first": "E",
+                    "middle": [],
+                    "last": "Rubio-Romero",
+                    "suffix": ""
+                },
+                {
+                    "first": "Marenco",
+                    "middle": [],
+                    "last": "De La Fuente",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [
+                        "L"
+                    ],
+                    "last": "",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {}
+        },
+        "BIBREF70": {
+            "ref_id": "b70",
+            "title": "Dexamethasone treatment for the acute respiratory distress syndrome: a multicentre, randomised controlled trial",
+            "authors": [
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Villar",
+                    "suffix": ""
+                },
+                {
+                    "first": "",
+                    "middle": [],
+                    "last": "Ferrandoc",
+                    "suffix": ""
+                },
+                {
+                    "first": "D",
+                    "middle": [],
+                    "last": "Martinez",
+                    "suffix": ""
+                },
+                {
+                    "first": "Ambros",
+                    "middle": [
+                        "A"
+                    ],
+                    "last": "Munoz",
+                    "suffix": ""
+                },
+                {
+                    "first": "T",
+                    "middle": [],
+                    "last": "Soler",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [
+                        "A"
+                    ],
+                    "last": "",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Lancet Respir Med",
+            "volume": "8",
+            "issn": "3",
+            "pages": "267--276",
+            "other_ids": {}
+        },
+        "BIBREF71": {
+            "ref_id": "b71",
+            "title": "Dexamethasone in hospitalized patients with Covid-19-preliminary report",
+            "authors": [
+                {
+                    "first": "",
+                    "middle": [],
+                    "last": "The Recovery Collaborative",
+                    "suffix": ""
+                },
+                {
+                    "first": "",
+                    "middle": [],
+                    "last": "Group",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "N Engl J Med",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1056/NEJMoa2021436"
+                ]
+            }
+        },
+        "BIBREF72": {
+            "ref_id": "b72",
+            "title": "Effect of dexamethasone on days alive and ventilator-free in patients with moderate or severe acute respiratory distress syndrome and COVID-19: the coDEX randomized clinical trial",
+            "authors": [
+                {
+                    "first": "B",
+                    "middle": [
+                        "M"
+                    ],
+                    "last": "Tomazini",
+                    "suffix": ""
+                },
+                {
+                    "first": "I",
+                    "middle": [
+                        "S"
+                    ],
+                    "last": "Maia",
+                    "suffix": ""
+                },
+                {
+                    "first": "A",
+                    "middle": [
+                        "B"
+                    ],
+                    "last": "Cavalcanti",
+                    "suffix": ""
+                },
+                {
+                    "first": "O",
+                    "middle": [],
+                    "last": "Berwanger",
+                    "suffix": ""
+                },
+                {
+                    "first": "R",
+                    "middle": [
+                        "G"
+                    ],
+                    "last": "Rosa",
+                    "suffix": ""
+                },
+                {
+                    "first": "V",
+                    "middle": [
+                        "C"
+                    ],
+                    "last": "Veiga",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "JAMA",
+            "volume": "324",
+            "issn": "13",
+            "pages": "1307--1316",
+            "other_ids": {}
+        },
+        "BIBREF73": {
+            "ref_id": "b73",
+            "title": "Effect of hydrocortisone on mortality and organ support in patients with severe COVID-19: the REMAP-CAP COVID-19 corticosteroid domain randomized clinical trial",
+            "authors": [
+                {
+                    "first": "Investigators",
+                    "middle": [],
+                    "last": "Twcftr",
+                    "suffix": ""
+                },
+                {
+                    "first": "-C",
+                    "middle": [],
+                    "last": "",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "JAMA",
+            "volume": "324",
+            "issn": "13",
+            "pages": "1317--1329",
+            "other_ids": {}
+        },
+        "BIBREF74": {
+            "ref_id": "b74",
+            "title": "Association between administration of systemic corticosteroids and mortality among critically ill patients with COVID-19: a meta-analysis",
+            "authors": [],
+            "year": 2020,
+            "venue": "Group TWREAfC-TW",
+            "volume": "324",
+            "issn": "",
+            "pages": "1330--1341",
+            "other_ids": {}
+        },
+        "BIBREF75": {
+            "ref_id": "b75",
+            "title": "Treatment with dexamethasone in patients with COVID-19-a position paper of the German respiratory society (DGP)",
+            "authors": [
+                {
+                    "first": "M",
+                    "middle": [],
+                    "last": "Kolditz",
+                    "suffix": ""
+                },
+                {
+                    "first": "",
+                    "middle": [],
+                    "last": "Dellwegd",
+                    "suffix": ""
+                },
+                {
+                    "first": "",
+                    "middle": [],
+                    "last": "Geerdes-Fengeh",
+                    "suffix": ""
+                },
+                {
+                    "first": "",
+                    "middle": [],
+                    "last": "Lepperpm",
+                    "suffix": ""
+                },
+                {
+                    "first": "T",
+                    "middle": [],
+                    "last": "Schaberg",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Ewig",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1055/a-1216-5739"
+                ]
+            }
+        },
+        "BIBREF76": {
+            "ref_id": "b76",
+            "title": "Treatment of Coronavirus disease 2019 patients with convalescent plasma reveals a signal of significantly decreased mortality",
+            "authors": [
+                {
+                    "first": "E",
+                    "middle": [],
+                    "last": "Salazar",
+                    "suffix": ""
+                },
+                {
+                    "first": "P",
+                    "middle": [
+                        "A"
+                    ],
+                    "last": "Christensen",
+                    "suffix": ""
+                },
+                {
+                    "first": "E",
+                    "middle": [
+                        "A"
+                    ],
+                    "last": "Graviss",
+                    "suffix": ""
+                },
+                {
+                    "first": "D",
+                    "middle": [
+                        "T"
+                    ],
+                    "last": "Nguyen",
+                    "suffix": ""
+                },
+                {
+                    "first": "B",
+                    "middle": [],
+                    "last": "Castillo",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Chen",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Am J Pathol",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1016/j.ajpath.2020.08.001"
+                ]
+            }
+        },
+        "BIBREF77": {
+            "ref_id": "b77",
+            "title": "Convalescent plasma or hyperimmune immunoglobulin for people with COVID-19: a rapid review",
+            "authors": [
+                {
+                    "first": "S",
+                    "middle": [
+                        "J"
+                    ],
+                    "last": "Valk",
+                    "suffix": ""
+                },
+                {
+                    "first": "V",
+                    "middle": [],
+                    "last": "Piechotta",
+                    "suffix": ""
+                },
+                {
+                    "first": "K",
+                    "middle": [
+                        "L"
+                    ],
+                    "last": "Chai",
+                    "suffix": ""
+                },
+                {
+                    "first": "C",
+                    "middle": [],
+                    "last": "Doree",
+                    "suffix": ""
+                },
+                {
+                    "first": "I",
+                    "middle": [],
+                    "last": "Monsef",
+                    "suffix": ""
+                },
+                {
+                    "first": "E",
+                    "middle": [
+                        "M"
+                    ],
+                    "last": "Wood",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Cochrane Database Syst Rev",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1002/14651858.CD013600"
+                ]
+            }
+        },
+        "BIBREF78": {
+            "ref_id": "b78",
+            "title": "Effect of convalescent plasma therapy on time to clinical improvement in patients with severe and life-threatening COVID-19: a randomized clinical trial",
+            "authors": [
+                {
+                    "first": "L",
+                    "middle": [],
+                    "last": "Li",
+                    "suffix": ""
+                },
+                {
+                    "first": "W",
+                    "middle": [],
+                    "last": "Zhang",
+                    "suffix": ""
+                },
+                {
+                    "first": "Y",
+                    "middle": [],
+                    "last": "Hu",
+                    "suffix": ""
+                },
+                {
+                    "first": "X",
+                    "middle": [],
+                    "last": "Tong",
+                    "suffix": ""
+                },
+                {
+                    "first": "S",
+                    "middle": [],
+                    "last": "Zheng",
+                    "suffix": ""
+                },
+                {
+                    "first": "J",
+                    "middle": [],
+                    "last": "Yang",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "JAMA",
+            "volume": "324",
+            "issn": "5",
+            "pages": "460--470",
+            "other_ids": {}
+        },
+        "BIBREF79": {
+            "ref_id": "b79",
+            "title": "DGI Konsensus-Empfehlungen zur COVID-19 Pharmakotherapie der Deutschen Gesellschaft f\u00fcr Infektiologie",
+            "authors": [],
+            "year": null,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {}
+        },
+        "BIBREF80": {
+            "ref_id": "b80",
+            "title": "Remdesivir for the treatment of Covid-19-preliminary report",
+            "authors": [
+                {
+                    "first": "J",
+                    "middle": [
+                        "H"
+                    ],
+                    "last": "Beigel",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "N Engl J Med",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1056/NEJMoa2007764"
+                ]
+            }
+        },
+        "BIBREF81": {
+            "ref_id": "b81",
+            "title": "Dexamethasone in hospitalized patients with Covid-19-preliminary report",
+            "authors": [
+                {
+                    "first": "P",
+                    "middle": [],
+                    "last": "Horby",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "N Engl J Med",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1056/NEJMoa2021436"
+                ]
+            }
+        },
+        "BIBREF82": {
+            "ref_id": "b82",
+            "title": "An overview of Veklury and why it is authorised in the EU",
+            "authors": [
+                {
+                    "first": "Ema",
+                    "middle": [],
+                    "last": "Veklury",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {}
+        },
+        "BIBREF83": {
+            "ref_id": "b83",
+            "title": "Remdesivir in adults with severe COVID-19: a randomised, double-blind, placebo-controlled, multicentre trial",
+            "authors": [
+                {
+                    "first": "Y",
+                    "middle": [],
+                    "last": "Wang",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Lancet",
+            "volume": "395",
+            "issn": "",
+            "pages": "1569--1578",
+            "other_ids": {}
+        },
+        "BIBREF84": {
+            "ref_id": "b84",
+            "title": "Clinical benefit of remdesivirinrhesusmacaquesinfectedwithSARS-CoV-2. bioRxiv",
+            "authors": [
+                {
+                    "first": "B",
+                    "middle": [
+                        "N"
+                    ],
+                    "last": "Williamson",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {}
+        },
+        "BIBREF85": {
+            "ref_id": "b85",
+            "title": "Remdesivir for severe COVID-19 versus a cohort receiving standard of care",
+            "authors": [
+                {
+                    "first": "S",
+                    "middle": [
+                        "A"
+                    ],
+                    "last": "Olender",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "Clin Infect Dis",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1093/cid/ciaa1041"
+                ]
+            }
+        },
+        "BIBREF86": {
+            "ref_id": "b86",
+            "title": "Remdesivir for 5 or 10 days in patients with severe Covid-19",
+            "authors": [
+                {
+                    "first": "J",
+                    "middle": [
+                        "D"
+                    ],
+                    "last": "Goldman",
+                    "suffix": ""
+                }
+            ],
+            "year": 2020,
+            "venue": "N Engl J Med",
+            "volume": "",
+            "issn": "",
+            "pages": "",
+            "other_ids": {
+                "DOI": [
+                    "10.1056/NEJMoa2015301"
+                ]
+            }
+        }
+    },
+    "ref_entries": {
+        "FIGREF0": {
+            "text": "Kontrastmittelgest\u00fctzte d\u00fcnnschichtige Computertomographie der Lunge in axialer (a, b), sagittaler (c) und koronarer (d) Ebene. Dargestellt ist eine Pneumonie im Rahmen einer Coronavirus Disease 2019 (COVID-19) bei einem 48 j\u00e4hrigen Patienten mit Mantelzelllymphom unter Chemotherapie. Akut klagte der Patient \u00fcber trockenen Husten und Fieber. Die Reverse-Transkriptase-Polymerasekettenreaktion (RT-PCR) aus dem Rachenabstrich ergab den Nachweis von \"severe acute respiratory syndrome coronavirus 2\" (SARS-CoV-2). Die Bilder zeigen multifokale Milchglastr\u00fcbungen in beiden Unterlappen. Die Verdichtungen sind zum Teil scharf begrenzt und geographisch geformt. Die Peripherie der posterioren Segmente ist bevorzugt betroffen",
+            "latex": null,
+            "type": "figure"
+        },
+        "TABREF0": {
+            "text": "\u00bb COVID-19 stellt weiterhin eine gro\u00dfe Bedrohung dar Auch wenn inzwischen eine Reihe von Organmanifestationen beschrieben ist, steht weiterhin f\u00fcr den Verlauf der Infektion das respiratorische System mit Dieser Beitrag ist eine aktualisierte Fassung des Beitrags: Pfeifer und Hamer (2020). Der Internist 61:793-803. https://doi.org/10.1007/s00108-020-00854-5.",
+            "latex": null,
+            "type": "table"
+        },
+        "TABREF1": {
+            "text": "). Die Untersuchung sollte dabei bevorzugt als native d\u00fcnnschichtige CT in Niedrigdosistechnik durchgef\u00fchrt werden. Die Aufgabe der CT ist es, die Diagnosestellung zu unterst\u00fctzen, den Schweregrad der Lungenparenchymver\u00e4nderungen zu erfassen, gegebenenfalls im Verlauf zu kontrollieren sowie Komplikationen wie eine Lungenembolie oder Superinfektion zu detektieren. Je nach klinischer Einsch\u00e4tzung muss f\u00fcr einige dieser Fragestellungen von der na-tiven Niedrigdosisstrategie abgewichen und Kontrastmittel verabreicht werden. \u00bb Als bildgebende Modalit\u00e4t der ersten Wahl wird die Computertomographie empfohlen Die Sensitivit\u00e4t der Computertomographie f\u00fcr die COVID-19-Pneumonie liegt bei \u00fcber 90 % [44]. In den allermeisten F\u00e4llen \u00e4u\u00dfert sich die COVID-19-Pneumonie in Form eines Mischbilds aus Milchglastr\u00fcbungen und Konsolidierungen [45, 46]. Die Verdichtungen sind h\u00e4ufig rund oder geographisch konfiguriert und zeigen zumindest anteilig eine scharfe Berandung zur umgebenden gesunden Lunge. Bereits initial sind meist mehrere L\u00e4sionen in beiden Lungen zu erkennen. Bevorzugt sind die Peripherie der Lunge und die Unterlappen betroffen. Innerhalb der Verdichtungen zeigt sich ein Aerobronchogramm (. Abb. 1). Mit zunehmender Schwere der Erkrankung nimmtdasAusma\u00dfderVerdichtungenzu [31, 47]. Ein Teil der Milchglastr\u00fcbungen geht in Konsolidierungen \u00fcber. In dieser Phase tritt auch vermehrt ein Befund auf, der als \"crazy paving\" bezeichnet wird. Hierunter versteht man Milchglastr\u00fcbungen, die durch glatt berandete Retikulationen \u00fcberlagert sind. Bei einem benignen Verlauf ist das Maximum an Parenchymver\u00e4nderungen 6-13 Tage nach Krankheitsbeginn zu erwarten [31, 48]. . 1 Kategorisierung der Computertomographie(CT)-Ver\u00e4nderungen bei Coronavirus-Disease-2019(COVID-19)-Pandemie nach Empfehlung der Arbeitsgemeinschaft Thoraxdiagnostik der Deutschen R\u00f6ntgengesellschaft. (Aus [41]) die sterile Pneumonitis und die alveol\u00e4re H\u00e4morrhagie. Um eine Abgrenzung gegen\u00fcber diesen Erkrankungen zu erleichtern, ist es hilfreich zu wissen, welche CT-Befunde noch nie oder nur sehr selten bei der COVID-19-Pneumonie gesehen wurden. Hierzu geh\u00f6ren Noduli, das Tree-in-bud-Zeichen, Kavernen, Bronchialwandverdickungen und \"mucus plugging\". Pleuraerg\u00fcsse und eine Lymphadenopathie treten, wenn \u00fcberhaupt, erst in sp\u00e4teren Stadien und bei schwereren Verl\u00e4ufen auf. In den ersten Tagen der Erkrankung l\u00e4sst sich das Virus im Rachen nachweisen, die pulmonale Erkrankungen als virale Pneumonie manifestiert sich jedoch erst mit der Replikation des Virus in der Lunge. Mit der Infektion des pulmonalen Systems geben die Patienten Atemnot, anf\u00e4nglich bei Belastung sp\u00e4ter auch in Ruhe, an (Phase 2). Im Median tritt die Dyspnoe 6,5 Tage nach den ersten Symptomen auf. Dabei findet sich oft schon ein eingeschr\u00e4nkter Gasaustausch mit erniedrigten Sauerstoffs\u00e4ttigungen, erniedrigtem Sauerstoffpartialdruck und einer Hypokapnie als Ausdruck der Hyperventilation. Wie bereits beschrieben besteht oft eine Diskrepanz zwischen der Schwere der gemessenen Gasaustauschst\u00f6rung und der subjektiv empfundenen Atemnot. Als Folge der zunehmenden pulmonalen Belastung beginnen die Patienten subklinisch zu hyperventilieren, was meist nur durch einen Anstieg der Atemfrequenz zu erfassen ist. In den arteriellen Blutgaswerten findet sich dann eine Minderung des Kohlendioxidpartialdrucks mit Werten unter 30 mm Hg. In dieser Phase kann sich eine Hyperinflammation mit einer weiteren schweren Lungensch\u00e4digung im Sinne eines ARDS und dem Auftreten eines Multiorganversagens entwickeln. Patienten mit ARDS im weiteren Verlauf entwickeln dies innerhalb von Stunden bis wenige Tage [36]. Daher ist es erforderlich, Patienten mit Dyspnoe engmaschig zu \u00fcberwachen, um fr\u00fchzeitige notwendige therapeutische Schritte einzuleiten. In einer Studie von 138 COVID-19-Patienten, die station\u00e4r aufgenommen wurden, zeigten 26 % einen komplizierten Verlauf und mussten intensivmedizinisch behandelt werden. Von diesen litten 61 % an einem ARDS und wurden invasiv beatmet. Andere Ursachen f\u00fcr die %) konnten aus der Intensivstation verlegt werden. Eine ung\u00fcnstige Prognose hatten besonders die Patienten, die sich rasch verschlechterten und innerhalb der ersten 24 h nach Aufnahme auf die Intensivstation intubiert werden mussten. Im Mittel verstarben 50 % der Patienten mit invasiver Beatmung, mit der h\u00f6chsten Sterblichkeit in der Altersgruppe \u00fcber 80 Jahre mit einer Letalit\u00e4t von 81,3 %. Die deutsche Beobachtungsstudie von Karagiannidis et al. an 10.021 hospitalisierten Patienten mit COVID-19 zeigt \u00e4hnliche Ergebnisse [52]. Ausgewertet wurden die Daten von Patienten der Allgemeinen Ortskrankenkasse (AOK), die im Zeitraum von Ende Februar bis Mitte April 2020 in 920 Krankenh\u00e4usern aus dem ganzen Bundesgebiet station\u00e4r behandelt wurden. Von den 10.021 erfassten Patienten wurden 727 (17 %) Patienten mechanisch beatmet. Das mediane Alter der beatmeten Patienten war 72 Jahre, wobei 23 % \u00e4lter als 80 Jahre waren. Die Mortalit\u00e4t war in dieser Gruppe mit 72 % am h\u00f6chsten. F\u00fcr alle hospitalisierte Patienten wurde eine Mortalit\u00e4t ohne Beatmung von 16 %, mit invasiver Beatmung von 53 % bzw. 45 % mit nichtinvasiver Beatmung gefunden. Da nur Patienten ausgewertet wurden, die bei der AOK versichert waren, und diese nach fr\u00fcheren Untersuchungen im Vergleich zu anderen Versicherten kr\u00e4nker sind, ist die relative hohe Mortalit\u00e4t nicht auf alle Patienten \u00fcbertragbar.",
+            "latex": null,
+            "type": "table"
+        },
+        "TABREF2": {
+            "text": "Abb.3 8 Differenzierte und abgestuften apparative Therapie der respiratorischen Insuffizienz bei einer Pneumonie im Rahmen von Coronavirus-Disease 2019. Sternchen Anwendung unter pers\u00f6nlichem Atemschutz gem\u00e4\u00df Empfehlung des Robert Koch-Instituts. AF Atemfrequenz, COPD chronische obstruktive Lungenerkrankung, CPAP\"continuous positive airway pressure\", DNI \"do-not-intubate\", FIO2 inspiratorische Sauerstofffraktion, NIVnichtinvasive Beatmung, paO2 arterieller Sauerstoffpartialdruck, PEEP positiver endexspiratorischer Druck, SpO2periphere kapillare Sauerstoffs\u00e4ttigung, Vt Tidalvolumen. (Nach[53,55]; mit freundlicher Genehmigung \u00a9 Georg Thieme Verlag KG) Diese Kombination wird aktuell nicht empfohlen, da auf der einen Seite keine signifikante Wirkung nachzuweisen war, andererseits erhebliche Nebenwirkungen beschrieben wurden. Auch f\u00fcr die Substanzen Interferon \u03b2-1b und Lopinavir/Ritonavir, alleine oder in Kombination gegeben, konnte bisher keine sichere klinische Wirksamkeit nachgewiesen werden [53, 57]. \u00bb F\u00fcr Remdesivir wurde klinisch bei schweren Verl\u00e4ufen eine Wirksamkeit gezeigt Von den antiviral wirkenden Substanzen konnte f\u00fcr das Remdesivir in vitro [58] wie auch klinisch in randomisierten Studien eine Wirksamkeit insbesondere f\u00fcr Patienten mit schwerem Verlauf gezeigt werden. In einer randomisierten kontrollierten Studie mit 1063 Patienten zeigte sich eine Verk\u00fcrzung der Erkrankungszeit im Median von 15 auf 10 Tagen (p < 0,001) sowie eine tendenzielle, jedoch nicht signifikante geringere Mortalit\u00e4t nach 14 Tagen von 11,9 % unter Placebo bzw. 6,7 % nach Remdesivir (Hazard Ratio [HR] 0,70; 95 %-KI 0,47-1,04) sowie nach 29 Tagen von 11,4 % mit Remdesivir bzw. 15,2 % nach Placebo [59]. In einer weiteren Studie fand sich eine tendenzielle, jedoch nicht signifikante Verk\u00fcrzung der Krankheitsdauer [60]. Inwieweit jedoch durch eine fr\u00fchzeitige Gabe dieser Substanz ein komplizierter Verlauf einer COVID-19-Pneumonie verhindert werden kann, muss in weiteren Studien untersucht werden. Aktuell wird der Nutzen der Therapie mit Remdesivir bei Patienten in der Fr\u00fchphase der Erkrankung (innerhalb der ersten 10 Tage nach Symptombeginn) mit einer CO-VID-19-Pneumonie gesehen, die sich im Krankenhaus befinden, nicht beatmetet sind und Sauerstoff ben\u00f6tigen. Als immunmodulatorische Substanzen wurde fr\u00fchzeitig Tocilizumab als Anti-IL-6-und Anakinra als Anti-Il1-Rezeptor-Antagonisten in Heilversu-chen [61-64] eingesetzt. Die Rationale f\u00fcr diese Therapie ist die Reduktion der Hyperinflammationsreaktion [65, 66]. Beide Substanzen wurden bereits in der Indikation ARDS in pr\u00e4klinischen Studien untersucht und zeigten dabei positive Effekte. F\u00fcr beide Substanzen konnte jedoch bisher bei COVID-19 keine gesicherte klinische Wirksamkeit gezeigt werden. Auch Steroide wurden trotz fehlender Evidenz in vielen Institutionen bei schweren Verl\u00e4ufen, insbesondere bei Patienten mit h\u00e4modynamischer Instabilit\u00e4t, fr\u00fchzeitig eingesetzt. In einer k\u00fcrzlich publizierten Studie aus Spanien [67] zeigte sich dann ein deutlicher Effekt der Gabe von Dexamethason bei beatmeten Patienten mit einer schweren COVID-19-Pneumonie. Diese Studie zeigte eine signifikante Reduktion der Beatmungstage in der Dexamethasongruppe im Vergleich zu einer Kontrollgruppe (-4,8 Tage, 95 %-KI 2,57-7,03; p < 0,0001). In die Studie wurden 277 Patienten eingeschlossen, die mit einer SARS-CoV-2-Infektion station\u00e4r behandelt wurden. Davon wurden 139 Patienten \u00fcber 5 Tage mit 20 mg Dexamethason therapiert, gefolgt von einer Behandlung mit 10 mg bis Tag 10. Die Mortalit\u00e4t in der mit Dexamethason behandelten Gruppe war nach 60 Tagen mit 21 % signifikant niedriger im Vergleich zu der unbehandelten Kontrollgruppe mit 36 % (-15,3 % 95 %-KI -25,9 bis -4,9; p = 0,0047). Als die wesentliche Studie zur Therapie mit Dexamethason kann die RECOVERY-Studie [68] gelten, eine offene randomisierte Studie aus Gro\u00dfbritannien, die bei station\u00e4r behandelten COVID-19-Patienten unter Dexamethason (6 mg pro Tag p.o. oder i.v. bis zu 10 Tage) einen ausgepr\u00e4gt positiven Effekt fand [68]. Die Autoren beschreiben 4 eine relative Reduktion der 28-Tage-Inzwischen sind weitere Studien sowie eine Metanalyse publiziert, die die Wirkung von Steroiden bei COVID-19-Pneumonie zeigen [69-71]. Zu betonen ist jedoch, dass der Effekt von Steroiden nur bei Pateinten mit Pneumonie und einer respiratorischen Insuffizienz gezeigt werden konnte und Steroide keine pr\u00e4ventive, m\u00f6glicherweise sogar eine negative Wirkung bei milden Verl\u00e4ufen von COVID-19 haben.Aufgrund der aktuellen Ergebnisse wird von der Deutsche Gesellschaft f\u00fcr Infektiologie sowie anderen Fachgesellschaften[53,72] zur medikament\u00f6sen Behandlung von COVID-19 bei schwereren Verl\u00e4ufen mit respiratorischen Insuffizienz die Therapie mit Dexamethason und Remdesivir empfohlen, wobei bisher keine Studiendaten zum klinischen Nutzen einer kombinierten Behandlung von Remdesivir und Dexamethason vorliegen.",
+            "latex": null,
+            "type": "table"
+        },
+        "TABREF3": {
+            "text": "Die Diagnose einer Coronavirus-Disease-2019(COVID-19)-Pneumonie beruht auf der klinischen Symptoma-tik, dem Nachweis des \"severe acute respiratory syndrome coronavirus 2\" (SARS-CoV-2) und den radiologischen Befunden. 4 Als bildgebende Modalit\u00e4t der ersten Wahl wird die Computertomographie (CT) empfohlen, bevorzugt als native D\u00fcnnschicht-CT in Niedrigdosistechnik. 4 Bei Zeichen der respiratorischen Insuffizienz mit zunehmender Atemnot wird zun\u00e4chst Sauerstoff \u00fcber eine Nasenbrille gegeben. 4 Patienten mit Verdacht auf eine Super-oder Begleitinfektion sollten fr\u00fchzeitig kalkuliert antibiotisch behandelt werden. 4 Die Indikation zur invasiven Beatmung richtet sich nach der Schwere der Gasaustauschst\u00f6rung und nach den klinischen Befunden. 4 Die Behandlung mit Dexamethason wird f\u00fcr Patienten mit COVID-19 empfohlen, die eine manifeste schwere respiratorische Insuffizienz mit Indikation zur Sauerstoffgabe und Beatmung aufweisen, sofern keine Kontraindikationen vorliegen. Die Behandlung mit Remdesivir erscheint sinnvoll in der Fr\u00fchphase der COVID-19-Pneumonie (\u2264 10 Tage nach Symptombeginn) ohne Beatmung mit der Notwendigkeit der Sauerstoffgabe. Prof. Dr. M. Pfeifer Klinik II f\u00fcr Innere Medizin, Pneumologie, Universit\u00e4tsklinikum Regensburg Franz-Josef-Strauss-Allee 11, 93053 Regensburg, Deutschland michael.pfeifer@ukr.de Einhaltung ethischer Richtlinien Interessenkonflikt. M. Pfeifer und O.W. Hamer geben an, dass kein Interessenkonflikt besteht. F\u00fcr diesen Beitrag wurden von den Autoren keine Studien an Menschen oder Tieren durchgef\u00fchrt. F\u00fcr die aufgef\u00fchrten Studien gelten die jeweils dort angegebenen ethischen Richtlinien.",
+            "latex": null,
+            "type": "table"
+        }
+    },
+    "back_matter": []
+}
