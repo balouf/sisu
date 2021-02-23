@@ -33,7 +33,7 @@ Performs extractive, hierarchical, summarization out of a corpus of documents.
 Features
 --------
 
-* TODO
+* Preprocessing tools.
 
 -------
 Credits
