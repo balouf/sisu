@@ -212,11 +212,11 @@
 </pre></div>
 </div>
 <p>Title and url?</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">],</span> <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]}</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">source</span><span class="p">]</span> 
-<span class="go">[{&#39;title&#39;: &#39;Community frailty response service: the ED at your front door&#39;,</span>
-<span class="go">  &#39;url&#39;: &#39;file:///%sdata000680e3114af4aa10e8f208cd162a61195f4465.json&#39;},</span>
-<span class="go"> {&#39;title&#39;: &#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;,</span>
-<span class="go">  &#39;url&#39;: &#39;file:///%sdata0000028b5cc154f68b8a269f6578f21e31f62977.json&#39;}]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">([{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">],</span> <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]}</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">source</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span> 
+<span class="go">[{&#39;title&#39;: &#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;,</span>
+<span class="go">  &#39;url&#39;: &#39;file:///%sdata0000028b5cc154f68b8a269f6578f21e31f62977.json&#39;},</span>
+<span class="go"> {&#39;title&#39;: &#39;Community frailty response service: the ED at your front door&#39;,</span>
+<span class="go">  &#39;url&#39;: &#39;file:///%sdata000680e3114af4aa10e8f208cd162a61195f4465.json&#39;}]</span>
 </pre></div>
 </div>
 <p>One article was in german. Can we retrieve it?</p>
@@ -277,8 +277,8 @@
 </div>
 <p>We now load the available json and extract the titles</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">documents</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">]</span>
-<span class="go">[&#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;, &#39;Community frailty response service: the ED at your front door&#39;, &#39;COVID-19-Pneumonie&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">([</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">])</span>
+<span class="go">[&#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;, &#39;COVID-19-Pneumonie&#39;, &#39;Community frailty response service: the ED at your front door&#39;]</span>
 </pre></div>
 </div>
 <p>Now the save file is there.</p>
@@ -286,10 +286,10 @@
 <span class="go">True</span>
 </pre></div>
 </div>
-<p>Reloading the dataset will now go through the pickle file.</p>
+<p>Reloading the dataset will now go through the pickle file (the only difference you should observe is speed).</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">documents</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">]</span>
-<span class="go">[&#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;, &#39;Community frailty response service: the ED at your front door&#39;, &#39;COVID-19-Pneumonie&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">([</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">])</span>
+<span class="go">[&#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;, &#39;COVID-19-Pneumonie&#39;, &#39;Community frailty response service: the ED at your front door&#39;]</span>
 </pre></div>
 </div>
 <p>Let’s remove the save.</p>
@@ -299,7 +299,7 @@
 <p>Now, we use getters to preprocess the documents and we limit the results to 2 documents. we also do not want a save to be made.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sisu.preprocessing.covid19</span> <span class="kn">import</span> <span class="n">get_title</span><span class="p">,</span> <span class="n">get_abstract</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">documents</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">max_documents</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">getters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">get_title</span><span class="p">,</span> <span class="s1">&#39;abstract&#39;</span><span class="p">:</span> <span class="n">get_abstract</span><span class="p">},</span> <span class="n">save</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">doc</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">]</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">([</span><span class="n">doc</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span> 
 <span class="go">[{&#39;title&#39;: &#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;, &#39;abstract&#39;: &#39;&#39;},</span>
 <span class="go"> {&#39;title&#39;: &#39;Community frailty response service: the ED at your front door&#39;,</span>
 <span class="go">  &#39;abstract&#39;: &#39;We describe the expansion and adaptation of a frailty response team to assess older people in their usual place of residence. The team had commenced a weekend service to a limited area in February 2020. As a consequence of demand related to the COVID-19 pandemic, we expanded it and adapted the model of care to provide a 7-day service to our entire catchment area. Five hundred and ninety two patient reviews have been completed in the first 105 days of operation with 43 patients transferred to hospital for further investigation or management following assessment.&#39;}]</span>

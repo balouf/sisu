@@ -213,19 +213,19 @@
 <span class="sd">    We now load the available json and extract the titles</span>
 
 <span class="sd">    &gt;&gt;&gt; documents = load_dataset(data_dir)</span>
-<span class="sd">    &gt;&gt;&gt; [doc[&#39;metadata&#39;][&#39;title&#39;] for doc in documents]</span>
-<span class="sd">    [&#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;, &#39;Community frailty response service: the ED at your front door&#39;, &#39;COVID-19-Pneumonie&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; sorted([doc[&#39;metadata&#39;][&#39;title&#39;] for doc in documents])</span>
+<span class="sd">    [&#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;, &#39;COVID-19-Pneumonie&#39;, &#39;Community frailty response service: the ED at your front door&#39;]</span>
 
 <span class="sd">    Now the save file is there.</span>
 
 <span class="sd">    &gt;&gt;&gt; save_location.exists()</span>
 <span class="sd">    True</span>
 
-<span class="sd">    Reloading the dataset will now go through the pickle file.</span>
+<span class="sd">    Reloading the dataset will now go through the pickle file (the only difference you should observe is speed).</span>
 
 <span class="sd">    &gt;&gt;&gt; documents = load_dataset(data_dir)</span>
-<span class="sd">    &gt;&gt;&gt; [doc[&#39;metadata&#39;][&#39;title&#39;] for doc in documents]</span>
-<span class="sd">    [&#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;, &#39;Community frailty response service: the ED at your front door&#39;, &#39;COVID-19-Pneumonie&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; sorted([doc[&#39;metadata&#39;][&#39;title&#39;] for doc in documents])</span>
+<span class="sd">    [&#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;, &#39;COVID-19-Pneumonie&#39;, &#39;Community frailty response service: the ED at your front door&#39;]</span>
 
 <span class="sd">    Let&#39;s remove the save.</span>
 
@@ -235,7 +235,7 @@
 
 <span class="sd">    &gt;&gt;&gt; from sisu.preprocessing.covid19 import get_title, get_abstract</span>
 <span class="sd">    &gt;&gt;&gt; documents = load_dataset(data_dir, max_documents=2, getters={&#39;title&#39;: get_title, &#39;abstract&#39;: get_abstract}, save=None)</span>
-<span class="sd">    &gt;&gt;&gt; [doc for doc in documents] # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">    &gt;&gt;&gt; sorted([doc for doc in documents], key=lambda d: d[&#39;title&#39;]) # doctest: +NORMALIZE_WHITESPACE</span>
 <span class="sd">    [{&#39;title&#39;: &#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;, &#39;abstract&#39;: &#39;&#39;},</span>
 <span class="sd">     {&#39;title&#39;: &#39;Community frailty response service: the ED at your front door&#39;,</span>
 <span class="sd">      &#39;abstract&#39;: &#39;We describe the expansion and adaptation of a frailty response team to assess older people in their usual place of residence. The team had commenced a weekend service to a limited area in February 2020. As a consequence of demand related to the COVID-19 pandemic, we expanded it and adapted the model of care to provide a 7-day service to our entire catchment area. Five hundred and ninety two patient reviews have been completed in the first 105 days of operation with 43 patients transferred to hospital for further investigation or management following assessment.&#39;}]</span>
@@ -314,11 +314,11 @@
 
 <span class="sd">    Title and url?</span>
 
-<span class="sd">    &gt;&gt;&gt; [{&#39;title&#39;: a[&#39;metadata&#39;][&#39;title&#39;], &#39;url&#39;: a[&#39;url&#39;]} for a in source] # doctest: +NORMALIZE_WHITESPACE</span>
-<span class="sd">    [{&#39;title&#39;: &#39;Community frailty response service: the ED at your front door&#39;,</span>
-<span class="sd">      &#39;url&#39;: &#39;file:///%sdata000680e3114af4aa10e8f208cd162a61195f4465.json&#39;},</span>
-<span class="sd">     {&#39;title&#39;: &#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;,</span>
-<span class="sd">      &#39;url&#39;: &#39;file:///%sdata0000028b5cc154f68b8a269f6578f21e31f62977.json&#39;}]</span>
+<span class="sd">    &gt;&gt;&gt; sorted([{&#39;title&#39;: a[&#39;metadata&#39;][&#39;title&#39;], &#39;url&#39;: a[&#39;url&#39;]} for a in source], key=lambda d: d[&#39;title&#39;]) # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">    [{&#39;title&#39;: &#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;,</span>
+<span class="sd">      &#39;url&#39;: &#39;file:///%sdata0000028b5cc154f68b8a269f6578f21e31f62977.json&#39;},</span>
+<span class="sd">     {&#39;title&#39;: &#39;Community frailty response service: the ED at your front door&#39;,</span>
+<span class="sd">      &#39;url&#39;: &#39;file:///%sdata000680e3114af4aa10e8f208cd162a61195f4465.json&#39;}]</span>
 
 <span class="sd">    One article was in german. Can we retrieve it?</span>
 

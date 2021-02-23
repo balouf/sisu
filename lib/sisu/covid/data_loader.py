@@ -50,19 +50,19 @@ def load_dataset(dataset_dir: str, getters: dict = None, max_documents: int = No
     We now load the available json and extract the titles
 
     >>> documents = load_dataset(data_dir)
-    >>> [doc['metadata']['title'] for doc in documents]
-    ['"Multi-faceted" COVID-19: Russian experience', 'Community frailty response service: the ED at your front door', 'COVID-19-Pneumonie']
+    >>> sorted([doc['metadata']['title'] for doc in documents])
+    ['"Multi-faceted" COVID-19: Russian experience', 'COVID-19-Pneumonie', 'Community frailty response service: the ED at your front door']
 
     Now the save file is there.
 
     >>> save_location.exists()
     True
 
-    Reloading the dataset will now go through the pickle file.
+    Reloading the dataset will now go through the pickle file (the only difference you should observe is speed).
 
     >>> documents = load_dataset(data_dir)
-    >>> [doc['metadata']['title'] for doc in documents]
-    ['"Multi-faceted" COVID-19: Russian experience', 'Community frailty response service: the ED at your front door', 'COVID-19-Pneumonie']
+    >>> sorted([doc['metadata']['title'] for doc in documents])
+    ['"Multi-faceted" COVID-19: Russian experience', 'COVID-19-Pneumonie', 'Community frailty response service: the ED at your front door']
 
     Let's remove the save.
 
@@ -72,7 +72,7 @@ def load_dataset(dataset_dir: str, getters: dict = None, max_documents: int = No
 
     >>> from sisu.preprocessing.covid19 import get_title, get_abstract
     >>> documents = load_dataset(data_dir, max_documents=2, getters={'title': get_title, 'abstract': get_abstract}, save=None)
-    >>> [doc for doc in documents] # doctest: +NORMALIZE_WHITESPACE
+    >>> sorted([doc for doc in documents], key=lambda d: d['title']) # doctest: +NORMALIZE_WHITESPACE
     [{'title': '"Multi-faceted" COVID-19: Russian experience', 'abstract': ''},
      {'title': 'Community frailty response service: the ED at your front door',
       'abstract': 'We describe the expansion and adaptation of a frailty response team to assess older people in their usual place of residence. The team had commenced a weekend service to a limited area in February 2020. As a consequence of demand related to the COVID-19 pandemic, we expanded it and adapted the model of care to provide a 7-day service to our entire catchment area. Five hundred and ninety two patient reviews have been completed in the first 105 days of operation with 43 patients transferred to hospital for further investigation or management following assessment.'}]
@@ -151,11 +151,11 @@ def filesource_loader_covid(d: Path, lang: str = "en", zipname="CORD-19-research
 
     Title and url?
 
-    >>> [{'title': a['metadata']['title'], 'url': a['url']} for a in source] # doctest: +NORMALIZE_WHITESPACE
-    [{'title': 'Community frailty response service: the ED at your front door',
-      'url': 'file:///%sdata000680e3114af4aa10e8f208cd162a61195f4465.json'},
-     {'title': '"Multi-faceted" COVID-19: Russian experience',
-      'url': 'file:///%sdata0000028b5cc154f68b8a269f6578f21e31f62977.json'}]
+    >>> sorted([{'title': a['metadata']['title'], 'url': a['url']} for a in source], key=lambda d: d['title']) # doctest: +NORMALIZE_WHITESPACE
+    [{'title': '"Multi-faceted" COVID-19: Russian experience',
+      'url': 'file:///%sdata0000028b5cc154f68b8a269f6578f21e31f62977.json'},
+     {'title': 'Community frailty response service: the ED at your front door',
+      'url': 'file:///%sdata000680e3114af4aa10e8f208cd162a61195f4465.json'}]
 
     One article was in german. Can we retrieve it?
 
