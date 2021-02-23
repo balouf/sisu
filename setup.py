@@ -40,6 +40,7 @@ class PostInstall(install):
     """Post-installation for production mode."""
 
     def run(self):
+        install.do_egg_install(self)
         install.run(self)
         self.execute(_post_install, [], msg="Running post installation tasks")
 
@@ -48,6 +49,7 @@ class PostSdist(sdist):
     """Post-installation for production mode."""
 
     def run(self):
+        sdist.do_egg_install(self)
         sdist.run(self)
         self.execute(_post_install, [], msg="Running post installation tasks")
 
