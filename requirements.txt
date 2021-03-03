@@ -10,4 +10,4 @@ PyQt5
 dill
 gismo
 scikit-network
-spacy==2.1.3
+spacy
