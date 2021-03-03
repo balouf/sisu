@@ -10,5 +10,5 @@ PyQt5
 dill
 gismo
 scikit-network
-spacy==2.1.0
+spacy==2.1.9
 neuralcoref==4.0
