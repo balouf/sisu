@@ -8,7 +8,7 @@
 #   Marc-Olivier Buob <marc-olivier.buob@nokia-bell-labs.com>
 #   Mélanie Cambus    <melanie.cambus@nokia.com>
 
-import copy, neuralcoref, re, scipy, spacy
+import copy, re, scipy, spacy
 import sys
 
 import numpy as np
@@ -23,23 +23,23 @@ from sisu.pit.building_summary import is_relevant_sentence, RE_CITATION, RE_URL
 from sisu.pit.gismo_wrapper import make_gismo
 from sisu.preprocessing.tokenizer import num_words, make_sentences_wiki
 
-try:
-    import neuralcoref
-
-    nlp = spacy.load("en_core_web_sm")
-    try:
-        neuralcoref.add_to_pipe(nlp)
-        print("neuralcoref is installed in spacy pipeline :-)")
-    except ValueError:
-        print("neuralcoref is not installed in spacy pipeline")
-except ImportError:
-    print(
-        "\n".join([
-            "Please neuralcoref:",
-            "sudo pip3 install neuralcoref"
-        ]),
-        file=sys.stderr
-    )
+# try:
+#     import neuralcoref
+#
+#     nlp = spacy.load("en_core_web_sm")
+#     try:
+#         neuralcoref.add_to_pipe(nlp)
+#         print("neuralcoref is installed in spacy pipeline :-)")
+#     except ValueError:
+#         print("neuralcoref is not installed in spacy pipeline")
+# except ImportError:
+#     print(
+#         "\n".join([
+#             "Please neuralcoref:",
+#             "sudo pip3 install neuralcoref"
+#         ]),
+#         file=sys.stderr
+#     )
 
 
 def get_structure_from_gismo_cluster(gismo, cluster, depth=3):

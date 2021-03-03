@@ -12,7 +12,7 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['nltk', 'numpy', 'dill', 'gismo', 'scikit-network', 'neuralcoref', 'matplotlib', 'PyQt5']
+requirements = ['nltk', 'numpy', 'dill', 'gismo', 'scikit-network', 'matplotlib', 'PyQt5']
 
 setup_requirements = ['pytest-runner', ]
 

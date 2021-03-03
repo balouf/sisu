@@ -18,6 +18,8 @@ History
 
 * Lot's of cleaning remains (separating covid/generic, unified pre-proc and source convention,...)
 
+* Take down neuralcoref for the moment. Does not build on github.
+
 
 ---------------------------------
 0.1.1 (2021-02-23): data_loader
