@@ -1,0 +1,568 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>sisu.pit.building_summary &mdash; Structured and Interactive Summarization 0.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Structured and Interactive Summarization
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">Structured and Interactive Summarization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Structured and Interactive Summarization</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sisu.pit.building_summary</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sisu.pit.building_summary</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">gismo.gismo</span> <span class="kn">import</span> <span class="n">Gismo</span>
+<span class="kn">from</span> <span class="nn">gismo.embedding</span> <span class="kn">import</span> <span class="n">Embedding</span>
+<span class="kn">from</span> <span class="nn">gismo.corpus</span> <span class="kn">import</span> <span class="n">Corpus</span>
+<span class="kn">from</span> <span class="nn">sisu.pit.gismo_wrapper</span> <span class="kn">import</span> <span class="n">make_gismo</span><span class="p">,</span> <span class="n">simplified_document_to_string</span>
+<span class="kn">from</span> <span class="nn">sisu.preprocessing.language</span> <span class="kn">import</span> <span class="n">MAP_LANG_STOP_WORDS</span>
+<span class="kn">from</span> <span class="nn">sisu.preprocessing.tokenizer</span> <span class="kn">import</span> <span class="n">num_words</span><span class="p">,</span> <span class="n">make_sentences</span><span class="p">,</span> <span class="n">words</span>
+
+<span class="n">RE_URL</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;https?://[a-zA-Z.:0-9]+.*|www.|.org|.net|.com|[a-zA-Z.:0-9]+/&quot;</span><span class="p">)</span>
+<span class="n">RE_CITATION</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[\[(]\s*\d+(,\s*\d+)*[)\]]&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="is_relevant_sentence"><a class="viewcode-back" href="../../../reference/index.html#sisu.pit.building_summary.is_relevant_sentence">[docs]</a><span class="k">def</span> <span class="nf">is_relevant_sentence</span><span class="p">(</span><span class="n">sentence</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">min_num_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">max_num_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Ignore sentences that are too short, too long, that contain a URL or a citation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sentence: :class:`str`</span>
+<span class="sd">        Sentence to analyze.</span>
+<span class="sd">    min_num_words: :class:`int`, optional</span>
+<span class="sd">        Minimal number of words.</span>
+<span class="sd">    max_num_words: :class:`int`, optional</span>
+<span class="sd">        Maximal number of words.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :class:`bool`</span>
+<span class="sd">        Is the sentence OK?</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; is_relevant_sentence(&quot;This is a short sentence!&quot;)</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; is_relevant_sentence(&quot;This is a sentence with reference to the url http://www.ix.com!&quot;)</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; is_relevant_sentence(&quot;This is a a sentence with some citations [3, 7]!&quot;)</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; is_relevant_sentence(&quot;I have many things to say in that sentence, to the point &quot;</span>
+<span class="sd">    ...                      &quot;I do not know if I will stop anytime soon but don&#39;t let it stop&quot;</span>
+<span class="sd">    ...                      &quot;you from reading this meaninless garbage and this goes on and &quot;</span>
+<span class="sd">    ...                      &quot;this goes on and this goes on and this goes on and this goes on and &quot;</span>
+<span class="sd">    ...                      &quot; this goes on and  this goes on and  this goes on and  this goes on &quot;</span>
+<span class="sd">    ...                      &quot;and  this goes on and  this goes on and  this goes on and  this goes &quot;</span>
+<span class="sd">    ...                      &quot;on and  this goes on and  this goes on and  this goes on and  this goes &quot;</span>
+<span class="sd">    ...                      &quot;on and  this goes on and &quot;)</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; is_relevant_sentence(&quot;This sentence is not too short and not too long, without URL and without citation.&quot;)</span>
+<span class="sd">    True</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">num_words</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">min_num_words</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">max_num_words</span>
+        <span class="ow">and</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">RE_CITATION</span><span class="p">,</span> <span class="n">sentence</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="ow">and</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">RE_URL</span><span class="p">,</span> <span class="n">sentence</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="summarize"><a class="viewcode-back" href="../../../reference/index.html#sisu.pit.building_summary.summarize">[docs]</a><span class="k">def</span> <span class="nf">summarize</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">num_documents</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num_sentences</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+              <span class="n">embedding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num_keywords</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="n">size_generic_query</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+              <span class="n">used_sentences</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">get_content</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Produces a list of sentences and a list of keywords.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    documents: :class:`list`</span>
+<span class="sd">        A list of documents.</span>
+<span class="sd">    query: :class:`str`, optional</span>
+<span class="sd">        Textual query to focus the summary on one subject.</span>
+<span class="sd">    num_documents: :class:`int`, optional</span>
+<span class="sd">        Number of top documents to be taking into account for the summary.</span>
+<span class="sd">    num_sentences: :class:`int`, optional</span>
+<span class="sd">        Number of sentences wanted in the summary. Overrides ratio.</span>
+<span class="sd">    ratio: :class:`float` in ]0, 1], optional</span>
+<span class="sd">        length of the summary as a proportion of the length of the num_documents kept.</span>
+<span class="sd">    embedding: :class:`~gismo.embedding.Embedding`, optional</span>
+<span class="sd">        An Embedding fitted on a bigger corpus than documents.</span>
+<span class="sd">    num_keywords: :class:`int`, optional</span>
+<span class="sd">        An int corresponding to the number of keywords returned</span>
+<span class="sd">    size_generic_query: :class:`int`, optional</span>
+<span class="sd">        size generic query</span>
+<span class="sd">    used_sentences: :class:`set`, optional</span>
+<span class="sd">        A set of &quot;forbidden&quot; sentences. Will be updated inplace.</span>
+<span class="sd">    get_content: callable, optional</span>
+<span class="sd">        A function that allows the retrieval of a document&#39;s content.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    List</span>
+<span class="sd">        A list of the summary sentences,</span>
+<span class="sd">        A list of keywords.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from gismo.datasets.reuters import get_reuters_news</span>
+<span class="sd">    &gt;&gt;&gt; summarize(get_reuters_news(), num_documents=10, num_sentences=4) # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">    ([&#39;Gum arabic has a history dating back to ancient times.&#39;,</span>
+<span class="sd">      &#39;Hungry nomads pluck gum arabic as they pass with grazing goats and cattle.&#39;,</span>
+<span class="sd">      &#39;For impoverished sub-Saharan states producing the bulk of world demand, gum arabic simply means export currency.&#39;,</span>
+<span class="sd">      &quot;After years of war-induced poverty, gum arabic is offering drought-stricken Chad&#39;s rural poor a lifeline to the production plants of the world&#39;s food and beverage giants.&quot;],</span>
+<span class="sd">      [&#39;norilsk&#39;, &#39;icewine&#39;, &#39;amiel&#39;, &#39;gum&#39;, &#39;arabic&#39;, &#39;her&#39;, &#39;tibet&#39;, &#39;chad&#39;, &#39;deng&#39;, &#39;oil&#39;, &#39;grapes&#39;, &#39;she&#39;, &#39;his&#39;, &#39;czechs&#39;, &#39;chechnya&#39;])</span>
+<span class="sd">    &gt;&gt;&gt; summarize(get_reuters_news(), query=&quot;Ericsson&quot;, num_documents=10, num_sentences=5) # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">    ([&#39;The restraints are few in areas such as consumer products, while in sectors such as banking, distribution and insurance, foreign firms are kept on a very tight leash.&#39;,</span>
+<span class="sd">      &#39;These latest wins follow a recent $350 million contract win with Telefon AB L.M.&#39;,</span>
+<span class="sd">      &#39;Pocket is the first from the high-priced 1996 auction known to have filed for bankruptcy protection.&#39;,</span>
+<span class="sd">      &#39;&quot;That is, assuming the deal is done right,&quot; she added.&#39;,</span>
+<span class="sd">      &#39;&quot;Generally speaking, the easiest place to make a profit tends to be in the consumer industry, usually fairly small-scale operations,&quot; said Anne Stevenson-Yang, director of China operations for the U.S.-China Business Council.&#39;],</span>
+<span class="sd">      [&#39;ericsson&#39;, &#39;sweden&#39;, &#39;motorola&#39;, &#39;telecommuncation&#39;, &#39;communciation&#39;, &#39;bolstering&#39;, &#39;priced&#39;, &#39;sectors&#39;, &#39;makers&#39;, &#39;equipment&#39;, &#39;schaumberg&#39;, &#39;lm&#39;, &#39;done&#39;, &#39;manufacturing&#39;, &#39;consumer&#39;])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">used_sentences</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">used_sentences</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">num_documents</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">num_documents</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+
+    <span class="n">doc_corpus</span> <span class="o">=</span> <span class="n">Corpus</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">documents</span><span class="p">,</span> <span class="n">to_text</span><span class="o">=</span><span class="n">get_content</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">embedding</span><span class="p">:</span>
+        <span class="n">doc_embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">()</span>
+        <span class="n">doc_embedding</span><span class="o">.</span><span class="n">fit_ext</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span>
+        <span class="n">doc_embedding</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">corpus</span><span class="o">=</span><span class="n">doc_corpus</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">doc_embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">=</span><span class="n">vectorizer</span><span class="p">)</span>
+        <span class="n">doc_embedding</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="o">=</span><span class="n">doc_corpus</span><span class="p">)</span>
+
+    <span class="n">documents_gismo</span> <span class="o">=</span> <span class="n">Gismo</span><span class="p">(</span><span class="n">corpus</span><span class="o">=</span><span class="n">doc_corpus</span><span class="p">,</span> <span class="n">embedding</span><span class="o">=</span><span class="n">doc_embedding</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1">#        print(&quot;- Running D-iteration (query = %s)&quot; % query)</span>
+    <span class="n">documents_gismo</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="c1">#        print(&quot;- Extracting results (gismo = %s)&quot; % documents_gismo)</span>
+    <span class="n">best_documents</span> <span class="o">=</span> <span class="n">documents_gismo</span><span class="o">.</span><span class="n">get_documents_by_rank</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">num_documents</span><span class="p">)</span>
+
+    <span class="c1">#    Split best document into sentences. Remove duplicates</span>
+    <span class="c1">#    print(&quot;Splitting documents into sentences&quot;)</span>
+    <span class="n">contents_sentences</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">({</span>
+        <span class="n">sentence</span>
+        <span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">best_documents</span>
+        <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">make_sentences</span><span class="p">(</span><span class="n">get_content</span><span class="p">(</span><span class="n">document</span><span class="p">))</span>
+    <span class="p">})</span>
+
+    <span class="c1"># Scale the number of sentences proportionally to the total number</span>
+    <span class="c1"># of sentences in the top documents.</span>
+    <span class="k">if</span> <span class="n">num_sentences</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">num_sentences</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ratio</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">contents_sentences</span><span class="p">))</span>
+    <span class="c1">#        print(&quot;Scaling num_sentences to %d (ratio = %s)&quot; % (num_sentences, ratio))</span>
+
+    <span class="c1">#    print(&quot;Preparing sentence-based gismo&quot;)</span>
+
+    <span class="n">sent_corpus</span> <span class="o">=</span> <span class="n">Corpus</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">contents_sentences</span><span class="p">)</span>
+
+    <span class="n">sent_embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">embedding</span><span class="p">:</span>
+        <span class="n">sent_embedding</span><span class="o">.</span><span class="n">fit_ext</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sent_embedding</span><span class="o">.</span><span class="n">fit_ext</span><span class="p">(</span><span class="n">doc_embedding</span><span class="p">)</span>
+
+    <span class="n">sent_embedding</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">corpus</span><span class="o">=</span><span class="n">sent_corpus</span><span class="p">)</span>
+    <span class="n">sentences_gismo</span> <span class="o">=</span> <span class="n">Gismo</span><span class="p">(</span><span class="n">corpus</span><span class="o">=</span><span class="n">sent_corpus</span><span class="p">,</span> <span class="n">embedding</span><span class="o">=</span><span class="n">sent_embedding</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1">#    print(&quot;Preparing sentence-based gismo&quot;)</span>
+    <span class="n">sentences_gismo</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="n">keywords</span> <span class="o">=</span> <span class="n">sentences_gismo</span><span class="o">.</span><span class="n">get_features_by_rank</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">num_keywords</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">query</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="n">sentences_gismo</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">keywords</span><span class="p">[:</span><span class="n">size_generic_query</span><span class="p">]))</span>
+    <span class="n">sentences_ranks</span> <span class="o">=</span> <span class="n">sentences_gismo</span><span class="o">.</span><span class="n">diteration</span><span class="o">.</span><span class="n">x_order</span>  <span class="c1"># List of sentence indices by decreasing relevance</span>
+    <span class="c1">#    print(&quot;Extracting %d-top sentences&quot; % num_sentences)</span>
+
+    <span class="n">num_kept_sentences</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ranked_sentences</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">while</span> <span class="n">num_kept_sentences</span> <span class="o">&lt;</span> <span class="n">num_sentences</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">contents_sentences</span><span class="p">):</span>
+        <span class="n">sentence</span> <span class="o">=</span> <span class="n">contents_sentences</span><span class="p">[</span><span class="n">sentences_ranks</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+        <span class="k">if</span> <span class="n">sentence</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">used_sentences</span> <span class="ow">and</span> <span class="n">is_relevant_sentence</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+            <span class="n">used_sentences</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+            <span class="n">ranked_sentences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+            <span class="n">num_kept_sentences</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">ranked_sentences</span><span class="p">,</span> <span class="n">keywords</span></div>
+
+
+<div class="viewcode-block" id="make_query"><a class="viewcode-back" href="../../../reference/index.html#sisu.pit.building_summary.make_query">[docs]</a><span class="k">def</span> <span class="nf">make_query</span><span class="p">(</span><span class="n">sentence</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s1">&#39;en&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Builds a query from a sentence.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sentence: :class:`str`</span>
+<span class="sd">        A string from which we want to build a query.</span>
+<span class="sd">    language: :class:`str`</span>
+<span class="sd">        Language use</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        A string corresponding to the query.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ---------</span>
+<span class="sd">    &gt;&gt;&gt; make_query(&quot;Life is something nice!&quot;)</span>
+<span class="sd">    &#39;life nice&#39;</span>
+<span class="sd">    &gt;&gt;&gt; make_query(&quot;La vie est belle !&quot;, language=&#39;fr&#39;)</span>
+<span class="sd">    &#39;vie belle&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">MAP_LANG_STOP_WORDS</span><span class="p">[</span><span class="n">language</span><span class="p">])</span>
+    <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span> <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="make_tree"><a class="viewcode-back" href="../../../reference/index.html#sisu.pit.building_summary.make_tree">[docs]</a><span class="k">def</span> <span class="nf">make_tree</span><span class="p">(</span>
+    <span class="n">documents</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">depth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">trees</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">documents_gismo</span><span class="p">:</span> <span class="n">Gismo</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">num_documents</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">num_sentences</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">embedding</span><span class="p">:</span> <span class="n">Embedding</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">used_sentences</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Builds a hierarchical summary.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    documents: :class:`list` of :class:`dict`</span>
+<span class="sd">        A list of dict corresponding to documents, only the values of the &quot;content&quot; key will be summarized.</span>
+<span class="sd">    query: :class:`str`, optional</span>
+<span class="sd">        Textual query to focus the summary on one subject.</span>
+<span class="sd">    depth: :class:`int`, optional</span>
+<span class="sd">        An int giving the depth of the summary (depth one is a sequential summary).</span>
+<span class="sd">    trees: :class:`list`, optional</span>
+<span class="sd">        A list of dict being completed, necessary for the recursivity.</span>
+<span class="sd">    documents_gismo: :class:`~gismo.gismo.Gismo`</span>
+<span class="sd">        Pre-existing Gismo</span>
+<span class="sd">    num_documents: :class:`int`, optional</span>
+<span class="sd">        Number of top documents to be taking into account for the summary.</span>
+<span class="sd">    num_sentences: :class:`int`, optional</span>
+<span class="sd">        Number of sentences wanted in the summary.</span>
+<span class="sd">    embedding: :class:`~gismo.embedding.Embedding`, optional</span>
+<span class="sd">        An Embedding fitted on a bigger corpus than documents.</span>
+<span class="sd">    used_sentences: :class:`set`, optional</span>
+<span class="sd">        A set of &quot;forbidden&quot; sentences. Will be updated inplace.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :class:`list` of :class:`dict`</span>
+<span class="sd">        A list of dict corresponding to the hierarchical summary</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from gismo.datasets.reuters import get_reuters_news</span>
+<span class="sd">    &gt;&gt;&gt; make_tree(get_reuters_news(), query=&quot;Orange&quot;, num_documents=10, num_sentences=3, depth=2) # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS</span>
+<span class="sd">    [{&#39;text&#39;: &#39;But some analysts still believe Orange is overvalued.&#39;,</span>
+<span class="sd">      &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;one&#39;, &#39;is&#39;, &#39;at&#39;, &#39;on&#39;, &#39;in&#39;, &#39;and&#39;, &#39;its&#39;, &#39;shares&#39;, &#39;has&#39;, &#39;analysts&#39;, &#39;of&#39;, &#39;market&#39;, &#39;believe&#39;, &#39;overvalued&#39;],</span>
+<span class="sd">      &#39;url&#39;: None,</span>
+<span class="sd">      &#39;children&#39;: [{&#39;text&#39;: &#39;Trading sources said China was staying out of the market, and that Indian meal was currently overvalued by a good $20 a tonne.&#39;,</span>
+<span class="sd">                    &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;overvalued&#39;, &#39;analysts&#39;, &#39;that&#39;, &#39;and&#39;, &#39;are&#39;, &#39;compared&#39;, &#39;believe&#39;, &#39;market&#39;, &#39;but&#39;, &#39;some&#39;, &#39;still&#39;, &#39;of&#39;, &#39;said&#39;, &#39;we&#39;],</span>
+<span class="sd">                    &#39;url&#39;: None, &#39;children&#39;: []},</span>
+<span class="sd">                   {&#39;text&#39;: &#39;Since the purchase, widely seen by analysts as overvalued, Quaker has struggled with the line of ready-to-drink teas and juices.&#39;,</span>
+<span class="sd">                    &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;overvalued&#39;, &#39;analysts&#39;, &#39;that&#39;, &#39;and&#39;, &#39;are&#39;, &#39;compared&#39;, &#39;believe&#39;, &#39;market&#39;, &#39;but&#39;, &#39;some&#39;, &#39;still&#39;, &#39;of&#39;, &#39;said&#39;, &#39;we&#39;],</span>
+<span class="sd">                    &#39;url&#39;: None, &#39;children&#39;: []},</span>
+<span class="sd">                   {&#39;text&#39;: &#39;&quot;No question that if the dollar continues to be overvalued and continues to be strong, we\&#39;ll see some price erosion later in the year.&quot;&#39;,</span>
+<span class="sd">                    &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;overvalued&#39;, &#39;analysts&#39;, &#39;that&#39;, &#39;and&#39;, &#39;are&#39;, &#39;compared&#39;, &#39;believe&#39;, &#39;market&#39;, &#39;but&#39;, &#39;some&#39;, &#39;still&#39;, &#39;of&#39;, &#39;said&#39;, &#39;we&#39;],</span>
+<span class="sd">                    &#39;url&#39;: None, &#39;children&#39;: []}]},</span>
+<span class="sd">     {&#39;text&#39;: &#39;Orange shares were 2.5p higher at 188p on Friday.&#39;,</span>
+<span class="sd">      &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;one&#39;, &#39;is&#39;, &#39;at&#39;, &#39;on&#39;, &#39;in&#39;, &#39;and&#39;, &#39;its&#39;, &#39;shares&#39;, &#39;has&#39;, &#39;analysts&#39;, &#39;of&#39;, &#39;market&#39;, &#39;believe&#39;, &#39;overvalued&#39;],</span>
+<span class="sd">      &#39;url&#39;: None,</span>
+<span class="sd">      &#39;children&#39;: [{&#39;text&#39;: &#39;Orange, Calif.-based Bergen is the largest U.S. distributor of generic drugs, while Miami-based Ivax is a generic drug manufacturing giant.&#39;,</span>
+<span class="sd">                    &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;higher&#39;, &#39;shares&#39;, &#39;friday&#39;, &#39;on&#39;, &#39;at&#39;, &#39;and&#39;, &#39;in&#39;, &#39;its&#39;, &#39;of&#39;, &#39;percent&#39;, &#39;one&#39;, &#39;mobile&#39;, &#39;to&#39;, &#39;market&#39;],</span>
+<span class="sd">                    &#39;url&#39;: None, &#39;children&#39;: []},</span>
+<span class="sd">                   {&#39;text&#39;: &#39;One-2-One and Orange ORA.L, which offer only digital services, are due to release their connection figures next week.&#39;,</span>
+<span class="sd">                    &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;higher&#39;, &#39;shares&#39;, &#39;friday&#39;, &#39;on&#39;, &#39;at&#39;, &#39;and&#39;, &#39;in&#39;, &#39;its&#39;, &#39;of&#39;, &#39;percent&#39;, &#39;one&#39;, &#39;mobile&#39;, &#39;to&#39;, &#39;market&#39;],</span>
+<span class="sd">                    &#39;url&#39;: None, &#39;children&#39;: []},</span>
+<span class="sd">                   {&#39;text&#39;: &quot;Dodd noted that BT&#39;s plans to raise the price of calls to Orange and One 2 One handsets would be beneficial.&quot;,</span>
+<span class="sd">                    &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;higher&#39;, &#39;shares&#39;, &#39;friday&#39;, &#39;on&#39;, &#39;at&#39;, &#39;and&#39;, &#39;in&#39;, &#39;its&#39;, &#39;of&#39;, &#39;percent&#39;, &#39;one&#39;, &#39;mobile&#39;, &#39;to&#39;, &#39;market&#39;],</span>
+<span class="sd">                    &#39;url&#39;: None, &#39;children&#39;: []}]},</span>
+<span class="sd">     {&#39;text&#39;: &#39;Orange already has a full roaming agreement in Germany and a partial one in France, centred on Paris.&#39;,</span>
+<span class="sd">      &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;one&#39;, &#39;is&#39;, &#39;at&#39;, &#39;on&#39;, &#39;in&#39;, &#39;and&#39;, &#39;its&#39;, &#39;shares&#39;, &#39;has&#39;, &#39;analysts&#39;, &#39;of&#39;, &#39;market&#39;, &#39;believe&#39;, &#39;overvalued&#39;],</span>
+<span class="sd">      &#39;url&#39;: None,</span>
+<span class="sd">      &#39;children&#39;: [{&#39;text&#39;: &#39;Orange says its offer of roaming services between the UK and other countries is part of its aim to provide customers with the best value for money.&#39;,</span>
+<span class="sd">                    &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;roaming&#39;, &#39;partial&#39;, &#39;centred&#39;, &#39;paris&#39;, &#39;france&#39;, &#39;germany&#39;, &#39;agreement&#39;, &#39;full&#39;, &#39;on&#39;, &#39;and&#39;, &#39;in&#39;, &#39;of&#39;, &#39;for&#39;, &#39;with&#39;],</span>
+<span class="sd">                    &#39;url&#39;: None, &#39;children&#39;: []},</span>
+<span class="sd">                   {&#39;text&#39;: &#39;As with all roaming agreements, the financial details of the Swiss deal remain a trade secret.&#39;,</span>
+<span class="sd">                    &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;roaming&#39;, &#39;partial&#39;, &#39;centred&#39;, &#39;paris&#39;, &#39;france&#39;, &#39;germany&#39;, &#39;agreement&#39;, &#39;full&#39;, &#39;on&#39;, &#39;and&#39;, &#39;in&#39;, &#39;of&#39;, &#39;for&#39;, &#39;with&#39;],</span>
+<span class="sd">                    &#39;url&#39;: None, &#39;children&#39;: []},</span>
+<span class="sd">                   {&#39;text&#39;: &#39;&quot;We look forward in 1997 to continuing to move ahead and to extending our international service through new roaming agreements and the introduction of dual band handsets.&quot;&#39;,</span>
+<span class="sd">                    &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;roaming&#39;, &#39;partial&#39;, &#39;centred&#39;, &#39;paris&#39;, &#39;france&#39;, &#39;germany&#39;, &#39;agreement&#39;, &#39;full&#39;, &#39;on&#39;, &#39;and&#39;, &#39;in&#39;, &#39;of&#39;, &#39;for&#39;, &#39;with&#39;],</span>
+<span class="sd">                    &#39;url&#39;: None, &#39;children&#39;: []}]}]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_keywords</span> <span class="o">=</span> <span class="mi">15</span>
+    <span class="k">if</span> <span class="n">used_sentences</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">used_sentences</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">depth</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">documents_gismo</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">doc_corpus</span> <span class="o">=</span> <span class="n">Corpus</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">documents</span><span class="p">,</span> <span class="n">to_text</span><span class="o">=</span><span class="n">simplified_document_to_string</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">embedding</span><span class="p">:</span>
+            <span class="n">doc_embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">()</span>
+            <span class="n">doc_embedding</span><span class="o">.</span><span class="n">fit_ext</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span>
+            <span class="n">doc_embedding</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">corpus</span><span class="o">=</span><span class="n">doc_corpus</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+            <span class="n">doc_embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">=</span><span class="n">vectorizer</span><span class="p">)</span>
+            <span class="n">doc_embedding</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="o">=</span><span class="n">doc_corpus</span><span class="p">)</span>
+
+        <span class="n">documents_gismo</span> <span class="o">=</span> <span class="n">Gismo</span><span class="p">(</span><span class="n">corpus</span><span class="o">=</span><span class="n">doc_corpus</span><span class="p">,</span> <span class="n">embedding</span><span class="o">=</span><span class="n">doc_embedding</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">documents_gismo</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="n">best_documents</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">documents_gismo</span><span class="o">.</span><span class="n">corpus</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">documents_gismo</span><span class="o">.</span><span class="n">diteration</span><span class="o">.</span><span class="n">x_order</span><span class="p">[:</span><span class="n">num_documents</span><span class="p">]]</span>
+        <span class="c1"># documents_gismo.get_documents_by_rank(k=num_documents)</span>
+    <span class="n">sentences_dictionnaries</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;sentence&quot;</span><span class="p">:</span> <span class="n">sentence</span><span class="p">,</span>
+            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">document</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;doc_index&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">best_documents</span>
+        <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">OrderedDict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">make_sentences</span><span class="p">(</span><span class="n">document</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">])))</span>
+    <span class="p">]</span>
+
+    <span class="n">sent_corpus</span> <span class="o">=</span> <span class="n">Corpus</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">sentences_dictionnaries</span><span class="p">,</span> <span class="n">to_text</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="p">[</span><span class="s1">&#39;sentence&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">embedding</span><span class="p">:</span>
+        <span class="n">sent_embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">()</span>
+        <span class="n">sent_embedding</span><span class="o">.</span><span class="n">fit_ext</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span>
+        <span class="n">sent_embedding</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">corpus</span><span class="o">=</span><span class="n">sent_corpus</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">sent_embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">=</span><span class="n">vectorizer</span><span class="p">)</span>
+        <span class="n">sent_embedding</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="o">=</span><span class="n">sent_corpus</span><span class="p">)</span>
+
+    <span class="n">sentences_gismo</span> <span class="o">=</span> <span class="n">Gismo</span><span class="p">(</span><span class="n">corpus</span><span class="o">=</span><span class="n">sent_corpus</span><span class="p">,</span> <span class="n">embedding</span><span class="o">=</span><span class="n">sent_embedding</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">sentences_gismo</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="n">keywords</span> <span class="o">=</span> <span class="n">sentences_gismo</span><span class="o">.</span><span class="n">get_features_by_rank</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">num_keywords</span><span class="p">)</span>
+    <span class="n">sentences_ranks</span> <span class="o">=</span> <span class="n">sentences_gismo</span><span class="o">.</span><span class="n">diteration</span><span class="o">.</span><span class="n">x_order</span>
+
+    <span class="n">num_kept_sentences</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ranked_sentences_dict</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">sentences_ranks</span><span class="p">:</span>
+        <span class="n">sentence_dict</span> <span class="o">=</span> <span class="n">sentences_dictionnaries</span><span class="p">[</span><span class="n">rank</span><span class="p">]</span>
+        <span class="n">sentence</span> <span class="o">=</span> <span class="n">sentence_dict</span><span class="p">[</span><span class="s2">&quot;sentence&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">sentence</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">used_sentences</span> <span class="ow">and</span> <span class="n">is_relevant_sentence</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+            <span class="n">ranked_sentences_dict</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sentence_dict</span><span class="p">)</span>
+            <span class="n">used_sentences</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+            <span class="n">num_kept_sentences</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">num_kept_sentences</span> <span class="o">&gt;=</span> <span class="n">num_sentences</span><span class="p">:</span>
+                <span class="k">break</span>
+    <span class="n">children</span> <span class="o">=</span> <span class="n">ranked_sentences_dict</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">child</span><span class="p">[</span><span class="s2">&quot;sentence&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;current_keywords&quot;</span><span class="p">:</span> <span class="n">keywords</span><span class="p">,</span>
+            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">child</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="n">make_tree</span><span class="p">(</span>
+                <span class="n">trees</span><span class="o">=</span><span class="n">trees</span><span class="p">,</span>
+                <span class="n">depth</span><span class="o">=</span><span class="n">depth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="n">documents_gismo</span><span class="o">=</span><span class="n">documents_gismo</span><span class="p">,</span>
+                <span class="n">documents</span><span class="o">=</span><span class="n">documents</span><span class="p">,</span>
+                <span class="n">query</span><span class="o">=</span><span class="n">make_query</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">query</span><span class="p">,</span> <span class="n">child</span><span class="p">[</span><span class="s2">&quot;sentence&quot;</span><span class="p">]])),</span>
+                <span class="n">num_sentences</span><span class="o">=</span><span class="n">num_sentences</span><span class="p">,</span>
+                <span class="n">embedding</span><span class="o">=</span><span class="n">embedding</span><span class="p">,</span>
+                <span class="n">used_sentences</span><span class="o">=</span><span class="n">used_sentences</span>
+            <span class="p">)</span>
+        <span class="p">}</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span>
+    <span class="p">]</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Mélanie Cambus, Marc-Olivier Buob, Fabien Mathieu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

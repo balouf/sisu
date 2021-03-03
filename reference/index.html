@@ -96,6 +96,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="covid.html">Covid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="preprocessing.html">Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sisu.pit.gismo_wrapper">PIT</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
@@ -184,6 +185,418 @@
 </ul>
 </li>
 </ul>
+</div>
+<div class="section" id="module-sisu.pit.gismo_wrapper">
+<span id="pit"></span><h2>PIT<a class="headerlink" href="#module-sisu.pit.gismo_wrapper" title="Permalink to this headline">¶</a></h2>
+<dl class="py data">
+<dt id="sisu.pit.gismo_wrapper.COVID19_TEXT_GETTERS">
+<code class="sig-prename descclassname"><span class="pre">sisu.pit.gismo_wrapper.</span></code><code class="sig-name descname"><span class="pre">COVID19_TEXT_GETTERS</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'abstract':</span> <span class="pre">&lt;function</span> <span class="pre">get_abstract&gt;,</span> <span class="pre">'content':</span> <span class="pre">&lt;function</span> <span class="pre">get_content&gt;,</span> <span class="pre">'title':</span> <span class="pre">&lt;function</span> <span class="pre">get_title&gt;}</span></em><a class="headerlink" href="#sisu.pit.gismo_wrapper.COVID19_TEXT_GETTERS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getters for the covid dataset. MOVE TO COVID SUBMODULE.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="sisu.pit.gismo_wrapper.RE_EMAIL">
+<code class="sig-prename descclassname"><span class="pre">sisu.pit.gismo_wrapper.</span></code><code class="sig-name descname"><span class="pre">RE_EMAIL</span></code><em class="property"> <span class="pre">=</span> <span class="pre">re.compile('https?://[a-zA-Z.:0-9]+|www.[a-zA-Z.:0-9]+.*|www.|.org|[a-zA-Z.:0-9]+/')</span></em><a class="headerlink" href="#sisu.pit.gismo_wrapper.RE_EMAIL" title="Permalink to this definition">¶</a></dt>
+<dd><p>regexp for email detection.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="sisu.pit.gismo_wrapper.RE_NOISE">
+<code class="sig-prename descclassname"><span class="pre">sisu.pit.gismo_wrapper.</span></code><code class="sig-name descname"><span class="pre">RE_NOISE</span></code><em class="property"> <span class="pre">=</span> <span class="pre">re.compile('[,.:;()0-9+=%\\[\\]_]')</span></em><a class="headerlink" href="#sisu.pit.gismo_wrapper.RE_NOISE" title="Permalink to this definition">¶</a></dt>
+<dd><p>regexp for useless text.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="sisu.pit.gismo_wrapper.RE_REFERENCE">
+<code class="sig-prename descclassname"><span class="pre">sisu.pit.gismo_wrapper.</span></code><code class="sig-name descname"><span class="pre">RE_REFERENCE</span></code><em class="property"> <span class="pre">=</span> <span class="pre">re.compile('\\[\\d+,\\s\\d+\\]|\\[\\d+\\]|\\(\\d+,\\s\\d+\\)|\\(\\d+\\)')</span></em><a class="headerlink" href="#sisu.pit.gismo_wrapper.RE_REFERENCE" title="Permalink to this definition">¶</a></dt>
+<dd><p>regexp for citations.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.pit.gismo_wrapper.document_to_text">
+<code class="sig-prename descclassname"><span class="pre">sisu.pit.gismo_wrapper.</span></code><code class="sig-name descname"><span class="pre">document_to_text</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_getters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/pit/gismo_wrapper.html#document_to_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.pit.gismo_wrapper.document_to_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>NOT WORKING</p>
+<p>Convert a document (e.g. from COVID-19 dataset) to a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A simplified COVID-19 document.</p></li>
+<li><p><strong>text_getters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>, optional) – CODE USES LIST NOT DICT THIS FUNCTION SHOULD PROBABLY BE REMOVED</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>The <cite>str</cite> representing the input document.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>NO EXAMPLE, REMOVE THIS FUNCTION.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.pit.gismo_wrapper.initialize_embedding">
+<code class="sig-prename descclassname"><span class="pre">sisu.pit.gismo_wrapper.</span></code><code class="sig-name descname"><span class="pre">initialize_embedding</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">documents:</span> <span class="pre">list</span></em>, <em class="sig-param"><span class="pre">stop_words:</span> <span class="pre">Optional[list]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">max_ngram:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1</span></em>, <em class="sig-param"><span class="pre">min_df:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.02</span></em>, <em class="sig-param"><span class="pre">max_df:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.85</span></em>, <em class="sig-param"><span class="pre">document_to_text=&lt;function</span> <span class="pre">simplified_document_to_string&gt;</span></em>, <em class="sig-param"><span class="pre">preprocessor=None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.embedding.Embedding" title="(in GISMO v0.4.1)"><span class="pre">gismo.embedding.Embedding</span></a><a class="reference internal" href="../_modules/sisu/pit/gismo_wrapper.html#initialize_embedding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.pit.gismo_wrapper.initialize_embedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes an embedding, fitting it from documents</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>documents</strong> – A <cite>list</cite> of <cite>dict</cite> representing documents with strings in the values.</p></li>
+<li><p><strong>stop_words</strong> – A <cite>list</cite> of words to ignore in the vocabulary.</p></li>
+<li><p><strong>max_ngram</strong> – the maximum length of ngrams to take into account (e.g. 2 if bigrams in vocabulary).</p></li>
+<li><p><strong>min_df</strong> – minimum frequency of a word to be considered in the vocabulary,
+if an int the word must be contained in at least min_df documents.</p></li>
+<li><p><strong>max_df</strong> (<em>maximum frequency of a word to be considered in the vocabulary.</em>) – </p></li>
+<li><p><strong>document_to_text</strong> – Callback(Document) -&gt; str.</p></li>
+<li><p><strong>preprocessor</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The embedding fitted on the documents.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Embedding</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.pit.gismo_wrapper.make_gismo">
+<code class="sig-prename descclassname"><span class="pre">sisu.pit.gismo_wrapper.</span></code><code class="sig-name descname"><span class="pre">make_gismo</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">documents:</span> <span class="pre">list</span></em>, <em class="sig-param"><span class="pre">alpha:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.2</span></em>, <em class="sig-param"><span class="pre">other_embedding:</span> <span class="pre">Optional[gismo.embedding.Embedding]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">is_documents_embedding:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em>, <em class="sig-param"><span class="pre">document_to_text=&lt;function</span> <span class="pre">simplified_document_to_string&gt;</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.gismo.Gismo" title="(in GISMO v0.4.1)"><span class="pre">gismo.gismo.Gismo</span></a><a class="reference internal" href="../_modules/sisu/pit/gismo_wrapper.html#make_gismo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.pit.gismo_wrapper.make_gismo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a Gismo object from a list of documents.
+:param documents: A <cite>list</cite> of documents with strings in the values.
+:param alpha: A <cite>float</cite> in [0, 1] indicating the damping factor used in the D-iteration used by Gismo.
+:param other_embedding: embedding already fitted on a corpus.
+:param document_to_text: Callback(Document) -&gt; str.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A Gismo object made from the given documents and embedding.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.pit.gismo_wrapper.old_make_gismo">
+<code class="sig-prename descclassname"><span class="pre">sisu.pit.gismo_wrapper.</span></code><code class="sig-name descname"><span class="pre">old_make_gismo</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">documents:</span> <span class="pre">list</span></em>, <em class="sig-param"><span class="pre">alpha:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.2</span></em>, <em class="sig-param"><span class="pre">other_embedding:</span> <span class="pre">Optional[gismo.embedding.Embedding]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">is_documents_embedding:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em>, <em class="sig-param"><span class="pre">document_to_text=&lt;function</span> <span class="pre">simplified_document_to_string&gt;</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.gismo.Gismo" title="(in GISMO v0.4.1)"><span class="pre">gismo.gismo.Gismo</span></a><a class="reference internal" href="../_modules/sisu/pit/gismo_wrapper.html#old_make_gismo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.pit.gismo_wrapper.old_make_gismo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a Gismo object from a list of documents.
+:param documents: A <cite>list</cite> of documents with strings in the values.
+:param alpha: A <cite>float</cite> in [0, 1] indicating the damping factor used in the D-iteration used by Gismo.
+:param other_embedding: embedding already fitted on a corpus.
+:param document_to_text: Callback(Document) -&gt; str.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A Gismo object made from the given documents and embedding.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.pit.gismo_wrapper.sanitize_text">
+<code class="sig-prename descclassname"><span class="pre">sisu.pit.gismo_wrapper.</span></code><code class="sig-name descname"><span class="pre">sanitize_text</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/pit/gismo_wrapper.html#sanitize_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.pit.gismo_wrapper.sanitize_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sanitize a text. This is done to improve the Embedding quality.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Text to clean.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The corresponding sanitized <cite>str</cite> instance.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sanitize_text</span><span class="p">(</span><span class="s2">&quot;This is a mail: santa@northpole.com!&quot;</span><span class="p">)</span>
+<span class="go">&#39;This is a mail santa@northpolecom!&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sanitize_text</span><span class="p">(</span><span class="s2">&quot;This is a !*[ url: https://www.ens.fr!&quot;</span><span class="p">)</span>
+<span class="go">&#39;This is a !* url /&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sanitize_text</span><span class="p">(</span><span class="s2">&quot;This are references [3, 17].&quot;</span><span class="p">)</span>
+<span class="go">&#39;This are references  &#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.pit.gismo_wrapper.simplified_document_to_string">
+<code class="sig-prename descclassname"><span class="pre">sisu.pit.gismo_wrapper.</span></code><code class="sig-name descname"><span class="pre">simplified_document_to_string</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/pit/gismo_wrapper.html#simplified_document_to_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.pit.gismo_wrapper.simplified_document_to_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms a dict into a string made of its values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>doc</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document of “depth one”, all the values are strings.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Concatenation of <cite>doc</cite> values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sisu.preprocessing.sentences</span> <span class="kn">import</span> <span class="n">toy_article</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">simplified_document_to_string</span><span class="p">(</span><span class="n">toy_article</span><span class="p">)</span>
+<span class="go">&quot;Predator In the jungle, no-one hears you far cry. And vice-versa. They say to make a long abstract, with the number 42 in it, so here I am. There is no-one in the trees. Is there? Predators don&#39;t like to lose.&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<span class="target" id="module-sisu.pit.embedding_idf"></span><dl class="py class">
+<dt id="sisu.pit.embedding_idf.IdfEmbedding">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sisu.pit.embedding_idf.</span></code><code class="sig-name descname"><span class="pre">IdfEmbedding</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vectorizer</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" title="(in scikit-learn v0.24)"><span class="pre">sklearn.feature_extraction.text.CountVectorizer</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/pit/embedding_idf.html#IdfEmbedding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.pit.embedding_idf.IdfEmbedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class leverages the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" title="(in scikit-learn v0.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountVectorizer</span></code></a>
+class to build the dual embedding of a <a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.corpus.Corpus" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Corpus</span></code></a>.</p>
+<ul class="simple">
+<li><p>Documents are embedded in the space of features;</p></li>
+<li><p>Features are embedded in the space of documents.</p></li>
+</ul>
+<p>It is almost identical to Gismo’s <a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.embedding.Embedding" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Embedding</span></code></a> except that there is no ITF weights.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vectorizer</strong> (<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" title="(in scikit-learn v0.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountVectorizer</span></code></a>, optional) – Custom <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" title="(in scikit-learn v0.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountVectorizer</span></code></a>
+to override default behavior (recommended).
+Having a <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" title="(in scikit-learn v0.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountVectorizer</span></code></a>
+adapted to the <a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.corpus.Corpus" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Corpus</span></code></a> is good practice.</p></li>
+<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – If set, load embedding from corresponding file.</p></li>
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a>, optional) – If set, specify the directory where the embedding is located.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="sisu.pit.embedding_idf.IdfEmbedding.fit_transform">
+<code class="sig-name descname"><span class="pre">fit_transform</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corpus</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.corpus.Corpus" title="(in GISMO v0.4.1)"><span class="pre">gismo.corpus.Corpus</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/pit/embedding_idf.html#IdfEmbedding.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.pit.embedding_idf.IdfEmbedding.fit_transform" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>corpus</strong> – </p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">gismo.common</span> <span class="kn">import</span> <span class="n">toy_source_text</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">=</span><span class="n">Corpus</span><span class="p">(</span><span class="n">toy_source_text</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span> <span class="o">=</span> <span class="n">IdfEmbedding</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span><span class="o">.</span><span class="n">x</span>  
+<span class="go">&lt;5x21 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;</span>
+<span class="go">    with 25 stored elements in Compressed Sparse Row format&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span><span class="o">.</span><span class="n">features</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span>
+<span class="go">[&#39;blade&#39;, &#39;chinese&#39;, &#39;comparing&#39;, &#39;demon&#39;, &#39;folklore&#39;, &#39;gizmo&#39;, &#39;gremlins&#39;, &#39;inside&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sisu.pit.embedding_idf.IdfEmbedding.transform">
+<code class="sig-name descname"><span class="pre">transform</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corpus</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.corpus.Corpus" title="(in GISMO v0.4.1)"><span class="pre">gismo.corpus.Corpus</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/pit/embedding_idf.html#IdfEmbedding.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.pit.embedding_idf.IdfEmbedding.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ingest a corpus of documents using existing features.
+Requires that the embedding has been fitted beforehand.</p>
+<ul class="simple">
+<li><p>TF-IDF embedding of documents is computed and stored.</p></li>
+<li><p>TF-ITF embedding of features is computed and stored.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>corpus</strong> (<a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.corpus.Corpus" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Corpus</span></code></a>) – The corpus to ingest.</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">gismo.common</span> <span class="kn">import</span> <span class="n">toy_source_text</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">=</span><span class="n">Corpus</span><span class="p">(</span><span class="n">toy_source_text</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span> <span class="o">=</span> <span class="n">IdfEmbedding</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">embedding</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">embedding</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">indices</span><span class="p">[:</span><span class="mi">8</span><span class="p">]]</span>
+<span class="go">[&#39;gizmo&#39;, &#39;mogwaï&#39;, &#39;blade&#39;, &#39;sentence&#39;, &#39;sentence&#39;, &#39;shadoks&#39;, &#39;comparing&#39;, &#39;gizmo&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">small_corpus</span> <span class="o">=</span> <span class="n">Corpus</span><span class="p">([</span><span class="s2">&quot;I only talk about Yoda&quot;</span><span class="p">,</span> <span class="s2">&quot;Gizmo forever!&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">small_corpus</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">embedding</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">embedding</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">indices</span><span class="p">]</span>
+<span class="go">[&#39;yoda&#39;, &#39;gizmo&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-sisu.pit.building_summary"></span><dl class="py function">
+<dt id="sisu.pit.building_summary.is_relevant_sentence">
+<code class="sig-prename descclassname"><span class="pre">sisu.pit.building_summary.</span></code><code class="sig-name descname"><span class="pre">is_relevant_sentence</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentence</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_num_words</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_num_words</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="reference internal" href="../_modules/sisu/pit/building_summary.html#is_relevant_sentence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.pit.building_summary.is_relevant_sentence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ignore sentences that are too short, too long, that contain a URL or a citation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sentence</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Sentence to analyze.</p></li>
+<li><p><strong>min_num_words</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, optional) – Minimal number of words.</p></li>
+<li><p><strong>max_num_words</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, optional) – Maximal number of words.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Is the sentence OK?</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">is_relevant_sentence</span><span class="p">(</span><span class="s2">&quot;This is a short sentence!&quot;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_relevant_sentence</span><span class="p">(</span><span class="s2">&quot;This is a sentence with reference to the url http://www.ix.com!&quot;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_relevant_sentence</span><span class="p">(</span><span class="s2">&quot;This is a a sentence with some citations [3, 7]!&quot;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_relevant_sentence</span><span class="p">(</span><span class="s2">&quot;I have many things to say in that sentence, to the point &quot;</span>
+<span class="gp">... </span>                     <span class="s2">&quot;I do not know if I will stop anytime soon but don&#39;t let it stop&quot;</span>
+<span class="gp">... </span>                     <span class="s2">&quot;you from reading this meaninless garbage and this goes on and &quot;</span>
+<span class="gp">... </span>                     <span class="s2">&quot;this goes on and this goes on and this goes on and this goes on and &quot;</span>
+<span class="gp">... </span>                     <span class="s2">&quot; this goes on and  this goes on and  this goes on and  this goes on &quot;</span>
+<span class="gp">... </span>                     <span class="s2">&quot;and  this goes on and  this goes on and  this goes on and  this goes &quot;</span>
+<span class="gp">... </span>                     <span class="s2">&quot;on and  this goes on and  this goes on and  this goes on and  this goes &quot;</span>
+<span class="gp">... </span>                     <span class="s2">&quot;on and  this goes on and &quot;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_relevant_sentence</span><span class="p">(</span><span class="s2">&quot;This sentence is not too short and not too long, without URL and without citation.&quot;</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.pit.building_summary.make_query">
+<code class="sig-prename descclassname"><span class="pre">sisu.pit.building_summary.</span></code><code class="sig-name descname"><span class="pre">make_query</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentence</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'en'</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/pit/building_summary.html#make_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.pit.building_summary.make_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds a query from a sentence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sentence</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – A string from which we want to build a query.</p></li>
+<li><p><strong>language</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Language use</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>A string corresponding to the query.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">make_query</span><span class="p">(</span><span class="s2">&quot;Life is something nice!&quot;</span><span class="p">)</span>
+<span class="go">&#39;life nice&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">make_query</span><span class="p">(</span><span class="s2">&quot;La vie est belle !&quot;</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s1">&#39;fr&#39;</span><span class="p">)</span>
+<span class="go">&#39;vie belle&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.pit.building_summary.make_tree">
+<code class="sig-prename descclassname"><span class="pre">sisu.pit.building_summary.</span></code><code class="sig-name descname"><span class="pre">make_tree</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">documents</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trees</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">documents_gismo</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.gismo.Gismo" title="(in GISMO v0.4.1)"><span class="pre">gismo.gismo.Gismo</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_documents</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_sentences</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.embedding.Embedding" title="(in GISMO v0.4.1)"><span class="pre">gismo.embedding.Embedding</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">used_sentences</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.9)"><span class="pre">set</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a><a class="reference internal" href="../_modules/sisu/pit/building_summary.html#make_tree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.pit.building_summary.make_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds a hierarchical summary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>documents</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A list of dict corresponding to documents, only the values of the “content” key will be summarized.</p></li>
+<li><p><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Textual query to focus the summary on one subject.</p></li>
+<li><p><strong>depth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, optional) – An int giving the depth of the summary (depth one is a sequential summary).</p></li>
+<li><p><strong>trees</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>, optional) – A list of dict being completed, necessary for the recursivity.</p></li>
+<li><p><strong>documents_gismo</strong> (<a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.gismo.Gismo" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Gismo</span></code></a>) – Pre-existing Gismo</p></li>
+<li><p><strong>num_documents</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, optional) – Number of top documents to be taking into account for the summary.</p></li>
+<li><p><strong>num_sentences</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, optional) – Number of sentences wanted in the summary.</p></li>
+<li><p><strong>embedding</strong> (<a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.embedding.Embedding" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Embedding</span></code></a>, optional) – An Embedding fitted on a bigger corpus than documents.</p></li>
+<li><p><strong>used_sentences</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a>, optional) – A set of “forbidden” sentences. Will be updated inplace.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of dict corresponding to the hierarchical summary</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">gismo.datasets.reuters</span> <span class="kn">import</span> <span class="n">get_reuters_news</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">make_tree</span><span class="p">(</span><span class="n">get_reuters_news</span><span class="p">(),</span> <span class="n">query</span><span class="o">=</span><span class="s2">&quot;Orange&quot;</span><span class="p">,</span> <span class="n">num_documents</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_sentences</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> 
+<span class="go">[{&#39;text&#39;: &#39;But some analysts still believe Orange is overvalued.&#39;,</span>
+<span class="go">  &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;one&#39;, &#39;is&#39;, &#39;at&#39;, &#39;on&#39;, &#39;in&#39;, &#39;and&#39;, &#39;its&#39;, &#39;shares&#39;, &#39;has&#39;, &#39;analysts&#39;, &#39;of&#39;, &#39;market&#39;, &#39;believe&#39;, &#39;overvalued&#39;],</span>
+<span class="go">  &#39;url&#39;: None,</span>
+<span class="go">  &#39;children&#39;: [{&#39;text&#39;: &#39;Trading sources said China was staying out of the market, and that Indian meal was currently overvalued by a good $20 a tonne.&#39;,</span>
+<span class="go">                &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;overvalued&#39;, &#39;analysts&#39;, &#39;that&#39;, &#39;and&#39;, &#39;are&#39;, &#39;compared&#39;, &#39;believe&#39;, &#39;market&#39;, &#39;but&#39;, &#39;some&#39;, &#39;still&#39;, &#39;of&#39;, &#39;said&#39;, &#39;we&#39;],</span>
+<span class="go">                &#39;url&#39;: None, &#39;children&#39;: []},</span>
+<span class="go">               {&#39;text&#39;: &#39;Since the purchase, widely seen by analysts as overvalued, Quaker has struggled with the line of ready-to-drink teas and juices.&#39;,</span>
+<span class="go">                &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;overvalued&#39;, &#39;analysts&#39;, &#39;that&#39;, &#39;and&#39;, &#39;are&#39;, &#39;compared&#39;, &#39;believe&#39;, &#39;market&#39;, &#39;but&#39;, &#39;some&#39;, &#39;still&#39;, &#39;of&#39;, &#39;said&#39;, &#39;we&#39;],</span>
+<span class="go">                &#39;url&#39;: None, &#39;children&#39;: []},</span>
+<span class="go">               {&#39;text&#39;: &#39;&quot;No question that if the dollar continues to be overvalued and continues to be strong, we\&#39;ll see some price erosion later in the year.&quot;&#39;,</span>
+<span class="go">                &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;overvalued&#39;, &#39;analysts&#39;, &#39;that&#39;, &#39;and&#39;, &#39;are&#39;, &#39;compared&#39;, &#39;believe&#39;, &#39;market&#39;, &#39;but&#39;, &#39;some&#39;, &#39;still&#39;, &#39;of&#39;, &#39;said&#39;, &#39;we&#39;],</span>
+<span class="go">                &#39;url&#39;: None, &#39;children&#39;: []}]},</span>
+<span class="go"> {&#39;text&#39;: &#39;Orange shares were 2.5p higher at 188p on Friday.&#39;,</span>
+<span class="go">  &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;one&#39;, &#39;is&#39;, &#39;at&#39;, &#39;on&#39;, &#39;in&#39;, &#39;and&#39;, &#39;its&#39;, &#39;shares&#39;, &#39;has&#39;, &#39;analysts&#39;, &#39;of&#39;, &#39;market&#39;, &#39;believe&#39;, &#39;overvalued&#39;],</span>
+<span class="go">  &#39;url&#39;: None,</span>
+<span class="go">  &#39;children&#39;: [{&#39;text&#39;: &#39;Orange, Calif.-based Bergen is the largest U.S. distributor of generic drugs, while Miami-based Ivax is a generic drug manufacturing giant.&#39;,</span>
+<span class="go">                &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;higher&#39;, &#39;shares&#39;, &#39;friday&#39;, &#39;on&#39;, &#39;at&#39;, &#39;and&#39;, &#39;in&#39;, &#39;its&#39;, &#39;of&#39;, &#39;percent&#39;, &#39;one&#39;, &#39;mobile&#39;, &#39;to&#39;, &#39;market&#39;],</span>
+<span class="go">                &#39;url&#39;: None, &#39;children&#39;: []},</span>
+<span class="go">               {&#39;text&#39;: &#39;One-2-One and Orange ORA.L, which offer only digital services, are due to release their connection figures next week.&#39;,</span>
+<span class="go">                &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;higher&#39;, &#39;shares&#39;, &#39;friday&#39;, &#39;on&#39;, &#39;at&#39;, &#39;and&#39;, &#39;in&#39;, &#39;its&#39;, &#39;of&#39;, &#39;percent&#39;, &#39;one&#39;, &#39;mobile&#39;, &#39;to&#39;, &#39;market&#39;],</span>
+<span class="go">                &#39;url&#39;: None, &#39;children&#39;: []},</span>
+<span class="go">               {&#39;text&#39;: &quot;Dodd noted that BT&#39;s plans to raise the price of calls to Orange and One 2 One handsets would be beneficial.&quot;,</span>
+<span class="go">                &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;higher&#39;, &#39;shares&#39;, &#39;friday&#39;, &#39;on&#39;, &#39;at&#39;, &#39;and&#39;, &#39;in&#39;, &#39;its&#39;, &#39;of&#39;, &#39;percent&#39;, &#39;one&#39;, &#39;mobile&#39;, &#39;to&#39;, &#39;market&#39;],</span>
+<span class="go">                &#39;url&#39;: None, &#39;children&#39;: []}]},</span>
+<span class="go"> {&#39;text&#39;: &#39;Orange already has a full roaming agreement in Germany and a partial one in France, centred on Paris.&#39;,</span>
+<span class="go">  &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;one&#39;, &#39;is&#39;, &#39;at&#39;, &#39;on&#39;, &#39;in&#39;, &#39;and&#39;, &#39;its&#39;, &#39;shares&#39;, &#39;has&#39;, &#39;analysts&#39;, &#39;of&#39;, &#39;market&#39;, &#39;believe&#39;, &#39;overvalued&#39;],</span>
+<span class="go">  &#39;url&#39;: None,</span>
+<span class="go">  &#39;children&#39;: [{&#39;text&#39;: &#39;Orange says its offer of roaming services between the UK and other countries is part of its aim to provide customers with the best value for money.&#39;,</span>
+<span class="go">                &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;roaming&#39;, &#39;partial&#39;, &#39;centred&#39;, &#39;paris&#39;, &#39;france&#39;, &#39;germany&#39;, &#39;agreement&#39;, &#39;full&#39;, &#39;on&#39;, &#39;and&#39;, &#39;in&#39;, &#39;of&#39;, &#39;for&#39;, &#39;with&#39;],</span>
+<span class="go">                &#39;url&#39;: None, &#39;children&#39;: []},</span>
+<span class="go">               {&#39;text&#39;: &#39;As with all roaming agreements, the financial details of the Swiss deal remain a trade secret.&#39;,</span>
+<span class="go">                &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;roaming&#39;, &#39;partial&#39;, &#39;centred&#39;, &#39;paris&#39;, &#39;france&#39;, &#39;germany&#39;, &#39;agreement&#39;, &#39;full&#39;, &#39;on&#39;, &#39;and&#39;, &#39;in&#39;, &#39;of&#39;, &#39;for&#39;, &#39;with&#39;],</span>
+<span class="go">                &#39;url&#39;: None, &#39;children&#39;: []},</span>
+<span class="go">               {&#39;text&#39;: &#39;&quot;We look forward in 1997 to continuing to move ahead and to extending our international service through new roaming agreements and the introduction of dual band handsets.&quot;&#39;,</span>
+<span class="go">                &#39;current_keywords&#39;: [&#39;orange&#39;, &#39;roaming&#39;, &#39;partial&#39;, &#39;centred&#39;, &#39;paris&#39;, &#39;france&#39;, &#39;germany&#39;, &#39;agreement&#39;, &#39;full&#39;, &#39;on&#39;, &#39;and&#39;, &#39;in&#39;, &#39;of&#39;, &#39;for&#39;, &#39;with&#39;],</span>
+<span class="go">                &#39;url&#39;: None, &#39;children&#39;: []}]}]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.pit.building_summary.summarize">
+<code class="sig-prename descclassname"><span class="pre">sisu.pit.building_summary.</span></code><code class="sig-name descname"><span class="pre">summarize</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">documents</span></em>, <em class="sig-param"><span class="pre">query=''</span></em>, <em class="sig-param"><span class="pre">num_documents=None</span></em>, <em class="sig-param"><span class="pre">num_sentences=None</span></em>, <em class="sig-param"><span class="pre">ratio=0.05</span></em>, <em class="sig-param"><span class="pre">embedding=None</span></em>, <em class="sig-param"><span class="pre">num_keywords:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">15</span></em>, <em class="sig-param"><span class="pre">size_generic_query:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">5</span></em>, <em class="sig-param"><span class="pre">used_sentences:</span> <span class="pre">Optional[set]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">get_content=&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><span class="pre">tuple</span></a><a class="reference internal" href="../_modules/sisu/pit/building_summary.html#summarize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.pit.building_summary.summarize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produces a list of sentences and a list of keywords.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>documents</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>) – A list of documents.</p></li>
+<li><p><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Textual query to focus the summary on one subject.</p></li>
+<li><p><strong>num_documents</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, optional) – Number of top documents to be taking into account for the summary.</p></li>
+<li><p><strong>num_sentences</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, optional) – Number of sentences wanted in the summary. Overrides ratio.</p></li>
+<li><p><strong>ratio</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> in ]0, 1], optional) – length of the summary as a proportion of the length of the num_documents kept.</p></li>
+<li><p><strong>embedding</strong> (<a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.embedding.Embedding" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Embedding</span></code></a>, optional) – An Embedding fitted on a bigger corpus than documents.</p></li>
+<li><p><strong>num_keywords</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, optional) – An int corresponding to the number of keywords returned</p></li>
+<li><p><strong>size_generic_query</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, optional) – size generic query</p></li>
+<li><p><strong>used_sentences</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a>, optional) – A set of “forbidden” sentences. Will be updated inplace.</p></li>
+<li><p><strong>get_content</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function that allows the retrieval of a document’s content.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of the summary sentences,
+A list of keywords.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">gismo.datasets.reuters</span> <span class="kn">import</span> <span class="n">get_reuters_news</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize</span><span class="p">(</span><span class="n">get_reuters_news</span><span class="p">(),</span> <span class="n">num_documents</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_sentences</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> 
+<span class="go">([&#39;Gum arabic has a history dating back to ancient times.&#39;,</span>
+<span class="go">  &#39;Hungry nomads pluck gum arabic as they pass with grazing goats and cattle.&#39;,</span>
+<span class="go">  &#39;For impoverished sub-Saharan states producing the bulk of world demand, gum arabic simply means export currency.&#39;,</span>
+<span class="go">  &quot;After years of war-induced poverty, gum arabic is offering drought-stricken Chad&#39;s rural poor a lifeline to the production plants of the world&#39;s food and beverage giants.&quot;],</span>
+<span class="go">  [&#39;norilsk&#39;, &#39;icewine&#39;, &#39;amiel&#39;, &#39;gum&#39;, &#39;arabic&#39;, &#39;her&#39;, &#39;tibet&#39;, &#39;chad&#39;, &#39;deng&#39;, &#39;oil&#39;, &#39;grapes&#39;, &#39;she&#39;, &#39;his&#39;, &#39;czechs&#39;, &#39;chechnya&#39;])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summarize</span><span class="p">(</span><span class="n">get_reuters_news</span><span class="p">(),</span> <span class="n">query</span><span class="o">=</span><span class="s2">&quot;Ericsson&quot;</span><span class="p">,</span> <span class="n">num_documents</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_sentences</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> 
+<span class="go">([&#39;The restraints are few in areas such as consumer products, while in sectors such as banking, distribution and insurance, foreign firms are kept on a very tight leash.&#39;,</span>
+<span class="go">  &#39;These latest wins follow a recent $350 million contract win with Telefon AB L.M.&#39;,</span>
+<span class="go">  &#39;Pocket is the first from the high-priced 1996 auction known to have filed for bankruptcy protection.&#39;,</span>
+<span class="go">  &#39;&quot;That is, assuming the deal is done right,&quot; she added.&#39;,</span>
+<span class="go">  &#39;&quot;Generally speaking, the easiest place to make a profit tends to be in the consumer industry, usually fairly small-scale operations,&quot; said Anne Stevenson-Yang, director of China operations for the U.S.-China Business Council.&#39;],</span>
+<span class="go">  [&#39;ericsson&#39;, &#39;sweden&#39;, &#39;motorola&#39;, &#39;telecommuncation&#39;, &#39;communciation&#39;, &#39;bolstering&#39;, &#39;priced&#39;, &#39;sectors&#39;, &#39;makers&#39;, &#39;equipment&#39;, &#39;schaumberg&#39;, &#39;lm&#39;, &#39;done&#39;, &#39;manufacturing&#39;, &#39;consumer&#39;])</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </div>
 </div>
 

@@ -1,0 +1,458 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>sisu.pit.gismo_wrapper &mdash; Structured and Interactive Summarization 0.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Structured and Interactive Summarization
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">Structured and Interactive Summarization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Structured and Interactive Summarization</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sisu.pit.gismo_wrapper</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sisu.pit.gismo_wrapper</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="kn">from</span> <span class="nn">gismo.corpus</span> <span class="kn">import</span> <span class="n">Corpus</span>
+<span class="kn">from</span> <span class="nn">gismo</span> <span class="kn">import</span> <span class="n">Gismo</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">gismo.embedding</span> <span class="kn">import</span> <span class="n">Embedding</span>
+<span class="kn">from</span> <span class="nn">sisu.preprocessing.covid19</span> <span class="kn">import</span> <span class="n">get_title</span><span class="p">,</span> <span class="n">get_abstract</span><span class="p">,</span> <span class="n">get_content</span><span class="p">,</span> <span class="n">make_clean_doc</span>
+
+<span class="n">COVID19_TEXT_GETTERS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">get_title</span><span class="p">,</span>
+    <span class="s2">&quot;abstract&quot;</span><span class="p">:</span> <span class="n">get_abstract</span><span class="p">,</span>
+    <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">get_content</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="sd">&quot;&quot;&quot;Getters for the covid dataset. MOVE TO COVID SUBMODULE.&quot;&quot;&quot;</span>
+
+<span class="n">RE_NOISE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[,.:;()0-9+=%\[\]_]&quot;</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;regexp for useless text.&quot;&quot;&quot;</span>
+
+<span class="n">RE_EMAIL</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;https?://[a-zA-Z.:0-9]+|www.[a-zA-Z.:0-9]+.*|www.|.org|[a-zA-Z.:0-9]+/&quot;</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;regexp for email detection.&quot;&quot;&quot;</span>
+
+<span class="n">RE_REFERENCE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\[\d+,\s\d+\]|\[\d+\]|\(\d+,\s\d+\)|\(\d+\)&quot;</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;regexp for citations.&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="simplified_document_to_string"><a class="viewcode-back" href="../../../reference/index.html#sisu.pit.gismo_wrapper.simplified_document_to_string">[docs]</a><span class="k">def</span> <span class="nf">simplified_document_to_string</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Transforms a dict into a string made of its values.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    doc: :class:`dict`</span>
+<span class="sd">        A `dict` representing a document of &quot;depth one&quot;, all the values are strings.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :class:`str`</span>
+<span class="sd">        Concatenation of `doc` values.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    &gt;&gt;&gt; from sisu.preprocessing.sentences import toy_article</span>
+<span class="sd">    &gt;&gt;&gt; simplified_document_to_string(toy_article)</span>
+<span class="sd">    &quot;Predator In the jungle, no-one hears you far cry. And vice-versa. They say to make a long abstract, with the number 42 in it, so here I am. There is no-one in the trees. Is there? Predators don&#39;t like to lose.&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span></div>
+
+
+<div class="viewcode-block" id="sanitize_text"><a class="viewcode-back" href="../../../reference/index.html#sisu.pit.gismo_wrapper.sanitize_text">[docs]</a><span class="k">def</span> <span class="nf">sanitize_text</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sanitize a text. This is done to improve the Embedding quality.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    text: :class:`str`</span>
+<span class="sd">        Text to clean.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :class:`str`</span>
+<span class="sd">        The corresponding sanitized `str` instance.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; sanitize_text(&quot;This is a mail: santa@northpole.com!&quot;)</span>
+<span class="sd">    &#39;This is a mail santa@northpolecom!&#39;</span>
+<span class="sd">    &gt;&gt;&gt; sanitize_text(&quot;This is a !*[ url: https://www.ens.fr!&quot;)</span>
+<span class="sd">    &#39;This is a !* url /&#39;</span>
+<span class="sd">    &gt;&gt;&gt; sanitize_text(&quot;This are references [3, 17].&quot;)</span>
+<span class="sd">    &#39;This are references  &#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">[</span><span class="n">RE_NOISE</span><span class="p">,</span> <span class="n">RE_EMAIL</span><span class="p">,</span> <span class="n">RE_REFERENCE</span><span class="p">]:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">text</span></div>
+
+
+<div class="viewcode-block" id="document_to_text"><a class="viewcode-back" href="../../../reference/index.html#sisu.pit.gismo_wrapper.document_to_text">[docs]</a><span class="k">def</span> <span class="nf">document_to_text</span><span class="p">(</span><span class="n">document</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">text_getters</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    NOT WORKING</span>
+
+<span class="sd">    Convert a document (e.g. from COVID-19 dataset) to a string.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    document: :class:`dict`</span>
+<span class="sd">        A simplified COVID-19 document.</span>
+<span class="sd">    text_getters: :class:`dict`, optional</span>
+<span class="sd">        CODE USES LIST NOT DICT THIS FUNCTION SHOULD PROBABLY BE REMOVED</span>
+
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        The `str` representing the input document.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    NO EXAMPLE, REMOVE THIS FUNCTION.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">text_getters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">text_getters</span> <span class="o">=</span> <span class="n">COVID19_TEXT_GETTERS</span>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">sanitize_text</span><span class="p">(</span><span class="n">text_getter</span><span class="p">(</span><span class="n">document</span><span class="p">))</span> <span class="k">for</span> <span class="n">text_getter</span> <span class="ow">in</span> <span class="n">text_getters</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="make_gismo"><a class="viewcode-back" href="../../../reference/index.html#sisu.pit.gismo_wrapper.make_gismo">[docs]</a><span class="k">def</span> <span class="nf">make_gismo</span><span class="p">(</span>
+    <span class="n">documents</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">other_embedding</span><span class="p">:</span> <span class="n">Embedding</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">is_documents_embedding</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">document_to_text</span><span class="o">=</span><span class="n">simplified_document_to_string</span>  <span class="c1"># All the values by default</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Gismo</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Make a Gismo object from a list of documents.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        documents: A `list` of documents with strings in the values.</span>
+<span class="sd">        alpha: A `float` in [0, 1] indicating the damping factor used in the D-iteration used by Gismo.</span>
+<span class="sd">        other_embedding: embedding already fitted on a corpus.</span>
+<span class="sd">        document_to_text: Callback(Document) -&gt; str.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A Gismo object made from the given documents and embedding.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">post_document</span><span class="p">(</span><span class="n">gismo</span><span class="p">:</span> <span class="n">Gismo</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="n">document</span> <span class="o">=</span> <span class="n">gismo</span><span class="o">.</span><span class="n">corpus</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">document</span>
+
+    <span class="c1">#    print(&quot;corpus&quot;)</span>
+    <span class="n">corpus</span> <span class="o">=</span> <span class="n">Corpus</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">document_to_text</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">other_embedding</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1">#        print(&quot;vectorizer&quot;)</span>
+        <span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">=</span><span class="n">vectorizer</span><span class="p">)</span>
+        <span class="c1">#        print(&quot;fit_transform&quot;)</span>
+        <span class="n">embedding</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">is_documents_embedding</span><span class="p">:</span>
+            <span class="n">embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">()</span>
+            <span class="n">embedding</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">other_embedding</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">()</span>
+            <span class="c1">#            print(&quot;fit_ext&quot;)</span>
+            <span class="n">embedding</span><span class="o">.</span><span class="n">fit_ext</span><span class="p">(</span><span class="n">other_embedding</span><span class="p">)</span>
+            <span class="c1">#            print(&quot;transform&quot;)</span>
+            <span class="n">embedding</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+    <span class="c1">#    print(&quot;gismo&quot;)</span>
+    <span class="n">gismo</span> <span class="o">=</span> <span class="n">Gismo</span><span class="p">(</span><span class="n">corpus</span><span class="p">,</span> <span class="n">embedding</span><span class="p">)</span>
+    <span class="n">gismo</span><span class="o">.</span><span class="n">post_document</span> <span class="o">=</span> <span class="n">post_document</span>
+    <span class="n">gismo</span><span class="o">.</span><span class="n">diteration</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+
+    <span class="k">return</span> <span class="n">gismo</span></div>
+
+
+<div class="viewcode-block" id="old_make_gismo"><a class="viewcode-back" href="../../../reference/index.html#sisu.pit.gismo_wrapper.old_make_gismo">[docs]</a><span class="k">def</span> <span class="nf">old_make_gismo</span><span class="p">(</span>
+    <span class="n">documents</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">.</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">other_embedding</span><span class="p">:</span> <span class="n">Embedding</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">is_documents_embedding</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">document_to_text</span><span class="o">=</span><span class="n">simplified_document_to_string</span>  <span class="c1"># All the values by default</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Gismo</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Make a Gismo object from a list of documents.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        documents: A `list` of documents with strings in the values.</span>
+<span class="sd">        alpha: A `float` in [0, 1] indicating the damping factor used in the D-iteration used by Gismo.</span>
+<span class="sd">        other_embedding: embedding already fitted on a corpus.</span>
+<span class="sd">        document_to_text: Callback(Document) -&gt; str.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A Gismo object made from the given documents and embedding.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">post_document</span><span class="p">(</span><span class="n">gismo</span><span class="p">:</span> <span class="n">Gismo</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="n">document</span> <span class="o">=</span> <span class="n">gismo</span><span class="o">.</span><span class="n">corpus</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">document</span>
+
+    <span class="c1">#    print(&quot;corpus&quot;)</span>
+    <span class="n">corpus</span> <span class="o">=</span> <span class="n">Corpus</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">document_to_text</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">other_embedding</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1">#        print(&quot;vectorizer&quot;)</span>
+        <span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">=</span><span class="n">vectorizer</span><span class="p">)</span>
+        <span class="c1">#        print(&quot;fit_transform&quot;)</span>
+        <span class="n">embedding</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">is_documents_embedding</span><span class="p">:</span>
+            <span class="n">embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">()</span>
+            <span class="n">embedding</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">other_embedding</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">()</span>
+            <span class="c1">#            print(&quot;fit_ext&quot;)</span>
+            <span class="n">embedding</span><span class="o">.</span><span class="n">fit_ext</span><span class="p">(</span><span class="n">other_embedding</span><span class="p">)</span>
+            <span class="c1">#            print(&quot;transform&quot;)</span>
+            <span class="n">embedding</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+    <span class="c1">#    print(&quot;gismo&quot;)</span>
+    <span class="n">gismo</span> <span class="o">=</span> <span class="n">Gismo</span><span class="p">(</span><span class="n">corpus</span><span class="p">,</span> <span class="n">embedding</span><span class="p">)</span>
+    <span class="n">gismo</span><span class="o">.</span><span class="n">post_document</span> <span class="o">=</span> <span class="n">post_document</span>
+    <span class="n">gismo</span><span class="o">.</span><span class="n">diteration</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+
+    <span class="k">return</span> <span class="n">gismo</span></div>
+
+
+<span class="c1"># An enbedding on bigger corpus and the right stop_words is preferable</span>
+<div class="viewcode-block" id="initialize_embedding"><a class="viewcode-back" href="../../../reference/index.html#sisu.pit.gismo_wrapper.initialize_embedding">[docs]</a><span class="k">def</span> <span class="nf">initialize_embedding</span><span class="p">(</span>
+    <span class="n">documents</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
+    <span class="n">stop_words</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_ngram</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">min_df</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.02</span><span class="p">,</span>
+    <span class="n">max_df</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.85</span><span class="p">,</span>
+    <span class="n">document_to_text</span><span class="o">=</span><span class="n">simplified_document_to_string</span><span class="p">,</span>  <span class="c1"># All the values by default</span>
+    <span class="n">preprocessor</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Embedding</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initializes an embedding, fitting it from documents</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    documents:</span>
+<span class="sd">        A `list` of `dict` representing documents with strings in the values.</span>
+<span class="sd">    stop_words:</span>
+<span class="sd">        A `list` of words to ignore in the vocabulary.</span>
+<span class="sd">    max_ngram:</span>
+<span class="sd">        the maximum length of ngrams to take into account (e.g. 2 if bigrams in vocabulary).</span>
+<span class="sd">    min_df:</span>
+<span class="sd">        minimum frequency of a word to be considered in the vocabulary,</span>
+<span class="sd">        if an int the word must be contained in at least min_df documents.</span>
+<span class="sd">    max_df: maximum frequency of a word to be considered in the vocabulary.</span>
+<span class="sd">    document_to_text:</span>
+<span class="sd">        Callback(Document) -&gt; str.</span>
+<span class="sd">    preprocessor:</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Embedding:</span>
+<span class="sd">        The embedding fitted on the documents.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">corpus</span> <span class="o">=</span> <span class="n">Corpus</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">document_to_text</span><span class="p">)</span>
+    <span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+        <span class="n">stop_words</span><span class="o">=</span><span class="n">stop_words</span><span class="p">,</span>
+        <span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_ngram</span><span class="p">),</span>
+        <span class="n">min_df</span><span class="o">=</span><span class="n">min_df</span><span class="p">,</span>
+        <span class="n">max_df</span><span class="o">=</span><span class="n">max_df</span><span class="p">,</span>
+        <span class="n">preprocessor</span><span class="o">=</span><span class="n">preprocessor</span>
+    <span class="p">)</span>
+    <span class="n">embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">=</span><span class="n">vectorizer</span><span class="p">)</span>
+    <span class="n">embedding</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">embedding</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Mélanie Cambus, Marc-Olivier Buob, Fabien Mathieu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
