@@ -11,4 +11,4 @@ dill
 gismo
 scikit-network
 spacy==2.1.0
-neuralcoref
+neuralcoref==4.0
