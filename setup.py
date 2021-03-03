@@ -12,7 +12,7 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['nltk', 'numpy', 'dill', 'gismo']
+requirements = ['nltk', 'numpy', 'dill', 'gismo', 'scikit-network', 'neuralcoref', 'matplotlib', 'PyQt5']
 
 setup_requirements = ['pytest-runner', ]
 
@@ -22,6 +22,8 @@ test_requirements = ['pytest>=3', ]
 def _post_install():
     """Post installation nltk corpus downloads if nltk available."""
     import nltk
+    import spacy
+    spacy.cli.download('en_core_web_sm')
     nltk.download("punkt")
     nltk.download("stopwords")
 

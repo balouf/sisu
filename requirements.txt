@@ -5,5 +5,10 @@ sphinx-rtd-theme
 
 nltk
 numpy
+matplotlib
+PyQt5
 dill
 gismo
+scikit-network
+spacy==2.1.0
+neuralcoref
