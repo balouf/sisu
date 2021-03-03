@@ -271,6 +271,8 @@ def summarize_cluster(
             A list of the summary sentences,
             A list of keywords.
     """
+    nlp = spacy.load('en_core_web_sm')
+
     assert num_sentences or ratio
     assert type(documents) == list
 
