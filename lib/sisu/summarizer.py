@@ -413,7 +413,8 @@ class Summarizer:
             else:
                 self.order_ = self.build_coverage_order(p['num_sentences'])
         if p['max_chars'] is None:
-            return [p['post_processing'](self, i) for i in self.order_[:p['num_sentences']]]
+            results = [p['post_processing'](self, i) for i in self.order_[:p['num_sentences']]]
+            return [txt for txt in results if len(txt)>0]
         else:
             results = []
             length = 0
