@@ -1,0 +1,724 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Summarizer tutorial &mdash; Structured and Interactive Summarization 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Reference" href="../reference/index.html" />
+    <link rel="prev" title="Building a Gismo for the Covid Dataset" href="Gismo%20Covid.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Structured and Interactive Summarization
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Structured and Interactive Summarization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Gismo%20Covid.html">Building a Gismo for the Covid Dataset</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Summarizer tutorial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Loading-a-Gismo">Loading a Gismo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Creating-a-summarizer-instance">Creating a summarizer instance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Ordering">Ordering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Spacy-post-processing">Spacy post-processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Character-limit">Character limit</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Structured and Interactive Summarization</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+        
+      <li>Summarizer tutorial</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/Using_summarizer.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Summarizer-tutorial">
+<h1>Summarizer tutorial<a class="headerlink" href="#Summarizer-tutorial" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial aims at showing the basics for using sisu’s flat summarizer.</p>
+<div class="section" id="Loading-a-Gismo">
+<h2>Loading a Gismo<a class="headerlink" href="#Loading-a-Gismo" title="Permalink to this headline">¶</a></h2>
+<p>The summarizer uses a Gismo. For this tutorial, we will use a Gismo of a corpus of articles on Covid. You can use the following tutorial to build such a Gismo:</p>
+<p><a class="reference external" href="https://balouf.github.io/sisu/tutorials/Gismo%20Covid.html">https://balouf.github.io/sisu/tutorials/Gismo%20Covid.html</a></p>
+<p>The following loads the Gismo in memory.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">data_folder</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;../../../../Datasets/covid&#39;</span><span class="p">)</span>
+<span class="n">data_folder</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">gismo.gismo</span> <span class="kn">import</span> <span class="n">Gismo</span>
+<span class="n">gismo</span> <span class="o">=</span> <span class="n">Gismo</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;covid_gismo&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">data_folder</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Creating-a-summarizer-instance">
+<h2>Creating a summarizer instance<a class="headerlink" href="#Creating-a-summarizer-instance" title="Permalink to this headline">¶</a></h2>
+<p>You create a summarizer with the Summarizer class, which feeds on a Gismo.</p>
+<p>Summarizer also has hyper-parameters you may want to play with (or not!).</p>
+<p>The general rule for the hyper-parameters is as follows: - All parameters have default values that will be use if you don’t specify anything. - When creating an instance, you can specify some parameters. They will override the default parameters for the instance. - Default instance parameters can be accessed and changed through the attributes of the <code class="docutils literal notranslate"><span class="pre">parameters</span></code> attribute. - When building a summary, you can specify runtime parameters. They will override instance parameters (without changing
+them) for the build.</p>
+<p>The hyper-parameters are described there:</p>
+<p><a class="reference external" href="https://balouf.github.io/sisu/reference/summarizer.html#sisu.summarizer.default_summarizer_parameters">https://balouf.github.io/sisu/reference/summarizer.html#sisu.summarizer.default_summarizer_parameters</a></p>
+<p>The following creates a summarizer that intends to produce 4 sentences out of the <code class="docutils literal notranslate"><span class="pre">content</span></code> of the articles.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sisu.summarizer</span> <span class="kn">import</span> <span class="n">Summarizer</span>
+<span class="n">summa</span> <span class="o">=</span> <span class="n">Summarizer</span><span class="p">(</span><span class="n">gismo</span><span class="p">,</span> <span class="n">num_sentences</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">text_getter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<p>The parameters are:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">summa</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;order&#39;: &#39;rank&#39;,
+ &#39;text_getter&#39;: &lt;function __main__.&lt;lambda&gt;(e)&gt;,
+ &#39;sentence_tester&#39;: &lt;function sisu.preprocessing.tokenizer.is_relevant_sentence(sentence: str, min_num_words: int = 6, max_num_words: int = 60) -&gt; bool&gt;,
+ &#39;itf&#39;: True,
+ &#39;post_processing&#39;: &lt;function sisu.summarizer.&lt;lambda&gt;(summa, i)&gt;,
+ &#39;sentence_gismo_parameters&#39;: {&#39;post&#39;: False, &#39;resolution&#39;: 0.99},
+ &#39;num_documents&#39;: None,
+ &#39;num_query&#39;: None,
+ &#39;num_sentences&#39;: 4,
+ &#39;max_chars&#39;: None}
+</pre></div></div>
+</div>
+<p>We test it on a request on <em>pangolin</em>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;pangolin&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summa</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;The amino acid residues change in S-protein of SARS-CoV-2 was further analyzed with SARS-CoV, pangolin and bat CoVs including pangolin/Guandong/1/2019, pangolin/Guangdong/lung08, and bat/Yunnan/RaTG13 (Figure 2) .&#39;, &#39;Figure 2b and Table S1 describe that all key amino acid residues of RBD (except two positions) are completely homologues between SARS-CoV-2 (Wuhan-Hu-1_MN908947) and pangolin CoVs (pangolin/Guandong/1/2019 and pangolin/Guangdong/lung08), supporting our postulation of recombination event in S-protein gene.&#39;, &#39;On the other hand, Beta-CoVs from pangolin sources (pangolin/Guandong/1/2019 and .&#39;, &#39;The Malayan pangolin (Manis javanica), a representative mammal species of the order Pholidota, is one of the only eight pangolin species worldwide.&#39;]
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Ordering">
+<h2>Ordering<a class="headerlink" href="#Ordering" title="Permalink to this headline">¶</a></h2>
+<p>The default order is <code class="docutils literal notranslate"><span class="pre">rank</span></code>. How different are the two others?</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">summa</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;coverage&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summa</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;The amino acid residues change in S-protein of SARS-CoV-2 was further analyzed with SARS-CoV, pangolin and bat CoVs including pangolin/Guandong/1/2019, pangolin/Guangdong/lung08, and bat/Yunnan/RaTG13 (Figure 2) .&#39;, &#39;Figure 2b and Table S1 describe that all key amino acid residues of RBD (except two positions) are completely homologues between SARS-CoV-2 (Wuhan-Hu-1_MN908947) and pangolin CoVs (pangolin/Guandong/1/2019 and pangolin/Guangdong/lung08), supporting our postulation of recombination event in S-protein gene.&#39;, &#39;The Malayan pangolin (Manis javanica), a representative mammal species of the order Pholidota, is one of the only eight pangolin species worldwide.&#39;, &#39;These results indicate that the Malayan pangolin might carry a novel CoV (here named Pangolin-CoV) that is similar to SARS-CoV-2.&#39;]
+[&#39;The two genomes were merged using the easymerge.pl subcommand from VirMAP to create the final pangolin-associated coronavirus (Pangolin-CoV) genome.&#39;, &#39;These results indicate that Pangolin-CoV could have pathogenic potential similar to that of SARS-CoV-2.&#39;, &#39;These new findings suggest further research to investigate pangolin as a SARS-CoV-2 reservoir.&#39;, &#39;This finding further supports the hypothesis that pangolin is involved in SARS-CoV-2 evolution.&#39;]
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Spacy-post-processing">
+<h2>Spacy post-processing<a class="headerlink" href="#Spacy-post-processing" title="Permalink to this headline">¶</a></h2>
+<p>Notice how on the first summary we got an incomplete sentence without a verb? To automatically remove these, we can add a NLP post-processing (note that the number or returned sentences will be less than 4).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sisu.summarizer</span> <span class="kn">import</span> <span class="n">PostNLP</span>
+<span class="kn">import</span> <span class="nn">spacy</span>
+<span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;en_core_web_sm&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">summa</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">post_processing</span><span class="o">=</span><span class="n">PostNLP</span><span class="p">(</span><span class="n">nlp</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;The amino acid residues change in S-protein of SARS-CoV-2 was further analyzed with SARS-CoV, pangolin and bat CoVs including pangolin/Guandong/1/2019, pangolin/Guangdong/lung08, and bat/Yunnan/RaTG13 (Figure 2) .&#39;, &#39;Figure 2b and Table S1 describe that all key amino acid residues of RBD (except two positions) are completely homologues between SARS-CoV-2 (Wuhan-Hu-1_MN908947) and pangolin CoVs (pangolin/Guandong/1/2019 and pangolin/Guangdong/lung08), supporting our postulation of recombination event in S-protein gene.&#39;, &#39;The Malayan pangolin (Manis javanica), a representative mammal species of the order Pholidota, is one of the only eight pangolin species worldwide.&#39;]
+</pre></div></div>
+</div>
+<p>If you have the module neuralcoref installed on your system, you can activate co-reference resolution on the NLP post-processing. The following shows a proof of concept on the working of co-reference resolution.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">neuralcoref</span>
+<span class="n">neuralcoref</span><span class="o">.</span><span class="n">add_to_pipe</span><span class="p">(</span><span class="n">nlp</span><span class="p">)</span>
+
+<span class="n">summa</span><span class="o">.</span><span class="n">sentences_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;sentence&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;My taylor is rich.&quot;</span>
+<span class="n">summa</span><span class="o">.</span><span class="n">sentences_</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;sentence&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;She has a dog.&quot;</span>
+<span class="n">summa</span><span class="o">.</span><span class="n">sentences_</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;sentence&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;She lives uptown.&quot;</span>
+<span class="n">post_nlp</span> <span class="o">=</span> <span class="n">PostNLP</span><span class="p">(</span><span class="n">nlp</span><span class="p">,</span> <span class="n">coref</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">post_nlp</span><span class="p">(</span><span class="n">summa</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+My taylor is rich.
+My taylor has a dog.
+My taylor lives uptown.
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Character-limit">
+<h2>Character limit<a class="headerlink" href="#Character-limit" title="Permalink to this headline">¶</a></h2>
+<p>You can also have a target budget of characters. This will override <code class="docutils literal notranslate"><span class="pre">num_sentences</span></code>. Let try that on a new request.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">txt</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">summa</span><span class="p">(</span><span class="s2">&quot;hydroxychloroquine&quot;</span><span class="p">,</span> <span class="n">max_chars</span><span class="o">=</span><span class="mi">3000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">txt</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;The cause of failure for hydroxychloroquine treatment should be investigated by testing the isolated SARS-CoV-2 strains of the non-respondents and analyzing their genome, and by analyzing the host factors that may be associated with the metabolism of hydroxychloroquine. When comparing the effect of hydroxychloroquine treatment as a single drug and the effect of hydroxychloroquine and azithromyc in combination, the proportion of patients that had negative PCR results in nasopharyngeal samples was significantly different between the two groups at days 3-4-5 and 6 post-inclusion (Table 3)  Cultures. Lessons learnt from chloroquine/ hydroxychloroquine use in HIV infection. The peak of the chromatogram at 1.05 min of retention corresponds to hydroxychloroquine metabolite. Equally important, chloroquine and hydroxychloroquine are generically produced, very inexpensive, and could be made available worldwide. Effect of hydroxychloroquine on viral load. Hydroxychloroquine (17 μM; HCQ) was purchased from Sanofi-Synthelabo. Role of Chloroquine and Hydroxychloroquine (HCQ). Chloroquine and Hydroxychloroquine and Emerging Viruses. Mean hydroxychloroquine serum concentration was 0.46 µg/ml+0.2 (N=20). Hydroxychloroquine differs from chloroquine by the presence of a hydroxyl group at the end of the side chain: the N-ethyl substituent is \uf062-hydroxylated. Our preliminary results also suggest a synergistic effect of the combination of hydroxychloroquine and azithromycin. The serum concentration of this metabolite is deduced from UV absorption, as for hydroxychloroquine concentration. Recurrence occurred in 11.1% of patients without Hydroxychloroquine treatment. Decrease in the maternal-fetal transmission by hydroxychloroquine 1. Hydroxychloroquine was provided by the National Pharmacy of France on nominative demand. These hits are gemcitabine, gefitinib and vibarabine (FLUAV); gemcitabine, pirlindole dibucaine, fluoxetine and dalbavancin (EV1); gemcitabine, imatinib, ivermectin, lopinavir, lovastatin, ezetimibe, fluoxetine, BCX4430, chloroquine and hydroxychloroquine (ZIKV); chloroquine and mycophenolic acid (CHIKV); chloroquine, mycophenolic acid, dibucaine and itraconazole (RRV); as well as 5-azacitidine, gemcitabine, trifluridine and vidarabine (HSV-1). The antiretroviral effects of chloroquine/hydroxychloroquine may though become visible in anatomical sanctuaries of those individuals treated with PI-containing antiretroviral regimens. Both chloroquine/hydroxychloroquine and auranofin can influence these transitions by exerting a pro-apoptotic effect, the efficacy of which is graphically exemplified by the intensity of the blue color in the corresponding rectangles. In this light, chloroquine/hydroxychloroquine should have an anti-reservoir potential. Considering both concentrations provides an estimation of initial serum hydroxychloroquine concentration. In vivo effects of chloroquine/hydroxychloroquine: preclinical models.&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2962
+</pre></div></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../reference/index.html" class="btn btn-neutral float-right" title="Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Gismo%20Covid.html" class="btn btn-neutral float-left" title="Building a Gismo for the Covid Dataset" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Mélanie Cambus, Marc-Olivier Buob, Fabien Mathieu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

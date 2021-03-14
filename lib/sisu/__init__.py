@@ -2,4 +2,4 @@
 
 __author__ = """Mélanie Cambus, Marc-Olivier Buob, Fabien Mathieu"""
 __email__ = 'fabien.mathieu@normalesup.org'
-__version__ = '0.1.2'
+__version__ = '0.2.0'
