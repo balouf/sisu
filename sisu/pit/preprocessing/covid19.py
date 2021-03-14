@@ -1,6 +1,6 @@
 import re
 
-from sisu.datasets.covid import get_title, get_abstract, get_content
+from sisu.datasets.covid import get_title, get_abstract, get_content, toy_covid_article
 
 
 def get_all_titles(document: dict) -> str:
