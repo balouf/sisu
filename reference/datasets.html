@@ -262,14 +262,22 @@
 <p class="rubric">Examples</p>
 <p>We will use a few json samples embedded in the package.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/covid_sample&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">data_dir</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s1">&#39;*.json&#39;</span><span class="p">):</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">articles</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">data_dir</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s1">&#39;*.json&#39;</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
-<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="n">format_covid_json</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)))</span>
+<span class="gp">... </span>        <span class="n">articles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">format_covid_json</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">art</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">articles</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]):</span> 
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">art</span><span class="p">)</span>
 <span class="go">{&#39;title&#39;: &#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;,</span>
 <span class="go"> &#39;abstract&#39;: &#39;&#39;,</span>
 <span class="go"> &#39;content&#39;: &#39;Editor. According to current live statistics at the time of editing this letter,...&#39;,</span>
 <span class="go"> &#39;id&#39;: &#39;0000028b5cc154f68b8a269f6578f21e31f62977&#39;,</span>
 <span class="go"> &#39;lang&#39;: &#39;en&#39;}</span>
+<span class="go">{&#39;title&#39;: &#39;COVID-19-Pneumonie&#39;,</span>
+<span class="go"> &#39;abstract&#39;: &#39;&#39;,</span>
+<span class="go"> &#39;content&#39;: &#39;. der Entwicklung einer schweren Pneumonie im Vordergrund, die in der Regel prognostisch...&#39;,</span>
+<span class="go"> &#39;id&#39;: &#39;0009745a11d206af9e405e00677c51b01251dba7&#39;,</span>
+<span class="go"> &#39;lang&#39;: &#39;de&#39;}</span>
 <span class="go">{&#39;title&#39;: &#39;Community frailty response service: the ED at your front door&#39;,</span>
 <span class="go"> &#39;abstract&#39;: &#39;We describe the expansion and adaptation of a frailty response team to assess older people in</span>
 <span class="go">their usual place of residence. The team had commenced a weekend service to a limited area in February 2020.</span>
@@ -277,11 +285,6 @@
 <span class="go"> &#39;content&#39;: &quot;INTRODUCTION. A large proportion of short-stay admissions in older adults may be avoidable...,</span>
 <span class="go"> &#39;id&#39;: &#39;000680e3114af4aa10e8f208cd162a61195f4465&#39;,</span>
 <span class="go"> &#39;lang&#39;: &#39;en&#39;}</span>
-<span class="go">{&#39;title&#39;: &#39;COVID-19-Pneumonie&#39;,</span>
-<span class="go"> &#39;abstract&#39;: &#39;&#39;,</span>
-<span class="go"> &#39;content&#39;: &#39;. der Entwicklung einer schweren Pneumonie im Vordergrund, die in der Regel prognostisch...&#39;,</span>
-<span class="go"> &#39;id&#39;: &#39;0009745a11d206af9e405e00677c51b01251dba7&#39;,</span>
-<span class="go"> &#39;lang&#39;: &#39;de&#39;}</span>
 </pre></div>
 </div>
 </dd></dl>

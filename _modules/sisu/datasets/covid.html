@@ -316,14 +316,22 @@
 <span class="sd">    We will use a few json samples embedded in the package.</span>
 
 <span class="sd">    &gt;&gt;&gt; data_dir = Path(&quot;data/covid_sample&quot;)</span>
-<span class="sd">    &gt;&gt;&gt; for f in data_dir.rglob(&#39;*.json&#39;): # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE</span>
+<span class="sd">    &gt;&gt;&gt; articles = []</span>
+<span class="sd">    &gt;&gt;&gt; for f in data_dir.rglob(&#39;*.json&#39;):</span>
 <span class="sd">    ...     with open(f) as fp:</span>
-<span class="sd">    ...         print(format_covid_json(json.load(fp)))</span>
+<span class="sd">    ...         articles.append(format_covid_json(json.load(fp)))</span>
+<span class="sd">    &gt;&gt;&gt; for art in sorted(articles, key=lambda e: e[&#39;title&#39;]): # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE</span>
+<span class="sd">    ...     print(art)</span>
 <span class="sd">    {&#39;title&#39;: &#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;,</span>
 <span class="sd">     &#39;abstract&#39;: &#39;&#39;,</span>
 <span class="sd">     &#39;content&#39;: &#39;Editor. According to current live statistics at the time of editing this letter,...&#39;,</span>
 <span class="sd">     &#39;id&#39;: &#39;0000028b5cc154f68b8a269f6578f21e31f62977&#39;,</span>
 <span class="sd">     &#39;lang&#39;: &#39;en&#39;}</span>
+<span class="sd">    {&#39;title&#39;: &#39;COVID-19-Pneumonie&#39;,</span>
+<span class="sd">     &#39;abstract&#39;: &#39;&#39;,</span>
+<span class="sd">     &#39;content&#39;: &#39;. der Entwicklung einer schweren Pneumonie im Vordergrund, die in der Regel prognostisch...&#39;,</span>
+<span class="sd">     &#39;id&#39;: &#39;0009745a11d206af9e405e00677c51b01251dba7&#39;,</span>
+<span class="sd">     &#39;lang&#39;: &#39;de&#39;}</span>
 <span class="sd">    {&#39;title&#39;: &#39;Community frailty response service: the ED at your front door&#39;,</span>
 <span class="sd">     &#39;abstract&#39;: &#39;We describe the expansion and adaptation of a frailty response team to assess older people in</span>
 <span class="sd">    their usual place of residence. The team had commenced a weekend service to a limited area in February 2020.</span>
@@ -331,12 +339,6 @@
 <span class="sd">     &#39;content&#39;: &quot;INTRODUCTION. A large proportion of short-stay admissions in older adults may be avoidable...,</span>
 <span class="sd">     &#39;id&#39;: &#39;000680e3114af4aa10e8f208cd162a61195f4465&#39;,</span>
 <span class="sd">     &#39;lang&#39;: &#39;en&#39;}</span>
-<span class="sd">    {&#39;title&#39;: &#39;COVID-19-Pneumonie&#39;,</span>
-<span class="sd">     &#39;abstract&#39;: &#39;&#39;,</span>
-<span class="sd">     &#39;content&#39;: &#39;. der Entwicklung einer schweren Pneumonie im Vordergrund, die in der Regel prognostisch...&#39;,</span>
-<span class="sd">     &#39;id&#39;: &#39;0009745a11d206af9e405e00677c51b01251dba7&#39;,</span>
-<span class="sd">     &#39;lang&#39;: &#39;de&#39;}</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">getters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">getters</span> <span class="o">=</span> <span class="n">default_getters</span>

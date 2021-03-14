@@ -151,14 +151,22 @@ def format_covid_json(document, getters=None, language=True):
     We will use a few json samples embedded in the package.
 
     >>> data_dir = Path("data/covid_sample")
-    >>> for f in data_dir.rglob('*.json'): # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+    >>> articles = []
+    >>> for f in data_dir.rglob('*.json'):
     ...     with open(f) as fp:
-    ...         print(format_covid_json(json.load(fp)))
+    ...         articles.append(format_covid_json(json.load(fp)))
+    >>> for art in sorted(articles, key=lambda e: e['title']): # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+    ...     print(art)
     {'title': '"Multi-faceted" COVID-19: Russian experience',
      'abstract': '',
      'content': 'Editor. According to current live statistics at the time of editing this letter,...',
      'id': '0000028b5cc154f68b8a269f6578f21e31f62977',
      'lang': 'en'}
+    {'title': 'COVID-19-Pneumonie',
+     'abstract': '',
+     'content': '. der Entwicklung einer schweren Pneumonie im Vordergrund, die in der Regel prognostisch...',
+     'id': '0009745a11d206af9e405e00677c51b01251dba7',
+     'lang': 'de'}
     {'title': 'Community frailty response service: the ED at your front door',
      'abstract': 'We describe the expansion and adaptation of a frailty response team to assess older people in
     their usual place of residence. The team had commenced a weekend service to a limited area in February 2020.
@@ -166,12 +174,6 @@ def format_covid_json(document, getters=None, language=True):
      'content': "INTRODUCTION. A large proportion of short-stay admissions in older adults may be avoidable...,
      'id': '000680e3114af4aa10e8f208cd162a61195f4465',
      'lang': 'en'}
-    {'title': 'COVID-19-Pneumonie',
-     'abstract': '',
-     'content': '. der Entwicklung einer schweren Pneumonie im Vordergrund, die in der Regel prognostisch...',
-     'id': '0009745a11d206af9e405e00677c51b01251dba7',
-     'lang': 'de'}
-
     """
     if getters is None:
         getters = default_getters
