@@ -22,6 +22,12 @@ History
 
   * Fully documented.
 
+* Two tutorials
+
+  * Building a Gismo for the Covid dataset;
+
+  * Flat summarizer on the Covid dataset.
+
 * Change of paradigm: start from the notebook and build the module cell by cell.
 
 * Consequences: all non-converted modules from 0.1.2 are moved to the pit. They will be restored during the notebook transformation.

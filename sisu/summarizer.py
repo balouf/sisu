@@ -418,9 +418,9 @@ class Summarizer:
         else:
             results = []
             length = 0
-            if p['num_sentences'] is None:
-                p['num_sentences'] = int(p['max_chars']/50)
-            for i in self.order_[:p['num_sentences']]:
+            # Maximal number of sentences that will be processed
+            max_sentences = int(p['max_chars']/50)
+            for i in self.order_[:max_sentences]:
                 txt = p['post_processing'](self, i)
                 l = len(txt)
                 if l>0 and length+l < p['max_chars']:
