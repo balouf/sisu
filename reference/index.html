@@ -32,14 +32,15 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Covid" href="covid.html" />
-    <link rel="prev" title="Usage" href="../usage.html" /> 
+    <link rel="next" title="Datasets" href="datasets.html" />
+    <link rel="prev" title="Building a Gismo for the Covid Dataset" href="../tutorials/Gismo%20Covid.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -93,9 +94,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../readme.html">Structured and Interactive Summarization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="covid.html">Covid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.html">Datasets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="preprocessing.html">Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summarizer.html">Summarizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-sisu.pit.gismo_wrapper">PIT</a></li>
 </ul>
 </li>
@@ -169,21 +172,45 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="reference">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="reference">
 <h1>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="covid.html">Covid</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="covid.html#data-loader">Data Loader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datasets.html#covid">Covid</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="preprocessing.html">Preprocessing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="preprocessing.html#covid-19">Covid 19</a></li>
 <li class="toctree-l2"><a class="reference internal" href="preprocessing.html#language">Language</a></li>
 <li class="toctree-l2"><a class="reference internal" href="preprocessing.html#tokenizer">Tokenizer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="preprocessing.html#sentences">sentences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing.html#idf-embedding">IDF Embedding</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="summarizer.html">Summarizer</a></li>
 </ul>
 </div>
 <div class="section" id="module-sisu.pit.gismo_wrapper">
@@ -333,86 +360,11 @@ if an int the word must be contained in at least min_df documents.</p></li>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sisu.preprocessing.sentences</span> <span class="kn">import</span> <span class="n">toy_article</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sisu.pit.preprocessing.sentences</span> <span class="kn">import</span> <span class="n">toy_article</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">simplified_document_to_string</span><span class="p">(</span><span class="n">toy_article</span><span class="p">)</span>
 <span class="go">&quot;Predator In the jungle, no-one hears you far cry. And vice-versa. They say to make a long abstract, with the number 42 in it, so here I am. There is no-one in the trees. Is there? Predators don&#39;t like to lose.&quot;</span>
 </pre></div>
 </div>
-</dd></dl>
-
-<span class="target" id="module-sisu.pit.embedding_idf"></span><dl class="py class">
-<dt id="sisu.pit.embedding_idf.IdfEmbedding">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sisu.pit.embedding_idf.</span></code><code class="sig-name descname"><span class="pre">IdfEmbedding</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vectorizer</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" title="(in scikit-learn v0.24)"><span class="pre">sklearn.feature_extraction.text.CountVectorizer</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/pit/embedding_idf.html#IdfEmbedding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.pit.embedding_idf.IdfEmbedding" title="Permalink to this definition">¶</a></dt>
-<dd><p>This class leverages the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" title="(in scikit-learn v0.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountVectorizer</span></code></a>
-class to build the dual embedding of a <a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.corpus.Corpus" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Corpus</span></code></a>.</p>
-<ul class="simple">
-<li><p>Documents are embedded in the space of features;</p></li>
-<li><p>Features are embedded in the space of documents.</p></li>
-</ul>
-<p>It is almost identical to Gismo’s <a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.embedding.Embedding" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Embedding</span></code></a> except that there is no ITF weights.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>vectorizer</strong> (<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" title="(in scikit-learn v0.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountVectorizer</span></code></a>, optional) – Custom <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" title="(in scikit-learn v0.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountVectorizer</span></code></a>
-to override default behavior (recommended).
-Having a <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" title="(in scikit-learn v0.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountVectorizer</span></code></a>
-adapted to the <a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.corpus.Corpus" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Corpus</span></code></a> is good practice.</p></li>
-<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – If set, load embedding from corresponding file.</p></li>
-<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a>, optional) – If set, specify the directory where the embedding is located.</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt id="sisu.pit.embedding_idf.IdfEmbedding.fit_transform">
-<code class="sig-name descname"><span class="pre">fit_transform</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corpus</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.corpus.Corpus" title="(in GISMO v0.4.1)"><span class="pre">gismo.corpus.Corpus</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/pit/embedding_idf.html#IdfEmbedding.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.pit.embedding_idf.IdfEmbedding.fit_transform" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>corpus</strong> – </p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">gismo.common</span> <span class="kn">import</span> <span class="n">toy_source_text</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">=</span><span class="n">Corpus</span><span class="p">(</span><span class="n">toy_source_text</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span> <span class="o">=</span> <span class="n">IdfEmbedding</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span><span class="o">.</span><span class="n">x</span>  
-<span class="go">&lt;5x21 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;</span>
-<span class="go">    with 25 stored elements in Compressed Sparse Row format&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span><span class="o">.</span><span class="n">features</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span>
-<span class="go">[&#39;blade&#39;, &#39;chinese&#39;, &#39;comparing&#39;, &#39;demon&#39;, &#39;folklore&#39;, &#39;gizmo&#39;, &#39;gremlins&#39;, &#39;inside&#39;]</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sisu.pit.embedding_idf.IdfEmbedding.transform">
-<code class="sig-name descname"><span class="pre">transform</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corpus</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.corpus.Corpus" title="(in GISMO v0.4.1)"><span class="pre">gismo.corpus.Corpus</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/pit/embedding_idf.html#IdfEmbedding.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.pit.embedding_idf.IdfEmbedding.transform" title="Permalink to this definition">¶</a></dt>
-<dd><p>Ingest a corpus of documents using existing features.
-Requires that the embedding has been fitted beforehand.</p>
-<ul class="simple">
-<li><p>TF-IDF embedding of documents is computed and stored.</p></li>
-<li><p>TF-ITF embedding of features is computed and stored.</p></li>
-</ul>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>corpus</strong> (<a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.corpus.Corpus" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Corpus</span></code></a>) – The corpus to ingest.</p>
-</dd>
-</dl>
-<p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">gismo.common</span> <span class="kn">import</span> <span class="n">toy_source_text</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">=</span><span class="n">Corpus</span><span class="p">(</span><span class="n">toy_source_text</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span> <span class="o">=</span> <span class="n">IdfEmbedding</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">embedding</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">embedding</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">indices</span><span class="p">[:</span><span class="mi">8</span><span class="p">]]</span>
-<span class="go">[&#39;gizmo&#39;, &#39;mogwaï&#39;, &#39;blade&#39;, &#39;sentence&#39;, &#39;sentence&#39;, &#39;shadoks&#39;, &#39;comparing&#39;, &#39;gizmo&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">small_corpus</span> <span class="o">=</span> <span class="n">Corpus</span><span class="p">([</span><span class="s2">&quot;I only talk about Yoda&quot;</span><span class="p">,</span> <span class="s2">&quot;Gizmo forever!&quot;</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">small_corpus</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">embedding</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">embedding</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">indices</span><span class="p">]</span>
-<span class="go">[&#39;yoda&#39;, &#39;gizmo&#39;]</span>
-</pre></div>
-</div>
-</dd></dl>
-
 </dd></dl>
 
 <span class="target" id="module-sisu.pit.building_summary"></span><dl class="py function">
@@ -575,7 +527,7 @@ Requires that the embedding has been fitted beforehand.</p>
 A list of keywords.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -606,8 +558,8 @@ A list of keywords.</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="covid.html" class="btn btn-neutral float-right" title="Covid" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="datasets.html" class="btn btn-neutral float-right" title="Datasets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../tutorials/Gismo%20Covid.html" class="btn btn-neutral float-left" title="Building a Gismo for the Covid Dataset" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

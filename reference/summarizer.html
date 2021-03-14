@@ -1,0 +1,633 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Summarizer &mdash; Structured and Interactive Summarization 0.1.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributing" href="../contributing.html" />
+    <link rel="prev" title="Preprocessing" href="preprocessing.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Structured and Interactive Summarization
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Structured and Interactive Summarization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="datasets.html">Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing.html">Preprocessing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Summarizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#module-sisu.pit.gismo_wrapper">PIT</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Structured and Interactive Summarization</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Reference</a> &raquo;</li>
+        
+      <li>Summarizer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/reference/summarizer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-sisu.summarizer">
+<span id="summarizer"></span><h1>Summarizer<a class="headerlink" href="#module-sisu.summarizer" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="sisu.summarizer.PostNLP">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sisu.summarizer.</span></code><code class="sig-name descname"><span class="pre">PostNLP</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nlp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/summarizer.html#PostNLP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.summarizer.PostNLP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Post-processor for the <a class="reference internal" href="#sisu.summarizer.Summarizer" title="sisu.summarizer.Summarizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Summarizer</span></code></a> that leverages a spacy NLP engine.</p>
+<ul class="simple">
+<li><p>Discard sentences with no verb.</p></li>
+<li><p>Remove adverbs and punctuations that starts a sentence (e.g. “However, we …” -&gt; “We …”).</p></li>
+<li><p>Optionally, if the engine supports co-references, resolve them.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nlp</strong> (<em>callable</em>) – A Spacy nlp engine.</p></li>
+<li><p><strong>coref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Resolve co-references if the nlp engine supports it.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="sisu.summarizer.Summarizer">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sisu.summarizer.</span></code><code class="sig-name descname"><span class="pre">Summarizer</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gismo</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/summarizer.html#Summarizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.summarizer.Summarizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Summarizer class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gismo</strong> (<a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.gismo.Gismo" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Gismo</span></code></a>) – Gismo of the documents to analyze.</p></li>
+<li><p><strong>kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Parameters of the summarizer (see <a class="reference internal" href="#sisu.summarizer.default_summarizer_parameters" title="sisu.summarizer.default_summarizer_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_summarizer_parameters</span></code></a> for details).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="sisu.summarizer.Summarizer.query_">
+<code class="sig-name descname"><span class="pre">query_</span></code><a class="headerlink" href="#sisu.summarizer.Summarizer.query_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query used to summarize.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sisu.summarizer.Summarizer.sentences_">
+<code class="sig-name descname"><span class="pre">sentences_</span></code><a class="headerlink" href="#sisu.summarizer.Summarizer.sentences_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selected sentences. Each sentence is a dictionary with the following keys:</p>
+<ul class="simple">
+<li><p><cite>index</cite>: position of the sentence in the returned list</p></li>
+<li><p><cite>sentence</cite>: the actual sentence</p></li>
+<li><p><cite>relevant</cite>: a boolean that tells if the sentence is eligible for being part of the summary</p></li>
+<li><p><cite>sanitized</cite>: for relevant sentences, a simplified version to be fed to the embedding</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sisu.summarizer.Summarizer.order_">
+<code class="sig-name descname"><span class="pre">order_</span></code><a class="headerlink" href="#sisu.summarizer.Summarizer.order_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Proposed incomplete ordering of the <a class="reference internal" href="#sisu.summarizer.Summarizer.sentences_" title="sisu.summarizer.Summarizer.sentences_"><code class="xref py py-class docutils literal notranslate"><span class="pre">sentences_</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sisu.summarizer.Summarizer.sentence_gismo_">
+<code class="sig-name descname"><span class="pre">sentence_gismo_</span></code><a class="headerlink" href="#sisu.summarizer.Summarizer.sentence_gismo_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gismo running at sentence level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.gismo.Gismo" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Gismo</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sisu.summarizer.Summarizer.parameters">
+<code class="sig-name descname"><span class="pre">parameters</span></code><a class="headerlink" href="#sisu.summarizer.Summarizer.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handler of parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.parameters.Parameters" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parameters</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<p>The package contains a data folder with a toy gismo with articles related to Covid-19. We load it.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gismo</span> <span class="o">=</span> <span class="n">Gismo</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;toy_gismo&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then we build a summarizer out of it. We tell to fetch the sentences from the content of the articles.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">summa</span> <span class="o">=</span> <span class="n">Summarizer</span><span class="p">(</span><span class="n">gismo</span><span class="p">,</span> <span class="n">text_getter</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Ask for a summary on <em>bat</em> with a maximal budget of 500 characters, using pure TF-IDF sentence embedding.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">summa</span><span class="p">(</span><span class="s1">&#39;bat&#39;</span><span class="p">,</span> <span class="n">max_chars</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">itf</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> 
+<span class="go">[&#39;By comparing the amino acid sequence of 2019-nCoV S-protein (GenBank Accession: MN908947.3) with</span>
+<span class="go">  Bat SARS-like coronavirus isolate bat-SL-CoVZC45 and Bat SARS-like coronavirus isolate Bat-SL-CoVZXC21,</span>
+<span class="go">  the latter two were shown to share 89.1% and 88.6% sequence identity to 2019-nCoV S-protein</span>
+<span class="go">  (supplementary figure 1) .&#39;,</span>
+<span class="go"> &#39;Within our bat-hemoplasma network, genotype sharing was restricted to five host communities,</span>
+<span class="go">  380 whereas six genotypes were each restricted to a single bat species (Fig. 5A ).&#39;]</span>
+</pre></div>
+</div>
+<p>Now a summary based on the <em>cosine</em> ordering, using the content of abstracts and pure TF-IDF sentence embedding.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">summa</span><span class="p">(</span><span class="s1">&#39;bat&#39;</span><span class="p">,</span> <span class="n">max_chars</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="n">text_getter</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;abstract&#39;</span><span class="p">])</span> 
+<span class="go">[&#39;Bat dipeptidyl peptidase 4 (DPP4) sequences were closely related to 38 those of human and non-human</span>
+<span class="go">  primates but distinct from dromedary DPP4 sequence.&#39;,</span>
+<span class="go"> &#39;The multiple sequence alignment data correlated with already published reports on SARS-CoV-2</span>
+<span class="go">  indicated that it is closely related to Bat-Severe Acute Respiratory Syndrome like coronavirus</span>
+<span class="go">  (Bat CoV SARS-like) and wellstudied Human SARS.&#39;,</span>
+<span class="go"> &#39;(i.e., hemoplasmas) across a species-rich 40 bat community in Belize over two years.&#39;]</span>
+</pre></div>
+</div>
+<p>Now 4 sentences using a <em>coverage</em> ordering.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">summa</span><span class="p">(</span><span class="s1">&#39;bat&#39;</span><span class="p">,</span> <span class="n">num_sentences</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;coverage&#39;</span><span class="p">)</span> 
+<span class="go">[&#39;By comparing the amino acid sequence of 2019-nCoV S-protein (GenBank Accession: MN908947.3)</span>
+<span class="go">  with Bat SARS-like coronavirus isolate bat-SL-CoVZC45 and Bat SARS-like coronavirus isolate</span>
+<span class="go">  Bat-SL-CoVZXC21, the latter two were shown to share 89.1% and 88.6% sequence identity</span>
+<span class="go">  to 2019-nCoV S-protein (supplementary figure 1) .&#39;,</span>
+<span class="go"> &#39;However, we have not done the IDPs analysis for ORF10 from the Bat-SL-CoVZC45 strain since we</span>
+<span class="go">  have taken different strain of Bat CoV (reviewed strain HKU3-1) in our study.&#39;,</span>
+<span class="go"> &#39;To test the dependence of the hemoplasma 290 phylogeny upon the bat phylogeny and thus assess</span>
+<span class="go">  evidence of evolutionary codivergence, we 291 applied the Procrustes Approach to Cophylogeny</span>
+<span class="go">  (PACo) using distance matrices and the paco 292 We used hemoplasma genotype assignments to</span>
+<span class="go">  create a network, with each node representing a 299 bat species and edges representing shared</span>
+<span class="go">  genotypes among bat species pairs.&#39;,</span>
+<span class="go"> &#39;However, these phylogenetic patterns in prevalence were decoupled from those describing bat</span>
+<span class="go">  526 species centrality in sharing hemoplasmas, such that genotype sharing was generally</span>
+<span class="go">  restricted 527 by bat phylogeny.&#39;]</span>
+</pre></div>
+</div>
+<p>As you can see, there are some <a href="#id1"><span class="problematic" id="id2">``</span></a>However, ‘’ in the answers.
+A bit of NLP post_processing can take care of those.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;en_core_web_sm&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">post_nlp</span> <span class="o">=</span> <span class="n">PostNLP</span><span class="p">(</span><span class="n">nlp</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">summa</span><span class="p">(</span><span class="s1">&#39;bat&#39;</span><span class="p">,</span> <span class="n">num_sentences</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;coverage&#39;</span><span class="p">,</span> <span class="n">post_processing</span><span class="o">=</span><span class="n">post_nlp</span><span class="p">)</span> 
+<span class="go">[&#39;By comparing the amino acid sequence of 2019-nCoV S-protein (GenBank Accession: MN908947.3)</span>
+<span class="go">  with Bat SARS-like coronavirus isolate bat-SL-CoVZC45 and Bat SARS-like coronavirus isolate</span>
+<span class="go">  Bat-SL-CoVZXC21, the latter two were shown to share 89.1% and 88.6% sequence identity</span>
+<span class="go">  to 2019-nCoV S-protein (supplementary figure 1) .&#39;,</span>
+<span class="go"> &#39;We have not done the IDPs analysis for ORF10 from the Bat-SL-CoVZC45 strain since we</span>
+<span class="go">  have taken different strain of Bat CoV (reviewed strain HKU3-1) in our study.&#39;,</span>
+<span class="go"> &#39;To test the dependence of the hemoplasma 290 phylogeny upon the bat phylogeny and thus assess</span>
+<span class="go">  evidence of evolutionary codivergence, we 291 applied the Procrustes Approach to Cophylogeny</span>
+<span class="go">  (PACo) using distance matrices and the paco 292 We used hemoplasma genotype assignments to</span>
+<span class="go">  create a network, with each node representing a 299 bat species and edges representing shared</span>
+<span class="go">  genotypes among bat species pairs.&#39;,</span>
+<span class="go"> &#39;These phylogenetic patterns in prevalence were decoupled from those describing bat</span>
+<span class="go">  526 species centrality in sharing hemoplasmas, such that genotype sharing was generally</span>
+<span class="go">  restricted 527 by bat phylogeny.&#39;]</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="sisu.summarizer.Summarizer.build_coverage_order">
+<code class="sig-name descname"><span class="pre">build_coverage_order</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/summarizer.html#Summarizer.build_coverage_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.summarizer.Summarizer.build_coverage_order" title="Permalink to this definition">¶</a></dt>
+<dd><p>Populate <a class="reference internal" href="#sisu.summarizer.Summarizer.order_" title="sisu.summarizer.Summarizer.order_"><code class="xref py py-attr docutils literal notranslate"><span class="pre">order_</span></code></a> with a covering order with
+target number of sentences <em>k</em>. The actual number of indices is stretched
+by the sentence Gismo stretch factor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>k</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Number of optimal covering sentences.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Covering order.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sisu.summarizer.Summarizer.build_sentence_gismo">
+<code class="sig-name descname"><span class="pre">build_sentence_gismo</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">itf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s_g_p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/summarizer.html#Summarizer.build_sentence_gismo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.summarizer.Summarizer.build_sentence_gismo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the Gismo of sentences (<a class="reference internal" href="#sisu.summarizer.Summarizer.sentence_gismo_" title="sisu.summarizer.Summarizer.sentence_gismo_"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sentence_gismo_</span></code></a>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>itf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – Applies TF-IDTF embedding. I False, TF-IDF embedding is used.</p></li>
+<li><p><strong>s_g_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Parameters for the sentence Gismo.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sisu.summarizer.Summarizer.build_sentence_source">
+<code class="sig-name descname"><span class="pre">build_sentence_source</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_documents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">getter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tester</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/summarizer.html#Summarizer.build_sentence_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.summarizer.Summarizer.build_sentence_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the corpus of sentences (<a class="reference internal" href="#sisu.summarizer.Summarizer.sentences_" title="sisu.summarizer.Summarizer.sentences_"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sentences_</span></code></a>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_documents</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, optional) – Number of documents to select (if not, Gismo will automatically decide).</p></li>
+<li><p><strong>getter</strong> (<em>callable</em>) – Extraction of text from corpus item. If not specify, the to_text of the <a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.corpus.Corpus" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Corpus</span></code></a> will be used.</p></li>
+<li><p><strong>tester</strong> (<em>callable</em>) – Function that estimates if a sentence is eligible to be part of the summary.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sisu.summarizer.Summarizer.rank_documents">
+<code class="sig-name descname"><span class="pre">rank_documents</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/summarizer.html#Summarizer.rank_documents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.summarizer.Summarizer.rank_documents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a Gismo query at document-level. If the query fails, builds a generic query instead.
+The <code class="xref py py-attr docutils literal notranslate"><span class="pre">gismo</span></code> and
+<a class="reference internal" href="#sisu.summarizer.Summarizer.query_" title="sisu.summarizer.Summarizer.query_"><code class="xref py py-attr docutils literal notranslate"><span class="pre">query_</span></code></a> attributes are updated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Input text</p></li>
+<li><p><strong>num_query</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Number of words of the generic query, is any</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sisu.summarizer.Summarizer.summarize">
+<code class="sig-name descname"><span class="pre">summarize</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/summarizer.html#Summarizer.summarize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.summarizer.Summarizer.summarize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a full run of all summary-related operations:</p>
+<ul class="simple">
+<li><p>Rank a query at document level, fallback to a generic query if the query fails;</p></li>
+<li><p>Extract sentences from the top documents</p></li>
+<li><p>Order sentences by one of the three methods proposed, <em>rank</em>, <em>coverage</em>, and <em>cosine</em></p></li>
+<li><p>Apply post-processing and return list of selected sentences.</p></li>
+</ul>
+<p>Note that calling a <a class="reference internal" href="#sisu.summarizer.Summarizer" title="sisu.summarizer.Summarizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Summarizer</span></code></a> will call its
+<a class="reference internal" href="#sisu.summarizer.Summarizer.summarize" title="sisu.summarizer.Summarizer.summarize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">summarize()</span></code></a> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Query to run.</p></li>
+<li><p><strong>kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Runtime specific parameters
+(see <a class="reference internal" href="#sisu.summarizer.default_summarizer_parameters" title="sisu.summarizer.default_summarizer_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_summarizer_parameters</span></code></a> for possible arguments).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Summary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.summarizer.cosine_order">
+<code class="sig-prename descclassname"><span class="pre">sisu.summarizer.</span></code><code class="sig-name descname"><span class="pre">cosine_order</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">projection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sentences</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/summarizer.html#cosine_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.summarizer.cosine_order" title="Permalink to this definition">¶</a></dt>
+<dd><p>Order relevant sentences by cosine similarity to the query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>projection</strong> (<em>callable</em>) – A function that converts a text into a tuple whose first element is an embedding (typically a Gismo <a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.embedding.Embedding.query_projection" title="(in GISMO v0.4.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">query_projection()</span></code></a>).</p></li>
+<li><p><strong>sentences</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Sentences as output by <a class="reference internal" href="#sisu.summarizer.extract_sentences" title="sisu.summarizer.extract_sentences"><code class="xref py py-func docutils literal notranslate"><span class="pre">extract_sentences()</span></code></a>.</p></li>
+<li><p><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Target query</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Ordered list of indexes of relevant sentences, sorted by cosine similarity</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt id="sisu.summarizer.default_summarizer_parameters">
+<code class="sig-prename descclassname"><span class="pre">sisu.summarizer.</span></code><code class="sig-name descname"><span class="pre">default_summarizer_parameters</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'itf':</span> <span class="pre">True,</span> <span class="pre">'max_chars':</span> <span class="pre">None,</span> <span class="pre">'num_documents':</span> <span class="pre">None,</span> <span class="pre">'num_query':</span> <span class="pre">None,</span> <span class="pre">'num_sentences':</span> <span class="pre">None,</span> <span class="pre">'order':</span> <span class="pre">'rank',</span> <span class="pre">'post_processing':</span> <span class="pre">&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;,</span> <span class="pre">'sentence_gismo_parameters':</span> <span class="pre">{'post':</span> <span class="pre">False,</span> <span class="pre">'resolution':</span> <span class="pre">0.99},</span> <span class="pre">'sentence_tester':</span> <span class="pre">&lt;function</span> <span class="pre">is_relevant_sentence&gt;,</span> <span class="pre">'text_getter':</span> <span class="pre">None}</span></em><a class="headerlink" href="#sisu.summarizer.default_summarizer_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of parameters for the summarizer with their default values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Sorting function.</p></li>
+<li><p><strong>text_getter</strong> (<em>callable</em>) – Extraction of text from corpus item. If not specify, the to_text of the <a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.corpus.Corpus" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Corpus</span></code></a> will be used.</p></li>
+<li><p><strong>sentence_tester</strong> (<em>callable</em>) – Function that estimates if a sentence is eligible to be part of the summary</p></li>
+<li><p><strong>itf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Use of ITF normalization in the sentence-level Gismo</p></li>
+<li><p><strong>post_processing</strong> (<em>callable</em>) – post_processing transformation. Signature is (<a class="reference internal" href="#sisu.summarizer.Summarizer" title="sisu.summarizer.Summarizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Summarizer</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -&gt; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p></li>
+<li><p><strong>sentence_gismo_parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Tuning of sentence-level gismo. <cite>post</cite> MUST be set  to False.</p></li>
+<li><p><strong>num_documents</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> or None) – Number of documents to pre-select</p></li>
+<li><p><strong>num_query</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> or None) – Number of features to use in generic query</p></li>
+<li><p><strong>num_sentences</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> or None) – Number of sentences to return</p></li>
+<li><p><strong>max_chars</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> or None) – Maximal number of characters to return</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.summarizer.extract_sentences">
+<code class="sig-prename descclassname"><span class="pre">sisu.summarizer.</span></code><code class="sig-name descname"><span class="pre">extract_sentences</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">getter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tester</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/summarizer.html#extract_sentences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.summarizer.extract_sentences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pick up the entries of the source corresponding to indices and build a list of sentences out of that.</p>
+<p>Each sentence is a dictionary with the following keys:</p>
+<ul class="simple">
+<li><p><cite>index</cite>: position of the sentence in the returned list</p></li>
+<li><p><cite>sentence</cite>: the actual sentence</p></li>
+<li><p><cite>relevant</cite>: a boolean that tells if the sentence is eligible for being part of the summary</p></li>
+<li><p><cite>sanitized</cite>: for relevant sentences, a simplified version to be fed to the embedding</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>) – list of objects</p></li>
+<li><p><strong>indices</strong> (iterable of <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Indexes of the source items to select</p></li>
+<li><p><strong>getter</strong> (<em>callable</em><em>, </em><em>optional</em>) – Tells how to convert a source entry into text.</p></li>
+<li><p><strong>tester</strong> (<em>callable</em><em>, </em><em>optional</em>) – Tells if the sentence is eligible for being part of the summary.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of dict</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">doc1</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;This is a short sentence! This is a sentence with reference to the url http://www.ix.com! &quot;</span>
+<span class="gp">... </span>       <span class="s2">&quot;This sentence is not too short and not too long, without URL and without citation. &quot;</span>
+<span class="gp">... </span>       <span class="s2">&quot;I have many things to say in that sentence, to the point &quot;</span>
+<span class="gp">... </span>       <span class="s2">&quot;I do not know if I will stop anytime soon but don&#39;t let it stop &quot;</span>
+<span class="gp">... </span>       <span class="s2">&quot;you from reading this meaninless garbage and this goes on and &quot;</span>
+<span class="gp">... </span>       <span class="s2">&quot;this goes on and this goes on and this goes on and this goes on and &quot;</span>
+<span class="gp">... </span>       <span class="s2">&quot;this goes on and  this goes on and  this goes on and  this goes on &quot;</span>
+<span class="gp">... </span>       <span class="s2">&quot;and  this goes on and  this goes on and  this goes on and  this goes &quot;</span>
+<span class="gp">... </span>       <span class="s2">&quot;on and  this goes on and  this goes on and  this goes on and  this goes &quot;</span>
+<span class="gp">... </span>       <span class="s2">&quot;on and  this goes on and that is all.&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc2</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;This is a a sentence with some citations [3, 7]. &quot;</span>
+<span class="gp">... </span>        <span class="s2">&quot;This sentence is not too short and not too long, without URL and without citation. &quot;</span>
+<span class="gp">... </span>        <span class="s2">&quot;Note that the previous sentence is already present in doc1. &quot;</span>
+<span class="gp">... </span>        <span class="s2">&quot;The enzyme cytidine monophospho-N-acetylneuraminic acid hydroxylase (CMAH) catalyzes &quot;</span>
+<span class="gp">... </span>        <span class="s2">&quot;the synthesis of Neu5Gc by hydroxylation of Neu5Ac (Schauer et al. 1968).&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">extract_sentences</span><span class="p">([</span><span class="n">doc1</span><span class="p">,</span> <span class="n">doc2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> 
+<span class="go">[{&#39;index&#39;: 0, &#39;sentence&#39;: &#39;This is a a sentence with some citations [3, 7].&#39;, &#39;relevant&#39;: False, &#39;sanitized&#39;: &#39;&#39;},</span>
+<span class="go"> {&#39;index&#39;: 1, &#39;sentence&#39;: &#39;This sentence is not too short and not too long, without URL and without citation.&#39;,</span>
+<span class="go">  &#39;relevant&#39;: True, &#39;sanitized&#39;: &#39;This sentence is not too short and not too long without URL and without citation&#39;},</span>
+<span class="go"> {&#39;index&#39;: 2, &#39;sentence&#39;: &#39;Note that the previous sentence is already present in doc1.&#39;,</span>
+<span class="go">  &#39;relevant&#39;: True, &#39;sanitized&#39;: &#39;Note that the previous sentence is already present in doc&#39;},</span>
+<span class="go"> {&#39;index&#39;: 3, &#39;sentence&#39;: &#39;The enzyme cytidine monophospho-N-acetylneuraminic acid hydroxylase (CMAH) catalyzes</span>
+<span class="go">                           the synthesis of Neu5Gc by hydroxylation of Neu5Ac (Schauer et al. 1968).&#39;,</span>
+<span class="go">  &#39;relevant&#39;: False, &#39;sanitized&#39;: &#39;&#39;},</span>
+<span class="go"> {&#39;index&#39;: 4, &#39;sentence&#39;: &#39;This is a short sentence!&#39;, &#39;relevant&#39;: False, &#39;sanitized&#39;: &#39;&#39;},</span>
+<span class="go"> {&#39;index&#39;: 5, &#39;sentence&#39;: &#39;This is a sentence with reference to the url http://www.ix.com!&#39;,</span>
+<span class="go">  &#39;relevant&#39;: False, &#39;sanitized&#39;: &#39;&#39;},</span>
+<span class="go"> {&#39;index&#39;: 6, &#39;sentence&#39;: &#39;This sentence is not too short and not too long, without URL and without citation.&#39;,</span>
+<span class="go">  &#39;relevant&#39;: False, &#39;sanitized&#39;: &#39;&#39;},</span>
+<span class="go"> {&#39;index&#39;: 7, &#39;sentence&#39;: &quot;I have many things to say in that sentence...&quot;,</span>
+<span class="go">  &#39;relevant&#39;: False, &#39;sanitized&#39;: &#39;&#39;}]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="preprocessing.html" class="btn btn-neutral float-left" title="Preprocessing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Mélanie Cambus, Marc-Olivier Buob, Fabien Mathieu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

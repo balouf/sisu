@@ -4,9 +4,10 @@ from sklearn.feature_extraction.text import CountVectorizer
 from gismo.gismo import Gismo
 from gismo.embedding import Embedding
 from gismo.corpus import Corpus
-from sisu.pit.gismo_wrapper import make_gismo, simplified_document_to_string
+from sisu.pit.gismo_wrapper import simplified_document_to_string
 from sisu.preprocessing.language import MAP_LANG_STOP_WORDS
-from sisu.preprocessing.tokenizer import num_words, make_sentences, words
+from sisu.pit.preprocessing.tokenizer import num_words, make_sentences
+from sisu.preprocessing.tokenizer import words
 
 RE_URL = re.compile("https?://[a-zA-Z.:0-9]+.*|www.|.org|.net|.com|[a-zA-Z.:0-9]+/")
 RE_CITATION = re.compile(r"[\[(]\s*\d+(,\s*\d+)*[)\]]")
@@ -89,7 +90,7 @@ def summarize(documents, query="", num_documents=None, num_sentences=None, ratio
 
     Returns
     -------
-    List
+    :class:`list`
         A list of the summary sentences,
         A list of keywords.
 

@@ -32,6 +32,7 @@
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -91,6 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../readme.html">Structured and Interactive Summarization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Credits</a></li>
@@ -161,23 +163,138 @@
            <div itemprop="articleBody">
             
   <h1>Source code for sisu.preprocessing.tokenizer</h1><div class="highlight"><pre>
-<span></span><span class="c1"># Authors:</span>
-<span class="c1">#   Marc-Olivier Buob &lt;marc-olivier.buob@nokia-bell-labs.com&gt;</span>
-<span class="c1">#   Mélanie Cambus    &lt;melanie.cambus@nokia.com&gt;</span>
-<span class="c1">#   Fabien Mathieu    &lt;fabien.mathieu@normalesup.org&gt;</span>
-
-<span class="c1"># Precision : intersection over card(summary)</span>
-
-<span class="c1"># Getting words from a text without symbols</span>
-
-<span class="kn">import</span> <span class="nn">re</span>
+<span></span><span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">tokenize</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+
+<span class="n">toy_article</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s2">&quot;Predator&quot;</span><span class="p">,</span>
+               <span class="s1">&#39;abstract&#39;</span><span class="p">:</span> <span class="s2">&quot;In the jungle, no-one hears you far cry. And vice-versa. &quot;</span>
+                           <span class="s2">&quot;They say to make a long abstract, with the number 42 in it, so here I am.&quot;</span><span class="p">,</span>
+               <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="s2">&quot;There is no-one in the trees. Is there? Predators don&#39;t like to lose.&quot;</span><span class="p">}</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Article with a simple structure.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">sentence_tokenizer</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;tokenizers/punkt/english.pickle&#39;</span><span class="p">)</span>
+<span class="n">sentence_tokenizer</span><span class="o">.</span><span class="n">_params</span><span class="o">.</span><span class="n">abbrev_types</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;al&#39;</span><span class="p">,</span> <span class="s1">&#39;i.e&#39;</span><span class="p">,</span> <span class="s1">&#39;fig&#39;</span><span class="p">,</span> <span class="s1">&#39;resp&#39;</span><span class="p">,</span> <span class="s1">&#39;e.g&#39;</span><span class="p">,</span> <span class="s1">&#39;ie&#39;</span><span class="p">,</span> <span class="s1">&#39;eg&#39;</span><span class="p">})</span>
 
 
-<span class="n">NO_END_SENTENCE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;al.&quot;</span><span class="p">,</span> <span class="s2">&quot;i.e.&quot;</span><span class="p">,</span> <span class="s2">&quot;e.g.&quot;</span><span class="p">,</span> <span class="s2">&quot;resp.&quot;</span><span class="p">,</span> <span class="s2">&quot;fig.&quot;</span><span class="p">,</span> <span class="s2">&quot;ie.&quot;</span><span class="p">,</span> <span class="s2">&quot;eg.&quot;</span><span class="p">,</span> <span class="s2">&quot;(fig.&quot;</span><span class="p">}</span>
+<span class="n">RE_NOISE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[,.:;()0-9+=%\[\]_!\*]&quot;</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Words ending with a dot that do not indicate the end of a sentence.</span>
+<span class="sd">:class:`re.Pattern`</span>
+<span class="sd">    regexp for useless characters.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">RE_URL</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;https?://\S+&#39;</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">:class:`re.Pattern`</span>
+<span class="sd">    regexp for url detection. Mails may be impacted.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">RE_CITATION</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[\[(]\s*\d+(,\s*\d+)*[)\]]&quot;</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">:class:`re.Pattern`</span>
+<span class="sd">    regexp for citations.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">author</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(?:[A-Z][A-Za-z&#39;`-]+)&quot;</span>
+<span class="n">etal</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(?:et al\.?)&quot;</span>
+<span class="n">additional</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;(?:,? (?:(?:and |&amp; )?</span><span class="si">{</span><span class="n">author</span><span class="si">}</span><span class="s2">|</span><span class="si">{</span><span class="n">etal</span><span class="si">}</span><span class="s2">))&quot;</span>
+<span class="n">year_num</span> <span class="o">=</span> <span class="s2">&quot;(?:19|20)[0-9][0-9]&quot;</span>
+<span class="n">page_num</span> <span class="o">=</span> <span class="s2">&quot;(?:, p\.? [0-9]+)?&quot;</span>  <span class="c1"># Always optional</span>
+<span class="n">year</span> <span class="o">=</span> <span class="sa">fr</span><span class="s2">&quot;(?:,? *</span><span class="si">{</span><span class="n">year_num</span><span class="si">}{</span><span class="n">page_num</span><span class="si">}</span><span class="s2">| *\(</span><span class="si">{</span><span class="n">year_num</span><span class="si">}{</span><span class="n">page_num</span><span class="si">}</span><span class="s2">\))&quot;</span>
+<span class="n">RE_COMPLEX_CITATION</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">fr</span><span class="s1">&#39;\b(?!(?:Although|Also)\b)</span><span class="si">{</span><span class="n">author</span><span class="si">}{</span><span class="n">additional</span><span class="si">}</span><span class="s1">*</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">:class:`re.Pattern`</span>
+<span class="sd">    Regexp for complex citations. From https://stackoverflow.com/questions/4320958/regular-expression-for-recognizing-in-text-citations and</span>
+<span class="sd">    https://stackoverflow.com/questions/63632861/python-regex-to-get-citations-in-a-paper .</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">RE_NOT_A_WORD</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[^A-Za-z]+&quot;</span><span class="p">)</span>
+
+<span class="n">RE_ALTERNATE_PUNCTUATION</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;·|\.==|\.===|\.====&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="sanitize_text"><a class="viewcode-back" href="../../../reference/preprocessing.html#sisu.preprocessing.tokenizer.sanitize_text">[docs]</a><span class="k">def</span> <span class="nf">sanitize_text</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sanitize a text. This is done to improve the Embedding quality and should not be perform for human reading.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    text: :class:`str`</span>
+<span class="sd">        Text to clean.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :class:`str`</span>
+<span class="sd">        The corresponding sanitized `str` instance.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; sanitize_text(&quot;This is a mail: santa@northpole.com!&quot;)</span>
+<span class="sd">    &#39;This is a mail santa@northpolecom&#39;</span>
+<span class="sd">    &gt;&gt;&gt; sanitize_text(&quot;This is a url: http://www.enst.fr!&quot;)</span>
+<span class="sd">    &#39;This is a url&#39;</span>
+<span class="sd">    &gt;&gt;&gt; sanitize_text(&quot;This is a !*[ url: https://www.ens.fr!&quot;)</span>
+<span class="sd">    &#39;This is a  url&#39;</span>
+<span class="sd">    &gt;&gt;&gt; sanitize_text(&quot;These are references [3, 17].&quot;)</span>
+<span class="sd">    &#39;These are references&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">[</span><span class="n">RE_URL</span><span class="p">,</span> <span class="n">RE_CITATION</span><span class="p">,</span> <span class="n">RE_NOISE</span><span class="p">]:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">text</span></div>
+
+
+<div class="viewcode-block" id="to_text"><a class="viewcode-back" href="../../../reference/preprocessing.html#sisu.preprocessing.tokenizer.to_text">[docs]</a><span class="k">def</span> <span class="nf">to_text</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">post_process</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Transforms a dict into a string made of its values.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    doc: :class:`dict`</span>
+<span class="sd">        A `dict` representing a document of &quot;depth one&quot;, all the values are strings.</span>
+<span class="sd">    post_process: callable, optional</span>
+<span class="sd">        Function to apply to entries.</span>
+<span class="sd">    keys: list, optional</span>
+<span class="sd">        The entries to extract.</span>
+
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :class:`str`</span>
+<span class="sd">        Concatenation of values.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    &gt;&gt;&gt; to_text(toy_article)</span>
+<span class="sd">    &quot;Predator In the jungle, no-one hears you far cry. And vice-versa. They say to make a long abstract, with the number 42 in it, so here I am. There is no-one in the trees. Is there? Predators don&#39;t like to lose.&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">post_process</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">post_process</span> <span class="o">=</span> <span class="nb">str</span>
+    <span class="k">if</span> <span class="n">keys</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]</span>
+    <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">post_process</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="to_text_sanitized"><a class="viewcode-back" href="../../../reference/preprocessing.html#sisu.preprocessing.tokenizer.to_text_sanitized">[docs]</a><span class="k">def</span> <span class="nf">to_text_sanitized</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    doc: :class:`dict`</span>
+<span class="sd">        A `dict` representing a document of &quot;depth one&quot;, all the values are strings or can be cast to strings.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">        Text sanitized for embedding.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; to_text_sanitized(toy_article)</span>
+<span class="sd">    &quot;Predator In the jungle no-one hears you far cry And vice-versa They say to make a long abstract with the number  in it so here I am There is no-one in the trees Is there? Predators don&#39;t like to lose&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">to_text</span><span class="p">(</span><span class="n">doc</span><span class="o">=</span><span class="n">doc</span><span class="p">,</span> <span class="n">post_process</span><span class="o">=</span><span class="n">sanitize_text</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="words"><a class="viewcode-back" href="../../../reference/preprocessing.html#sisu.preprocessing.tokenizer.words">[docs]</a><span class="k">def</span> <span class="nf">words</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
@@ -203,81 +320,9 @@
 <span class="sd">    [&#39;one&#39;, &#39;two&#39;]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="p">(</span>
-        <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[^A-Za-z]+&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>  <span class="c1"># Removing punctuation, numbers and math symbols</span>
+        <span class="n">RE_NOT_A_WORD</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>  <span class="c1"># Removing punctuation, numbers and math symbols</span>
         <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
     <span class="p">)</span> <span class="k">if</span> <span class="n">w</span><span class="p">]</span></div>
-
-
-<div class="viewcode-block" id="make_sentences"><a class="viewcode-back" href="../../../reference/preprocessing.html#sisu.preprocessing.tokenizer.make_sentences">[docs]</a><span class="k">def</span> <span class="nf">make_sentences</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">no_end_words</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Extract sentences from a text.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    text: :class:`str`</span>
-<span class="sd">        A :class:`str` corresponding to a full text.</span>
-<span class="sd">    no_end_words: :class:`set`, optional</span>
-<span class="sd">        A :class:`set` of words that could wrongfully trigger end of sentence.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    :class:`list`</span>
-<span class="sd">        A list of :class:`str` corresponding to the text&#39;s sentences.</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-
-<span class="sd">    &gt;&gt;&gt; make_sentences(&quot;One sentence, i.e. words with no dot, as Toto and al. say. Or no (cf fig. 2)?&quot;)</span>
-<span class="sd">    [&#39;One sentence, i.e. words with no dot, as Toto and al. say.&#39;, &#39;Or no (cf fig. 2)?&#39;]</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">no_end_words</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">no_end_words</span> <span class="o">=</span> <span class="n">NO_END_SENTENCE</span>
-    <span class="n">sentences</span> <span class="o">=</span> <span class="n">tokenize</span><span class="o">.</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;·&quot;</span><span class="p">,</span> <span class="s2">&quot;. &quot;</span><span class="p">))</span>
-    <span class="n">s_index</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">while</span> <span class="n">s_index</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">sentence</span> <span class="o">=</span> <span class="n">sentences</span><span class="p">[</span><span class="n">s_index</span><span class="p">]</span>
-        <span class="n">last_word</span> <span class="o">=</span> <span class="n">sentence</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">last_word</span> <span class="ow">in</span> <span class="n">no_end_words</span><span class="p">:</span>
-            <span class="n">sentences</span><span class="p">[</span><span class="n">s_index</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">sentence</span><span class="p">,</span> <span class="n">sentences</span><span class="p">[</span><span class="n">s_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]])</span>
-            <span class="n">sentences</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">s_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">s_index</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="n">sentences</span></div>
-
-
-<div class="viewcode-block" id="make_sentences_wiki"><a class="viewcode-back" href="../../../reference/preprocessing.html#sisu.preprocessing.tokenizer.make_sentences_wiki">[docs]</a><span class="k">def</span> <span class="nf">make_sentences_wiki</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">no_end_words</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Extract sentences from a text, with wiki code handling.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    text: :class:`str`</span>
-<span class="sd">        A :class:`str` corresponding to a full text.</span>
-<span class="sd">    no_end_words: :class:`set`, optional</span>
-<span class="sd">        A :class:`set` of words that could wrongfully trigger end of sentence.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    :class:`list`</span>
-<span class="sd">        A list of :class:`str` corresponding to the text&#39;s sentences.</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-
-<span class="sd">    &gt;&gt;&gt; make_sentences_wiki(&quot;and hyraxes.== Name and taxonomy ==&quot;)</span>
-<span class="sd">    [&#39;and hyraxes &#39;, &#39; Name and taxonomy ==&#39;]</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">sentences</span> <span class="o">=</span> <span class="n">make_sentences</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span> <span class="n">no_end_words</span><span class="o">=</span><span class="n">no_end_words</span><span class="p">)</span>
-
-    <span class="n">new_sentences</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-
-    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sentences</span><span class="p">):</span>
-        <span class="n">replacements</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;.==&#39;</span><span class="p">,</span> <span class="s1">&#39;.===&#39;</span><span class="p">,</span> <span class="s1">&#39;.====&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">replacements</span><span class="p">:</span>
-            <span class="n">sentence</span> <span class="o">=</span> <span class="n">sentence</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="s1">&#39; . &#39;</span><span class="p">)</span>
-        <span class="n">true_sentence</span> <span class="o">=</span> <span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;. &quot;</span><span class="p">)</span>
-        <span class="n">new_sentences</span> <span class="o">+=</span> <span class="n">true_sentence</span>
-    <span class="k">return</span> <span class="n">new_sentences</span></div>
 
 
 <div class="viewcode-block" id="num_words"><a class="viewcode-back" href="../../../reference/preprocessing.html#sisu.preprocessing.tokenizer.num_words">[docs]</a><span class="k">def</span> <span class="nf">num_words</span><span class="p">(</span><span class="n">sentence</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
@@ -301,6 +346,87 @@
 <span class="sd">    4</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="is_relevant_sentence"><a class="viewcode-back" href="../../../reference/preprocessing.html#sisu.preprocessing.tokenizer.is_relevant_sentence">[docs]</a><span class="k">def</span> <span class="nf">is_relevant_sentence</span><span class="p">(</span><span class="n">sentence</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">min_num_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">max_num_words</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Ignore sentences that are too short, too long, that contain a URL or a citation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sentence: :class:`str`</span>
+<span class="sd">        Sentence to analyze.</span>
+<span class="sd">    min_num_words: :class:`int`, optional</span>
+<span class="sd">        Minimal number of words.</span>
+<span class="sd">    max_num_words: :class:`int`, optional</span>
+<span class="sd">        Maximal number of words.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :class:`bool`</span>
+<span class="sd">        Is the sentence OK?</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; is_relevant_sentence(&quot;This is a short sentence!&quot;)</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; is_relevant_sentence(&quot;This is a sentence with reference to the url http://www.ix.com!&quot;)</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; is_relevant_sentence(&quot;This is a a sentence with some citations [3, 7]!&quot;)</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; is_relevant_sentence(&quot;I have many things to say in that sentence, to the point &quot;</span>
+<span class="sd">    ...                      &quot;I do not know if I will stop anytime soon but don&#39;t let it stop&quot;</span>
+<span class="sd">    ...                      &quot;you from reading this meaninless garbage and this goes on and &quot;</span>
+<span class="sd">    ...                      &quot;this goes on and this goes on and this goes on and this goes on and &quot;</span>
+<span class="sd">    ...                      &quot; this goes on and  this goes on and  this goes on and  this goes on &quot;</span>
+<span class="sd">    ...                      &quot;and  this goes on and  this goes on and  this goes on and  this goes &quot;</span>
+<span class="sd">    ...                      &quot;on and  this goes on and  this goes on and  this goes on and  this goes &quot;</span>
+<span class="sd">    ...                      &quot;on and  this goes on and &quot;)</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; is_relevant_sentence(&quot;This sentence is not too short and not too long, without URL and without citation.&quot;)</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; is_relevant_sentence(&#39;The enzyme cytidine monophospho-N-acetylneuraminic acid hydroxylase (CMAH) catalyzes &#39;</span>
+<span class="sd">    ...                      &#39;the synthesis of Neu5Gc by hydroxylation of Neu5Ac &#39;</span>
+<span class="sd">    ...                      &#39;(Schauer et al. 1968) .&#39;)</span>
+<span class="sd">    False</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">num_words</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">min_num_words</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">max_num_words</span>
+        <span class="ow">and</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">RE_CITATION</span><span class="p">,</span> <span class="n">sentence</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="ow">and</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">RE_COMPLEX_CITATION</span><span class="p">,</span> <span class="n">sentence</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="ow">and</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">RE_URL</span><span class="p">,</span> <span class="n">sentence</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="make_sentences"><a class="viewcode-back" href="../../../reference/preprocessing.html#sisu.preprocessing.tokenizer.make_sentences">[docs]</a><span class="k">def</span> <span class="nf">make_sentences</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">no_end_words</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract sentences from a text.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    text: :class:`str`</span>
+<span class="sd">        A :class:`str` corresponding to a full text.</span>
+<span class="sd">    no_end_words: :class:`set`, optional</span>
+<span class="sd">        A :class:`set` of words that could wrongfully trigger end of sentence.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :class:`list`</span>
+<span class="sd">        A list of :class:`str` corresponding to the text&#39;s sentences.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    &gt;&gt;&gt; make_sentences(&quot;One sentence, i.e. words with no dot, as Toto and al. say. Or no (cf fig. 2)?&quot;)</span>
+<span class="sd">    [&#39;One sentence, i.e. words with no dot, as Toto and al. say.&#39;, &#39;Or no (cf fig. 2)?&#39;]</span>
+
+<span class="sd">    Another example with wiki syntax</span>
+<span class="sd">    &gt;&gt;&gt; make_sentences(&quot;and hyraxes.== Name and taxonomy ==&quot;)</span>
+<span class="sd">    [&#39;and hyraxes.&#39;, &#39;Name and taxonomy ==&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sentences</span> <span class="o">=</span> <span class="n">sentence_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">RE_ALTERNATE_PUNCTUATION</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;. &quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">]</span></div>
 </pre></div>
 
            </div>

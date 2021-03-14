@@ -4,9 +4,11 @@ Reference
 
 .. toctree::
 
-   covid
+   datasets
 
    preprocessing
+
+   summarizer
 
 PIT
 -----

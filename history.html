@@ -32,6 +32,7 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -92,10 +93,13 @@
 <li class="toctree-l1"><a class="reference internal" href="readme.html">Structured and Interactive Summarization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/index.html">Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#x-x-2021-xx-xx-todo">0.X.X (2021-XX-XX): TODO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flat-summarizer">0.2.0 (2021-03-14): Flat summarizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-pit">0.1.2 (2021-03-03): the <em>pit</em></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#data-loader">0.1.1 (2021-02-23): data_loader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#first-release">0.1.0 (2021-02-23): First release</a></li>
@@ -168,8 +172,54 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="history">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="history">
 <h1>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="x-x-2021-xx-xx-todo">
+<h2>0.X.X (2021-XX-XX): TODO<a class="headerlink" href="#x-x-2021-xx-xx-todo" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Run experiments and comparison on the flat summarizer</p></li>
+<li><p>Start converting the Wikipedia Animals dataset</p></li>
+<li><p>Start converting hierarchical summary notebook</p></li>
+</ul>
+</div>
+<div class="section" id="flat-summarizer">
+<h2>0.2.0 (2021-03-14): Flat summarizer<a class="headerlink" href="#flat-summarizer" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Main update: fully-functional flat summarizer!</p>
+<ul>
+<li><p>Fully customisable;</p></li>
+<li><p>Fully documented.</p></li>
+</ul>
+</li>
+<li><p>Change of paradigm: start from the notebook and build the module cell by cell.</p></li>
+<li><p>Consequences: all non-converted modules from 0.1.2 are moved to the pit. They will be restored during the notebook transformation.</p></li>
+<li><p>sentence splitter optimized big time using nltk hidden features!</p></li>
+</ul>
+</div>
 <div class="section" id="the-pit">
 <h2>0.1.2 (2021-03-03): the <em>pit</em><a class="headerlink" href="#the-pit" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">

@@ -2,14 +2,6 @@ Preprocessing
 -------------
 
 
-Covid 19
-^^^^^^^^
-
-Module for adapting to Covid 19 Kaggle challenge
-
-.. automodule:: sisu.preprocessing.covid19
-    :members:
-
 Language
 ^^^^^^^^
 
@@ -21,17 +13,15 @@ Module for automatic language detection
 Tokenizer
 ^^^^^^^^^
 
-Module for decomposing text into base units
-
+Module for extracting text parts from documents and decomposing text into base units
 
 .. automodule:: sisu.preprocessing.tokenizer
     :members:
 
-sentences
-^^^^^^^^^
+IDF Embedding
+^^^^^^^^^^^^^^
 
-Module for extracting sentences
+Embedding with ITF disabled.
 
-
-.. automodule:: sisu.preprocessing.sentences
+.. automodule:: sisu.embedding_idf
     :members:

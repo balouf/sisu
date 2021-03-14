@@ -1,0 +1,1023 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Building a Gismo for the Covid Dataset &mdash; Structured and Interactive Summarization 0.1.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Reference" href="../reference/index.html" />
+    <link rel="prev" title="Tutorials" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Structured and Interactive Summarization
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Structured and Interactive Summarization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Building a Gismo for the Covid Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Retrieving-the-Covid-19-Dataset-Zip-archive.">Retrieving the Covid-19 Dataset Zip archive.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Loading-the-corpus-from-zip">Loading the corpus from zip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Converting-the-archive-into-a-FileSource">Converting the archive into a FileSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Building-a-corpus">Building a corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Building-the-embedding">Building the embedding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#The-Gismo">The Gismo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Structured and Interactive Summarization</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+        
+      <li>Building a Gismo for the Covid Dataset</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/Gismo Covid.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Building-a-Gismo-for-the-Covid-Dataset">
+<h1>Building a Gismo for the Covid Dataset<a class="headerlink" href="#Building-a-Gismo-for-the-Covid-Dataset" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial shows how to build a Gismo from a Covid Dataset. The Gismo is the base object that is used to analyze and summarize the dataset (see for example the Covid Summarizer tutorial).</p>
+<div class="section" id="Retrieving-the-Covid-19-Dataset-Zip-archive.">
+<h2>Retrieving the Covid-19 Dataset Zip archive.<a class="headerlink" href="#Retrieving-the-Covid-19-Dataset-Zip-archive." title="Permalink to this headline">¶</a></h2>
+<p>The dataset can be downloaded from <a class="reference external" href="https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge">Kaggle website</a> by clicking the Download button once registered. You’ll get a zip file.</p>
+<p>We assume you downloaded the archive and that it is available in some directory (adjust the parameters below according to your own settings).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">DATASET_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../../../../../../Datasets/covid&quot;</span><span class="p">)</span>
+<span class="n">ARCHIVE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;CORD-19-research-challenge.zip&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">DATASET_DIR</span> <span class="o">/</span> <span class="n">ARCHIVE</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Loading-the-corpus-from-zip">
+<h2>Loading the corpus from zip<a class="headerlink" href="#Loading-the-corpus-from-zip" title="Permalink to this headline">¶</a></h2>
+<p>sisu provides a simple interface to load the archive in the form of a list of dictionaries. For testing purposes, you can specify the number of documents you want to retrieve. Here we retrieve the first 100 documents.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sisu.datasets.covid</span> <span class="kn">import</span> <span class="n">load_from_zip</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">load_from_zip</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">ARCHIVE</span><span class="p">,</span> <span class="n">data_path</span><span class="o">=</span><span class="n">DATASET_DIR</span><span class="p">,</span> <span class="n">max_docs</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">len</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1000
+</pre></div></div>
+</div>
+<p>Each entry contains by default 5 keys (this can be tuned): - <code class="docutils literal notranslate"><span class="pre">title</span></code> - <code class="docutils literal notranslate"><span class="pre">abstract</span></code> - <code class="docutils literal notranslate"><span class="pre">content</span></code> - <code class="docutils literal notranslate"><span class="pre">id</span></code> - <code class="docutils literal notranslate"><span class="pre">lang</span></code></p>
+<p>For example, the first 10 titles</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">source</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;The RNA pseudoknots in foot-and-mouth disease virus are dispensable for genome replication but essential for the production of infectious virus. 2 3&#39;,
+ &#39;Analysis Title: Regaining perspective on SARS-CoV-2 molecular tracing and its implications&#39;,
+ &#39;Healthcare-resource-adjusted vulnerabilities towards the 2019-nCoV epidemic across China&#39;,
+ &#39;Real-time, MinION-based, amplicon sequencing for lineage typing of infectious bronchitis virus from upper respiratory samples&#39;,
+ &#39;A Combined Evidence Approach to Prioritize Nipah Virus Inhibitors&#39;,
+ &#39;Assessing spread risk of Wuhan novel coronavirus within and beyond China, January-April 2020: a travel network-based modelling study&#39;,
+ &#39;TWIRLS, an automated topic-wise inference method based on massive literature, suggests a possible mechanism via ACE2 for the pathological changes in the human host after coronavirus infection&#39;,
+ &#39;Title: Viruses are a dominant driver of protein adaptation in mammals&#39;,
+ &#39;The impact of regular school closure on seasonal influenza epidemics: a data-driven spatial transmission model for Belgium&#39;,
+ &#39;Carbon Nanocarriers Deliver siRNA to Intact Plant Cells for Efficient Gene&#39;]
+</pre></div></div>
+</div>
+<p>Statistics on language used:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="n">Counter</span><span class="p">([</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;lang&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">source</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Counter({&#39;en&#39;: 998, &#39;fr&#39;: 2})
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Converting-the-archive-into-a-FileSource">
+<h2>Converting the archive into a FileSource<a class="headerlink" href="#Converting-the-archive-into-a-FileSource" title="Permalink to this headline">¶</a></h2>
+<p>Loading the whole file can be time and memory consuming.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">load_from_zip</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">ARCHIVE</span><span class="p">,</span> <span class="n">data_path</span><span class="o">=</span><span class="n">DATASET_DIR</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time to load </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">source</span><span class="p">)</span><span class="si">}</span><span class="s2"> articles: </span><span class="si">{</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Time to load 33375 articles: 188.65 seconds.
+</pre></div></div>
+</div>
+<p>If you only need to use the source for linear browsing or accessing a few elements, it can be interesting to save the source as a FileSource. A FileSource will basically behave like a list, except that the data stays stored on the hard drive.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">gismo.filesource</span> <span class="kn">import</span> <span class="n">FileSource</span><span class="p">,</span> <span class="n">create_file_source</span>
+<span class="n">create_file_source</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;covid&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">DATASET_DIR</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>After the FileSource has been created, it can be used instead of the in-memory list.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">gismo.filesource</span> <span class="kn">import</span> <span class="n">FileSource</span>
+<span class="k">del</span> <span class="n">source</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">FileSource</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;covid&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">DATASET_DIR</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time to load </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">source</span><span class="p">)</span><span class="si">}</span><span class="s2"> articles: </span><span class="si">{</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Time to load 33375 articles: 0.03 seconds.
+</pre></div></div>
+</div>
+<p>The main difference is that you cannot use slice index, just plain index or iterators.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="p">[</span><span class="n">source</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span> <span class="c1"># use range to avoid slice indexing</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;The RNA pseudoknots in foot-and-mouth disease virus are dispensable for genome replication but essential for the production of infectious virus. 2 3&#39;,
+ &#39;Analysis Title: Regaining perspective on SARS-CoV-2 molecular tracing and its implications&#39;,
+ &#39;Healthcare-resource-adjusted vulnerabilities towards the 2019-nCoV epidemic across China&#39;,
+ &#39;Real-time, MinION-based, amplicon sequencing for lineage typing of infectious bronchitis virus from upper respiratory samples&#39;,
+ &#39;A Combined Evidence Approach to Prioritize Nipah Virus Inhibitors&#39;,
+ &#39;Assessing spread risk of Wuhan novel coronavirus within and beyond China, January-April 2020: a travel network-based modelling study&#39;,
+ &#39;TWIRLS, an automated topic-wise inference method based on massive literature, suggests a possible mechanism via ACE2 for the pathological changes in the human host after coronavirus infection&#39;,
+ &#39;Title: Viruses are a dominant driver of protein adaptation in mammals&#39;,
+ &#39;The impact of regular school closure on seasonal influenza epidemics: a data-driven spatial transmission model for Belgium&#39;,
+ &#39;Carbon Nanocarriers Deliver siRNA to Intact Plant Cells for Efficient Gene&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">Counter</span><span class="p">([</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;lang&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">source</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Counter({&#39;en&#39;: 32590, &#39;fr&#39;: 372, &#39;xx&#39;: 51, &#39;es&#39;: 295, &#39;de&#39;: 67})
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Building-a-corpus">
+<h2>Building a corpus<a class="headerlink" href="#Building-a-corpus" title="Permalink to this headline">¶</a></h2>
+<p>A gismo corpus is essentially a list with instructions about how to convert items of the list to a text that will be used for the embedding (the text does not have to be comprehensible for humans).</p>
+<p>For example, we will build a list of English articles with non-trivial title, abtract and content. Note that we can close the source afterwards to avoid keeping an open file.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">english_source</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">source</span> <span class="k">if</span>
+                  <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;abstract&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">140</span> <span class="ow">and</span>
+                  <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">20</span> <span class="ow">and</span>
+                  <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">200</span> <span class="ow">and</span>
+                  <span class="n">d</span><span class="p">[</span><span class="s1">&#39;lang&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;en&#39;</span><span class="p">]</span>
+<span class="n">source</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">english_source</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+23114
+</pre></div></div>
+</div>
+<p>Now we can associate the source and a text function (we use a text sanitizer that will extract content and do some cleaning).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">gismo.corpus</span> <span class="kn">import</span> <span class="n">Corpus</span>
+<span class="kn">from</span> <span class="nn">sisu.preprocessing.tokenizer</span> <span class="kn">import</span> <span class="n">to_text_sanitized</span>
+
+<span class="n">corpus</span> <span class="o">=</span> <span class="n">Corpus</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">english_source</span><span class="p">,</span> <span class="n">to_text</span><span class="o">=</span><span class="n">to_text_sanitized</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Building-the-embedding">
+<h2>Building the embedding<a class="headerlink" href="#Building-the-embedding" title="Permalink to this headline">¶</a></h2>
+<p>From the corpus, one can create the Gismo dual embedding of documents into words and words into documents. We will use some stopwords to avoid cluttering the embedding with common words that not not bring much information.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sisu.preprocessing.language</span> <span class="kn">import</span> <span class="n">EN_STOP_WORDS</span>
+<span class="n">covid_stop_words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;preprint&#39;</span><span class="p">,</span> <span class="s1">&#39;copyright&#39;</span><span class="p">,</span> <span class="s1">&#39;holder&#39;</span><span class="p">,</span> <span class="s1">&#39;reuse&#39;</span><span class="p">,</span> <span class="s1">&#39;doi&#39;</span><span class="p">,</span> <span class="s1">&#39;reads&#39;</span><span class="p">,</span> <span class="s1">&#39;fig&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">]</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">gismo.embedding</span> <span class="kn">import</span> <span class="n">Embedding</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">min_df</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="n">EN_STOP_WORDS</span><span class="o">+</span><span class="n">covid_stop_words</span><span class="p">)</span>
+<span class="n">embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">(</span><span class="n">vectorizer</span><span class="p">)</span>
+<span class="n">embedding</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">embedding</span><span class="o">.</span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;23114x92278 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
+        with 18690530 stored elements in Compressed Sparse Row format&gt;
+</pre></div></div>
+</div>
+<p>The embedding graph relates 23,114 articles to 92,278 words through a bipartite graph of 18,690,530 relationships.</p>
+<p>Average unique words per documents:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="mi">18690530</span><span class="o">/</span><span class="mi">23114</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+808.6237777970061
+</pre></div></div>
+</div>
+<p>Average number of documents where a random word appears:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="mi">18690530</span><span class="o">/</span><span class="mi">92278</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+202.5458939292139
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="The-Gismo">
+<h2>The Gismo<a class="headerlink" href="#The-Gismo" title="Permalink to this headline">¶</a></h2>
+<p>Gismo is just a concatenation of a corpus and an embedding.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">gismo.gismo</span> <span class="kn">import</span> <span class="n">Gismo</span>
+<span class="n">gismo</span> <span class="o">=</span> <span class="n">Gismo</span><span class="p">(</span><span class="n">corpus</span><span class="p">,</span> <span class="n">embedding</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Small example: for a given query, proposes titles of relevant articles.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gismo</span><span class="o">.</span><span class="n">post_documents_item</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">g</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">corpus</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">propose_titles</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
+    <span class="n">success</span> <span class="o">=</span> <span class="n">gismo</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">gismo</span><span class="o">.</span><span class="n">get_documents_by_rank</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Not found anything about: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">propose_titles</span><span class="p">(</span><span class="s2">&quot;flklkfl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Not found anything about: flklkfl!
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">propose_titles</span><span class="p">(</span><span class="s2">&quot;pangolin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;Pangolin homology associated with 2019-nCoV&#39;,
+ &#39;Probable Pangolin Origin of SARS-CoV-2 Associated with the COVID-19 Outbreak&#39;,
+ &#39;Evidence of recombination in coronaviruses implicating pangolin origins of nCoV- 2019&#39;,
+ &#39;Evidence of the Recombinant Origin and Ongoing Mutations in Severe Acute Respiratory Syndrome Coronavirus 2 (SARS-CoV-2)&#39;,
+ &#39;Spike protein recognition of mammalian ACE2 predicts the host range and an optimized ACE2 for SARS-CoV-2 infection&#39;,
+ &#39;Viral Metagenomics Revealed Sendai Virus and Coronavirus Infection of Malayan Pangolins (Manis javanica)&#39;,
+ &#39;Emergence of SARS-CoV-2 through Recombination and Strong Purifying Selection Short Title: Recombination and origin of SARS-CoV-2 One Sentence Summary: Extensive Recombination and Strong Purifying Selection among coronaviruses from different hosts facilitate the emergence of SARS-CoV-2&#39;,
+ &#39;Mutations, Recombination and Insertion in the Evolution of 2019-nCoV&#39;,
+ &#39;SARS-CoV-2, an evolutionary perspective of interaction with human ACE2 reveals undiscovered amino acids necessary for complex stability&#39;,
+ &#39;Journal Pre-proof Predicting the angiotensin converting enzyme 2 (ACE2) utilizing capability as the receptor of SARS-CoV-2 Predicting the angiotensin converting enzyme 2 (ACE2) utilizing capability as the receptor of SARS-CoV-2 2&#39;,
+ &#39;CRISPR-based surveillance for COVID-19 using genomically-comprehensive machine learning design&#39;,
+ &#39;ROLE OF CHANGES IN SARS-COV-2 SPIKE PROTEIN IN THE INTERACTION WITH THE HUMAN ACE2 RECEPTOR: AN IN SILICO ANALYSIS&#39;,
+ &#39;Systematic Comparison of Two Animal-to-Human Transmitted Human Coronaviruses: SARS-CoV-2 and SARS-CoV&#39;,
+ &#39;Animal origins of SARS coronavirus: possible links with the international trade in small carnivores&#39;,
+ &#39;Strong evolutionary convergence of receptor-binding protein spike between COVID-19 and SARS-related coronaviruses&#39;,
+ &#39;The epidemic of 2019-novel-coronavirus (2019-nCoV) pneumonia and insights for emerging infectious diseases in the future&#39;,
+ &#39;Potential Factors Influencing Repeated SARS Outbreaks in China&#39;,
+ &#39;The bushmeat and food security nexus: A global account of the contributions, conundrums and ethical collisions&#39;,
+ &#39;Epidemic Situation of Novel Coronavirus Pneumonia in China mainland&#39;,
+ &#39;Genome Detective Coronavirus Typing Tool for rapid identification and characterization of novel coronavirus genomes&#39;,
+ &#39;Protein structure and sequence re-analysis of 2019-nCoV genome does not indicate snakes as its intermediate host or the unique similarity between its spike protein insertions and HIV-1&#39;,
+ &#39;Digital Surveillance: A Novel Approach to Monitoring the Illegal Wildlife Trade&#39;,
+ &#39;From sequence to enzyme mechanism using multi-label machine learning&#39;,
+ &#39;Reasons for the increase in emerging and re-emerging viral infectious diseases&#39;,
+ &#39;Wildlife trade, consumption and conservation awareness in southwest China&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">propose_titles</span><span class="p">(</span><span class="s2">&quot;platypus&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;Widespread Divergence of the CEACAM/PSG Genes in Vertebrates and Humans Suggests Sensitivity to Selection&#39;,
+ &#39;Coevolution of activating and inhibitory receptors within mammalian carcinoembryonic antigen families&#39;,
+ &#39;Phylogenetic Distribution of CMP-Neu5Ac Hydroxylase (CMAH), the Enzyme Synthetizing the Proinflammatory Human Xenoantigen Neu5Gc&#39;,
+ &#39;Immunoglobulin heavy chain diversity in Pteropid bats: evidence for a diverse and highly specific antigen binding repertoire&#39;,
+ &#39;Evolutionary Dynamics of the Interferon-Induced Transmembrane Gene Family in Vertebrates&#39;,
+ &#39;Evolution of vertebrate interferon inducible transmembrane proteins&#39;,
+ &#39;A Comprehensive Phylogenetic and Structural Analysis of the Carcinoembryonic Antigen (CEA) Gene Family&#39;,
+ &#39;Chiropteran types I and II interferon genes inferred from genome sequencing traces by a statistical gene-family assembler&#39;,
+ &#39;A novel fast vector method for genetic sequence comparison OPEN&#39;,
+ &#39;Alignment-free method for DNA sequence clustering using Fuzzy integral similarity&#39;,
+ &#39;Emodin Inhibits EBV Reactivation and Represses NPC Tumorigenesis&#39;,
+ &#39;Crystallographic Analysis of the Reaction Cycle of 2′,3′-Cyclic Nucleotide 3′-Phosphodiesterase, a Unique Member of the 2H Phosphoesterase Family&#39;,
+ &#39;Evolutionary aspects of lipoxygenases and genetic diversity of human leukotriene signaling&#39;,
+ &#39;A new method to analyze protein sequence similarity using Dynamic Time Warping&#39;,
+ &#39;Effective one-pot multienzyme (OPME) synthesis of monotreme milk oligosaccharides and other sialosides containing a 4-O- acetyl sialic acid † HHS Public Access Author manuscript&#39;,
+ &#39;A Poisson model of sequence comparison and its application to coronavirus phylogeny&#39;,
+ &#39;Post-Glycosylation Modification of Sialic Acid and Its Role in Virus Pathogenesis&#39;,
+ &#39;Similar ratios of introns to intergenic sequence across animal 1 genomes&#39;,
+ &#39;Genomic organization and adaptive evolution of IGHC genes in marine mammals&#39;,
+ &#39;Contrasting Patterns in Mammal-Bacteria Coevolution: Bartonella and Leptospira in Bats and Rodents&#39;,
+ &#39;Peptide presentation by bat MHC class I provides new insight into the antiviral immunity of bats&#39;,
+ &#39;Multiomics analysis of the giant triton snail salivary gland, a crown- of-thorns starfish predator OPEN&#39;,
+ &#39;A novel immunity system for bacterial nucleic acid degrading toxins and its recruitment in various eukaryotic and DNA viral systems&#39;,
+ &#39;The Value of the Tree of Life &#34;Nothing makes sense except in light of evolution&#34;&#39;,
+ &#39;34 Animals Hazardous to Humans&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">propose_titles</span><span class="p">(</span><span class="s2">&quot;marseille&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;Respiratory viruses within homeless shelters in Marseille, France&#39;,
+ &#39;Epidemiology of respiratory pathogen carriage in the homeless population within two shelters in Marseille, France, 2015e2017: cross sectional 1-day surveys&#39;,
+ &#39;Incidence of Hajj-associated febrile cough episodes among French pilgrims: a prospective cohort study on the influence of statin use and risk factors&#39;,
+ &#39;Hydroxychloroquine and azithromycin as a treatment of COVID-19: results of an open- label non-randomized clinical trial&#39;,
+ &#39;Infectious disease symptoms and microbial carriage among French medical students travelling abroad: A prospective study&#39;,
+ &#39;Acquisition of respiratory viruses and presence of respiratory symptoms in French pilgrims during the 2016 Hajj: A prospective cohort study&#39;,
+ &#39;The VIZIER project: Preparedness against pathogenic RNA viruses&#39;,
+ &#34;French Hajj pilgrims&#39; experience with pneumococcal infection and vaccination: A knowledge, attitudes and practice (KAP) evaluation&#34;,
+ &#39;Journal Pre-proof SARS-CoV-2: fear versus data SARS-CoV-2: fear versus data&#39;,
+ &#39;Novel Virus Influenza A (H1N1sw) in South-Eastern&#39;,
+ &#39;Bacterial respiratory carriage in French Hajj pilgrims and the effect of pneumococcal vaccine and other individual preventive measures: A prospective cohort survey&#39;,
+ &#39;Detection of Plant DNA in the Bronchoalveolar Lavage of Patients with Ventilator-Associated Pneumonia&#39;,
+ &#39;The dynamics and interactions of respiratory pathogen carriage among French pilgrims during the 2018 Hajj&#39;,
+ &#39;Screening Pneumonia Patients for Mimivirus 1&#39;,
+ &#39;Studies of nonhuman primates: key sources of data on zoonoses and microbiota&#39;,
+ &#39;Studies of nonhuman primates: key sources of data on zoonoses and microbiota&#39;,
+ &#39;Survey of laboratory-acquired infections around the world in biosafety level 3 and 4 laboratories&#39;,
+ &#39;Filovirus Research in Gabon and Equatorial Africa: The Experience of a Research Center in the Heart of Africa&#39;,
+ &#39;The impact of high-speed railway on tourism spatial structures between two adjoining metropolitan cities in China: Beijing and Tianjin&#39;,
+ &#39;Travel and migration associated infectious diseases morbidity in Europe, 2008&#39;,
+ &#39;Highly infectious diseases in the Mediterranean Sea area: Inventory of isolation capabilities and recommendations for appropriate isolation&#39;,
+ &#39;Highly infectious diseases in the Mediterranean Sea area: Inventory of isolation capabilities and recommendations for appropriate isolation&#39;,
+ &#39;Natural Killer Cells Promote Early CD8 T Cell Responses against Cytomegalovirus&#39;,
+ &#39;The effect of chlortracycline treatment on enteric bacteria in pigs SoA1.3 Delsol AA a Analysis of Helicobacter pylori resistance to antimicrobial agents in Polish children SoA4.2&#39;,
+ &#39;The history of the plague and the research on the causative agent Yersinia pestis&#39;,
+ &#39;Antimicrobial resistance in anaerobic bacteria. Experiences in Europe and North America (Symposium arranged with ESGARAB) S11 Antimicrobial susceptibility patterns in different European countries Pathogenesis and prevention of nosocomial infections-new aspects (Symposium arranged with ESGNI) S14 Ventilator-associated pneumonia&#39;,
+ &#39;2018 international meeting of the Global Virus Network&#39;,
+ &#39;Meeting report: 29th International Conference on Antiviral Research&#39;,
+ &#34;Travelers&#39; Actual and Subjective Knowledge about Risk for Ebola Virus Disease&#34;,
+ &#39;Asymptomatic Middle East Respiratory Syndrome Coronavirus (MERS-CoV) infection: Extent and implications for infection control: A systematic review&#39;]
+</pre></div></div>
+</div>
+<p>A Gismo can serve many purpose that will be exposed in other tutorials. Note that you can save your Gismo for later use.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">gismo</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;covid_gismo&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">DATASET_DIR</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">erase</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../reference/index.html" class="btn btn-neutral float-right" title="Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Mélanie Cambus, Marc-Olivier Buob, Fabien Mathieu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

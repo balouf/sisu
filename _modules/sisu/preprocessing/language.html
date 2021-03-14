@@ -32,6 +32,7 @@
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -91,6 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../readme.html">Structured and Interactive Summarization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Credits</a></li>
@@ -161,17 +163,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for sisu.preprocessing.language</h1><div class="highlight"><pre>
-<span></span><span class="ch">#!/usr/http://localhost:8888/edit/notebooks/summarizer/language_filtering.py#bin/env python3</span>
-<span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="c1">#</span>
-<span class="c1"># This file is part of newdle</span>
-<span class="c1"># Copyright © 2020 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. *</span>
-<span class="c1">#</span>
-<span class="c1"># Authors:</span>
-<span class="c1">#   Marc-Olivier Buob &lt;marc-olivier.buob@nokia-bell-labs.com&gt;</span>
-<span class="c1">#   Mélanie Cambus    &lt;melanie.cambus@nokia.com&gt;</span>
-
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="kn">from</span> <span class="nn">sisu.preprocessing.tokenizer</span> <span class="kn">import</span> <span class="n">words</span>
 
 <span class="n">EN_STOP_WORDS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;able&quot;</span><span class="p">,</span> <span class="s2">&quot;about&quot;</span><span class="p">,</span> <span class="s2">&quot;above&quot;</span><span class="p">,</span> <span class="s2">&quot;abst&quot;</span><span class="p">,</span> <span class="s2">&quot;accordance&quot;</span><span class="p">,</span> <span class="s2">&quot;according&quot;</span><span class="p">,</span> <span class="s2">&quot;accordingly&quot;</span><span class="p">,</span> <span class="s2">&quot;across&quot;</span><span class="p">,</span> <span class="s2">&quot;act&quot;</span><span class="p">,</span>
@@ -398,7 +390,8 @@
 <span class="n">LANG_EXAMPLES</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;en&#39;</span><span class="p">:</span> <span class="s2">&quot;My taylor is rich.&quot;</span><span class="p">,</span>
                  <span class="s2">&quot;fr&quot;</span><span class="p">:</span> <span class="s2">&quot;La vie est belle.&quot;</span><span class="p">,</span>
                  <span class="s1">&#39;es&#39;</span><span class="p">:</span> <span class="s2">&quot;Hasta la vista aqui.&quot;</span><span class="p">,</span>
-                 <span class="s1">&#39;de&#39;</span><span class="p">:</span> <span class="s2">&quot;Der Erlkönig tut mir leid.&quot;</span><span class="p">}</span>
+                 <span class="s1">&#39;de&#39;</span><span class="p">:</span> <span class="s2">&quot;Der Erlkönig tut mir leid.&quot;</span><span class="p">,</span>
+                 <span class="s1">&#39;sd&#39;</span><span class="p">:</span> <span class="s2">&quot;Ga zo bu meu.&quot;</span><span class="p">}</span>
 <span class="sd">&quot;&quot;&quot;Small sentences written in different languages.&quot;&quot;&quot;</span>
 
 
@@ -442,6 +435,9 @@
 <span class="sd">    {&#39;en&#39;: 0, &#39;fr&#39;: 1, &#39;es&#39;: 3, &#39;de&#39;: 0}</span>
 <span class="sd">    de: Der Erlkönig tut mir leid.</span>
 <span class="sd">    {&#39;en&#39;: 0, &#39;fr&#39;: 0, &#39;es&#39;: 0, &#39;de&#39;: 2}</span>
+<span class="sd">    sd: Ga zo bu meu.</span>
+<span class="sd">    {&#39;en&#39;: 0, &#39;fr&#39;: 0, &#39;es&#39;: 0, &#39;de&#39;: 0}</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">map_lang_stop_words</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">map_lang_stop_words</span> <span class="o">=</span> <span class="n">MAP_LANG_STOP_WORDS</span>
@@ -453,7 +449,7 @@
     <span class="k">return</span> <span class="n">map_lang_num_stop_words</span></div>
 
 
-<div class="viewcode-block" id="guess_language"><a class="viewcode-back" href="../../../reference/preprocessing.html#sisu.preprocessing.language.guess_language">[docs]</a><span class="k">def</span> <span class="nf">guess_language</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">map_lang_stop_words</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="guess_language"><a class="viewcode-back" href="../../../reference/preprocessing.html#sisu.preprocessing.language.guess_language">[docs]</a><span class="k">def</span> <span class="nf">guess_language</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">map_lang_stop_words</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Recognises the language of the text by looking at common words.</span>
 
@@ -461,13 +457,15 @@
 <span class="sd">    ----------</span>
 <span class="sd">    text: :class:`str`</span>
 <span class="sd">        Text to analyze.</span>
+<span class="sd">    threshold: int</span>
+<span class="sd">        Minimal amount of stopwords require to qualify</span>
 <span class="sd">    map_lang_stop_words: :class:`dict`, optional</span>
 <span class="sd">        Common words for different languages.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    :class:`str`</span>
-<span class="sd">        Two-letters code for the language.</span>
+<span class="sd">        Two-letters code for the language (&#39;xx&#39; for unknown language).</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -482,17 +480,17 @@
 <span class="sd">    Guessed language: es</span>
 <span class="sd">    Der Erlkönig tut mir leid. (de)</span>
 <span class="sd">    Guessed language: de</span>
+<span class="sd">    Ga zo bu meu. (sd)</span>
+<span class="sd">    Guessed language: xx</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">map_lang_stop_words</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">map_lang_stop_words</span> <span class="o">=</span> <span class="n">MAP_LANG_STOP_WORDS</span>
     <span class="n">map_lang_num_stop_words</span> <span class="o">=</span> <span class="n">guess_language_ext</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">map_lang_stop_words</span><span class="p">)</span>
-    <span class="n">best_score</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">best_lang</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">lang</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="ow">in</span> <span class="n">map_lang_num_stop_words</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">best_score</span><span class="p">:</span>
-            <span class="n">best_score</span> <span class="o">=</span> <span class="n">n</span>
-            <span class="n">best_lang</span> <span class="o">=</span> <span class="n">lang</span>
-    <span class="k">return</span> <span class="n">best_lang</span></div>
+    <span class="n">best_score</span><span class="p">,</span> <span class="n">best_lang</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([(</span><span class="n">n</span><span class="p">,</span> <span class="n">lang</span><span class="p">)</span> <span class="k">for</span>  <span class="p">(</span><span class="n">lang</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="ow">in</span> <span class="n">map_lang_num_stop_words</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+    <span class="k">if</span> <span class="n">best_score</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">best_lang</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;xx&quot;</span></div>
 </pre></div>
 
            </div>

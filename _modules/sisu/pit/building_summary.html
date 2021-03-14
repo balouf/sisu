@@ -32,6 +32,7 @@
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -91,6 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../readme.html">Structured and Interactive Summarization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Credits</a></li>
@@ -167,9 +169,10 @@
 <span class="kn">from</span> <span class="nn">gismo.gismo</span> <span class="kn">import</span> <span class="n">Gismo</span>
 <span class="kn">from</span> <span class="nn">gismo.embedding</span> <span class="kn">import</span> <span class="n">Embedding</span>
 <span class="kn">from</span> <span class="nn">gismo.corpus</span> <span class="kn">import</span> <span class="n">Corpus</span>
-<span class="kn">from</span> <span class="nn">sisu.pit.gismo_wrapper</span> <span class="kn">import</span> <span class="n">make_gismo</span><span class="p">,</span> <span class="n">simplified_document_to_string</span>
+<span class="kn">from</span> <span class="nn">sisu.pit.gismo_wrapper</span> <span class="kn">import</span> <span class="n">simplified_document_to_string</span>
 <span class="kn">from</span> <span class="nn">sisu.preprocessing.language</span> <span class="kn">import</span> <span class="n">MAP_LANG_STOP_WORDS</span>
-<span class="kn">from</span> <span class="nn">sisu.preprocessing.tokenizer</span> <span class="kn">import</span> <span class="n">num_words</span><span class="p">,</span> <span class="n">make_sentences</span><span class="p">,</span> <span class="n">words</span>
+<span class="kn">from</span> <span class="nn">sisu.pit.preprocessing.tokenizer</span> <span class="kn">import</span> <span class="n">num_words</span><span class="p">,</span> <span class="n">make_sentences</span>
+<span class="kn">from</span> <span class="nn">sisu.preprocessing.tokenizer</span> <span class="kn">import</span> <span class="n">words</span>
 
 <span class="n">RE_URL</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;https?://[a-zA-Z.:0-9]+.*|www.|.org|.net|.com|[a-zA-Z.:0-9]+/&quot;</span><span class="p">)</span>
 <span class="n">RE_CITATION</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[\[(]\s*\d+(,\s*\d+)*[)\]]&quot;</span><span class="p">)</span>
@@ -252,7 +255,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    List</span>
+<span class="sd">    :class:`list`</span>
 <span class="sd">        A list of the summary sentences,</span>
 <span class="sd">        A list of keywords.</span>
 

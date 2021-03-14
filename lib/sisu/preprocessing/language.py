@@ -1,13 +1,3 @@
-#!/usr/http://localhost:8888/edit/notebooks/summarizer/language_filtering.py#bin/env python3
-# -*- coding: utf-8 -*-
-#
-# This file is part of newdle
-# Copyright © 2020 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. *
-#
-# Authors:
-#   Marc-Olivier Buob <marc-olivier.buob@nokia-bell-labs.com>
-#   Mélanie Cambus    <melanie.cambus@nokia.com>
-
 from collections import defaultdict
 from sisu.preprocessing.tokenizer import words
 
@@ -235,7 +225,8 @@ List of common German words.
 LANG_EXAMPLES = {'en': "My taylor is rich.",
                  "fr": "La vie est belle.",
                  'es': "Hasta la vista aqui.",
-                 'de': "Der Erlkönig tut mir leid."}
+                 'de': "Der Erlkönig tut mir leid.",
+                 'sd': "Ga zo bu meu."}
 """Small sentences written in different languages."""
 
 
@@ -279,6 +270,9 @@ def guess_language_ext(text, map_lang_stop_words=None):
     {'en': 0, 'fr': 1, 'es': 3, 'de': 0}
     de: Der Erlkönig tut mir leid.
     {'en': 0, 'fr': 0, 'es': 0, 'de': 2}
+    sd: Ga zo bu meu.
+    {'en': 0, 'fr': 0, 'es': 0, 'de': 0}
+
     """
     if map_lang_stop_words is None:
         map_lang_stop_words = MAP_LANG_STOP_WORDS
@@ -290,7 +284,7 @@ def guess_language_ext(text, map_lang_stop_words=None):
     return map_lang_num_stop_words
 
 
-def guess_language(text, map_lang_stop_words=None) -> str:
+def guess_language(text, threshold=1, map_lang_stop_words=None) -> str:
     """
     Recognises the language of the text by looking at common words.
 
@@ -298,13 +292,15 @@ def guess_language(text, map_lang_stop_words=None) -> str:
     ----------
     text: :class:`str`
         Text to analyze.
+    threshold: int
+        Minimal amount of stopwords require to qualify
     map_lang_stop_words: :class:`dict`, optional
         Common words for different languages.
 
     Returns
     -------
     :class:`str`
-        Two-letters code for the language.
+        Two-letters code for the language ('xx' for unknown language).
 
     Examples
     --------
@@ -319,14 +315,14 @@ def guess_language(text, map_lang_stop_words=None) -> str:
     Guessed language: es
     Der Erlkönig tut mir leid. (de)
     Guessed language: de
+    Ga zo bu meu. (sd)
+    Guessed language: xx
     """
     if map_lang_stop_words is None:
         map_lang_stop_words = MAP_LANG_STOP_WORDS
     map_lang_num_stop_words = guess_language_ext(text, map_lang_stop_words)
-    best_score = 0
-    best_lang = None
-    for (lang, n) in map_lang_num_stop_words.items():
-        if n > best_score:
-            best_score = n
-            best_lang = lang
-    return best_lang
+    best_score, best_lang = max([(n, lang) for  (lang, n) in map_lang_num_stop_words.items()])
+    if best_score > threshold:
+        return best_lang
+    else:
+        return "xx"

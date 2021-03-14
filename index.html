@@ -32,6 +32,7 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -92,6 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="readme.html">Structured and Interactive Summarization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/index.html">Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
@@ -163,7 +165,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="welcome-to-structured-and-interactive-summarization-s-documentation">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="welcome-to-structured-and-interactive-summarization-s-documentation">
 <h1>Welcome to Structured and Interactive Summarization’s documentation!<a class="headerlink" href="#welcome-to-structured-and-interactive-summarization-s-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
@@ -179,9 +205,14 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/Gismo%20Covid.html">Building a Gismo for the Covid Dataset</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="reference/index.html">Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="reference/covid.html">Covid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/datasets.html">Datasets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference/preprocessing.html">Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/summarizer.html">Summarizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference/index.html#module-sisu.pit.gismo_wrapper">PIT</a></li>
 </ul>
 </li>
@@ -199,6 +230,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#x-x-2021-xx-xx-todo">0.X.X (2021-XX-XX): TODO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#flat-summarizer">0.2.0 (2021-03-14): Flat summarizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="history.html#the-pit">0.1.2 (2021-03-03): the <em>pit</em></a></li>
 <li class="toctree-l2"><a class="reference internal" href="history.html#data-loader">0.1.1 (2021-02-23): data_loader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="history.html#first-release">0.1.0 (2021-02-23): First release</a></li>

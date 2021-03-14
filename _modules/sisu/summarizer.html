@@ -1,0 +1,684 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>sisu.summarizer &mdash; Structured and Interactive Summarization 0.1.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Structured and Interactive Summarization
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Structured and Interactive Summarization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Structured and Interactive Summarization</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>sisu.summarizer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sisu.summarizer</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">vstack</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">sisu.preprocessing.tokenizer</span> <span class="kn">import</span> <span class="n">is_relevant_sentence</span><span class="p">,</span> <span class="n">make_sentences</span><span class="p">,</span> <span class="n">sanitize_text</span>
+<span class="kn">from</span> <span class="nn">gismo.gismo</span> <span class="kn">import</span> <span class="n">Gismo</span><span class="p">,</span> <span class="n">covering_order</span>
+<span class="kn">from</span> <span class="nn">gismo.common</span> <span class="kn">import</span> <span class="n">auto_k</span>
+<span class="kn">from</span> <span class="nn">gismo.parameters</span> <span class="kn">import</span> <span class="n">Parameters</span>
+<span class="kn">from</span> <span class="nn">gismo.corpus</span> <span class="kn">import</span> <span class="n">Corpus</span>
+<span class="kn">from</span> <span class="nn">gismo.embedding</span> <span class="kn">import</span> <span class="n">Embedding</span>
+<span class="kn">from</span> <span class="nn">sisu.embedding_idf</span> <span class="kn">import</span> <span class="n">IdfEmbedding</span>
+
+
+<div class="viewcode-block" id="cosine_order"><a class="viewcode-back" href="../../reference/summarizer.html#sisu.summarizer.cosine_order">[docs]</a><span class="k">def</span> <span class="nf">cosine_order</span><span class="p">(</span><span class="n">projection</span><span class="p">,</span> <span class="n">sentences</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Order relevant sentences by cosine similarity to the query.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    projection: callable</span>
+<span class="sd">        A function that converts a text into a tuple whose first element is an embedding (typically a Gismo :meth:`~gismo.embedding.Embedding.query_projection`).</span>
+<span class="sd">    sentences: :class:`list` of :class:`dict`</span>
+<span class="sd">        Sentences as output by :func:`~sisu.summarizer.extract_sentences`.</span>
+<span class="sd">    query: :class:`str`</span>
+<span class="sd">        Target query</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :class:`list` of :class:`int`</span>
+<span class="sd">        Ordered list of indexes of relevant sentences, sorted by cosine similarity</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">relevant_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sentences</span> <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="s1">&#39;relevant&#39;</span><span class="p">]]</span>
+    <span class="n">projected_query</span> <span class="o">=</span> <span class="n">projection</span><span class="p">(</span><span class="n">query</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">projected_sentences</span> <span class="o">=</span> <span class="n">vstack</span><span class="p">([</span><span class="n">projection</span><span class="p">(</span><span class="n">sentences</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;sanitized&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">relevant_indices</span><span class="p">])</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">projected_sentences</span><span class="p">,</span> <span class="n">projected_query</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">relevant_indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">order</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="extract_sentences"><a class="viewcode-back" href="../../reference/summarizer.html#sisu.summarizer.extract_sentences">[docs]</a><span class="k">def</span> <span class="nf">extract_sentences</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tester</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Pick up the entries of the source corresponding to indices and build a list of sentences out of that.</span>
+
+<span class="sd">    Each sentence is a dictionary with the following keys:</span>
+
+<span class="sd">    - `index`: position of the sentence in the returned list</span>
+<span class="sd">    - `sentence`: the actual sentence</span>
+<span class="sd">    - `relevant`: a boolean that tells if the sentence is eligible for being part of the summary</span>
+<span class="sd">    - `sanitized`: for relevant sentences, a simplified version to be fed to the embedding</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    source: :class:`list`</span>
+<span class="sd">        list of objects</span>
+<span class="sd">    indices: iterable of :class:`int`</span>
+<span class="sd">        Indexes of the source items to select</span>
+<span class="sd">    getter: callable, optional</span>
+<span class="sd">        Tells how to convert a source entry into text.</span>
+<span class="sd">    tester: callable, optional</span>
+<span class="sd">        Tells if the sentence is eligible for being part of the summary.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list of dict</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    &gt;&gt;&gt; doc1 = (&quot;This is a short sentence! This is a sentence with reference to the url http://www.ix.com! &quot;</span>
+<span class="sd">    ...        &quot;This sentence is not too short and not too long, without URL and without citation. &quot;</span>
+<span class="sd">    ...        &quot;I have many things to say in that sentence, to the point &quot;</span>
+<span class="sd">    ...        &quot;I do not know if I will stop anytime soon but don\&#39;t let it stop &quot;</span>
+<span class="sd">    ...        &quot;you from reading this meaninless garbage and this goes on and &quot;</span>
+<span class="sd">    ...        &quot;this goes on and this goes on and this goes on and this goes on and &quot;</span>
+<span class="sd">    ...        &quot;this goes on and  this goes on and  this goes on and  this goes on &quot;</span>
+<span class="sd">    ...        &quot;and  this goes on and  this goes on and  this goes on and  this goes &quot;</span>
+<span class="sd">    ...        &quot;on and  this goes on and  this goes on and  this goes on and  this goes &quot;</span>
+<span class="sd">    ...        &quot;on and  this goes on and that is all.&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; doc2 = (&quot;This is a a sentence with some citations [3, 7]. &quot;</span>
+<span class="sd">    ...         &quot;This sentence is not too short and not too long, without URL and without citation. &quot;</span>
+<span class="sd">    ...         &quot;Note that the previous sentence is already present in doc1. &quot;</span>
+<span class="sd">    ...         &quot;The enzyme cytidine monophospho-N-acetylneuraminic acid hydroxylase (CMAH) catalyzes &quot;</span>
+<span class="sd">    ...         &quot;the synthesis of Neu5Gc by hydroxylation of Neu5Ac (Schauer et al. 1968).&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; extract_sentences([doc1, doc2], [1, 0]) # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS</span>
+<span class="sd">    [{&#39;index&#39;: 0, &#39;sentence&#39;: &#39;This is a a sentence with some citations [3, 7].&#39;, &#39;relevant&#39;: False, &#39;sanitized&#39;: &#39;&#39;},</span>
+<span class="sd">     {&#39;index&#39;: 1, &#39;sentence&#39;: &#39;This sentence is not too short and not too long, without URL and without citation.&#39;,</span>
+<span class="sd">      &#39;relevant&#39;: True, &#39;sanitized&#39;: &#39;This sentence is not too short and not too long without URL and without citation&#39;},</span>
+<span class="sd">     {&#39;index&#39;: 2, &#39;sentence&#39;: &#39;Note that the previous sentence is already present in doc1.&#39;,</span>
+<span class="sd">      &#39;relevant&#39;: True, &#39;sanitized&#39;: &#39;Note that the previous sentence is already present in doc&#39;},</span>
+<span class="sd">     {&#39;index&#39;: 3, &#39;sentence&#39;: &#39;The enzyme cytidine monophospho-N-acetylneuraminic acid hydroxylase (CMAH) catalyzes</span>
+<span class="sd">                               the synthesis of Neu5Gc by hydroxylation of Neu5Ac (Schauer et al. 1968).&#39;,</span>
+<span class="sd">      &#39;relevant&#39;: False, &#39;sanitized&#39;: &#39;&#39;},</span>
+<span class="sd">     {&#39;index&#39;: 4, &#39;sentence&#39;: &#39;This is a short sentence!&#39;, &#39;relevant&#39;: False, &#39;sanitized&#39;: &#39;&#39;},</span>
+<span class="sd">     {&#39;index&#39;: 5, &#39;sentence&#39;: &#39;This is a sentence with reference to the url http://www.ix.com!&#39;,</span>
+<span class="sd">      &#39;relevant&#39;: False, &#39;sanitized&#39;: &#39;&#39;},</span>
+<span class="sd">     {&#39;index&#39;: 6, &#39;sentence&#39;: &#39;This sentence is not too short and not too long, without URL and without citation.&#39;,</span>
+<span class="sd">      &#39;relevant&#39;: False, &#39;sanitized&#39;: &#39;&#39;},</span>
+<span class="sd">     {&#39;index&#39;: 7, &#39;sentence&#39;: &quot;I have many things to say in that sentence...&quot;,</span>
+<span class="sd">      &#39;relevant&#39;: False, &#39;sanitized&#39;: &#39;&#39;}]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">getter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">getter</span> <span class="o">=</span> <span class="nb">str</span>
+    <span class="k">if</span> <span class="n">tester</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">tester</span> <span class="o">=</span> <span class="n">is_relevant_sentence</span>
+
+    <span class="n">sentences</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;sentence&#39;</span><span class="p">:</span> <span class="n">sent</span><span class="p">,</span> <span class="s1">&#39;relevant&#39;</span><span class="p">:</span> <span class="n">tester</span><span class="p">(</span><span class="n">sent</span><span class="p">)}</span>
+                 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sent</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">sent</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">indices</span>
+                                           <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">make_sentences</span><span class="p">(</span><span class="n">getter</span><span class="p">(</span><span class="n">source</span><span class="p">[</span><span class="n">j</span><span class="p">]))])]</span>
+    <span class="n">used</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="s1">&#39;sentence&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">used</span> <span class="ow">and</span> <span class="n">s</span><span class="p">[</span><span class="s1">&#39;relevant&#39;</span><span class="p">]:</span>
+            <span class="n">s</span><span class="p">[</span><span class="s1">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">used</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;sentence&#39;</span><span class="p">])</span>
+        <span class="n">s</span><span class="p">[</span><span class="s1">&#39;sanitized&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sanitize_text</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;sentence&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="s1">&#39;relevant&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">sentences</span></div>
+
+
+<span class="n">default_summarizer_parameters</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;order&#39;</span><span class="p">:</span> <span class="s1">&#39;rank&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;text_getter&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;sentence_tester&#39;</span><span class="p">:</span> <span class="n">is_relevant_sentence</span><span class="p">,</span>
+    <span class="s1">&#39;itf&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;post_processing&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">summa</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="n">summa</span><span class="o">.</span><span class="n">sentences_</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;sentence&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;sentence_gismo_parameters&#39;</span><span class="p">:</span>  <span class="p">{</span><span class="s1">&#39;post&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;resolution&#39;</span><span class="p">:</span> <span class="o">.</span><span class="mi">99</span><span class="p">},</span>
+    <span class="s1">&#39;num_documents&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;num_query&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;num_sentences&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;max_chars&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">List of parameters for the summarizer with their default values.</span>
+
+<span class="sd">Parameters</span>
+<span class="sd">-----------</span>
+<span class="sd">order: :class:`str`</span>
+<span class="sd">    Sorting function.</span>
+<span class="sd">text_getter: callable</span>
+<span class="sd">    Extraction of text from corpus item. If not specify, the to_text of the :class:`~gismo.corpus.Corpus` will be used.</span>
+<span class="sd">sentence_tester: callable</span>
+<span class="sd">    Function that estimates if a sentence is eligible to be part of the summary</span>
+<span class="sd">itf: :class:`bool`</span>
+<span class="sd">    Use of ITF normalization in the sentence-level Gismo</span>
+<span class="sd">post_processing: callable</span>
+<span class="sd">    post_processing transformation. Signature is (:class:`~sisu.summarizer.Summarizer`, :class:`int`) -&gt; :class:`str`</span>
+<span class="sd">sentence_gismo_parameters: :class:`dict`</span>
+<span class="sd">    Tuning of sentence-level gismo. `post` MUST be set  to False.</span>
+<span class="sd">num_documents: :class:`int` or None</span>
+<span class="sd">    Number of documents to pre-select</span>
+<span class="sd">num_query: :class:`int` or None</span>
+<span class="sd">    Number of features to use in generic query</span>
+<span class="sd">num_sentences: :class:`int` or None</span>
+<span class="sd">    Number of sentences to return</span>
+<span class="sd">max_chars: :class:`int` or None</span>
+<span class="sd">    Maximal number of characters to return</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="Summarizer"><a class="viewcode-back" href="../../reference/summarizer.html#sisu.summarizer.Summarizer">[docs]</a><span class="k">class</span> <span class="nc">Summarizer</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Summarizer class.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    gismo: :class:`~gismo.gismo.Gismo`</span>
+<span class="sd">        Gismo of the documents to analyze.</span>
+<span class="sd">    kwargs: :class:`dict`</span>
+<span class="sd">        Parameters of the summarizer (see :obj:`~sisu.summarizer.default_summarizer_parameters` for details).</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    query_: :class:`str`</span>
+<span class="sd">        Query used to summarize.</span>
+<span class="sd">    sentences_: :class:`list` of :class:`dict`</span>
+<span class="sd">        Selected sentences. Each sentence is a dictionary with the following keys:</span>
+
+<span class="sd">        - `index`: position of the sentence in the returned list</span>
+<span class="sd">        - `sentence`: the actual sentence</span>
+<span class="sd">        - `relevant`: a boolean that tells if the sentence is eligible for being part of the summary</span>
+<span class="sd">        - `sanitized`: for relevant sentences, a simplified version to be fed to the embedding</span>
+<span class="sd">    order_: :class:`numpy.ndarray`</span>
+<span class="sd">        Proposed incomplete ordering of the :class:`~sisu.summarizer.Summarizer.sentences_`</span>
+<span class="sd">    sentence_gismo_: :class:`~gismo.gismo.Gismo`</span>
+<span class="sd">        Gismo running at sentence level.</span>
+<span class="sd">    parameters: :class:`~gismo.parameters.Parameters`</span>
+<span class="sd">        Handler of parameters.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    The package contains a data folder with a toy gismo with articles related to Covid-19. We load it.</span>
+
+<span class="sd">    &gt;&gt;&gt; gismo = Gismo(filename=&quot;toy_gismo&quot;, path=&quot;data&quot;)</span>
+
+<span class="sd">    Then we build a summarizer out of it. We tell to fetch the sentences from the content of the articles.</span>
+
+<span class="sd">    &gt;&gt;&gt; summa = Summarizer(gismo, text_getter = lambda d: d[&#39;content&#39;])</span>
+
+<span class="sd">    Ask for a summary on *bat* with a maximal budget of 500 characters, using pure TF-IDF sentence embedding.</span>
+
+<span class="sd">    &gt;&gt;&gt; summa(&#39;bat&#39;, max_chars=500, itf=False) # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">    [&#39;By comparing the amino acid sequence of 2019-nCoV S-protein (GenBank Accession: MN908947.3) with</span>
+<span class="sd">      Bat SARS-like coronavirus isolate bat-SL-CoVZC45 and Bat SARS-like coronavirus isolate Bat-SL-CoVZXC21,</span>
+<span class="sd">      the latter two were shown to share 89.1% and 88.6% sequence identity to 2019-nCoV S-protein</span>
+<span class="sd">      (supplementary figure 1) .&#39;,</span>
+<span class="sd">     &#39;Within our bat-hemoplasma network, genotype sharing was restricted to five host communities,</span>
+<span class="sd">      380 whereas six genotypes were each restricted to a single bat species (Fig. 5A ).&#39;]</span>
+
+<span class="sd">    Now a summary based on the *cosine* ordering, using the content of abstracts and pure TF-IDF sentence embedding.</span>
+
+<span class="sd">    &gt;&gt;&gt; summa(&#39;bat&#39;, max_chars=500, order=&#39;cosine&#39;, text_getter = lambda d: d[&#39;abstract&#39;]) # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">    [&#39;Bat dipeptidyl peptidase 4 (DPP4) sequences were closely related to 38 those of human and non-human</span>
+<span class="sd">      primates but distinct from dromedary DPP4 sequence.&#39;,</span>
+<span class="sd">     &#39;The multiple sequence alignment data correlated with already published reports on SARS-CoV-2</span>
+<span class="sd">      indicated that it is closely related to Bat-Severe Acute Respiratory Syndrome like coronavirus</span>
+<span class="sd">      (Bat CoV SARS-like) and wellstudied Human SARS.&#39;,</span>
+<span class="sd">     &#39;(i.e., hemoplasmas) across a species-rich 40 bat community in Belize over two years.&#39;]</span>
+
+<span class="sd">    Now 4 sentences using a *coverage* ordering.</span>
+
+<span class="sd">    &gt;&gt;&gt; summa(&#39;bat&#39;, num_sentences=4, order=&#39;coverage&#39;) # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">    [&#39;By comparing the amino acid sequence of 2019-nCoV S-protein (GenBank Accession: MN908947.3)</span>
+<span class="sd">      with Bat SARS-like coronavirus isolate bat-SL-CoVZC45 and Bat SARS-like coronavirus isolate</span>
+<span class="sd">      Bat-SL-CoVZXC21, the latter two were shown to share 89.1% and 88.6% sequence identity</span>
+<span class="sd">      to 2019-nCoV S-protein (supplementary figure 1) .&#39;,</span>
+<span class="sd">     &#39;However, we have not done the IDPs analysis for ORF10 from the Bat-SL-CoVZC45 strain since we</span>
+<span class="sd">      have taken different strain of Bat CoV (reviewed strain HKU3-1) in our study.&#39;,</span>
+<span class="sd">     &#39;To test the dependence of the hemoplasma 290 phylogeny upon the bat phylogeny and thus assess</span>
+<span class="sd">      evidence of evolutionary codivergence, we 291 applied the Procrustes Approach to Cophylogeny</span>
+<span class="sd">      (PACo) using distance matrices and the paco 292 We used hemoplasma genotype assignments to</span>
+<span class="sd">      create a network, with each node representing a 299 bat species and edges representing shared</span>
+<span class="sd">      genotypes among bat species pairs.&#39;,</span>
+<span class="sd">     &#39;However, these phylogenetic patterns in prevalence were decoupled from those describing bat</span>
+<span class="sd">      526 species centrality in sharing hemoplasmas, such that genotype sharing was generally</span>
+<span class="sd">      restricted 527 by bat phylogeny.&#39;]</span>
+
+<span class="sd">    As you can see, there are some ``However, &#39;&#39; in the answers.</span>
+<span class="sd">    A bit of NLP post_processing can take care of those.</span>
+
+<span class="sd">    &gt;&gt;&gt; import spacy</span>
+<span class="sd">    &gt;&gt;&gt; nlp = spacy.load(&quot;en_core_web_sm&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; post_nlp = PostNLP(nlp)</span>
+<span class="sd">    &gt;&gt;&gt; summa(&#39;bat&#39;, num_sentences=4, order=&#39;coverage&#39;, post_processing=post_nlp) # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">    [&#39;By comparing the amino acid sequence of 2019-nCoV S-protein (GenBank Accession: MN908947.3)</span>
+<span class="sd">      with Bat SARS-like coronavirus isolate bat-SL-CoVZC45 and Bat SARS-like coronavirus isolate</span>
+<span class="sd">      Bat-SL-CoVZXC21, the latter two were shown to share 89.1% and 88.6% sequence identity</span>
+<span class="sd">      to 2019-nCoV S-protein (supplementary figure 1) .&#39;,</span>
+<span class="sd">     &#39;We have not done the IDPs analysis for ORF10 from the Bat-SL-CoVZC45 strain since we</span>
+<span class="sd">      have taken different strain of Bat CoV (reviewed strain HKU3-1) in our study.&#39;,</span>
+<span class="sd">     &#39;To test the dependence of the hemoplasma 290 phylogeny upon the bat phylogeny and thus assess</span>
+<span class="sd">      evidence of evolutionary codivergence, we 291 applied the Procrustes Approach to Cophylogeny</span>
+<span class="sd">      (PACo) using distance matrices and the paco 292 We used hemoplasma genotype assignments to</span>
+<span class="sd">      create a network, with each node representing a 299 bat species and edges representing shared</span>
+<span class="sd">      genotypes among bat species pairs.&#39;,</span>
+<span class="sd">     &#39;These phylogenetic patterns in prevalence were decoupled from those describing bat</span>
+<span class="sd">      526 species centrality in sharing hemoplasmas, such that genotype sharing was generally</span>
+<span class="sd">      restricted 527 by bat phylogeny.&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gismo</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gismo</span> <span class="o">=</span> <span class="n">gismo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">query_</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sentences_</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">order_</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sentence_gismo_</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">Parameters</span><span class="p">(</span><span class="n">parameter_list</span><span class="o">=</span><span class="n">default_summarizer_parameters</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">text_getter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">text_getter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gismo</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">to_text</span>
+
+<div class="viewcode-block" id="Summarizer.rank_documents"><a class="viewcode-back" href="../../reference/summarizer.html#sisu.summarizer.Summarizer.rank_documents">[docs]</a>    <span class="k">def</span> <span class="nf">rank_documents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">num_query</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Perform a Gismo query at document-level. If the query fails, builds a generic query instead.</span>
+<span class="sd">        The :attr:`~sisu.summarizer.Summarizer.gismo` and</span>
+<span class="sd">        :attr:`~sisu.summarizer.Summarizer.query_` attributes are updated.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        query: :class:`str`</span>
+<span class="sd">            Input text</span>
+<span class="sd">        num_query: :class:`int`</span>
+<span class="sd">            Number of words of the generic query, is any</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">num_query</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">num_query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">num_query</span>
+        <span class="n">success</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gismo</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">query_</span> <span class="o">=</span> <span class="n">query</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">query_</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gismo</span><span class="o">.</span><span class="n">get_features_by_rank</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">num_query</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gismo</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query_</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Summarizer.build_sentence_source"><a class="viewcode-back" href="../../reference/summarizer.html#sisu.summarizer.Summarizer.build_sentence_source">[docs]</a>    <span class="k">def</span> <span class="nf">build_sentence_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_documents</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tester</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates the corpus of sentences (:attr:`~sisu.summarizer.Summarizer.sentences_`)</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        num_documents: :class:`int`, optional</span>
+<span class="sd">            Number of documents to select (if not, Gismo will automatically decide).</span>
+<span class="sd">        getter: callable</span>
+<span class="sd">            Extraction of text from corpus item. If not specify, the to_text of the :class:`~gismo.corpus.Corpus` will be used.</span>
+<span class="sd">        tester: callable</span>
+<span class="sd">            Function that estimates if a sentence is eligible to be part of the summary.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">num_documents</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">num_documents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">num_documents</span>
+        <span class="k">if</span> <span class="n">getter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">getter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">text_getter</span>
+        <span class="k">if</span> <span class="n">tester</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">tester</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">sentence_tester</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sentences_</span> <span class="o">=</span> <span class="n">extract_sentences</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gismo</span><span class="o">.</span><span class="n">corpus</span><span class="p">,</span>
+                                            <span class="n">indices</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gismo</span><span class="o">.</span><span class="n">get_documents_by_rank</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">num_documents</span><span class="p">,</span>
+                                                                                     <span class="n">post</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                                            <span class="n">getter</span><span class="o">=</span><span class="n">getter</span><span class="p">,</span>
+                                            <span class="n">tester</span><span class="o">=</span><span class="n">tester</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Summarizer.build_sentence_gismo"><a class="viewcode-back" href="../../reference/summarizer.html#sisu.summarizer.Summarizer.build_sentence_gismo">[docs]</a>    <span class="k">def</span> <span class="nf">build_sentence_gismo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">itf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">s_g_p</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates the Gismo of sentences (:attr:`~sisu.summarizer.Summarizer.sentence_gismo_`)</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        itf: :class:`bool`, optional</span>
+<span class="sd">            Applies TF-IDTF embedding. I False, TF-IDF embedding is used.</span>
+<span class="sd">        s_g_p: :class:`dict`</span>
+<span class="sd">            Parameters for the sentence Gismo.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">itf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">itf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">itf</span>
+        <span class="k">if</span> <span class="n">s_g_p</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">s_g_p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">sentence_gismo_parameters</span>
+        <span class="n">sentence_corpus</span> <span class="o">=</span> <span class="n">Corpus</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sentences_</span><span class="p">,</span> <span class="n">to_text</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="p">[</span><span class="s1">&#39;sanitized&#39;</span><span class="p">])</span>
+        <span class="n">sentence_embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">()</span> <span class="k">if</span> <span class="n">itf</span> <span class="k">else</span> <span class="n">IdfEmbedding</span><span class="p">()</span>
+        <span class="n">sentence_embedding</span><span class="o">.</span><span class="n">fit_ext</span><span class="p">(</span><span class="n">embedding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gismo</span><span class="o">.</span><span class="n">embedding</span><span class="p">)</span>
+        <span class="n">sentence_embedding</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sentence_corpus</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sentence_gismo_</span> <span class="o">=</span> <span class="n">Gismo</span><span class="p">(</span><span class="n">sentence_corpus</span><span class="p">,</span> <span class="n">sentence_embedding</span><span class="p">,</span> <span class="o">**</span><span class="n">s_g_p</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Summarizer.build_coverage_order"><a class="viewcode-back" href="../../reference/summarizer.html#sisu.summarizer.Summarizer.build_coverage_order">[docs]</a>    <span class="k">def</span> <span class="nf">build_coverage_order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Populate :attr:`~sisu.summarizer.Summarizer.order_` with a covering order with</span>
+<span class="sd">        target number of sentences *k*. The actual number of indices is stretched</span>
+<span class="sd">        by the sentence Gismo stretch factor.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        k: :class:`int`</span>
+<span class="sd">            Number of optimal covering sentences.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`numpy.ndarray`</span>
+<span class="sd">            Covering order.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sentence_gismo_</span><span class="o">.</span><span class="n">parameters</span><span class="p">(</span><span class="n">post</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">cluster</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sentence_gismo_</span><span class="o">.</span><span class="n">get_documents_by_cluster</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;stretch&#39;</span><span class="p">]),</span> <span class="o">**</span><span class="n">p</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">covering_order</span><span class="p">(</span><span class="n">cluster</span><span class="p">,</span> <span class="n">wide</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;wide&#39;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Summarizer.summarize"><a class="viewcode-back" href="../../reference/summarizer.html#sisu.summarizer.Summarizer.summarize">[docs]</a>    <span class="k">def</span> <span class="nf">summarize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Performs a full run of all summary-related operations:</span>
+
+<span class="sd">        - Rank a query at document level, fallback to a generic query if the query fails;</span>
+<span class="sd">        - Extract sentences from the top documents</span>
+<span class="sd">        - Order sentences by one of the three methods proposed, *rank*, *coverage*, and *cosine*</span>
+<span class="sd">        - Apply post-processing and return list of selected sentences.</span>
+
+<span class="sd">        Note that calling a :class:`~sisu.summarizer.Summarizer` will call its</span>
+<span class="sd">        :meth:`~sisu.summarizer.Summarizer.summarize` method.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        query: :class:`str`</span>
+<span class="sd">            Query to run.</span>
+<span class="sd">        kwargs: :class:`dict`</span>
+<span class="sd">            Runtime specific parameters</span>
+<span class="sd">            (see :obj:`~sisu.summarizer.default_summarizer_parameters` for possible arguments).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`list` of :class:`str`</span>
+<span class="sd">            Summary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Instantiate parameters for the call</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># Perform query, fallback to generic query in case of failure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rank_documents</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">num_query</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;num_query&#39;</span><span class="p">])</span>
+        <span class="c1"># Extract and preprocess sentences</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_sentence_source</span><span class="p">(</span><span class="n">num_documents</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;num_documents&#39;</span><span class="p">],</span> <span class="n">getter</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;text_getter&#39;</span><span class="p">],</span>
+                                   <span class="n">tester</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;sentence_tester&#39;</span><span class="p">])</span>
+        <span class="c1"># Order sentences</span>
+        <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;order&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;cosine&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">order_</span> <span class="o">=</span> <span class="n">cosine_order</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gismo</span><span class="o">.</span><span class="n">embedding</span><span class="o">.</span><span class="n">query_projection</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sentences_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;order&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;rank&#39;</span><span class="p">,</span> <span class="s1">&#39;coverage&#39;</span><span class="p">}:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">build_sentence_gismo</span><span class="p">(</span><span class="n">itf</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;itf&#39;</span><span class="p">],</span> <span class="n">s_g_p</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;sentence_gismo_parameters&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sentence_gismo_</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;num_sentences&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">p</span><span class="p">[</span><span class="s1">&#39;num_sentences&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">auto_k</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sentence_gismo_</span><span class="o">.</span><span class="n">diteration</span><span class="o">.</span><span class="n">x_relevance</span><span class="p">,</span>
+                           <span class="n">order</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sentence_gismo_</span><span class="o">.</span><span class="n">diteration</span><span class="o">.</span><span class="n">x_order</span><span class="p">,</span>
+                           <span class="n">max_k</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sentence_gismo_</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">max_k</span><span class="p">,</span>
+                           <span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sentence_gismo_</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">target_k</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;order&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;rank&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">order_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sentence_gismo_</span><span class="o">.</span><span class="n">diteration</span><span class="o">.</span><span class="n">x_order</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">order_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_coverage_order</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;num_sentences&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;max_chars&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;post_processing&#39;</span><span class="p">](</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">order_</span><span class="p">[:</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;num_sentences&#39;</span><span class="p">]]]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;num_sentences&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">p</span><span class="p">[</span><span class="s1">&#39;num_sentences&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;max_chars&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">50</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">order_</span><span class="p">[:</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;num_sentences&#39;</span><span class="p">]]:</span>
+                <span class="n">txt</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;post_processing&#39;</span><span class="p">](</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+                <span class="n">l</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">l</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">length</span><span class="o">+</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;max_chars&#39;</span><span class="p">]:</span>
+                    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
+                    <span class="n">length</span> <span class="o">+=</span> <span class="n">l</span>
+                <span class="k">if</span> <span class="n">length</span> <span class="o">&gt;</span> <span class="o">.</span><span class="mi">98</span><span class="o">*</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;max_chars&#39;</span><span class="p">]:</span>
+                    <span class="k">break</span>
+            <span class="k">return</span> <span class="n">results</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">summarize</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PostNLP"><a class="viewcode-back" href="../../reference/summarizer.html#sisu.summarizer.PostNLP">[docs]</a><span class="k">class</span> <span class="nc">PostNLP</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Post-processor for the :class:`~sisu.summarizer.Summarizer` that leverages a spacy NLP engine.</span>
+
+<span class="sd">    - Discard sentences with no verb.</span>
+<span class="sd">    - Remove adverbs and punctuations that starts a sentence (e.g. &quot;However, we ...&quot; -&gt; &quot;We ...&quot;).</span>
+<span class="sd">    - Optionally, if the engine supports co-references, resolve them.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    nlp: callable</span>
+<span class="sd">        A Spacy nlp engine.</span>
+<span class="sd">    coref: :class:`bool`</span>
+<span class="sd">        Resolve co-references if the nlp engine supports it.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nlp</span><span class="p">,</span> <span class="n">coref</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nlp</span> <span class="o">=</span> <span class="n">nlp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coref</span> <span class="o">=</span> <span class="n">coref</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">summa</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="n">nlp_sent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlp</span><span class="p">(</span><span class="n">summa</span><span class="o">.</span><span class="n">sentences_</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;sentence&#39;</span><span class="p">])</span>
+        <span class="n">tags</span> <span class="o">=</span> <span class="p">{</span><span class="n">token</span><span class="o">.</span><span class="n">tag_</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">nlp_sent</span><span class="p">}</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">([</span><span class="n">t</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;VB&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">]):</span>
+            <span class="n">summa</span><span class="o">.</span><span class="n">sentences_</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;relevant&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">while</span> <span class="n">nlp_sent</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pos_</span> <span class="o">==</span> <span class="s2">&quot;ADV&quot;</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">nlp_sent</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">nlp_sent</span> <span class="o">=</span> <span class="n">nlp_sent</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="k">if</span> <span class="n">nlp_sent</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pos_</span> <span class="o">==</span> <span class="s2">&quot;PUNCT&quot;</span><span class="p">:</span>
+            <span class="n">nlp_sent</span> <span class="o">=</span> <span class="n">nlp_sent</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="n">nlp_sent</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">summa</span><span class="o">.</span><span class="n">sentences_</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;sentence&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">txt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}{</span><span class="n">txt</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="s2">&quot;PRP&quot;</span> <span class="ow">in</span> <span class="n">tags</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">coref</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">nlp_sent</span><span class="o">.</span><span class="n">_</span><span class="p">,</span> <span class="s1">&#39;has_coref&#39;</span><span class="p">):</span>
+            <span class="n">extract_str</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;sentence&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">summa</span><span class="o">.</span><span class="n">sentences_</span><span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]])</span>
+            <span class="n">extract</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlp</span><span class="p">(</span><span class="n">extract_str</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">extract</span><span class="o">.</span><span class="n">_</span><span class="o">.</span><span class="n">has_coref</span><span class="p">:</span>
+                <span class="n">resolved_extract</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">_</span><span class="o">.</span><span class="n">coref_resolved</span>
+                <span class="n">summa</span><span class="o">.</span><span class="n">sentences_</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;sentence&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">make_sentences</span><span class="p">(</span><span class="n">resolved_extract</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">summa</span><span class="o">.</span><span class="n">sentences_</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;sentence&#39;</span><span class="p">]</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Mélanie Cambus, Marc-Olivier Buob, Fabien Mathieu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

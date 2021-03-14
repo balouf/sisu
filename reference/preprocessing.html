@@ -32,14 +32,15 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Contributing" href="../contributing.html" />
-    <link rel="prev" title="Covid" href="covid.html" /> 
+    <link rel="next" title="Summarizer" href="summarizer.html" />
+    <link rel="prev" title="Datasets" href="datasets.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -93,15 +94,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../readme.html">Structured and Interactive Summarization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="covid.html">Covid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.html">Datasets</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Preprocessing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#covid-19">Covid 19</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#language">Language</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tokenizer">Tokenizer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sentences">sentences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#idf-embedding">IDF Embedding</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="summarizer.html">Summarizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#module-sisu.pit.gismo_wrapper">PIT</a></li>
 </ul>
 </li>
@@ -177,179 +179,32 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="preprocessing">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="preprocessing">
 <h1>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="covid-19">
-<h2>Covid 19<a class="headerlink" href="#covid-19" title="Permalink to this headline">¶</a></h2>
-<p>Module for adapting to Covid 19 Kaggle challenge</p>
-<span class="target" id="module-sisu.preprocessing.covid19"></span><dl class="py function">
-<dt id="sisu.preprocessing.covid19.get_abstract">
-<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.covid19.</span></code><code class="sig-name descname"><span class="pre">get_abstract</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/covid19.html#get_abstract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.covid19.get_abstract" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the abstract of a document with the same structure as the json in the COVID-19 dataset.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Abstract of the document.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_abstract</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span> 
-<span class="go">&#39;In the jungle, no-one hears you far cry. And vice-versa.</span>
-<span class="go">They say to make a long abstract, with the number 42 in it, so here I am.&#39;</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py function">
-<dt id="sisu.preprocessing.covid19.get_all_titles">
-<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.covid19.</span></code><code class="sig-name descname"><span class="pre">get_all_titles</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/covid19.html#get_all_titles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.covid19.get_all_titles" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the main title and sections titles of a document with the same structure as the json in the COVID-19 dataset.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Titles of the document.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_all_titles</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span>
-<span class="go">&#39;introduction conclusion Predator&#39;</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py function">
-<dt id="sisu.preprocessing.covid19.get_content">
-<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.covid19.</span></code><code class="sig-name descname"><span class="pre">get_content</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/covid19.html#get_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.covid19.get_content" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the content of a document with the same structure as the json in the COVID-19 dataset.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Content of the document.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_content</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span>
-<span class="go">&quot;introduction. There is no-one in the trees. Is there? conclusion. Predators don&#39;t like to lose.&quot;</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py function">
-<dt id="sisu.preprocessing.covid19.get_title">
-<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.covid19.</span></code><code class="sig-name descname"><span class="pre">get_title</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/covid19.html#get_title"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.covid19.get_title" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the title of a document from a document with the same structure as the json in the COVID-19 dataset.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The title of the document.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_title</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span>
-<span class="go">&#39;Predator&#39;</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py function">
-<dt id="sisu.preprocessing.covid19.make_abstract_doc">
-<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.covid19.</span></code><code class="sig-name descname"><span class="pre">make_abstract_doc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/covid19.html#make_abstract_doc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.covid19.make_abstract_doc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make a simplified document from abstracts with the same structure as the json in the COVID-19 dataset.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Simplified document.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">make_abstract_doc</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span> 
-<span class="go">{&#39;title&#39;: &#39;Predator&#39;, &#39;abstract&#39;: &#39;In the jungle, no-one hears you far cry. And vice-versa.</span>
-<span class="go">                                   They say to make a long abstract, with the number 42 in it, so here I am.&#39;}</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py function">
-<dt id="sisu.preprocessing.covid19.make_clean_doc">
-<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.covid19.</span></code><code class="sig-name descname"><span class="pre">make_clean_doc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/covid19.html#make_clean_doc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.covid19.make_clean_doc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make a simplified clean representation of documents to initialize “proper” vocabulary
-when documents have the same structure as the json in the COVID-19 dataset.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Simplified cleaned document.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">make_clean_doc</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span> 
-<span class="go">{&#39;title&#39;: &#39;Predator&#39;,</span>
-<span class="go"> &#39;abstract&#39;: &#39;In the jungle no-one hears you far cry And vice-versa</span>
-<span class="go">              They say to make a long abstract with the number  in it so here I am&#39;,</span>
-<span class="go">  &#39;content&#39;: &quot;introduction There is no-one in the trees Is there? conclusion Predators don&#39;t like to lose&quot;}</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py function">
-<dt id="sisu.preprocessing.covid19.make_content_doc">
-<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.covid19.</span></code><code class="sig-name descname"><span class="pre">make_content_doc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/covid19.html#make_content_doc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.covid19.make_content_doc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make a simplified document representation from contents with the same structure as the json in the COVID-19 dataset.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Simplified document.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">make_content_doc</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span> 
-<span class="go">{&#39;title&#39;: &#39;Predator&#39;,</span>
-<span class="go"> &#39;content&#39;: &quot;introduction. There is no-one in the trees. Is there? conclusion. Predators don&#39;t like to lose.&quot;}</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py data">
-<dt id="sisu.preprocessing.covid19.toy_covid_article">
-<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.covid19.</span></code><code class="sig-name descname"><span class="pre">toy_covid_article</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'abstract':</span> <span class="pre">[{'text':</span> <span class="pre">'In</span> <span class="pre">the</span> <span class="pre">jungle,</span> <span class="pre">no-one</span> <span class="pre">hears</span> <span class="pre">you</span> <span class="pre">far</span> <span class="pre">cry.</span> <span class="pre">And</span> <span class="pre">vice-versa.'},</span> <span class="pre">{'text':</span> <span class="pre">'They</span> <span class="pre">say</span> <span class="pre">to</span> <span class="pre">make</span> <span class="pre">a</span> <span class="pre">long</span> <span class="pre">abstract,</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">42</span> <span class="pre">in</span> <span class="pre">it,</span> <span class="pre">so</span> <span class="pre">here</span> <span class="pre">I</span> <span class="pre">am.'}],</span> <span class="pre">'body_text':</span> <span class="pre">[{'section':</span> <span class="pre">'introduction',</span> <span class="pre">'text':</span> <span class="pre">'There</span> <span class="pre">is</span> <span class="pre">no-one</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">trees.</span> <span class="pre">Is</span> <span class="pre">there?'},</span> <span class="pre">{'section':</span> <span class="pre">'conclusion',</span> <span class="pre">'text':</span> <span class="pre">&quot;Predators</span> <span class="pre">don't</span> <span class="pre">like</span> <span class="pre">to</span> <span class="pre">lose.&quot;}],</span> <span class="pre">'metadata':</span> <span class="pre">{'title':</span> <span class="pre">'Predator'}}</span></em><a class="headerlink" href="#sisu.preprocessing.covid19.toy_covid_article" title="Permalink to this definition">¶</a></dt>
-<dd><p>A toy document with the same structure as the json in the COVID-19 dataset.</p>
-</dd></dl>
-
-</div>
 <div class="section" id="language">
 <h2>Language<a class="headerlink" href="#language" title="Permalink to this headline">¶</a></h2>
 <p>Module for automatic language detection</p>
@@ -379,23 +234,24 @@ when documents have the same structure as the json in the COVID-19 dataset.</p>
 
 <dl class="py data">
 <dt id="sisu.preprocessing.language.LANG_EXAMPLES">
-<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.language.</span></code><code class="sig-name descname"><span class="pre">LANG_EXAMPLES</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'de':</span> <span class="pre">'Der</span> <span class="pre">Erlkönig</span> <span class="pre">tut</span> <span class="pre">mir</span> <span class="pre">leid.',</span> <span class="pre">'en':</span> <span class="pre">'My</span> <span class="pre">taylor</span> <span class="pre">is</span> <span class="pre">rich.',</span> <span class="pre">'es':</span> <span class="pre">'Hasta</span> <span class="pre">la</span> <span class="pre">vista</span> <span class="pre">aqui.',</span> <span class="pre">'fr':</span> <span class="pre">'La</span> <span class="pre">vie</span> <span class="pre">est</span> <span class="pre">belle.'}</span></em><a class="headerlink" href="#sisu.preprocessing.language.LANG_EXAMPLES" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.language.</span></code><code class="sig-name descname"><span class="pre">LANG_EXAMPLES</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'de':</span> <span class="pre">'Der</span> <span class="pre">Erlkönig</span> <span class="pre">tut</span> <span class="pre">mir</span> <span class="pre">leid.',</span> <span class="pre">'en':</span> <span class="pre">'My</span> <span class="pre">taylor</span> <span class="pre">is</span> <span class="pre">rich.',</span> <span class="pre">'es':</span> <span class="pre">'Hasta</span> <span class="pre">la</span> <span class="pre">vista</span> <span class="pre">aqui.',</span> <span class="pre">'fr':</span> <span class="pre">'La</span> <span class="pre">vie</span> <span class="pre">est</span> <span class="pre">belle.',</span> <span class="pre">'sd':</span> <span class="pre">'Ga</span> <span class="pre">zo</span> <span class="pre">bu</span> <span class="pre">meu.'}</span></em><a class="headerlink" href="#sisu.preprocessing.language.LANG_EXAMPLES" title="Permalink to this definition">¶</a></dt>
 <dd><p>Small sentences written in different languages.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="sisu.preprocessing.language.guess_language">
-<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.language.</span></code><code class="sig-name descname"><span class="pre">guess_language</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_lang_stop_words</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/language.html#guess_language"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.language.guess_language" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.language.</span></code><code class="sig-name descname"><span class="pre">guess_language</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_lang_stop_words</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/language.html#guess_language"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.language.guess_language" title="Permalink to this definition">¶</a></dt>
 <dd><p>Recognises the language of the text by looking at common words.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Text to analyze.</p></li>
+<li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Minimal amount of stopwords require to qualify</p></li>
 <li><p><strong>map_lang_stop_words</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>, optional) – Common words for different languages.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Two-letters code for the language.</p>
+<dd class="field-even"><p>Two-letters code for the language (‘xx’ for unknown language).</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
@@ -413,6 +269,8 @@ when documents have the same structure as the json in the COVID-19 dataset.</p>
 <span class="go">Guessed language: es</span>
 <span class="go">Der Erlkönig tut mir leid. (de)</span>
 <span class="go">Guessed language: de</span>
+<span class="go">Ga zo bu meu. (sd)</span>
+<span class="go">Guessed language: xx</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -447,6 +305,8 @@ when documents have the same structure as the json in the COVID-19 dataset.</p>
 <span class="go">{&#39;en&#39;: 0, &#39;fr&#39;: 1, &#39;es&#39;: 3, &#39;de&#39;: 0}</span>
 <span class="go">de: Der Erlkönig tut mir leid.</span>
 <span class="go">{&#39;en&#39;: 0, &#39;fr&#39;: 0, &#39;es&#39;: 0, &#39;de&#39;: 2}</span>
+<span class="go">sd: Ga zo bu meu.</span>
+<span class="go">{&#39;en&#39;: 0, &#39;fr&#39;: 0, &#39;es&#39;: 0, &#39;de&#39;: 0}</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -454,11 +314,79 @@ when documents have the same structure as the json in the COVID-19 dataset.</p>
 </div>
 <div class="section" id="tokenizer">
 <h2>Tokenizer<a class="headerlink" href="#tokenizer" title="Permalink to this headline">¶</a></h2>
-<p>Module for decomposing text into base units</p>
+<p>Module for extracting text parts from documents and decomposing text into base units</p>
 <span class="target" id="module-sisu.preprocessing.tokenizer"></span><dl class="py data">
-<dt id="sisu.preprocessing.tokenizer.NO_END_SENTENCE">
-<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.tokenizer.</span></code><code class="sig-name descname"><span class="pre">NO_END_SENTENCE</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'(fig.',</span> <span class="pre">'al.',</span> <span class="pre">'e.g.',</span> <span class="pre">'eg.',</span> <span class="pre">'fig.',</span> <span class="pre">'i.e.',</span> <span class="pre">'ie.',</span> <span class="pre">'resp.'}</span></em><a class="headerlink" href="#sisu.preprocessing.tokenizer.NO_END_SENTENCE" title="Permalink to this definition">¶</a></dt>
-<dd><p>Words ending with a dot that do not indicate the end of a sentence.</p>
+<dt id="sisu.preprocessing.tokenizer.RE_CITATION">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.tokenizer.</span></code><code class="sig-name descname"><span class="pre">RE_CITATION</span></code><em class="property"> <span class="pre">=</span> <span class="pre">re.compile('[\\[(]\\s*\\d+(,\\s*\\d+)*[)\\]]')</span></em><a class="headerlink" href="#sisu.preprocessing.tokenizer.RE_CITATION" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">re.Pattern</span></code>
+regexp for citations.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="sisu.preprocessing.tokenizer.RE_COMPLEX_CITATION">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.tokenizer.</span></code><code class="sig-name descname"><span class="pre">RE_COMPLEX_CITATION</span></code><em class="property"> <span class="pre">=</span> <span class="pre">re.compile(&quot;\\b(?!(?:Although|Also)\\b)(?:[A-Z][A-Za-z'`-]+)(?:,?</span> <span class="pre">(?:(?:and</span> <span class="pre">|&amp;</span> <span class="pre">)?(?:[A-Z][A-Za-z'`-]+)|(?:et</span> <span class="pre">al\\.?)))*(?:,?</span> <span class="pre">*(?:19|20)[0-9][0-9](?:,</span> <span class="pre">p\\.?</span> <span class="pre">[0-9]+)?|</span> <span class="pre">*\\((?:19|20)[0-9][0-9](?:,</span> <span class="pre">p\\.?</span> <span class="pre">[0-9]+)?\\))</span></em><a class="headerlink" href="#sisu.preprocessing.tokenizer.RE_COMPLEX_CITATION" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">re.Pattern</span></code>
+Regexp for complex citations. From <a class="reference external" href="https://stackoverflow.com/questions/4320958/regular-expression-for-recognizing-in-text-citations">https://stackoverflow.com/questions/4320958/regular-expression-for-recognizing-in-text-citations</a> and
+<a class="reference external" href="https://stackoverflow.com/questions/63632861/python-regex-to-get-citations-in-a-paper">https://stackoverflow.com/questions/63632861/python-regex-to-get-citations-in-a-paper</a> .</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="sisu.preprocessing.tokenizer.RE_NOISE">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.tokenizer.</span></code><code class="sig-name descname"><span class="pre">RE_NOISE</span></code><em class="property"> <span class="pre">=</span> <span class="pre">re.compile('[,.:;()0-9+=%\\[\\]_!\\*]')</span></em><a class="headerlink" href="#sisu.preprocessing.tokenizer.RE_NOISE" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">re.Pattern</span></code>
+regexp for useless characters.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="sisu.preprocessing.tokenizer.RE_URL">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.tokenizer.</span></code><code class="sig-name descname"><span class="pre">RE_URL</span></code><em class="property"> <span class="pre">=</span> <span class="pre">re.compile('https?://\\S+')</span></em><a class="headerlink" href="#sisu.preprocessing.tokenizer.RE_URL" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">re.Pattern</span></code>
+regexp for url detection. Mails may be impacted.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.preprocessing.tokenizer.is_relevant_sentence">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.tokenizer.</span></code><code class="sig-name descname"><span class="pre">is_relevant_sentence</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentence</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_num_words</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_num_words</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/tokenizer.html#is_relevant_sentence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.tokenizer.is_relevant_sentence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ignore sentences that are too short, too long, that contain a URL or a citation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sentence</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Sentence to analyze.</p></li>
+<li><p><strong>min_num_words</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, optional) – Minimal number of words.</p></li>
+<li><p><strong>max_num_words</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, optional) – Maximal number of words.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Is the sentence OK?</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">is_relevant_sentence</span><span class="p">(</span><span class="s2">&quot;This is a short sentence!&quot;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_relevant_sentence</span><span class="p">(</span><span class="s2">&quot;This is a sentence with reference to the url http://www.ix.com!&quot;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_relevant_sentence</span><span class="p">(</span><span class="s2">&quot;This is a a sentence with some citations [3, 7]!&quot;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_relevant_sentence</span><span class="p">(</span><span class="s2">&quot;I have many things to say in that sentence, to the point &quot;</span>
+<span class="gp">... </span>                     <span class="s2">&quot;I do not know if I will stop anytime soon but don&#39;t let it stop&quot;</span>
+<span class="gp">... </span>                     <span class="s2">&quot;you from reading this meaninless garbage and this goes on and &quot;</span>
+<span class="gp">... </span>                     <span class="s2">&quot;this goes on and this goes on and this goes on and this goes on and &quot;</span>
+<span class="gp">... </span>                     <span class="s2">&quot; this goes on and  this goes on and  this goes on and  this goes on &quot;</span>
+<span class="gp">... </span>                     <span class="s2">&quot;and  this goes on and  this goes on and  this goes on and  this goes &quot;</span>
+<span class="gp">... </span>                     <span class="s2">&quot;on and  this goes on and  this goes on and  this goes on and  this goes &quot;</span>
+<span class="gp">... </span>                     <span class="s2">&quot;on and  this goes on and &quot;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_relevant_sentence</span><span class="p">(</span><span class="s2">&quot;This sentence is not too short and not too long, without URL and without citation.&quot;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_relevant_sentence</span><span class="p">(</span><span class="s1">&#39;The enzyme cytidine monophospho-N-acetylneuraminic acid hydroxylase (CMAH) catalyzes &#39;</span>
+<span class="gp">... </span>                     <span class="s1">&#39;the synthesis of Neu5Gc by hydroxylation of Neu5Ac &#39;</span>
+<span class="gp">... </span>                     <span class="s1">&#39;(Schauer et al. 1968) .&#39;</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -484,31 +412,9 @@ when documents have the same structure as the json in the COVID-19 dataset.</p>
 <span class="go">[&#39;One sentence, i.e. words with no dot, as Toto and al. say.&#39;, &#39;Or no (cf fig. 2)?&#39;]</span>
 </pre></div>
 </div>
-</dd></dl>
-
-<dl class="py function">
-<dt id="sisu.preprocessing.tokenizer.make_sentences_wiki">
-<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.tokenizer.</span></code><code class="sig-name descname"><span class="pre">make_sentences_wiki</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_end_words</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/tokenizer.html#make_sentences_wiki"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.tokenizer.make_sentences_wiki" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extract sentences from a text, with wiki code handling.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> corresponding to a full text.</p></li>
-<li><p><strong>no_end_words</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a>, optional) – A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a> of words that could wrongfully trigger end of sentence.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A list of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> corresponding to the text’s sentences.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">make_sentences_wiki</span><span class="p">(</span><span class="s2">&quot;and hyraxes.== Name and taxonomy ==&quot;</span><span class="p">)</span>
-<span class="go">[&#39;and hyraxes &#39;, &#39; Name and taxonomy ==&#39;]</span>
-</pre></div>
-</div>
+<p>Another example with wiki syntax
+&gt;&gt;&gt; make_sentences(“and hyraxes.== Name and taxonomy ==”)
+[‘and hyraxes.’, ‘Name and taxonomy ==’]</p>
 </dd></dl>
 
 <dl class="py function">
@@ -531,6 +437,87 @@ when documents have the same structure as the json in the COVID-19 dataset.</p>
 <span class="go">4</span>
 </pre></div>
 </div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.preprocessing.tokenizer.sanitize_text">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.tokenizer.</span></code><code class="sig-name descname"><span class="pre">sanitize_text</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/tokenizer.html#sanitize_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.tokenizer.sanitize_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sanitize a text. This is done to improve the Embedding quality and should not be perform for human reading.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Text to clean.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The corresponding sanitized <cite>str</cite> instance.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sanitize_text</span><span class="p">(</span><span class="s2">&quot;This is a mail: santa@northpole.com!&quot;</span><span class="p">)</span>
+<span class="go">&#39;This is a mail santa@northpolecom&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sanitize_text</span><span class="p">(</span><span class="s2">&quot;This is a url: http://www.enst.fr!&quot;</span><span class="p">)</span>
+<span class="go">&#39;This is a url&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sanitize_text</span><span class="p">(</span><span class="s2">&quot;This is a !*[ url: https://www.ens.fr!&quot;</span><span class="p">)</span>
+<span class="go">&#39;This is a  url&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sanitize_text</span><span class="p">(</span><span class="s2">&quot;These are references [3, 17].&quot;</span><span class="p">)</span>
+<span class="go">&#39;These are references&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.preprocessing.tokenizer.to_text">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.tokenizer.</span></code><code class="sig-name descname"><span class="pre">to_text</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/tokenizer.html#to_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.tokenizer.to_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms a dict into a string made of its values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doc</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document of “depth one”, all the values are strings.</p></li>
+<li><p><strong>post_process</strong> (<em>callable</em><em>, </em><em>optional</em>) – Function to apply to entries.</p></li>
+<li><p><strong>keys</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>, </em><em>optional</em>) – The entries to extract.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Concatenation of values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">to_text</span><span class="p">(</span><span class="n">toy_article</span><span class="p">)</span>
+<span class="go">&quot;Predator In the jungle, no-one hears you far cry. And vice-versa. They say to make a long abstract, with the number 42 in it, so here I am. There is no-one in the trees. Is there? Predators don&#39;t like to lose.&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.preprocessing.tokenizer.to_text_sanitized">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.tokenizer.</span></code><code class="sig-name descname"><span class="pre">to_text_sanitized</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/preprocessing/tokenizer.html#to_text_sanitized"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.tokenizer.to_text_sanitized" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>doc</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document of “depth one”, all the values are strings or can be cast to strings.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Text sanitized for embedding.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">to_text_sanitized</span><span class="p">(</span><span class="n">toy_article</span><span class="p">)</span>
+<span class="go">&quot;Predator In the jungle no-one hears you far cry And vice-versa They say to make a long abstract with the number  in it so here I am There is no-one in the trees Is there? Predators don&#39;t like to lose&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt id="sisu.preprocessing.tokenizer.toy_article">
+<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.tokenizer.</span></code><code class="sig-name descname"><span class="pre">toy_article</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'abstract':</span> <span class="pre">'In</span> <span class="pre">the</span> <span class="pre">jungle,</span> <span class="pre">no-one</span> <span class="pre">hears</span> <span class="pre">you</span> <span class="pre">far</span> <span class="pre">cry.</span> <span class="pre">And</span> <span class="pre">vice-versa.</span> <span class="pre">They</span> <span class="pre">say</span> <span class="pre">to</span> <span class="pre">make</span> <span class="pre">a</span> <span class="pre">long</span> <span class="pre">abstract,</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">42</span> <span class="pre">in</span> <span class="pre">it,</span> <span class="pre">so</span> <span class="pre">here</span> <span class="pre">I</span> <span class="pre">am.',</span> <span class="pre">'content':</span> <span class="pre">&quot;There</span> <span class="pre">is</span> <span class="pre">no-one</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">trees.</span> <span class="pre">Is</span> <span class="pre">there?</span> <span class="pre">Predators</span> <span class="pre">don't</span> <span class="pre">like</span> <span class="pre">to</span> <span class="pre">lose.&quot;,</span> <span class="pre">'title':</span> <span class="pre">'Predator'}</span></em><a class="headerlink" href="#sisu.preprocessing.tokenizer.toy_article" title="Permalink to this definition">¶</a></dt>
+<dd><p>Article with a simple structure.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -560,58 +547,103 @@ when documents have the same structure as the json in the COVID-19 dataset.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="sentences">
-<h2>sentences<a class="headerlink" href="#sentences" title="Permalink to this headline">¶</a></h2>
-<p>Module for extracting sentences</p>
-<span class="target" id="module-sisu.preprocessing.sentences"></span><dl class="py function">
-<dt id="sisu.preprocessing.sentences.make_abstract_sentences">
-<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.sentences.</span></code><code class="sig-name descname"><span class="pre">make_abstract_sentences</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/sentences.html#make_abstract_sentences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.sentences.make_abstract_sentences" title="Permalink to this definition">¶</a></dt>
-<dd><p>Cuts a document’s abstract into sentences when the document is a dict with the key abstract.</p>
+<div class="section" id="idf-embedding">
+<h2>IDF Embedding<a class="headerlink" href="#idf-embedding" title="Permalink to this headline">¶</a></h2>
+<p>Embedding with ITF disabled.</p>
+<span class="target" id="module-sisu.embedding_idf"></span><dl class="py class">
+<dt id="sisu.embedding_idf.IdfEmbedding">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sisu.embedding_idf.</span></code><code class="sig-name descname"><span class="pre">IdfEmbedding</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vectorizer</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" title="(in scikit-learn v0.24)"><span class="pre">sklearn.feature_extraction.text.CountVectorizer</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/embedding_idf.html#IdfEmbedding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.embedding_idf.IdfEmbedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class leverages the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" title="(in scikit-learn v0.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountVectorizer</span></code></a>
+class to build the dual embedding of a <a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.corpus.Corpus" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Corpus</span></code></a>.</p>
+<ul class="simple">
+<li><p>Documents are embedded in the space of features;</p></li>
+<li><p>Features are embedded in the space of documents.</p></li>
+</ul>
+<p>It is almost identical to Gismo’s <a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.embedding.Embedding" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Embedding</span></code></a> except that there is no ITF weights.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Simplified document.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vectorizer</strong> (<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" title="(in scikit-learn v0.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountVectorizer</span></code></a>, optional) – Custom <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" title="(in scikit-learn v0.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountVectorizer</span></code></a>
+to override default behavior (recommended).
+Having a <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer" title="(in scikit-learn v0.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CountVectorizer</span></code></a>
+adapted to the <a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.corpus.Corpus" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Corpus</span></code></a> is good practice.</p></li>
+<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – If set, load embedding from corresponding file.</p></li>
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a>, optional) – If set, specify the directory where the embedding is located.</p></li>
+</ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Document’s abstract’s sentences.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
+</dl>
+<dl class="py method">
+<dt id="sisu.embedding_idf.IdfEmbedding.fit_transform">
+<code class="sig-name descname"><span class="pre">fit_transform</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corpus</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.corpus.Corpus" title="(in GISMO v0.4.1)"><span class="pre">gismo.corpus.Corpus</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/embedding_idf.html#IdfEmbedding.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.embedding_idf.IdfEmbedding.fit_transform" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>corpus</strong> – </p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">make_abstract_sentences</span><span class="p">(</span><span class="n">toy_article</span><span class="p">)</span> 
-<span class="go">[&#39;In the jungle, no-one hears you far cry.&#39;, &#39;And vice-versa.&#39;,</span>
-<span class="go"> &#39;They say to make a long abstract, with the number 42 in it, so here I am.&#39;]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">gismo.common</span> <span class="kn">import</span> <span class="n">toy_source_text</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">=</span><span class="n">Corpus</span><span class="p">(</span><span class="n">toy_source_text</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span> <span class="o">=</span> <span class="n">IdfEmbedding</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span><span class="o">.</span><span class="n">x</span>  
+<span class="go">&lt;5x21 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;</span>
+<span class="go">    with 25 stored elements in Compressed Sparse Row format&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span><span class="o">.</span><span class="n">features</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span>
+<span class="go">[&#39;blade&#39;, &#39;chinese&#39;, &#39;comparing&#39;, &#39;demon&#39;, &#39;folklore&#39;, &#39;gizmo&#39;, &#39;gremlins&#39;, &#39;inside&#39;]</span>
+</pre></div>
+</div>
+<p>The idf embedding  behaves like the traditional embedding from documents to features,
+but it does not bias by document length from features to documents.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">gismo.embedding</span> <span class="kn">import</span> <span class="n">Embedding</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idtf_embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idtf_embedding</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Observe the heterogeneous distribution on idtf and the uniform one on idf on the y side.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idtf_embedding</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">data</span>
+<span class="go">array([0.46299901, 0.46299901, 0.07400197])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">data</span>
+<span class="go">array([0.33333333, 0.33333333, 0.33333333])</span>
+</pre></div>
+</div>
+<p>On the x side, the embeddings are the same.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idtf_embedding</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">data</span>
+<span class="go">array([0.27541155, 0.27541155, 0.27541155, 0.17376534])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">data</span>
+<span class="go">array([0.27541155, 0.27541155, 0.27541155, 0.17376534])</span>
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="py function">
-<dt id="sisu.preprocessing.sentences.make_content_sentences">
-<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.sentences.</span></code><code class="sig-name descname"><span class="pre">make_content_sentences</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a><a class="reference internal" href="../_modules/sisu/preprocessing/sentences.html#make_content_sentences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.preprocessing.sentences.make_content_sentences" title="Permalink to this definition">¶</a></dt>
-<dd><p>Cuts a document’s content into sentences when the document is a dict with the key content.</p>
+<dl class="py method">
+<dt id="sisu.embedding_idf.IdfEmbedding.transform">
+<code class="sig-name descname"><span class="pre">transform</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corpus</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.corpus.Corpus" title="(in GISMO v0.4.1)"><span class="pre">gismo.corpus.Corpus</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/embedding_idf.html#IdfEmbedding.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.embedding_idf.IdfEmbedding.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ingest a corpus of documents using existing features.
+Requires that the embedding has been fitted beforehand.</p>
+<ul class="simple">
+<li><p>TF-IDF embedding of documents is computed and stored.</p></li>
+<li><p>TF-ITF embedding of features is computed and stored.</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Simplified document.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Document’s content’s sentences.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
+<dd class="field-odd"><p><strong>corpus</strong> (<a class="reference external" href="https://gismo.readthedocs.io/en/latest/reference.html#gismo.corpus.Corpus" title="(in GISMO v0.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Corpus</span></code></a>) – The corpus to ingest.</p>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">make_content_sentences</span><span class="p">(</span><span class="n">toy_article</span><span class="p">)</span>
-<span class="go">[&#39;There is no-one in the trees.&#39;, &#39;Is there?&#39;, &quot;Predators don&#39;t like to lose.&quot;]</span>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">gismo.common</span> <span class="kn">import</span> <span class="n">toy_source_text</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">=</span><span class="n">Corpus</span><span class="p">(</span><span class="n">toy_source_text</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span> <span class="o">=</span> <span class="n">IdfEmbedding</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">embedding</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">embedding</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">indices</span><span class="p">[:</span><span class="mi">8</span><span class="p">]]</span>
+<span class="go">[&#39;gizmo&#39;, &#39;mogwaï&#39;, &#39;blade&#39;, &#39;sentence&#39;, &#39;sentence&#39;, &#39;shadoks&#39;, &#39;comparing&#39;, &#39;gizmo&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">small_corpus</span> <span class="o">=</span> <span class="n">Corpus</span><span class="p">([</span><span class="s2">&quot;I only talk about Yoda&quot;</span><span class="p">,</span> <span class="s2">&quot;Gizmo forever!&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embedding</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">small_corpus</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">embedding</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">embedding</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">indices</span><span class="p">]</span>
+<span class="go">[&#39;yoda&#39;, &#39;gizmo&#39;]</span>
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="py data">
-<dt id="sisu.preprocessing.sentences.toy_article">
-<code class="sig-prename descclassname"><span class="pre">sisu.preprocessing.sentences.</span></code><code class="sig-name descname"><span class="pre">toy_article</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'abstract':</span> <span class="pre">'In</span> <span class="pre">the</span> <span class="pre">jungle,</span> <span class="pre">no-one</span> <span class="pre">hears</span> <span class="pre">you</span> <span class="pre">far</span> <span class="pre">cry.</span> <span class="pre">And</span> <span class="pre">vice-versa.</span> <span class="pre">They</span> <span class="pre">say</span> <span class="pre">to</span> <span class="pre">make</span> <span class="pre">a</span> <span class="pre">long</span> <span class="pre">abstract,</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">42</span> <span class="pre">in</span> <span class="pre">it,</span> <span class="pre">so</span> <span class="pre">here</span> <span class="pre">I</span> <span class="pre">am.',</span> <span class="pre">'content':</span> <span class="pre">&quot;There</span> <span class="pre">is</span> <span class="pre">no-one</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">trees.</span> <span class="pre">Is</span> <span class="pre">there?</span> <span class="pre">Predators</span> <span class="pre">don't</span> <span class="pre">like</span> <span class="pre">to</span> <span class="pre">lose.&quot;,</span> <span class="pre">'title':</span> <span class="pre">'Predator'}</span></em><a class="headerlink" href="#sisu.preprocessing.sentences.toy_article" title="Permalink to this definition">¶</a></dt>
-<dd><p>Article with a simple structure.</p>
 </dd></dl>
 
 </div>
@@ -623,8 +655,8 @@ when documents have the same structure as the json in the COVID-19 dataset.</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="covid.html" class="btn btn-neutral float-left" title="Covid" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="summarizer.html" class="btn btn-neutral float-right" title="Summarizer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="datasets.html" class="btn btn-neutral float-left" title="Datasets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

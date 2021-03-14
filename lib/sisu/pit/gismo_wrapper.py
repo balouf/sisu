@@ -1,12 +1,10 @@
 import copy
 import re
-from pprint import pprint
 from gismo.corpus import Corpus
 from gismo import Gismo
-from functools import partial
 from sklearn.feature_extraction.text import CountVectorizer
 from gismo.embedding import Embedding
-from sisu.preprocessing.covid19 import get_title, get_abstract, get_content, make_clean_doc
+from sisu.datasets.covid import get_title, get_abstract, get_content
 
 COVID19_TEXT_GETTERS = {
     "title": get_title,
@@ -42,7 +40,7 @@ def simplified_document_to_string(doc: dict) -> str:
     Examples
     --------
 
-    >>> from sisu.preprocessing.sentences import toy_article
+    >>> from sisu.pit.preprocessing.sentences import toy_article
     >>> simplified_document_to_string(toy_article)
     "Predator In the jungle, no-one hears you far cry. And vice-versa. They say to make a long abstract, with the number 42 in it, so here I am. There is no-one in the trees. Is there? Predators don't like to lose."
     """

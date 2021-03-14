@@ -1,0 +1,465 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Datasets &mdash; Structured and Interactive Summarization 0.1.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Preprocessing" href="preprocessing.html" />
+    <link rel="prev" title="Reference" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Structured and Interactive Summarization
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Structured and Interactive Summarization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Datasets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#covid">Covid</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing.html">Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summarizer.html">Summarizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#module-sisu.pit.gismo_wrapper">PIT</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Structured and Interactive Summarization</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Reference</a> &raquo;</li>
+        
+      <li>Datasets</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/reference/datasets.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="datasets">
+<h1>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="covid">
+<h2>Covid<a class="headerlink" href="#covid" title="Permalink to this headline">¶</a></h2>
+<p>Module for loading Covid 19 Kaggle challenge datasets</p>
+<span class="target" id="module-sisu.datasets.covid"></span><dl class="py function">
+<dt id="sisu.datasets.covid.covid_zip_iterator">
+<code class="sig-prename descclassname"><span class="pre">sisu.datasets.covid.</span></code><code class="sig-name descname"><span class="pre">covid_zip_iterator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CORD-19-research-challenge.zip'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">getters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/datasets/covid.html#covid_zip_iterator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.datasets.covid.covid_zip_iterator" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file</strong> (str or <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a>, optional) – Zip file of a covid archive.</p></li>
+<li><p><strong>data_path</strong> (str or <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a>, optional) – Location of the archive</p></li>
+<li><p><strong>getters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – Recipes to build values for the formatted document.</p></li>
+<li><p><strong>language</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – Add a <cite>lang</cite> entry that tells the language.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Formatted articles.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>iterator</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">covid_zip_iterator</span><span class="p">(</span><span class="s2">&quot;covid_sample.zip&quot;</span><span class="p">,</span> <span class="n">data_path</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">getters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">get_title</span><span class="p">},</span> <span class="n">language</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="gp">... </span>   <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+<span class="go">{&#39;title&#39;: &#39;Community frailty response service: the ED at your front door&#39;}</span>
+<span class="go">{&#39;title&#39;: &#39;COVID-19-Pneumonie&#39;}</span>
+<span class="go">{&#39;title&#39;: &#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt id="sisu.datasets.covid.default_getters">
+<code class="sig-prename descclassname"><span class="pre">sisu.datasets.covid.</span></code><code class="sig-name descname"><span class="pre">default_getters</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'abstract':</span> <span class="pre">&lt;function</span> <span class="pre">get_abstract&gt;,</span> <span class="pre">'content':</span> <span class="pre">&lt;function</span> <span class="pre">get_content&gt;,</span> <span class="pre">'id':</span> <span class="pre">&lt;function</span> <span class="pre">get_id&gt;,</span> <span class="pre">'title':</span> <span class="pre">&lt;function</span> <span class="pre">get_title&gt;}</span></em><a class="headerlink" href="#sisu.datasets.covid.default_getters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default fields to build from a covid json.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.datasets.covid.format_covid_json">
+<code class="sig-prename descclassname"><span class="pre">sisu.datasets.covid.</span></code><code class="sig-name descname"><span class="pre">format_covid_json</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">getters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/datasets/covid.html#format_covid_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.datasets.covid.format_covid_json" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – A covid document in its original format.</p></li>
+<li><p><strong>getters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – Recipes to build values for the formatted document.</p></li>
+<li><p><strong>language</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – Add a <cite>lang</cite> entry that tells the language.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Formatted document</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>We will use a few json samples embedded in the package.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/covid_sample&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">data_dir</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s1">&#39;*.json&#39;</span><span class="p">):</span> 
+<span class="gp">... </span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="n">format_covid_json</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)))</span>
+<span class="go">{&#39;title&#39;: &#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;,</span>
+<span class="go"> &#39;abstract&#39;: &#39;&#39;,</span>
+<span class="go"> &#39;content&#39;: &#39;Editor. According to current live statistics at the time of editing this letter,...&#39;,</span>
+<span class="go"> &#39;id&#39;: &#39;0000028b5cc154f68b8a269f6578f21e31f62977&#39;,</span>
+<span class="go"> &#39;lang&#39;: &#39;en&#39;}</span>
+<span class="go">{&#39;title&#39;: &#39;Community frailty response service: the ED at your front door&#39;,</span>
+<span class="go"> &#39;abstract&#39;: &#39;We describe the expansion and adaptation of a frailty response team to assess older people in</span>
+<span class="go">their usual place of residence. The team had commenced a weekend service to a limited area in February 2020.</span>
+<span class="go">As a consequence of demand related to the COVID-19 pandemic, we expanded it and adapted...&#39;,</span>
+<span class="go"> &#39;content&#39;: &quot;INTRODUCTION. A large proportion of short-stay admissions in older adults may be avoidable...,</span>
+<span class="go"> &#39;id&#39;: &#39;000680e3114af4aa10e8f208cd162a61195f4465&#39;,</span>
+<span class="go"> &#39;lang&#39;: &#39;en&#39;}</span>
+<span class="go">{&#39;title&#39;: &#39;COVID-19-Pneumonie&#39;,</span>
+<span class="go"> &#39;abstract&#39;: &#39;&#39;,</span>
+<span class="go"> &#39;content&#39;: &#39;. der Entwicklung einer schweren Pneumonie im Vordergrund, die in der Regel prognostisch...&#39;,</span>
+<span class="go"> &#39;id&#39;: &#39;0009745a11d206af9e405e00677c51b01251dba7&#39;,</span>
+<span class="go"> &#39;lang&#39;: &#39;de&#39;}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.datasets.covid.get_abstract">
+<code class="sig-prename descclassname"><span class="pre">sisu.datasets.covid.</span></code><code class="sig-name descname"><span class="pre">get_abstract</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/datasets/covid.html#get_abstract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.datasets.covid.get_abstract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the abstract of a document with the same structure as the json in the COVID-19 dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Abstract of the document.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_abstract</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span> 
+<span class="go">&#39;In the jungle, no-one hears you far cry. And vice-versa.</span>
+<span class="go">They say to make a long abstract, with the number 42 in it, so here I am.&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.datasets.covid.get_content">
+<code class="sig-prename descclassname"><span class="pre">sisu.datasets.covid.</span></code><code class="sig-name descname"><span class="pre">get_content</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/datasets/covid.html#get_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.datasets.covid.get_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the content of a document with the same structure as the json in the COVID-19 dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Content of the document.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_content</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span>
+<span class="go">&quot;introduction. There is no-one in the trees. Is there? conclusion. Predators don&#39;t like to lose.&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.datasets.covid.get_id">
+<code class="sig-prename descclassname"><span class="pre">sisu.datasets.covid.</span></code><code class="sig-name descname"><span class="pre">get_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/datasets/covid.html#get_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.datasets.covid.get_id" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – A covid article</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Unique Id of the article</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_id</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span>
+<span class="go">&#39;thisismyid&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.datasets.covid.get_title">
+<code class="sig-prename descclassname"><span class="pre">sisu.datasets.covid.</span></code><code class="sig-name descname"><span class="pre">get_title</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="reference internal" href="../_modules/sisu/datasets/covid.html#get_title"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.datasets.covid.get_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the title of a document from a document with the same structure as the json in the COVID-19 dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>document</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A <cite>dict</cite> representing a document.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The title of the document.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_title</span><span class="p">(</span><span class="n">toy_covid_article</span><span class="p">)</span>
+<span class="go">&#39;Predator&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sisu.datasets.covid.load_from_zip">
+<code class="sig-prename descclassname"><span class="pre">sisu.datasets.covid.</span></code><code class="sig-name descname"><span class="pre">load_from_zip</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CORD-19-research-challenge.zip'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">getters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_docs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sisu/datasets/covid.html#load_from_zip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sisu.datasets.covid.load_from_zip" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file</strong> (str or <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a>, optional) – Zip file of a covid archive.</p></li>
+<li><p><strong>data_path</strong> (str or <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a>, optional) – Location of the archive</p></li>
+<li><p><strong>getters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em>, </em><em>optional</em>) – Recipes to build values for the formatted document.</p></li>
+<li><p><strong>language</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – Add a <cite>lang</cite> entry that tells the language.</p></li>
+<li><p><strong>max_docs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – Max number of documents to return</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of dict</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">load_from_zip</span><span class="p">(</span><span class="s2">&quot;covid_sample.zip&quot;</span><span class="p">,</span> <span class="n">data_path</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">getters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">get_title</span><span class="p">},</span> <span class="n">language</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> 
+<span class="go">[{&#39;title&#39;: &#39;Community frailty response service: the ED at your front door&#39;},</span>
+<span class="go"> {&#39;title&#39;: &#39;COVID-19-Pneumonie&#39;},</span>
+<span class="go"> {&#39;title&#39;: &#39;&quot;Multi-faceted&quot; COVID-19: Russian experience&#39;}]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">load_from_zip</span><span class="p">(</span><span class="s2">&quot;covid_sample.zip&quot;</span><span class="p">,</span> <span class="n">data_path</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">getters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">get_id</span><span class="p">},</span> <span class="n">language</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">max_docs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+<span class="go">[{&#39;id&#39;: &#39;000680e3114af4aa10e8f208cd162a61195f4465&#39;}]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt id="sisu.datasets.covid.toy_covid_article">
+<code class="sig-prename descclassname"><span class="pre">sisu.datasets.covid.</span></code><code class="sig-name descname"><span class="pre">toy_covid_article</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'abstract':</span> <span class="pre">[{'text':</span> <span class="pre">'In</span> <span class="pre">the</span> <span class="pre">jungle,</span> <span class="pre">no-one</span> <span class="pre">hears</span> <span class="pre">you</span> <span class="pre">far</span> <span class="pre">cry.</span> <span class="pre">And</span> <span class="pre">vice-versa.'},</span> <span class="pre">{'text':</span> <span class="pre">'They</span> <span class="pre">say</span> <span class="pre">to</span> <span class="pre">make</span> <span class="pre">a</span> <span class="pre">long</span> <span class="pre">abstract,</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">42</span> <span class="pre">in</span> <span class="pre">it,</span> <span class="pre">so</span> <span class="pre">here</span> <span class="pre">I</span> <span class="pre">am.'}],</span> <span class="pre">'body_text':</span> <span class="pre">[{'section':</span> <span class="pre">'introduction',</span> <span class="pre">'text':</span> <span class="pre">'There</span> <span class="pre">is</span> <span class="pre">no-one</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">trees.</span> <span class="pre">Is</span> <span class="pre">there?'},</span> <span class="pre">{'section':</span> <span class="pre">'conclusion',</span> <span class="pre">'text':</span> <span class="pre">&quot;Predators</span> <span class="pre">don't</span> <span class="pre">like</span> <span class="pre">to</span> <span class="pre">lose.&quot;}],</span> <span class="pre">'metadata':</span> <span class="pre">{'title':</span> <span class="pre">'Predator'},</span> <span class="pre">'paper_id':</span> <span class="pre">'thisismyid'}</span></em><a class="headerlink" href="#sisu.datasets.covid.toy_covid_article" title="Permalink to this definition">¶</a></dt>
+<dd><p>A toy document with the same structure as the json in the COVID-19 dataset.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="preprocessing.html" class="btn btn-neutral float-right" title="Preprocessing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Mélanie Cambus, Marc-Olivier Buob, Fabien Mathieu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,15 +1,4 @@
-#!/usr/http://localhost:8888/edit/notebooks/summarizer/language_filtering.py#bin/env python3
-# -*- coding: utf-8 -*-
-#
-# This file is part of newdle
-# Copyright © 2020 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. *
-#
-# Authors:
-#   Marc-Olivier Buob <marc-olivier.buob@nokia-bell-labs.com>
-#   Mélanie Cambus    <melanie.cambus@nokia.com>
-
-import copy, re, scipy, spacy
-import sys
+import copy, re, spacy
 
 import numpy as np
 # from sklearn.metrics.pairwise    import cosine_similarity
@@ -21,7 +10,7 @@ from gismo.embedding import Embedding
 from sklearn.metrics.pairwise import cosine_similarity
 from sisu.pit.building_summary import is_relevant_sentence, RE_CITATION, RE_URL
 from sisu.pit.gismo_wrapper import make_gismo
-from sisu.preprocessing.tokenizer import num_words, make_sentences_wiki
+from sisu.pit.preprocessing.tokenizer import num_words, make_sentences_wiki
 
 # try:
 #     import neuralcoref
