@@ -2,15 +2,31 @@
 History
 =======
 
----------------------------------
-0.1.3 (2021-03-10): Full *pit*
----------------------------------
+-----------------------------------
+0.X.X (2021-XX-XX): TODO
+-----------------------------------
+
+* Run experiments and comparison on the flat summarizer
+
+* Start converting the Wikipedia Animals dataset
+
+* Start converting hierarchical summary notebook
+
+-----------------------------------
+0.2.0 (2021-03-14): Flat summarizer
+-----------------------------------
+
+* Main update: fully-functional flat summarizer!
+
+  * Fully customisable;
+
+  * Fully documented.
 
 * Change of paradigm: start from the notebook and build the module cell by cell.
 
-* Consequences: all modules from 0.1.2 are moved to the pit. They will be restored during the notebook transformation.
+* Consequences: all non-converted modules from 0.1.2 are moved to the pit. They will be restored during the notebook transformation.
 
-* sentence splitter optimized
+* sentence splitter optimized big time using nltk hidden features!
 
 
 

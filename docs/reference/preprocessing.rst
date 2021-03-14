@@ -17,3 +17,11 @@ Module for extracting text parts from documents and decomposing text into base u
 
 .. automodule:: sisu.preprocessing.tokenizer
     :members:
+
+IDF Embedding
+^^^^^^^^^^^^^^
+
+Embedding with ITF disabled.
+
+.. automodule:: sisu.embedding_idf
+    :members:

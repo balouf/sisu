@@ -8,12 +8,7 @@ Reference
 
    preprocessing
 
-Summarizer
------------
-
-.. automodule:: sisu.summarizer
-    :members:
-
+   summarizer
 
 PIT
 -----

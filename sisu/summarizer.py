@@ -19,14 +19,14 @@ def cosine_order(projection, sentences, query):
     ----------
     projection: callable
         A function that converts a text into a tuple whose first element is an embedding (typically a Gismo :meth:`~gismo.embedding.Embedding.query_projection`).
-    sentences: list of dict
+    sentences: :class:`list` of :class:`dict`
         Sentences as output by :func:`~sisu.summarizer.extract_sentences`.
-    query: str
+    query: :class:`str`
         Target query
 
     Returns
     -------
-    list of int
+    :class:`list` of :class:`int`
         Ordered list of indexes of relevant sentences, sorted by cosine similarity
     """
     relevant_indices = [s['index'] for s in sentences if s['relevant']]
@@ -49,13 +49,13 @@ def extract_sentences(source, indices, getter=None, tester=None):
 
     Parameters
     ----------
-    source: list
+    source: :class:`list`
         list of objects
-    indices: iterable of int
+    indices: iterable of :class:`int`
         Indexes of the source items to select
     getter: callable, optional
         Tells how to convert a source entry into text.
-    tester: callable
+    tester: callable, optional
         Tells if the sentence is eligible for being part of the summary.
 
     Returns
@@ -131,27 +131,26 @@ List of parameters for the summarizer with their default values.
 
 Parameters
 -----------
-order: str
+order: :class:`str`
     Sorting function.
 text_getter: callable
     Extraction of text from corpus item. If not specify, the to_text of the :class:`~gismo.corpus.Corpus` will be used.
 sentence_tester: callable
     Function that estimates if a sentence is eligible to be part of the summary
-itf: bool
+itf: :class:`bool`
     Use of ITF normalization in the sentence-level Gismo
 post_processing: callable
     post_processing transformation. Signature is (:class:`~sisu.summarizer.Summarizer`, :class:`int`) -> :class:`str`
-sentence_gismo_parameters: dict
+sentence_gismo_parameters: :class:`dict`
     Tuning of sentence-level gismo. `post` MUST be set  to False.
-num_documents: int or None
+num_documents: :class:`int` or None
     Number of documents to pre-select
-num_query: int or None
+num_query: :class:`int` or None
     Number of features to use in generic query
-num_sentences: int or None
+num_sentences: :class:`int` or None
     Number of sentences to return
-max_chars: int or None
+max_chars: :class:`int` or None
     Maximal number of characters to return
-
 """
 
 
@@ -163,7 +162,7 @@ class Summarizer:
     ----------
     gismo: :class:`~gismo.gismo.Gismo`
         Gismo of the documents to analyze.
-    kwargs: dict
+    kwargs: :class:`dict`
         Parameters of the summarizer (see :obj:`~sisu.summarizer.default_summarizer_parameters` for details).
 
     Attributes
