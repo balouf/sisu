@@ -3,6 +3,18 @@ History
 =======
 
 ---------------------------------
+0.1.3 (2021-03-10): Full *pit*
+---------------------------------
+
+* Change of paradigm: start from the notebook and build the module cell by cell.
+
+* Consequences: all modules from 0.1.2 are moved to the pit. They will be restored during the notebook transformation.
+
+* sentence splitter optimized
+
+
+
+---------------------------------
 0.1.2 (2021-03-03): the *pit*
 ---------------------------------
 

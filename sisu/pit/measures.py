@@ -15,7 +15,8 @@ import matplotlib.pyplot as plt
 from gismo.embedding import Embedding
 from nltk import skipgrams
 from sisu.pit.lcs import my_lcs
-from sisu.preprocessing.tokenizer import make_sentences, words
+from sisu.pit.preprocessing.tokenizer import make_sentences
+from sisu.preprocessing.tokenizer import words
 
 
 def precision(summary: str, ref: str, vocab: set = None) -> float:

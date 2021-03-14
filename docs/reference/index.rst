@@ -4,9 +4,16 @@ Reference
 
 .. toctree::
 
-   covid
+   datasets
 
    preprocessing
+
+Summarizer
+-----------
+
+.. automodule:: sisu.summarizer
+    :members:
+
 
 PIT
 -----

@@ -64,6 +64,27 @@ class IdfEmbedding(Embedding):
             with 25 stored elements in Compressed Sparse Row format>
         >>> embedding.features[:8]
         ['blade', 'chinese', 'comparing', 'demon', 'folklore', 'gizmo', 'gremlins', 'inside']
+
+        The idf embedding  behaves like the traditional embedding from documents to features,
+        but it does not bias by document length from features to documents.
+
+        >>> from gismo.embedding import Embedding
+        >>> idtf_embedding = Embedding()
+        >>> idtf_embedding.fit_transform(corpus)
+
+        Observe the heterogeneous distribution on idtf and the uniform one on idf on the y side.
+
+        >>> idtf_embedding.y[15, :].data
+        array([0.46299901, 0.46299901, 0.07400197])
+        >>> embedding.y[15, :].data
+        array([0.33333333, 0.33333333, 0.33333333])
+
+        On the x side, the embeddings are the same.
+
+        >>> idtf_embedding.x[-1, :].data
+        array([0.27541155, 0.27541155, 0.27541155, 0.17376534])
+        >>> embedding.x[-1, :].data
+        array([0.27541155, 0.27541155, 0.27541155, 0.17376534])
         """
         if self.vectorizer is None:
             self.vectorizer = auto_vect(corpus)

@@ -7,7 +7,7 @@ import dill as pickle
 import numpy as np
 from gismo.filesource import FileSource
 
-from sisu.preprocessing.covid19 import get_content
+from sisu.datasets.covid import get_content
 from sisu.preprocessing.language import guess_language
 
 
@@ -70,7 +70,7 @@ def load_dataset(dataset_dir: str, getters: dict = None, max_documents: int = No
 
     Now, we use getters to preprocess the documents and we limit the results to 2 documents. we also do not want a save to be made.
 
-    >>> from sisu.preprocessing.covid19 import get_title, get_abstract
+    >>> from sisu.datasets.covid import get_title, get_abstract
     >>> documents = load_dataset(data_dir, max_documents=2, getters={'title': get_title, 'abstract': get_abstract}, save=None)
     >>> len(documents)
     2
@@ -170,7 +170,7 @@ def filesource_loader_covid(d: Path, lang: str = "en", zipname="CORD-19-research
 
     Is it in German?
 
-    >>> from sisu.preprocessing.covid19 import get_content
+    >>> from sisu.datasets.covid import get_content
     >>> get_content(source[0]) # doctest: +ELLIPSIS
     '. der Entwicklung einer schweren Pneumonie im Vordergrund, die in der Regel prognostisch bestimmend ist. Sehr...'
 

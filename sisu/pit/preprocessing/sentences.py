@@ -8,7 +8,7 @@
 #   Marc-Olivier Buob <marc-olivier.buob@nokia-bell-labs.com>
 #   Mélanie Cambus    <melanie.cambus@nokia.com>
 
-from sisu.preprocessing.tokenizer import make_sentences
+from sisu.pit.preprocessing.tokenizer import make_sentences
 
 toy_article = {'title': "Predator",
                'abstract': "In the jungle, no-one hears you far cry. And vice-versa. "
